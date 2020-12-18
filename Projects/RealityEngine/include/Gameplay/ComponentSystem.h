@@ -132,7 +132,8 @@ inline void reality::ComponentSystem::UpdateParticles(Scene& scene) const {
 				glSystem->Direction = Vector3::Normalize(system->GetGameObject().Transform.GetForward());
 				glSystem->Position = system->GetGameObject().Transform.GetPosition();
 				if (auto camera{ CCamera::s_Main }) {
-					glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, camera->GetGameObject().Transform.GetPosition());
+					glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, 
+						camera->GetGameObject().Transform.GetPosition());
 				}
 			}
 		}

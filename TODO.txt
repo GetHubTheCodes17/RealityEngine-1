@@ -18,6 +18,7 @@ Save scenes in xml files
 Mouse in background (right click)
 Delete and create empty GameObjects
 Link resources manager with editor
+Allow drop resources into editor
 Allows resources changes (textures, meshes, ...)
 Add behaviour to File Edit and Window menu
 Add GameObjects duplication

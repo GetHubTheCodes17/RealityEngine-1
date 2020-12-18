@@ -61,12 +61,8 @@ void reality::Editor::CreateDefaultScene() const {
 	g_ModelManager->Load("Crytek", { "Models/crytek/sponza.obj" });
 	g_TextureManager->Load("Particle", { "Textures/particle.png" });
 	g_SkyboxManager->Load("Saturne", { 
-		"Skyboxes/saturne/Left.png",  
-		"Skyboxes/saturne/Right.png",
-		"Skyboxes/saturne/Up.png",
-		"Skyboxes/saturne/Down.png",
-		"Skyboxes/saturne/Front.png",
-		"Skyboxes/saturne/Back.png"
+		"Skyboxes/saturne/Left.png", "Skyboxes/saturne/Right.png", "Skyboxes/saturne/Up.png",
+		"Skyboxes/saturne/Down.png", "Skyboxes/saturne/Front.png", "Skyboxes/saturne/Back.png"
 	});
 	g_FontManager->Load("Arial", { "Fonts/Arial.ttf" });
 
