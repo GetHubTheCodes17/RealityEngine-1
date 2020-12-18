@@ -11,7 +11,7 @@
 reality::Editor::Editor() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	editorTheme::StyleColorCyan();
+	ImGui::StyleColorsDark();
 	ImGui::GetIO().IniFilename = "Config/imgui.ini";
 	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
@@ -117,7 +117,7 @@ void reality::Editor::Render() const {
 	g_MeshHelper->Cube.Draw();
 
 	// Draw Debug Text
-	g_FontManager->Get("Arial")->Draw("Salut a tous !", { 0.1f, 0.1f, 0.5f, 0.5f }, m_ViewportSize);
+	//g_FontManager->Get("Arial")->Draw("Salut a tous !", { 0.1f, 0.1f, 0.5f, 0.5f }, m_ViewportSize);
 
 	m_Pipeline.BeginPostProcess();
 	m_Pipeline.GetDefaultPass().Bind();

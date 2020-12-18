@@ -1,17 +1,17 @@
 First step:
 
-Create the github repo for the project with aadel email
+- Create the github repo for the project with aadel email
 
 In Between steps:
 
-Check for any warnings (W4) 
-Clean the code if possible
-Profile the project in Debug and Release modes
-Update the project on github
+- Check for any warnings (W4)
+- Clean the code if possible
+- Profile the project in Debug and Release modes
+- Update the project on github
 
 Editor:
 
-Fix Gizmos and finish rotation/scale/translation
+- Fix Rotation Gizmo
 Finish GameObject hierarchy
 Add GameObject components reflection with rttr
 Save scenes in xml files
@@ -22,6 +22,7 @@ Allow drop resources into editor
 Allows resources changes (textures, meshes, ...)
 Add behaviour to File Edit and Window menu
 Add GameObjects duplication
+Add camera focus
 Customise the console window
 Add Scene Object detections with mouse raycast
 

@@ -17,6 +17,9 @@ namespace reality {
 	private:
 		ImGuizmo::OPERATION m_CurrentGuizmoOperation{ ImGuizmo::OPERATION::TRANSLATE };
 		ImGuizmo::MODE m_CurrentGuizmoMode{ ImGuizmo::MODE::WORLD };
+		Vector3 m_SnapTranslation, m_SnapScale;
+		float m_SnapAngle{ 15.f };
+		bool m_UseSnap{};
 
 		void DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize, EditorCamera& camera, GameObject& object);  
 	};
@@ -77,13 +80,40 @@ inline void reality::EditorScene::DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize
 	if (ImGui::RadioButton("Scale", m_CurrentGuizmoOperation == ImGuizmo::SCALE)) {
 		m_CurrentGuizmoOperation = ImGuizmo::SCALE;
 	}
+
+	ImGui::Checkbox("Snap", &m_UseSnap);
+	ImGui::SameLine();
+
+	Vector3 snap;
+	switch (m_CurrentGuizmoOperation) {
+	case ImGuizmo::TRANSLATE:
+		ImGui::InputFloat3("Translation Snap", &m_SnapTranslation.X);
+		snap = m_SnapTranslation;
+		break;
+	case ImGuizmo::ROTATE:
+		ImGui::InputFloat("Angle Snap", &m_SnapAngle);
+		snap = Vector3{ m_SnapAngle };
+		break;
+	case ImGuizmo::SCALE:
+		ImGui::InputFloat("Scale Snap", &m_SnapScale.X);
+		snap = m_SnapScale;
+		break;
+	}
 	ImGuizmo::SetDrawlist();
 	ImGuizmo::SetRect(windowPos.x, windowPos.y, windowSize.x, windowSize.y);
 
-	auto trs{ object.Transform.GetTrs() };
-	ImGuizmo::Manipulate(camera.GetViewMatrix().Array, camera.Projection.Array, m_CurrentGuizmoOperation, 
-		m_CurrentGuizmoMode, trs.Array);
+	Matrix4 trs{ object.Transform.GetTrs() }, deltaMatrix;
 
-	object.Transform.SetPosition(Matrix4::GetTranslation(trs));
-	object.Transform.SetScale(Matrix4::GetScale(trs));
+	ImGuizmo::Manipulate(camera.GetViewMatrix().Array, camera.Projection.Array, m_CurrentGuizmoOperation, 
+		m_CurrentGuizmoMode, trs.Array, deltaMatrix.Array, m_UseSnap ? &snap.X : nullptr);
+
+	if (m_CurrentGuizmoOperation == ImGuizmo::TRANSLATE) {
+		object.Transform.Translate(deltaMatrix.GetRow3(3));
+	}
+	else if (m_CurrentGuizmoOperation == ImGuizmo::ROTATE) {
+		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles());
+	}
+	else if (m_CurrentGuizmoOperation == ImGuizmo::SCALE) {
+		object.Transform.SetScale(Matrix4::GetScale(trs));
+	}
 }
