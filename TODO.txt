@@ -1,0 +1,71 @@
+First step:
+
+Create the github repo for the project with aadel email
+
+In Between steps:
+
+Check for any warnings (W4) 
+Clean the code if possible
+Profile the project in Debug and Release modes
+Update the project on github
+
+Editor:
+
+Fix Gizmos and finish rotation/scale/translation
+Finish GameObject hierarchy
+Add GameObject components reflection with rttr
+Save scenes in xml files
+Mouse in background (right click)
+Delete and create empty GameObjects
+Link resources manager with editor
+Allows resources changes (textures, meshes, ...)
+Add behaviour to File Edit and Window menu
+Add GameObjects duplication
+Customise the console window
+Add Scene Object detections with mouse raycast
+
+Audio:
+
+Finish Audio Engine
+
+Core:
+
+Create the profiling tool
+Update logger
+Unit test on maths
+
+Gameplay:
+
+Finish all basic components (Light, UI, Transform, Camera, Meshes, ...)
+Finish C++ scripts and add hot reload to the engine
+Try to create basic game to get global feedback
+
+Rendering:
+
+Don't include shaders anymore
+Understand how renderdocs works
+Understand how advanced rendering like pbr works
+Improve the Particle system (not really important)
+
+Resources:
+
+Fix the resources manager save when the engine crashes
+Fix the assimp bug with aiTextureType_REFLECTION
+
+Windowing:
+
+Try to find a way to optimise the window creation (not very important)
+
+Engine:
+
+Clean the Engine if needed and make it beautiful
+
+Physic:
+
+Implement the physx engine
+Add physics components
+
+
+
+
+

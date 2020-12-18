@@ -1,0 +1,42 @@
+{
+    "Nanosuit": {
+        "settings": {
+            "Path": "Models/nanosuit/nanosuit.obj"
+        },
+        "properties": {
+            "Usage": 1,
+            "DrawType": 4,
+            "Attribute": 0
+        }
+    },
+    "SpaceShip": {
+        "settings": {
+            "Path": "Models/SciFi_Fighter/SciFi_Fighter.obj"
+        },
+        "properties": {
+            "Usage": 1,
+            "DrawType": 4,
+            "Attribute": 0
+        }
+    },
+    "House": {
+        "settings": {
+            "Path": "Models/fantasy_game_inn/fantasy_game_inn.obj"
+        },
+        "properties": {
+            "Usage": 1,
+            "DrawType": 4,
+            "Attribute": 0
+        }
+    },
+    "Crytek": {
+        "settings": {
+            "Path": "Models/crytek/sponza.obj"
+        },
+        "properties": {
+            "Usage": 1,
+            "DrawType": 4,
+            "Attribute": 0
+        }
+    }
+}

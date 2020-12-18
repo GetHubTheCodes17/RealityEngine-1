@@ -1,0 +1,13 @@
+{
+    "Saturne": {
+        "settings": {
+            "Left": "Skyboxes/saturne/Right.png",
+            "Right": "Skyboxes/saturne/Left.png",
+            "Up": "Skyboxes/saturne/Up.png",
+            "Down": "Skyboxes/saturne/Down.png",
+            "Front": "Skyboxes/saturne/Front.png",
+            "Back": "Skyboxes/saturne/Back.png"
+        },
+        "properties": {}
+    }
+}

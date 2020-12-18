@@ -1,0 +1,1 @@
+#define RE_SYSTEM(T) public: static auto Id() noexcept -> SystemId { static const SystemId id{ System::CreateId() }; return id; }

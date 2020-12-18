@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include\Resources">
+      <UniqueIdentifier>{59b73ddd-d223-461e-a12e-c135d00b3a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources\Model">
+      <UniqueIdentifier>{e8665a9e-a473-4785-8f8a-a78a6e04e26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources\Texture">
+      <UniqueIdentifier>{320d8f46-f561-4bc2-9c77-0aa7808a570d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Resources">
+      <UniqueIdentifier>{e8f06a18-6c05-4eda-b666-ab4426218ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Resources\Model">
+      <UniqueIdentifier>{1a34c453-a29f-4b68-9da9-2c4604ef75c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Resources\Texture">
+      <UniqueIdentifier>{e964a28e-e043-415b-a777-5f88d62623f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Windowing">
+      <UniqueIdentifier>{ed10a68e-7291-49e3-8237-56b8048d7ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Windowing">
+      <UniqueIdentifier>{a6641231-f39d-4790-ab06-0585e736377f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources\Shader">
+      <UniqueIdentifier>{a5087e4a-da5c-4e98-a18f-f59ed581a8c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Rendering">
+      <UniqueIdentifier>{3e7d5a3a-28e9-4f36-8064-eddded75924f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Rendering\Opengl">
+      <UniqueIdentifier>{caba5581-191a-41c5-be1e-c37bdc139ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Rendering">
+      <UniqueIdentifier>{4f010877-ebbd-40bb-ab82-097757fdc8b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Rendering\Opengl">
+      <UniqueIdentifier>{909facd4-21cf-4228-852f-c5fd6f73536d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Core">
+      <UniqueIdentifier>{1b208306-0441-4df3-a2ce-496e28a6e64a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Core\Maths">
+      <UniqueIdentifier>{b3858c46-bceb-47f8-b907-1c76b566199c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Core\Tools">
+      <UniqueIdentifier>{3bc06454-cc77-430e-94ec-37d66296274a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Core">
+      <UniqueIdentifier>{78ddfae5-d7ce-4a45-9ff3-44a4c111eba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Gameplay">
+      <UniqueIdentifier>{037707f0-f0a8-4a3b-965a-8ef1fb6b42da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Gameplay\Component">
+      <UniqueIdentifier>{bff21cbb-4a17-4b84-bdb6-218a83bf1bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Gameplay">
+      <UniqueIdentifier>{3c7c085b-5a6b-459c-87b8-e8ca2e464a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Core\Tools">
+      <UniqueIdentifier>{68343b38-6bad-422d-8eab-807326549de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Audio">
+      <UniqueIdentifier>{02a87fe3-ce1c-4261-98a3-2b1565fe0394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Audio">
+      <UniqueIdentifier>{153561c8-4b63-42fd-b9bc-3b8a0fd57ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Rendering\GLSLShaders">
+      <UniqueIdentifier>{b7517f8d-22b7-4243-b5d2-e45650cfdfe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Rendering\Settings">
+      <UniqueIdentifier>{8080aed1-2bf7-48e7-b762-d93932d0dec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources\Font">
+      <UniqueIdentifier>{0f57e583-0543-420f-825d-fc5784c54b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Resources\Font">
+      <UniqueIdentifier>{378fd137-678b-4fa8-a856-3f462bf0ff60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Resources\Shader">
+      <UniqueIdentifier>{c4e9192f-8633-459b-aad0-92cee404e212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources\Skybox">
+      <UniqueIdentifier>{1f58cda6-c221-41e4-b5a1-b1d1c1c7c344}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Windowing\GlfwInput.cpp">
+      <Filter>source\Windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Windowing\GlfwTime.cpp">
+      <Filter>source\Windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Windowing\GlfwWindow.cpp">
+      <Filter>source\Windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Gameplay\Scene.cpp">
+      <Filter>source\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Core\Tools\Leaker.cpp">
+      <Filter>source\Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\Include\glad\glad.c">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLShader.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLTexture.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLCubeMap.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLMesh.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLRenderPass.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLMaterial.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLDebugDrawing.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLContext.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Audio\AudioEngine.cpp">
+      <Filter>source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLPipeline.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Audio\AudioSource.cpp">
+      <Filter>source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLParticleSystem.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Core\Tools\Logger.cpp">
+      <Filter>source\Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Rendering\Opengl\GLFont.cpp">
+      <Filter>source\Rendering\Opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Resources\Model\ModelConverter.cpp">
+      <Filter>source\Resources\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Resources\Texture\Texture.cpp">
+      <Filter>source\Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Resources\Font\Font.cpp">
+      <Filter>source\Resources\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Resources\Model\Model.cpp">
+      <Filter>source\Resources\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Resources\Shader\Shader.cpp">
+      <Filter>source\Resources\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Engine.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Resources\Model\Model.h">
+      <Filter>include\Resources\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Texture\Texture.h">
+      <Filter>include\Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\GlfwInput.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\GlfwTime.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\GlfwWindow.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\Input.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\IO.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\KeyCodes.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\Time.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Windowing\Window.h">
+      <Filter>include\Windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Engine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Shader\Shader.h">
+      <Filter>include\Resources\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Mathf.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Matrix4.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Quaternion.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Vector2.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Vector3.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Vector4.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Tools\Leaker.h">
+      <Filter>include\Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Tools\Logger.h">
+      <Filter>include\Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Tools\Randomizer.h">
+      <Filter>include\Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\Component.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Scene.h">
+      <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\SceneManager.h">
+      <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\GameObject.h">
+      <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\PlayerPref.h">
+      <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\Transform.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\MonoBehaviour.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\Light.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\Camera.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\Behaviour.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\ComponentManager.h">
+      <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLShader.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLTexture.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLCubeMap.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLMesh.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLRenderPass.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLMaterial.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLModel.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLDebugDrawing.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLShaderHelper.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLLight.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Line.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Viewport.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceSerialize.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLPrimitiveHelper.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\Frustrum.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLContext.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Audio\AudioEngine.h">
+      <Filter>include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLSLShader.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\GLSLShaders\Basic.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLMeshHelper.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLPipeline.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Audio\AudioSource.h">
+      <Filter>include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLTextureSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLMeshSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLCubeMapSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLShaderSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLRenderPassSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLDebugDrawingSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLParticleSystem.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\ComponentSystem.h">
+      <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Platform.h">
+      <Filter>include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Font\Font.h">
+      <Filter>include\Resources\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Opengl\GLFont.h">
+      <Filter>include\Rendering\Opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rendering\Settings\GLFontSettings.h">
+      <Filter>include\Rendering\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Model\Vertex.h">
+      <Filter>include\Resources\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Model\ModelConverter.h">
+      <Filter>include\Resources\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceConverter.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceLocator.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceManager.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\MeshRenderer.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\ParticleSystem.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Skybox\Skybox.h">
+      <Filter>include\Resources\Skybox</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\Rendering\GLSLShaders\Default.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Default.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\CubeMap.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\CubeMap.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Shadow.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Color.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Texture.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Blur.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Additive.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\LensFlare.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\DownSample.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Particle.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Particle.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Text.vs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Text.fs">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

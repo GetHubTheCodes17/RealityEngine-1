@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealityEditor", "Projects\RealityEditor\RealityEditor.vcxproj", "{EC24CFB9-7282-47EE-9C03-8367A8934FE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92} = {51FA2B87-4587-48F2-98EE-59E25FD7FC92}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealityEngine", "Projects\RealityEngine\RealityEngine.vcxproj", "{51FA2B87-4587-48F2-98EE-59E25FD7FC92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Debug|x64.ActiveCfg = Debug|x64
+		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Debug|x64.Build.0 = Debug|x64
+		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Release|x64.ActiveCfg = Release|x64
+		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Release|x64.Build.0 = Release|x64
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Debug|x64.ActiveCfg = Debug|x64
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Debug|x64.Build.0 = Debug|x64
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Release|x64.ActiveCfg = Release|x64
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD04C6C0-4B40-4653-81D9-512E2DFB4CC4}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Dependencies\Include\glad\glad.c" />
+    <ClCompile Include="source\Audio\AudioEngine.cpp" />
+    <ClCompile Include="source\Audio\AudioSource.cpp" />
+    <ClCompile Include="source\Core\Tools\Leaker.cpp" />
+    <ClCompile Include="source\Core\Tools\Logger.cpp" />
+    <ClCompile Include="source\Engine.cpp" />
+    <ClCompile Include="source\Gameplay\Scene.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLCubeMap.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLDebugDrawing.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLFont.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLMaterial.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLMesh.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLContext.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLParticleSystem.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLPipeline.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLRenderPass.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLShader.cpp" />
+    <ClCompile Include="source\Rendering\Opengl\GLTexture.cpp" />
+    <ClCompile Include="source\Resources\Font\Font.cpp" />
+    <ClCompile Include="source\Resources\Model\Model.cpp" />
+    <ClCompile Include="source\Resources\Model\ModelConverter.cpp" />
+    <ClCompile Include="source\Resources\Shader\Shader.cpp" />
+    <ClCompile Include="source\Resources\Texture\Texture.cpp" />
+    <ClCompile Include="source\Windowing\GlfwInput.cpp" />
+    <ClCompile Include="source\Windowing\GlfwTime.cpp" />
+    <ClCompile Include="source\Windowing\GlfwWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Audio\AudioEngine.h" />
+    <ClInclude Include="include\Audio\AudioSource.h" />
+    <ClInclude Include="include\Core\Maths\Frustrum.h" />
+    <ClInclude Include="include\Core\Maths\Line.h" />
+    <ClInclude Include="include\Core\Maths\Mathf.h" />
+    <ClInclude Include="include\Core\Maths\Matrix4.h" />
+    <ClInclude Include="include\Core\Maths\Quaternion.h" />
+    <ClInclude Include="include\Core\Maths\Vector2.h" />
+    <ClInclude Include="include\Core\Maths\Vector3.h" />
+    <ClInclude Include="include\Core\Maths\Vector4.h" />
+    <ClInclude Include="include\Core\Maths\Viewport.h" />
+    <ClInclude Include="include\Core\Platform.h" />
+    <ClInclude Include="include\Core\Tools\Leaker.h" />
+    <ClInclude Include="include\Core\Tools\Logger.h" />
+    <ClInclude Include="include\Core\Tools\Randomizer.h" />
+    <ClInclude Include="include\Engine.h" />
+    <ClInclude Include="include\Gameplay\ComponentManager.h" />
+    <ClInclude Include="include\Gameplay\Component\Behaviour.h" />
+    <ClInclude Include="include\Gameplay\Component\Camera.h" />
+    <ClInclude Include="include\Gameplay\Component\Light.h" />
+    <ClInclude Include="include\Gameplay\Component\MeshRenderer.h" />
+    <ClInclude Include="include\Gameplay\Component\MonoBehaviour.h" />
+    <ClInclude Include="include\Gameplay\Component\Component.h" />
+    <ClInclude Include="include\Gameplay\Component\ParticleSystem.h" />
+    <ClInclude Include="include\Gameplay\Component\Transform.h" />
+    <ClInclude Include="include\Gameplay\GameObject.h" />
+    <ClInclude Include="include\Gameplay\PlayerPref.h" />
+    <ClInclude Include="include\Gameplay\Scene.h" />
+    <ClInclude Include="include\Gameplay\SceneManager.h" />
+    <ClInclude Include="include\Gameplay\ComponentSystem.h" />
+    <ClInclude Include="include\Rendering\GLSLShaders\Basic.vs" />
+    <ClInclude Include="include\Rendering\Opengl\GLCubeMap.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLDebugDrawing.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLFont.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLLight.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLMaterial.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLMesh.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLModel.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLParticleSystem.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLPipeline.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLPrimitiveHelper.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLContext.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLRenderPass.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLShader.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLShaderHelper.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLMeshHelper.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLSLShader.h" />
+    <ClInclude Include="include\Rendering\Opengl\GLTexture.h" />
+    <ClInclude Include="include\Rendering\Settings\GLCubeMapSettings.h" />
+    <ClInclude Include="include\Rendering\Settings\GLDebugDrawingSettings.h" />
+    <ClInclude Include="include\Rendering\Settings\GLFontSettings.h" />
+    <ClInclude Include="include\Rendering\Settings\GLMeshSettings.h" />
+    <ClInclude Include="include\Rendering\Settings\GLRenderPassSettings.h" />
+    <ClInclude Include="include\Rendering\Settings\GLShaderSettings.h" />
+    <ClInclude Include="include\Rendering\Settings\GLTextureSettings.h" />
+    <ClInclude Include="include\Resources\Font\Font.h" />
+    <ClInclude Include="include\Resources\ResourceManager.h" />
+    <ClInclude Include="include\Resources\Model\Model.h" />
+    <ClInclude Include="include\Resources\Model\ModelConverter.h" />
+    <ClInclude Include="include\Resources\Model\Vertex.h" />
+    <ClInclude Include="include\Resources\ResourceConverter.h" />
+    <ClInclude Include="include\Resources\ResourceSerialize.h" />
+    <ClInclude Include="include\Resources\ResourceLocator.h" />
+    <ClInclude Include="include\Resources\Shader\Shader.h" />
+    <ClInclude Include="include\Resources\Skybox\Skybox.h" />
+    <ClInclude Include="include\Resources\Texture\Texture.h" />
+    <ClInclude Include="include\Windowing\GlfwInput.h" />
+    <ClInclude Include="include\Windowing\GlfwTime.h" />
+    <ClInclude Include="include\Windowing\GlfwWindow.h" />
+    <ClInclude Include="include\Windowing\Input.h" />
+    <ClInclude Include="include\Windowing\IO.h" />
+    <ClInclude Include="include\Windowing\KeyCodes.h" />
+    <ClInclude Include="include\Windowing\Time.h" />
+    <ClInclude Include="include\Windowing\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\Rendering\GLSLShaders\Additive.fs" />
+    <None Include="include\Rendering\GLSLShaders\Blur.fs" />
+    <None Include="include\Rendering\GLSLShaders\Color.fs" />
+    <None Include="include\Rendering\GLSLShaders\CubeMap.fs" />
+    <None Include="include\Rendering\GLSLShaders\CubeMap.vs" />
+    <None Include="include\Rendering\GLSLShaders\Default.fs" />
+    <None Include="include\Rendering\GLSLShaders\Default.vs" />
+    <None Include="include\Rendering\GLSLShaders\DownSample.fs" />
+    <None Include="include\Rendering\GLSLShaders\LensFlare.fs" />
+    <None Include="include\Rendering\GLSLShaders\Particle.fs" />
+    <None Include="include\Rendering\GLSLShaders\Particle.vs" />
+    <None Include="include\Rendering\GLSLShaders\Shadow.vs" />
+    <None Include="include\Rendering\GLSLShaders\Text.fs" />
+    <None Include="include\Rendering\GLSLShaders\Text.vs" />
+    <None Include="include\Rendering\GLSLShaders\Texture.vs" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{51FA2B87-4587-48F2-98EE-59E25FD7FC92}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>RealityEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)Binaries\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Binaries\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>RE_EXPORT;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;4710;4711;</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>RE_EXPORT;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;4710;4711;</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;assimp-vc142-mt.lib;rttr_core.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
