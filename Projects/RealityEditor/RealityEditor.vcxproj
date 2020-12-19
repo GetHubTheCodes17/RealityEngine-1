@@ -110,6 +110,7 @@
     <ClCompile Include="..\..\Dependencies\Include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="..\..\Dependencies\Include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="source\Editor.cpp" />
+    <ClCompile Include="source\ImGui\imgui_demo_window.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +118,7 @@
     <ClInclude Include="include\EditorCamera.h" />
     <ClInclude Include="include\EditorDocking.h" />
     <ClInclude Include="include\EditorHierarchy.h" />
+    <ClInclude Include="include\EditorInspector.h" />
     <ClInclude Include="include\EditorLog.h" />
     <ClInclude Include="include\EditorMenu.h" />
     <ClInclude Include="include\EditorScene.h" />

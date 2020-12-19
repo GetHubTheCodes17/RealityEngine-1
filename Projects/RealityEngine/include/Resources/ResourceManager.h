@@ -21,17 +21,16 @@ namespace reality {
 		const Resource* Get(const char* key) const;
 
 	private:
-		std::fstream m_File;
-		std::unique_ptr<cereal::JSONOutputArchive> m_Archive;
 		std::unordered_map<std::string, Resource> m_Resources;
 		std::unordered_map<std::string, std::pair<Properties, std::future<TmpResource>>> m_TmpResources;
 	};
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceManager(const char* path) :
-	m_File{ path }
+reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceManager(const char* path)
 {
+	std::fstream m_File{ path };
+
 	// If the file exist but is empty, cereal cannot open the file
 	if (m_File.peek() == std::fstream::traits_type::eof()) {
 		return;
@@ -41,13 +40,17 @@ reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceM
 	cereal::JSONInputArchive archive{ fileInputBuffer };
 
 	m_File = { path, std::fstream::out | std::fstream::trunc };
-	m_Archive = std::make_unique<cereal::JSONOutputArchive>(m_File);
+	std::unique_ptr<cereal::JSONOutputArchive> m_Archive = std::make_unique<cereal::JSONOutputArchive>(m_File);
 
 	Settings settings;
 	Properties properties;
 	while (const auto key{ archive.getNodeName() }) {
 		archive.startNode();
 		archive(settings, properties);
+		m_Archive->setNextName(key);
+		m_Archive->startNode();
+		m_Archive->operator()(CEREAL_NVP(settings), CEREAL_NVP(properties));
+		m_Archive->finishNode();
 		Load(key, settings, properties);
 		archive.finishNode();
 	}
@@ -60,11 +63,6 @@ const Resource& reality::ResourceManager<Resource, Settings, Properties, TmpReso
 	if (const auto it{ m_Resources.find(key) }; it != m_Resources.cend()) {
 		return it->second;
 	}
-
-	m_Archive->setNextName(key);
-	m_Archive->startNode();
-	m_Archive->operator()(CEREAL_NVP(settings), CEREAL_NVP(properties));
-	m_Archive->finishNode();
 
 	m_TmpResources.emplace(key, std::make_pair(properties, std::future<TmpResource>{})).first->second.second =
 		std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
@@ -83,7 +81,7 @@ template <class Resource, class Settings, class Properties, class TmpResource>
 void reality::ResourceManager<Resource, Settings, Properties, TmpResource>::Update() {
 	for (auto it{ m_TmpResources.begin() }; it != m_TmpResources.cend(); ) {
 		auto& [settings, resource] { it->second };
-		if (resource._Is_ready()) {
+		if (resource.wait_for(std::chrono::seconds{ 0 }) == std::future_status::ready) {
 			m_Resources.at(it->first) = loader::Convert<Resource>(settings, resource.get());
 			it = m_TmpResources.erase(it);
 		}

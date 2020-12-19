@@ -11,7 +11,7 @@ namespace reality {
 		Matrix4 Projection{ Matrix4::Perspective((float)RE_WINDOW_WIDTH / (float)RE_WINDOW_HEIGHT) };
 		Matrix4 Model;
 		Vector3 Position;
-		float MovementSpeed{ 3.f }, RotationSpeed{ 4.f };
+		float MovementSpeed{ 5.f }, RotationSpeed{ 4.f };
 
 		void Update();
 		const Matrix4& GetViewMatrix() const;

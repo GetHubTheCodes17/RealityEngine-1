@@ -17,11 +17,13 @@ namespace reality {
 	private:
 		ImGuizmo::OPERATION m_CurrentGuizmoOperation{ ImGuizmo::OPERATION::TRANSLATE };
 		ImGuizmo::MODE m_CurrentGuizmoMode{ ImGuizmo::MODE::WORLD };
-		Vector3 m_SnapTranslation, m_SnapScale;
+		Vector3 m_SnapTranslation, m_SnapScale, m_CurrentSnap;
 		float m_SnapAngle{ 15.f };
 		bool m_UseSnap{};
 
 		void DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize, EditorCamera& camera, GameObject& object);  
+		void UpdateGizmoMode();
+		void UpdateSnap();
 	};
 }
 
@@ -51,6 +53,33 @@ inline void reality::EditorScene::Draw(GLPipeline& pipeline, EditorCamera& camer
 }
 
 inline void reality::EditorScene::DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize, EditorCamera& camera, GameObject& object) {
+	UpdateGizmoMode();
+	UpdateSnap();
+
+	ImGuizmo::SetDrawlist();
+	ImGuizmo::SetRect(windowPos.x, windowPos.y, windowSize.x, windowSize.y);
+
+	Matrix4 trs{ object.Transform.GetTrs() }, deltaMatrix;
+
+	ImGuizmo::Manipulate(camera.GetViewMatrix().Array, camera.Projection.Array, m_CurrentGuizmoOperation, 
+		m_CurrentGuizmoMode, trs.Array, deltaMatrix.Array, m_UseSnap ? &m_CurrentSnap.X : nullptr);
+
+	if (!ImGuizmo::IsUsing()) {
+		return;
+	}
+
+	if (m_CurrentGuizmoOperation == ImGuizmo::TRANSLATE) {
+		object.Transform.Translate(deltaMatrix.GetRow3(3));
+	}
+	else if (m_CurrentGuizmoOperation == ImGuizmo::ROTATE) {
+		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles());
+	}
+	else if (m_CurrentGuizmoOperation == ImGuizmo::SCALE) {
+		object.Transform.SetScale(Matrix4::GetScale(trs));
+	}
+}
+
+inline void reality::EditorScene::UpdateGizmoMode() {
 	if (m_CurrentGuizmoOperation != ImGuizmo::SCALE) {
 		if (ImGui::RadioButton("Local", m_CurrentGuizmoMode == ImGuizmo::LOCAL)) {
 			m_CurrentGuizmoMode = ImGuizmo::LOCAL;
@@ -80,40 +109,24 @@ inline void reality::EditorScene::DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize
 	if (ImGui::RadioButton("Scale", m_CurrentGuizmoOperation == ImGuizmo::SCALE)) {
 		m_CurrentGuizmoOperation = ImGuizmo::SCALE;
 	}
+}
 
+inline void reality::EditorScene::UpdateSnap() {
 	ImGui::Checkbox("Snap", &m_UseSnap);
 	ImGui::SameLine();
 
-	Vector3 snap;
 	switch (m_CurrentGuizmoOperation) {
 	case ImGuizmo::TRANSLATE:
 		ImGui::InputFloat3("Translation Snap", &m_SnapTranslation.X);
-		snap = m_SnapTranslation;
+		m_CurrentSnap = m_SnapTranslation;
 		break;
 	case ImGuizmo::ROTATE:
 		ImGui::InputFloat("Angle Snap", &m_SnapAngle);
-		snap = Vector3{ m_SnapAngle };
+		m_CurrentSnap = Vector3{ m_SnapAngle };
 		break;
 	case ImGuizmo::SCALE:
 		ImGui::InputFloat("Scale Snap", &m_SnapScale.X);
-		snap = m_SnapScale;
+		m_CurrentSnap = m_SnapScale;
 		break;
-	}
-	ImGuizmo::SetDrawlist();
-	ImGuizmo::SetRect(windowPos.x, windowPos.y, windowSize.x, windowSize.y);
-
-	Matrix4 trs{ object.Transform.GetTrs() }, deltaMatrix;
-
-	ImGuizmo::Manipulate(camera.GetViewMatrix().Array, camera.Projection.Array, m_CurrentGuizmoOperation, 
-		m_CurrentGuizmoMode, trs.Array, deltaMatrix.Array, m_UseSnap ? &snap.X : nullptr);
-
-	if (m_CurrentGuizmoOperation == ImGuizmo::TRANSLATE) {
-		object.Transform.Translate(deltaMatrix.GetRow3(3));
-	}
-	else if (m_CurrentGuizmoOperation == ImGuizmo::ROTATE) {
-		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles());
-	}
-	else if (m_CurrentGuizmoOperation == ImGuizmo::SCALE) {
-		object.Transform.SetScale(Matrix4::GetScale(trs));
 	}
 }

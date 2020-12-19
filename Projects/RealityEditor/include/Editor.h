@@ -3,6 +3,7 @@
 #pragma once
 
 #include "EditorHierarchy.h"
+#include "EditorInspector.h"
 #include "EditorDocking.h"
 #include "EditorCamera.h"
 #include "EditorTheme.h"
@@ -30,6 +31,7 @@ namespace reality {
 		EditorDocking m_Dock;
 		EditorScene m_Scene;
 		EditorHierarchy m_Hierarchy;
+		EditorInspector m_Inspector;
 
 		void CreateDefaultScene() const;
 		void Render() const;

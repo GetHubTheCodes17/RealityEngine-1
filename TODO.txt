@@ -12,19 +12,21 @@ In Between steps:
 Editor:
 
 - Fix Rotation Gizmo
-Finish GameObject hierarchy
+- Fix Gizmo Transform Hierarchy
 Add GameObject components reflection with rttr
 Save scenes in xml files
-Mouse in background (right click)
+Fix mouse in background (right click)
+Fix Camera Lag (teleport)
+Add camera focus
 Delete and create empty GameObjects
 Link resources manager with editor
 Allow drop resources into editor
 Allows resources changes (textures, meshes, ...)
 Add behaviour to File Edit and Window menu
 Add GameObjects duplication
-Add camera focus
 Customise the console window
 Add Scene Object detections with mouse raycast
+Change Editor font
 
 Audio:
 
@@ -56,7 +58,7 @@ Fix the assimp bug with aiTextureType_REFLECTION
 
 Windowing:
 
-Try to find a way to optimise the window creation (not very important)
+- Try to find a way to optimise the window creation (not very important)
 
 Engine:
 

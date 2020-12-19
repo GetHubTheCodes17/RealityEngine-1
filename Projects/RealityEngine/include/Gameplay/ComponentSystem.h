@@ -31,20 +31,19 @@ namespace reality {
 
 inline void reality::ComponentSystem::UpdateTransforms(Scene& scene) const {
 	std::function<void(CTransform&)> UpdateHierarchy = [&UpdateHierarchy](auto& root) {
-		if (root.HasChanged) {
+		if (root.HasChanged()) {
 			root.SetTrs(Matrix4::Scale(root.GetScale()) * root.GetRotation().GetMatrix() *
 				Matrix4::Translate(root.GetPosition()));
 		}
 
-		if (const auto parent{ root.GetParent() }; parent && parent->HasChanged) {
+		if (const auto parent{ root.GetParent() }; parent && parent->HasChanged()) {
 			root.SetTrs(root.GetTrs() * parent->GetTrs());
-			root.HasChanged = true;
 		}
 
-		for (auto& child : root.GetChildren()) {
+		for (auto child : root.GetChildren()) {
 			UpdateHierarchy(*child);
 		}
-		root.HasChanged = false;
+		root.SetHasChanged(false);
 	};
 
 	for (const auto& object : scene.GetGameObjects()) {
@@ -99,10 +98,12 @@ inline void reality::ComponentSystem::UpdateLights(Scene& scene) const {
 inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 	if (const auto meshes{ scene.GetComponentManager().GetComponents<CMeshRenderer>() }) {
 		for (const auto& mesh : *meshes) {
-			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
-			if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->Model }) {
-				for (const auto& glmesh : glModel->Meshes) {
-					glmesh->Draw();
+			if (mesh->GetGameObject().IsActive) {
+				GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
+				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->Model }) {
+					for (const auto& glmesh : glModel->Meshes) {
+						glmesh->Draw();
+					}
 				}
 			}
 		}
@@ -112,13 +113,15 @@ inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 inline void reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
 	if (const auto meshes{ scene.GetComponentManager().GetComponents<CMeshRenderer>() }) {
 		for (const auto& mesh : *meshes) {
-			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
-			if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->Model }) {
-				for (const auto& glMesh : glModel->Meshes) {
-					if (const auto glMaterial{ glMesh->Material }) {
-						glMaterial->Bind();
+			if (mesh->GetGameObject().IsActive) {
+				GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
+				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->Model }) {
+					for (const auto& glMesh : glModel->Meshes) {
+						if (const auto glMaterial{ glMesh->Material }) {
+							glMaterial->Bind();
+						}
+						glMesh->Draw();
 					}
-					glMesh->Draw();
 				}
 			}
 		}

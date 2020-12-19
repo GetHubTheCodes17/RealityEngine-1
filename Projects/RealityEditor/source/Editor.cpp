@@ -29,7 +29,7 @@ reality::Editor::~Editor() {
 	ImGui::DestroyContext();
 
 	// Experimental ParticleSystem Component
-	delete g_SceneManager->ActiveScene->FindGameObject("GameObject7")->GetComponent<CParticleSystem>()->System;
+	//delete g_SceneManager->ActiveScene->FindGameObject("GameObject7")->GetComponent<CParticleSystem>()->System;
 }
 
 void reality::Editor::Run() {
@@ -67,39 +67,56 @@ void reality::Editor::CreateDefaultScene() const {
 	g_FontManager->Load("Arial", { "Fonts/Arial.ttf" });
 
 	auto& scene{ g_SceneManager->CreateScene("Scene0") };
+
 	auto& camera{ scene.CreateGameObject("Camera") };
 	camera.AddComponent<CCamera>();
-	auto& g0{ scene.CreateGameObject("GameObject0") };
+
+	auto& g0{ scene.CreateGameObject("Nanosuit") };
 	g0.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("Nanosuit");
 	g0.Transform.Translate({ 0.f, -3.5f, 3.f });
 	g0.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g0.Transform.SetScale(Vector3{ 0.15f });
-	auto& g1{ scene.CreateGameObject("GameObject1") };
-	g1.Transform.Translate({ 0.f, -2.f, 7.f });
-	auto& g2{ scene.CreateGameObject(g1) };
+
+	auto& g2{ scene.CreateGameObject("Child1") };
+	g2.Transform.Translate({ 0.f, -2.f, 7.f });
 	g2.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SpaceShip");
 	g2.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g2.Transform.SetScale(Vector3{ 0.1f });
-	auto& g3{ scene.CreateGameObject("GameObject3") };
+
+	auto& g1{ scene.CreateGameObject("Parent1") };
+	g2.SetParent(g1);
+
+	auto& c3{ scene.CreateGameObject("Child11") };
+	c3.Transform.Translate({ 0.f, -2.f, 7.f });
+	c3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SpaceShip");
+	c3.Transform.Rotate({ 0.f, 180.f, 0.f });
+	c3.Transform.SetScale(Vector3{ 0.6f });
+	c3.SetParent(g2);
+
+	auto& g3{ scene.CreateGameObject("House") };
 	g3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("House");
 	g3.Transform.Translate({ 1.1f, -2.2f, 3.5f });
-	auto& g4{ scene.CreateGameObject("GameObject4") };
+
+	auto& g4{ scene.CreateGameObject("Crytek") };
 	g4.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("Crytek");
 	g4.Transform.SetScale(Vector3{ 0.03f });
 	g4.Transform.Rotate({ 0.f, 90.f, 0.f });
 	g4.Transform.Translate({ 0.f, -4.f, 0.f });
-	auto& g5{ scene.CreateGameObject("GameObject5") };
+
+	auto& g5{ scene.CreateGameObject("DirLight") };
 	g5.Transform.SetRotation({ 122.f, 180.f });
 	g5.AddComponent<CLight>().Shadow = CLight::Shadow::Soft;
-	auto& g6{ scene.CreateGameObject("GameObject6") };
+
+	auto& g6{ scene.CreateGameObject("PointLight") };
 	g6.Transform.Translate({ 0.f, 0.f, 20.f });
 	g6.AddComponent<CLight>().Type = CLight::Type::Point;
 	g6.GetComponent<CLight>()->Color = Vector4::Right;
-	auto& g7 = scene.CreateGameObject("GameObject7");
+
+	auto& g7 = scene.CreateGameObject("ParticleSystem");
 	g7.Transform.Translate({ 0.f, -2.f, 20.f });
 	g7.Transform.Rotate({ 90.f, 0.f, 0.f });
-	g7.AddComponent<CParticleSystem>().System = new GLParticleSystem;
-	g7.GetComponent<CParticleSystem>()->System->Texture = g_TextureManager->Get("Particle");
+	//g7.AddComponent<CParticleSystem>().System = new GLParticleSystem;
+	//g7.GetComponent<CParticleSystem>()->System->Texture = g_TextureManager->Get("Particle");
 }
 
 void reality::Editor::Render() const {
@@ -131,17 +148,13 @@ void reality::Editor::Update() {
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	ImGuizmo::BeginFrame();
-	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.3f, 25.f);
+	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.1f, 50.f);
 	m_Dock.Begin();
+	ImGui::ShowDemoWindow();
 	m_Log.Draw();
 	m_Menu.Draw();
-	if (g_SceneManager->ActiveScene) {
-		m_Hierarchy.Draw(*g_SceneManager->ActiveScene);
-	}
-	ImGui::Begin("Inspector");
-	{
-	}
-	ImGui::End();
+	m_Hierarchy.Draw(g_SceneManager->ActiveScene);
+	m_Inspector.Draw(m_Hierarchy.Current);
 	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_Hierarchy.Current);
 	m_Dock.End();
 }

@@ -11,8 +11,6 @@ namespace reality {
 	struct CTransform : Component {
 		RE_COMPONENT(CTransform, Component)
 
-		bool HasChanged{};
-
 		CTransform() = default;
 		CTransform(const CTransform&);
 		CTransform& operator=(const CTransform&);
@@ -22,6 +20,7 @@ namespace reality {
 		void Rotate(const Vector3& eulerAngles);
 		void Translate(const Vector3& translation);
 		bool IsRoot() const;
+		bool HasChanged() const;
 		CTransform* GetRoot();
 		CTransform* GetParent() const;
 		const std::vector<CTransform*>& GetChildren() const;
@@ -38,6 +37,7 @@ namespace reality {
 		Vector3 GetRight() const;
 		Vector3 GetUp() const;
 		Vector3 GetForward() const;
+		void SetHasChanged(bool hasChanged);
 		void SetParent(CTransform* parent);
 		void SetPosition(Vector3 position);
 		void SetRotation(Vector3 eulerAngles);
@@ -52,19 +52,20 @@ namespace reality {
 		Vector3 m_Scale{ Vector3::One };
 		std::vector<CTransform*> m_Children;
 		CTransform* m_Parent{};
-		unsigned m_Level{};
+		unsigned m_Level{};		
+		bool m_HasChanged{};
 	};
 }
 
 inline reality::CTransform::CTransform(const CTransform& other) :
-	HasChanged{ other.HasChanged }, m_Trs{ other.m_Trs }, m_Rotation{ other.m_Rotation },
-	m_Position{ other.m_Position }, m_Scale{ other.m_Scale }
+	m_Trs{ other.m_Trs }, m_Rotation{ other.m_Rotation }, m_Position{ other.m_Position }, m_Scale{ other.m_Scale }
 {
+	SetHasChanged(true);
 	SetParent(other.m_Parent);
 }
 
 inline reality::CTransform& reality::CTransform::operator=(const CTransform& other) {
-	HasChanged = other.HasChanged;
+	SetHasChanged(true);
 	m_Trs = other.m_Trs;
 	m_Rotation = other.m_Rotation;
 	m_Position = other.m_Position;
@@ -92,16 +93,27 @@ inline reality::Vector3 reality::CTransform::InverseTransformPoint(const Vector3
 
 inline void reality::CTransform::Rotate(const Vector3& eulerAngles) {
 	m_Rotation = Quaternion::Normalize(m_Rotation * Quaternion{ eulerAngles * Mathf::Deg2Rad });
-	HasChanged = true;
+	SetHasChanged(true);
 }
 
 inline void reality::CTransform::Translate(const Vector3& translation) {
 	m_Position += translation;
-	HasChanged = true;
+	SetHasChanged(true);
 }
 
 inline bool reality::CTransform::IsRoot() const {
 	return !m_Level;
+}
+
+inline bool reality::CTransform::HasChanged() const {
+	auto parent{ m_Parent };
+	while (parent) {
+		if (parent->m_HasChanged) {
+			return true;
+		}
+		parent = parent->m_Parent;
+	}
+	return m_HasChanged;
 }
 
 inline reality::CTransform* reality::CTransform::GetRoot() {
@@ -168,6 +180,18 @@ inline reality::Vector3 reality::CTransform::GetForward() const {
 	return m_Trs.GetRow3(2);
 }
 
+inline void reality::CTransform::SetHasChanged(bool hasChanged) {
+	m_HasChanged = hasChanged;
+
+	if (hasChanged) {
+		auto parent{ m_Parent };
+		while (parent) {
+			parent->m_HasChanged = true;
+			parent = parent->m_Parent;
+		}
+	}
+}
+
 inline void reality::CTransform::SetParent(CTransform* parent) {
 	if (parent == m_Parent) {
 		return;
@@ -175,7 +199,7 @@ inline void reality::CTransform::SetParent(CTransform* parent) {
 
 	std::function<void(CTransform&, unsigned)> UpdateLevel = [&UpdateLevel](auto& parent, unsigned level) {
 		parent.m_Level = level;
-		parent.HasChanged = true;
+		parent.SetHasChanged(true);
 
 		for (auto& child : parent.m_Children) {
 			UpdateLevel(*child, child->m_Parent->m_Level + 1);
@@ -199,25 +223,25 @@ inline void reality::CTransform::SetParent(CTransform* parent) {
 
 inline void reality::CTransform::SetPosition(Vector3 position) {
 	m_Position = std::move(position);
-	HasChanged = true;
+	SetHasChanged(true);
 }
 
 inline void reality::CTransform::SetRotation(Vector3 eulerAngles) {
 	m_Rotation = Quaternion{ eulerAngles * Mathf::Deg2Rad };
-	HasChanged = true;
+	SetHasChanged(true);
 }
 
 inline void reality::CTransform::SetRotation(Quaternion rotation) {
 	m_Rotation = std::move(rotation);
-	HasChanged = true;
+	SetHasChanged(true);
 }
 
 inline void reality::CTransform::SetScale(Vector3 scale) {
 	m_Scale = std::move(scale);
-	HasChanged = true;
+	SetHasChanged(true);
 }
 
 inline void reality::CTransform::SetTrs(const Matrix4& trs) {
 	m_Trs = trs;
-	HasChanged = true;
+	SetHasChanged(true);
 }

@@ -20,6 +20,7 @@ namespace reality {
 		~GameObject();
 
 		void RemoveAllComponents();
+		std::vector<std::unique_ptr<Component>>& GetAllComponents();
 		Scene* GetScene() const;
 		void SetParent(GameObject& parent);
 		template <class T>
@@ -97,6 +98,10 @@ inline void reality::GameObject::RemoveAllComponents() {
 		}
 	}
 	m_Components.clear();
+}
+
+inline std::vector<std::unique_ptr<reality::Component>>& reality::GameObject::GetAllComponents() {
+	return m_Components;
 }
 
 inline reality::Scene* reality::GameObject::GetScene() const {

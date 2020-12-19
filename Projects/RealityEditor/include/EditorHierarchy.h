@@ -11,17 +11,20 @@ namespace reality {
 	public:
 		GameObject* Current{};
 
-		void Draw(const Scene& scene);
+		void Draw(const Scene* scene);
 
 	private:
 		void DisplayTree(GameObject* root);
 	};
 }
 
-inline void reality::EditorHierarchy::Draw(const Scene& scene) {
-	ImGui::Begin("Hierarchy"); {
-		for (auto& root : scene.GetRootsGameObjects()) {
-			DisplayTree(root);
+inline void reality::EditorHierarchy::Draw(const Scene* scene) {
+	ImGui::Begin("Hierarchy");
+	{
+		if (scene) {
+			for (auto& root : scene->GetRootsGameObjects()) {
+				DisplayTree(root);
+			}
 		}
 	}
 	ImGui::End();
