@@ -27,8 +27,7 @@ namespace reality {
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceManager(const char* path)
-{
+reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceManager(const char* path) {
 	std::fstream m_File{ path };
 
 	// If the file exist but is empty, cereal cannot open the file

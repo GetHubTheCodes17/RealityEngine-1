@@ -161,6 +161,11 @@ void reality::Editor::Update() {
 }
 
 void reality::Editor::UpdateIo() {
+	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_F)) {
+		m_Camera.Focus(m_Hierarchy.Current);
+	}
+	m_Camera.UpdateFocus();
+
 	if (g_Io->Input->GetMouseButton(keycode::RE_MOUSE_BUTTON_RIGHT)) {
 		if (!EnabledCamera && m_Scene.IsHovered()) {
 			ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_NoMouse;
