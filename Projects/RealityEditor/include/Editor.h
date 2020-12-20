@@ -32,6 +32,7 @@ namespace reality {
 		EditorScene m_Scene;
 		EditorHierarchy m_Hierarchy;
 		EditorInspector m_Inspector;
+		bool EnabledCamera{};
 
 		void CreateDefaultScene() const;
 		void Render() const;

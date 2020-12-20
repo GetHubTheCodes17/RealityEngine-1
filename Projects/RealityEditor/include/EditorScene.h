@@ -13,15 +13,19 @@ namespace reality {
 	class EditorScene {
 	public:
 		void Draw(GLPipeline& pipeline, EditorCamera& camera, Vector2& viewportSize, GameObject* object = {});
+		bool IsHovered() const;
+
 
 	private:
 		ImGuizmo::OPERATION m_CurrentGuizmoOperation{ ImGuizmo::OPERATION::TRANSLATE };
 		ImGuizmo::MODE m_CurrentGuizmoMode{ ImGuizmo::MODE::WORLD };
 		Vector3 m_SnapTranslation, m_SnapScale, m_CurrentSnap;
+		ImVec2 m_WindowPos, m_WindowSize;
 		float m_SnapAngle{ 15.f };
 		bool m_UseSnap{};
+		bool m_IsHovered{};
 
-		void DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize, EditorCamera& camera, GameObject& object);  
+		void DrawGuizmo(EditorCamera& camera, GameObject& object);  
 		void UpdateGizmoMode();
 		void UpdateSnap();
 	};
@@ -30,34 +34,40 @@ namespace reality {
 inline void reality::EditorScene::Draw(GLPipeline& pipeline, EditorCamera& camera, Vector2& viewportSize, GameObject* object) {
 	ImGui::Begin("Scene"); 
 	{
-		const auto windowPos{ ImGui::GetWindowPos() };
-		const auto windowSize{ ImGui::GetWindowSize() };
-		const Viewport viewport{ 0, 0, windowSize.x, windowSize.y };
+		m_IsHovered = ImGui::IsWindowHovered();
+
+		m_WindowPos = ImGui::GetWindowPos();
+		m_WindowSize = ImGui::GetWindowSize();
+		const Viewport viewport{ 0, 0, m_WindowSize.x, m_WindowSize.y };
 
 		if ((std::memcmp(&pipeline.GetFinalPass().Viewport, &viewport, 16) != 0)) {
 			camera.Projection = Matrix4::Perspective(viewport.Width / viewport.Height);
 			GLContext::SetProjectionMatrix(camera.Projection);	
 			pipeline.ResizePasses(viewport);
-			viewportSize = { windowSize.x, windowSize.y };
+			viewportSize = { m_WindowSize.x, m_WindowSize.y };
 		}
 
 		ImGui::GetWindowDrawList()->AddImage(
 			(ImTextureID)(uint64)pipeline.GetFinalPass().GetHandle().ColorAttachments[0].GetHandle().Id,
-			windowPos, { windowSize.x + windowPos.x, windowSize.y + windowPos.y }, { 0, 1 }, { 1, 0 });
+			m_WindowPos, { m_WindowSize.x + m_WindowPos.x, m_WindowSize.y + m_WindowPos.y }, { 0, 1 }, { 1, 0 });
 
 		if (object) {
-			DrawGuizmo(windowPos, windowSize, camera, *object);
+			DrawGuizmo(camera, *object);
 		}
 	}
 	ImGui::End();
 }
 
-inline void reality::EditorScene::DrawGuizmo(ImVec2 windowPos, ImVec2 windowSize, EditorCamera& camera, GameObject& object) {
+inline bool reality::EditorScene::IsHovered() const {
+	return m_IsHovered;
+}
+
+inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& object) {
 	UpdateGizmoMode();
 	UpdateSnap();
 
 	ImGuizmo::SetDrawlist();
-	ImGuizmo::SetRect(windowPos.x, windowPos.y, windowSize.x, windowSize.y);
+	ImGuizmo::SetRect(m_WindowPos.x, m_WindowPos.y, m_WindowSize.x, m_WindowSize.y);
 
 	Matrix4 trs{ object.Transform.GetTrs() }, deltaMatrix;
 

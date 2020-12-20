@@ -19,6 +19,7 @@ namespace reality {
 	private:
 		Matrix4 m_View{ Matrix4::LookAt(Vector3::Zero, Vector3::Forward) };
 		Vector3 m_Euler;
+		float m_OldMovementMagnitude{};
 	};
 }
 
@@ -44,8 +45,20 @@ inline void reality::EditorCamera::Update() {
 		Position -= Vector3::Up * deltaTime * MovementSpeed;
 	}
 
-	m_Euler = { m_Euler.X +  g_Io->Input->GetRelativeMousePos().Y * deltaTime * RotationSpeed,
-		m_Euler.Y +  g_Io->Input->GetRelativeMousePos().X * deltaTime * RotationSpeed };
+	auto relativeMousePos{ g_Io->Input->GetRelativeMousePos() };
+	auto magnitude{ relativeMousePos.GetSqrMagnitude() };
+
+	// The glfw library causes lags when GLFW_CURSOR_DISABLED is set
+	constexpr auto maxLagCoef{ 5.f };
+	if (magnitude > m_OldMovementMagnitude * maxLagCoef) {
+		relativeMousePos.Set(0.f);
+	}
+	else if (magnitude != 0.f) {
+		m_Euler = { m_Euler.X + relativeMousePos.Y * deltaTime * RotationSpeed,
+			m_Euler.Y + relativeMousePos.X * deltaTime * RotationSpeed };
+	}
+
+	m_OldMovementMagnitude = magnitude;
 
 	Model = (Quaternion{ Mathf::Deg2Rad * m_Euler.X, Vector3::Left }
 		* Quaternion{ Mathf::Deg2Rad * m_Euler.Y, Vector3::Up }).GetMatrix() * Matrix4::Translate(Position);

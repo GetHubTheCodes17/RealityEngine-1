@@ -12,6 +12,7 @@ reality::Editor::Editor() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
+	ImGui::GetIO().Fonts->AddFontFromFileTTF("../../Projects/RealityEditor/Config/LucidaGrande.ttf", 12.f);
 	ImGui::GetIO().IniFilename = "Config/imgui.ini";
 	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
@@ -161,11 +162,21 @@ void reality::Editor::Update() {
 
 void reality::Editor::UpdateIo() {
 	if (g_Io->Input->GetMouseButton(keycode::RE_MOUSE_BUTTON_RIGHT)) {
-		g_Io->Window->HideAndLockCursor();
-		m_Camera.Update();
+		if (!EnabledCamera && m_Scene.IsHovered()) {
+			ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_NoMouse;
+			g_Io->Window->HideAndLockCursor();
+			EnabledCamera = true;
+		}
+		if (EnabledCamera) {
+			m_Camera.Update();
+		}
 	}
 	else {
-		g_Io->Window->ShowCursor();
+		if (EnabledCamera) {
+			ImGui::GetIO().ConfigFlags ^= ImGuiConfigFlags_NoMouse;
+			g_Io->Window->ShowCursor();
+			EnabledCamera = false;
+		}
 	}
 }
 
