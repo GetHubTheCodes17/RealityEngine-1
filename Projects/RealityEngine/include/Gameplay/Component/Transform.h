@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <functional>
 #include <vector>
 
 #include "Component.h"
@@ -181,9 +182,10 @@ inline reality::Vector3 reality::CTransform::GetForward() const {
 }
 
 inline void reality::CTransform::SetHasChanged(bool hasChanged) {
+	const auto oldHasChanged{ m_HasChanged };
 	m_HasChanged = hasChanged;
 
-	if (hasChanged) {
+	if (hasChanged && !oldHasChanged) {
 		auto parent{ m_Parent };
 		while (parent) {
 			parent->m_HasChanged = true;

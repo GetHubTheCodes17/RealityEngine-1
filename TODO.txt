@@ -13,7 +13,7 @@ Editor:
 
 - Fix Rotation Gizmo
 - Fix Gizmo Transform Hierarchy
-Add GameObject components reflection with rttr
+- Add Components Inspector
 Save scenes in xml files
 Fix mouse in background (right click)
 Fix Camera Lag (teleport)

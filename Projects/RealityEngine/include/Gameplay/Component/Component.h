@@ -2,13 +2,10 @@
 
 #pragma once
 
-#include <rttr/type>
-
 namespace reality {
 	class GameObject;
 
 	struct Component {
-		RTTR_ENABLE()
 	public:
 		friend GameObject;
 
@@ -28,7 +25,6 @@ inline reality::GameObject& reality::Component::GetGameObject() const {
 }
 
 #define RE_COMPONENT(T, Base)					\
-RTTR_ENABLE(Base)								\
 public:											\
 	virtual Component* Clone() const override {	\
 		return new T(*this);					\
