@@ -63,7 +63,7 @@ inline void reality::EditorCamera::UpdateFocus() {
 inline void reality::EditorCamera::Focus(const GameObject* target) {
 	m_Target = target;
 	if (m_Target) {
-		m_Destination = target->Transform.GetPosition() - Model.GetRow3(2) * 3.f;
+		m_Destination = target->Transform.GetTrs().GetRow3(3) - Model.GetRow3(2) * 3.f;
 	}
 }
 

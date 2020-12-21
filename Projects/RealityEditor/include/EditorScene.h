@@ -69,23 +69,25 @@ inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& o
 	ImGuizmo::SetDrawlist();
 	ImGuizmo::SetRect(m_WindowPos.x, m_WindowPos.y, m_WindowSize.x, m_WindowSize.y);
 
-	Matrix4 trs{ object.Transform.GetTrs() }, deltaMatrix;
+	Matrix4 world{ object.Transform.GetTrs() }, deltaMatrix;
+	Matrix4 local{ Matrix4::Scale(object.Transform.GetScale()) * object.Transform.GetRotation().GetMatrix() *
+			Matrix4::Translate(object.Transform.GetPosition()) };
 
 	ImGuizmo::Manipulate(camera.GetViewMatrix().Array, camera.Projection.Array, m_CurrentGuizmoOperation, 
-		m_CurrentGuizmoMode, trs.Array, deltaMatrix.Array, m_UseSnap ? &m_CurrentSnap.X : nullptr);
+		m_CurrentGuizmoMode, world.Array, deltaMatrix.Array, m_UseSnap ? &m_CurrentSnap.X : nullptr);
 
 	if (!ImGuizmo::IsUsing()) {
 		return;
 	}
 
 	if (m_CurrentGuizmoOperation == ImGuizmo::TRANSLATE) {
-		object.Transform.Translate(deltaMatrix.GetRow3(3));
+		object.Transform.SetPosition((world * Matrix4::Inverse(object.Transform.GetTrs()) * local).GetRow3(3));
 	}
 	else if (m_CurrentGuizmoOperation == ImGuizmo::ROTATE) {
-		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles());
+		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles()); // TODO : FIX for children and try to remove deltaMatrix
 	}
 	else if (m_CurrentGuizmoOperation == ImGuizmo::SCALE) {
-		object.Transform.SetScale(Matrix4::GetScale(trs));
+		object.Transform.SetScale(Matrix4::GetScale(world * Matrix4::Inverse(object.Transform.GetTrs()) * local));
 	}
 }
 

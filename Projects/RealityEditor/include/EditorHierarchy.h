@@ -46,6 +46,12 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject* root) {
 		for (auto& child : root->Transform.GetChildren()) {
 			DisplayTree(&child->GetGameObject());
 		}
+
+		// Unselect
+		if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !ImGui::IsAnyItemHovered()) {
+			Current = nullptr;
+		}
+
 		ImGui::TreePop();
 	}
 }
