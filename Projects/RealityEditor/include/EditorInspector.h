@@ -107,7 +107,7 @@ inline void reality::EditorInspector::DrawCamera(CCamera& camera) {
 	ImGui::Combo("Clear flag", reinterpret_cast<int*>(&camera.Flag), "Skybox\0SolidColor\0DepthOnly\0DontClear");
 	ImGui::Combo("Projection", reinterpret_cast<int*>(&camera.ProjectionType), "Perspective\0Orthographic");
 	ImGui::DragFloat("Fov", &camera.Fov, 1.f, 1.f, 180.f);
-	ImGui::DragFloat("Near", &camera.Near, 0.01f, 0.0001f);
+	ImGui::DragFloat("Near", &camera.Near, 0.01f, 0.0001f, 10.f);
 	ImGui::DragFloat("Far", &camera.Far, 1.f, 0.1f, 1000.f);
 	if (camera.ProjectionType == CCamera::Projection::Orthographic) {
 		ImGui::DragFloat("Ortho Size", &camera.OrthoSize);

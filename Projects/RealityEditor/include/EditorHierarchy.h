@@ -5,22 +5,35 @@
 #include <imgui/imgui.h>
 
 #include "Gameplay/Scene.h"
+#include "Windowing/KeyCodes.h"
 
 namespace reality {
 	class EditorHierarchy {
 	public:
 		GameObject* Current{};
 
-		void Draw(const Scene* scene);
+		void Draw(Scene* scene);
 
 	private:
 		void DisplayTree(GameObject* root);
 	};
 }
 
-inline void reality::EditorHierarchy::Draw(const Scene* scene) {
+inline void reality::EditorHierarchy::Draw(Scene* scene) {
 	ImGui::Begin("Hierarchy");
 	{
+		if (Current && ImGui::IsKeyPressed(reality::keycode::RE_KEY_DELETE)) {
+			scene->DestroyGameObject(*Current);
+			Current = nullptr;
+		}
+
+		if (ImGui::Button("Create Empty")) {
+			auto& object{ scene->CreateGameObject("GameObject") };
+			if (Current) {
+				object.SetParent(*Current);
+			}
+		}
+
 		if (scene) {
 			for (auto& root : scene->GetRootsGameObjects()) {
 				DisplayTree(root);
@@ -47,7 +60,6 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject* root) {
 			DisplayTree(&child->GetGameObject());
 		}
 
-		// Unselect
 		if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !ImGui::IsAnyItemHovered()) {
 			Current = nullptr;
 		}
