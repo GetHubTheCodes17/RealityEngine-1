@@ -41,6 +41,7 @@
   <ItemGroup>
     <ClInclude Include="include\Audio\AudioEngine.h" />
     <ClInclude Include="include\Audio\AudioSource.h" />
+    <ClInclude Include="include\Core\Maths\AABB.h" />
     <ClInclude Include="include\Core\Maths\Frustrum.h" />
     <ClInclude Include="include\Core\Maths\Line.h" />
     <ClInclude Include="include\Core\Maths\Mathf.h" />

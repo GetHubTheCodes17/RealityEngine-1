@@ -23,7 +23,8 @@ reality::Model::Model(ModelSettings settings) :
 	else {
 		Assimp::Importer importer;
 		const auto scene{ importer.ReadFile(Path,
-			aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals) };
+			aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals |
+			aiProcess_GenBoundingBoxes | aiProcess_OptimizeMeshes | aiProcess_OptimizeGraph) };
 		Path = settings.Path.substr(0, settings.Path.find_last_of('/')).c_str();
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
@@ -106,6 +107,8 @@ void reality::Model::ModelToBinary(std::FILE* outputFile) {
 		if (indicesSize) {
 			std::fwrite(mesh.Indices.data(), sizeof(unsigned), (std::size_t)indicesSize, outputFile);
 		}
+		std::fwrite(&mesh.Aabb, sizeof(AABB), 1, outputFile);
+
 		MaterialToBinary(outputFile, mesh.Material);
 	}
 }
@@ -131,6 +134,8 @@ void reality::Model::BinaryToModel(std::FILE* inputFile) {
 			mesh.Indices.resize(indicesSize);
 			std::fread(mesh.Indices.data(), sizeof(unsigned), (std::size_t)indicesSize, inputFile);
 		}
+		std::fread(&mesh.Aabb, sizeof(AABB), 1, inputFile);
+
 		mesh.Material = BinaryToMaterial(inputFile);
 	}
 }
@@ -155,6 +160,8 @@ reality::Mesh reality::Model::ProcessMesh(const aiMesh* amesh, const aiScene* sc
 
 	if (amesh->mMaterialIndex) {
 		ProcessMaterial(amesh, scene, mesh.Material);
+		mesh.Aabb = { { amesh->mAABB.mMin.x, amesh->mAABB.mMin.y, amesh->mAABB.mMin.z },
+			{ amesh->mAABB.mMax.x, amesh->mAABB.mMax.y, amesh->mAABB.mMax.z } };
 	}
 	return mesh;
 }

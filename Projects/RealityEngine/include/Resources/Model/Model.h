@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Vertex.h"
+#include "Core/Maths/AABB.h"
 
 struct aiNode; struct aiScene; struct aiMesh;
 
@@ -22,6 +23,7 @@ namespace reality {
 		uint8 Attribute{ VertexAttribute::Position };
 		std::vector<Vertex> Vertices;
 		std::vector<unsigned> Indices;
+		AABB Aabb;
 		Material Material;
 		std::string Name;
 	};

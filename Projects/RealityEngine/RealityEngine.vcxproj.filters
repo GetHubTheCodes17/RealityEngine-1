@@ -400,6 +400,9 @@
     <ClInclude Include="include\Resources\Skybox\Skybox.h">
       <Filter>include\Resources\Skybox</Filter>
     </ClInclude>
+    <ClInclude Include="include\Core\Maths\AABB.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Rendering\GLSLShaders\Default.fs">

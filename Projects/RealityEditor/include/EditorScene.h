@@ -84,7 +84,8 @@ inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& o
 		object.Transform.SetPosition((world * Matrix4::Inverse(object.Transform.GetTrs()) * local).GetRow3(3));
 	}
 	else if (m_CurrentGuizmoOperation == ImGuizmo::ROTATE) {
-		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles()); // TODO : FIX for children and try to remove deltaMatrix
+		// TODO : FIX for children and try to remove deltaMatrix
+		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles());
 	}
 	else if (m_CurrentGuizmoOperation == ImGuizmo::SCALE) {
 		object.Transform.SetScale(Matrix4::GetScale(world * Matrix4::Inverse(object.Transform.GetTrs()) * local));
