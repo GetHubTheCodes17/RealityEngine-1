@@ -19,61 +19,40 @@ namespace reality {
 		void Update();
 		const Resource& Load(const char* key, const Settings& settings, const Properties& properties = {});
 		const Resource* Get(const char* key) const;
+		std::string_view GetPath() const;
+		const std::unordered_map<std::string, Resource>& GetResources() const;
 
 	private:
+		std::string m_Path;
 		std::unordered_map<std::string, Resource> m_Resources;
 		std::unordered_map<std::string, std::pair<Properties, std::future<TmpResource>>> m_TmpResources;
 	};
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceManager(const char* path) {
-	std::fstream m_File{ path };
-
-	// If the file exist but is empty, cereal cannot open the file
-	if (m_File.peek() == std::fstream::traits_type::eof()) {
+reality::ResourceManager<Resource, Settings, Properties, TmpResource>::ResourceManager(const char* path) :
+	m_Path{ path }
+{
+	std::fstream file{ m_Path };
+	if (file.peek() == std::fstream::traits_type::eof()) {
+		file.seekg(std::ios_base::beg);
+		file << "{}";
 		return;
 	}
 
-	std::istream fileInputBuffer{ m_File.rdbuf() };
-	cereal::JSONInputArchive archive{ fileInputBuffer };
-
-	m_File = { path, std::fstream::out | std::fstream::trunc };
-	std::unique_ptr<cereal::JSONOutputArchive> m_Archive = std::make_unique<cereal::JSONOutputArchive>(m_File);
+	std::istream fileInputBuffer{ file.rdbuf() };
+	cereal::JSONInputArchive inArchive{ fileInputBuffer };
 
 	Settings settings;
 	Properties properties;
-	while (const auto key{ archive.getNodeName() }) {
-		archive.startNode();
-		archive(settings, properties);
-		m_Archive->setNextName(key);
-		m_Archive->startNode();
-		m_Archive->operator()(CEREAL_NVP(settings), CEREAL_NVP(properties));
-		m_Archive->finishNode();
-		Load(key, settings, properties);
-		archive.finishNode();
+	while (const auto key{ inArchive.getNodeName() }) {
+		inArchive.startNode();
+		inArchive(settings, properties);
+		m_TmpResources.emplace(key, std::make_pair(properties, std::future<TmpResource>{})).first->second.second =
+			std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
+		m_Resources.emplace(key, Resource{});
+		inArchive.finishNode();
 	}
-}
-
-template <class Resource, class Settings, class Properties, class TmpResource>
-const Resource& reality::ResourceManager<Resource, Settings, Properties, TmpResource>::Load(const char* key,
-	const Settings& settings, const Properties& properties)
-{
-	if (const auto it{ m_Resources.find(key) }; it != m_Resources.cend()) {
-		return it->second;
-	}
-
-	m_TmpResources.emplace(key, std::make_pair(properties, std::future<TmpResource>{})).first->second.second =
-		std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
-	return m_Resources.emplace(key, Resource{}).first->second;
-}
-
-template <class Resource, class Settings, class Properties, class TmpResource>
-const Resource* reality::ResourceManager<Resource, Settings, Properties, TmpResource>::Get(const char* key) const {
-	if (const auto it{ m_Resources.find(key) }; it != m_Resources.cend()) {
-		return &it->second;
-	}
-	return nullptr;
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
@@ -88,4 +67,59 @@ void reality::ResourceManager<Resource, Settings, Properties, TmpResource>::Upda
 			++it;
 		}
 	}
+}
+
+template <class Resource, class Settings, class Properties, class TmpResource>
+const Resource& reality::ResourceManager<Resource, Settings, Properties, TmpResource>::Load(const char* key,
+	const Settings& settings, const Properties& properties)
+{
+	if (const auto it{ m_Resources.find(key) }; it != m_Resources.cend()) {
+		return it->second;
+	}
+
+	std::fstream file{ m_Path };
+	std::istream fileInputBuffer{ file.rdbuf() };
+	cereal::JSONInputArchive inArchive{ fileInputBuffer };
+	file = std::fstream{ m_Path, std::fstream::out | std::fstream::trunc };
+	cereal::JSONOutputArchive outArchive{ file };
+
+	auto WriteResourceToArchive{ [](auto& archive, auto key, auto& settings, auto& properties) {
+		archive.setNextName(key);
+		archive.startNode();
+		archive(CEREAL_NVP(settings), CEREAL_NVP(properties));
+		archive.finishNode();
+	} };
+
+	Settings oldSettings;
+	Properties oldProperties;
+	while (const auto oldKey{ inArchive.getNodeName() }) {
+		inArchive.startNode();
+		inArchive(oldSettings, oldProperties);
+		WriteResourceToArchive(outArchive, oldKey, oldSettings, oldProperties);
+		inArchive.finishNode();
+	}
+	WriteResourceToArchive(outArchive, key, settings, properties);
+
+	m_TmpResources.emplace(key, std::make_pair(properties, std::future<TmpResource>{})).first->second.second =
+		std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
+	return m_Resources.emplace(key, Resource{}).first->second;
+}
+
+template <class Resource, class Settings, class Properties, class TmpResource>
+const Resource* reality::ResourceManager<Resource, Settings, Properties, TmpResource>::Get(const char* key) const {
+	if (const auto it{ m_Resources.find(key) }; it != m_Resources.cend()) {
+		return &it->second;
+	}
+	return nullptr;
+}
+
+template<class Resource, class Settings, class Properties, class TmpResource>
+std::string_view reality::ResourceManager<Resource, Settings, Properties, TmpResource>::GetPath() const {
+	return m_Path;
+}
+
+template <class Resource, class Settings, class Properties, class TmpResource>
+const std::unordered_map<std::string, Resource>& 
+reality::ResourceManager<Resource, Settings, Properties, TmpResource>::GetResources() const {
+	return m_Resources;
 }

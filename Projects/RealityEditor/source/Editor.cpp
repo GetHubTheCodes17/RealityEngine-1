@@ -21,6 +21,7 @@ reality::Editor::Editor() {
 	g_Io->Window->SetTitle("Reality Engine");
 	g_Io->Window->SetPos({ 250.f, 150.f });
 	g_Logger->Callback = [this](const char* msg) { m_Log.AddLog(msg); };
+	g_Io->Window->SetDropCallback([](int pathCount, const char** paths) { RE_LOG_INFO("%s", paths[0]) });
 	CreateDefaultScene();
 }
 

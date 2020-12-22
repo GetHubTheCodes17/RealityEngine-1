@@ -6,7 +6,6 @@
 
 namespace reality {
 	struct AABB {
-	public:
 		Vector3 Min, Max;
 
 		constexpr AABB() = default;

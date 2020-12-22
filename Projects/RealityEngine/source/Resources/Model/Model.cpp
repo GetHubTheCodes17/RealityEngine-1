@@ -247,7 +247,7 @@ void reality::Model::ProcessMaterial(const aiMesh* amesh, const aiScene* scene, 
 		resource.Emissive = Path + '/' + texturePath.C_Str();
 	}
 
-	// Store the reflection texture in the ambient texture because aiTextureType_REFLECTION is not working
+	// TODO : Store the reflection texture in the ambient texture because aiTextureType_REFLECTION is not working
 	if (mat->GetTextureCount(aiTextureType_AMBIENT)) {
 		mat->GetTexture(aiTextureType_AMBIENT, 0, &texturePath);
 		resource.Reflection = Path + '/' + texturePath.C_Str();
