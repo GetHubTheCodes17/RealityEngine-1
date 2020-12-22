@@ -22,6 +22,7 @@ namespace reality {
 		void RemoveAllComponents();
 		std::vector<std::unique_ptr<Component>>& GetAllComponents();
 		Scene* GetScene() const;
+		uint64 GetId() const;
 		void SetParent(GameObject& parent);
 		template <class T>
 		T& AddComponent();
@@ -46,18 +47,21 @@ namespace reality {
 		std::vector<std::unique_ptr<Component>> m_Components;
 		ComponentManager* m_Manager{};
 		Scene* m_Scene{};
+		uint64 m_Id{};
+
+		inline static uint64 s_CurrentId{};
 	};
 }
 
 inline reality::GameObject::GameObject(std::string_view name, Scene* scene, ComponentManager* manager) :
-	Name{ name }, m_Manager{ manager }, m_Scene{ scene }
+	Name{ name }, m_Manager{ manager }, m_Scene{ scene }, m_Id{ s_CurrentId++ }
 {
 	Transform.m_GameObject = this;
 }
 
 inline reality::GameObject::GameObject(const GameObject& other) :
 	Transform{ other.Transform }, Name{ other.Name }, IsActive{ other.IsActive },
-	m_Manager{ other.m_Manager }, m_Scene{ other.m_Scene }
+	m_Manager{ other.m_Manager }, m_Scene{ other.m_Scene }, m_Id{ s_CurrentId++ }
 {
 	for (const auto& component : other.m_Components) {
 		auto& comp{ m_Components.emplace_back(component->Clone()) };
@@ -106,6 +110,10 @@ inline std::vector<std::unique_ptr<reality::Component>>& reality::GameObject::Ge
 
 inline reality::Scene* reality::GameObject::GetScene() const {
 	return m_Scene;
+}
+
+inline reality::uint64 reality::GameObject::GetId() const {
+	return m_Id;
 }
 
 inline void reality::GameObject::SetParent(GameObject& parent) {

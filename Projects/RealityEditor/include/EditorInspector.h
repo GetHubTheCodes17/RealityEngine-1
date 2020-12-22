@@ -87,7 +87,7 @@ inline void reality::EditorInspector::DrawTransform(CTransform& transform) {
 		transform.SetPosition(p);
 	}
 	if (ImGui::DragFloat3("Rotation", &r.X, .5f)) {
-		transform.SetRotation(r);
+		transform.Rotate(-(r - transform.GetRotation().GetEulerAngles()));
 	}
 	if (ImGui::DragFloat3("Scale", &s.X, .005f)) {
 		transform.SetScale(s);

@@ -5,6 +5,7 @@
 #include "EditorHierarchy.h"
 #include "EditorInspector.h"
 #include "EditorDocking.h"
+#include "EditorAssets.h"
 #include "EditorCamera.h"
 #include "EditorTheme.h"
 #include "EditorScene.h"
@@ -25,6 +26,7 @@ namespace reality {
 		GLPipeline m_Pipeline;
 		Vector2 m_ViewportSize;
 		ComponentSystem m_ComponentSystem;
+		EditorAssets m_Assets;
 		EditorCamera m_Camera;
 		EditorLog m_Log;
 		EditorMenu m_Menu;

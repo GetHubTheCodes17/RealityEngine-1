@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Editor.h" />
+    <ClInclude Include="include\EditorAssets.h" />
     <ClInclude Include="include\EditorCamera.h" />
     <ClInclude Include="include\EditorDocking.h" />
     <ClInclude Include="include\EditorHierarchy.h" />

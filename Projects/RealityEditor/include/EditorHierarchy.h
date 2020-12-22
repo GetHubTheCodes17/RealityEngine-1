@@ -22,7 +22,7 @@ namespace reality {
 inline void reality::EditorHierarchy::Draw(Scene* scene) {
 	ImGui::Begin("Hierarchy");
 	{
-		if (Current && ImGui::IsKeyPressed(reality::keycode::RE_KEY_DELETE)) {
+		if (Current && ImGui::IsKeyPressed(keycode::RE_KEY_DELETE)) {
 			scene->DestroyGameObject(*Current);
 			Current = nullptr;
 		}
@@ -51,7 +51,7 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject* root) {
 
 	const auto isOpen{ ImGui::TreeNodeEx(root->Name.c_str(), flags) };
 
-	if (ImGui::IsItemClicked()) {
+	if (ImGui::IsItemClicked() || ImGui::IsItemFocused()) {
 		Current = root;
 	}
 

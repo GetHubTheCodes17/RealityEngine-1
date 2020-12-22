@@ -14,7 +14,7 @@ reality::Editor::Editor() {
 	ImGui::StyleColorsDark();
 	ImGui::GetIO().Fonts->AddFontFromFileTTF("../../Projects/RealityEditor/Config/LucidaGrande.ttf", 12.f);
 	ImGui::GetIO().IniFilename = "Config/imgui.ini";
-	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_NavEnableKeyboard;
 	ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
 	ImGui_ImplGlfw_InitForOpenGL(reinterpret_cast<GLFWwindow*>(g_Io->Window->GetHandle()), true);
 	ImGui_ImplOpenGL3_Init("#version 330 core");
@@ -152,6 +152,7 @@ void reality::Editor::Update() {
 	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.1f, 50.f);
 	m_Dock.Begin();
 	ImGui::ShowDemoWindow();
+	m_Assets.Draw();
 	m_Log.Draw();
 	m_Menu.Draw();
 	m_Hierarchy.Draw(g_SceneManager->ActiveScene);

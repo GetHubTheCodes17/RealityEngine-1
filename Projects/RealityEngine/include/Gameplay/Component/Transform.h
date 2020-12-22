@@ -201,7 +201,6 @@ inline void reality::CTransform::SetParent(CTransform* parent) {
 
 	std::function<void(CTransform&, unsigned)> UpdateLevel = [&UpdateLevel](auto& parent, unsigned level) {
 		parent.m_Level = level;
-		parent.SetHasChanged(true);
 
 		for (auto& child : parent.m_Children) {
 			UpdateLevel(*child, child->m_Parent->m_Level + 1);
@@ -221,6 +220,7 @@ inline void reality::CTransform::SetParent(CTransform* parent) {
 	}
 
 	m_Parent = parent;
+	SetHasChanged(true);
 }
 
 inline void reality::CTransform::SetPosition(Vector3 position) {

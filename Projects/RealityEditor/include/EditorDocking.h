@@ -25,7 +25,9 @@ inline void reality::EditorDocking::Begin() {
 		auto mainId{ m_DockspaceId };
 		ImGui::DockBuilderDockWindow("Hierarchy", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Left, 0.2f, nullptr, &mainId));
 		ImGui::DockBuilderDockWindow("Inspector", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Right, 0.25f, nullptr, &mainId));
-		ImGui::DockBuilderDockWindow("Console", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Down, 0.3f, nullptr, &mainId));
+		auto logId{ ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Down, 0.3f, nullptr, &mainId) };
+		ImGui::DockBuilderDockWindow("Console", logId);
+		ImGui::DockBuilderDockWindow("Assets", logId);
 		ImGui::DockBuilderDockWindow("Scene", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Up, 1.f, nullptr, &mainId));
 		ImGui::DockBuilderFinish(m_DockspaceId);
 	}

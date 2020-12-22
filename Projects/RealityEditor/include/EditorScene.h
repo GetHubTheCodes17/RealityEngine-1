@@ -19,7 +19,7 @@ namespace reality {
 	private:
 		ImGuizmo::OPERATION m_CurrentGuizmoOperation{ ImGuizmo::OPERATION::TRANSLATE };
 		ImGuizmo::MODE m_CurrentGuizmoMode{ ImGuizmo::MODE::WORLD };
-		Vector3 m_SnapTranslation, m_SnapScale, m_CurrentSnap;
+		Vector3 m_SnapTranslation{ Vector3::One }, m_SnapScale, m_CurrentSnap;
 		ImVec2 m_WindowPos, m_WindowSize;
 		float m_SnapAngle{ 15.f };
 		bool m_UseSnap{};
@@ -69,12 +69,12 @@ inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& o
 	ImGuizmo::SetDrawlist();
 	ImGuizmo::SetRect(m_WindowPos.x, m_WindowPos.y, m_WindowSize.x, m_WindowSize.y);
 
-	Matrix4 world{ object.Transform.GetTrs() }, deltaMatrix;
+	Matrix4 world{ object.Transform.GetTrs() }, worldDelta;
 	Matrix4 local{ Matrix4::Scale(object.Transform.GetScale()) * object.Transform.GetRotation().GetMatrix() *
 			Matrix4::Translate(object.Transform.GetPosition()) };
 
 	ImGuizmo::Manipulate(camera.GetViewMatrix().Array, camera.Projection.Array, m_CurrentGuizmoOperation, 
-		m_CurrentGuizmoMode, world.Array, deltaMatrix.Array, m_UseSnap ? &m_CurrentSnap.X : nullptr);
+		m_CurrentGuizmoMode, world.Array, worldDelta.Array, m_UseSnap ? &m_CurrentSnap.X : nullptr);
 
 	if (!ImGuizmo::IsUsing()) {
 		return;
@@ -85,7 +85,7 @@ inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& o
 	}
 	else if (m_CurrentGuizmoOperation == ImGuizmo::ROTATE) {
 		// TODO : FIX for children and try to remove deltaMatrix
-		object.Transform.Rotate(-Quaternion{ deltaMatrix }.GetEulerAngles());
+		object.Transform.Rotate(-Quaternion{ worldDelta }.GetEulerAngles());
 	}
 	else if (m_CurrentGuizmoOperation == ImGuizmo::SCALE) {
 		object.Transform.SetScale(Matrix4::GetScale(world * Matrix4::Inverse(object.Transform.GetTrs()) * local));
