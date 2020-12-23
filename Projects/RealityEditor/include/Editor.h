@@ -40,6 +40,5 @@ namespace reality {
 		void Render() const;
 		void Update();
 		void UpdateIo();
-		void UpdateResources() const;
 	};
 }

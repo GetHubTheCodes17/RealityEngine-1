@@ -26,6 +26,7 @@ reality::Editor::Editor() {
 				m_Assets.DropResource(paths[i]);
 			}
 		}});
+	g_ResourceLocator = new ResourceLocator;
 	CreateDefaultScene();
 }
 
@@ -38,7 +39,7 @@ reality::Editor::~Editor() {
 void reality::Editor::Run() {
 	while (g_Io->Window->IsRunning() && !g_Io->Input->GetKeyDown(keycode::RE_KEY_ESCAPE)) {
 		UpdateIo();
-		UpdateResources();
+		g_ResourceLocator->Update();
 
 		if (auto activeScene{ g_SceneManager->ActiveScene }) {
 			activeScene->FindGameObject("Camera")->Transform.SetPosition(m_Camera.Position);
@@ -58,12 +59,11 @@ void reality::Editor::Run() {
 }
 
 void reality::Editor::CreateDefaultScene() const {
-	g_TextureManager->Load("Particle", { "Textures/particle.png" });
-	g_SkyboxManager->Load("Saturne", { 
+	g_ResourceLocator->Skyboxes.Load("Saturne", {
 		"Skyboxes/saturne/Left.png", "Skyboxes/saturne/Right.png", "Skyboxes/saturne/Up.png",
 		"Skyboxes/saturne/Down.png", "Skyboxes/saturne/Front.png", "Skyboxes/saturne/Back.png"
 	});
-	g_FontManager->Load("Arial", { "Fonts/Arial.ttf" });
+	g_ResourceLocator->Fonts.Load("Arial", { "Fonts/Arial.ttf" });
 
 	auto& scene{ g_SceneManager->CreateScene("Scene0") };
 
@@ -71,14 +71,14 @@ void reality::Editor::CreateDefaultScene() const {
 	camera.AddComponent<CCamera>();
 
 	auto& g0{ scene.CreateGameObject("Nanosuit") };
-	g0.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("nanosuit");
+	g0.AddComponent<CMeshRenderer>().Model = g_ResourceLocator->Models.Get("nanosuit");
 	g0.Transform.Translate({ 0.f, -3.5f, 3.f });
 	g0.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g0.Transform.SetScale(Vector3{ 0.15f });
 
 	auto& g2{ scene.CreateGameObject("Child1") };
 	g2.Transform.Translate({ 0.f, -2.f, 7.f });
-	g2.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SciFi_Fighter");
+	g2.AddComponent<CMeshRenderer>().Model = g_ResourceLocator->Models.Get("SciFi_Fighter");
 	g2.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g2.Transform.SetScale(Vector3{ 0.1f });
 
@@ -87,17 +87,17 @@ void reality::Editor::CreateDefaultScene() const {
 
 	auto& c3{ scene.CreateGameObject("Child11") };
 	c3.Transform.Translate({ 0.f, -2.f, 7.f });
-	c3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SciFi_Fighter");
+	c3.AddComponent<CMeshRenderer>().Model = g_ResourceLocator->Models.Get("SciFi_Fighter");
 	c3.Transform.Rotate({ 0.f, 180.f, 0.f });
 	c3.Transform.SetScale(Vector3{ 0.6f });
 	c3.SetParent(g2);
 
 	auto& g3{ scene.CreateGameObject("House") };
-	g3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("fantasy_game_inn");
+	g3.AddComponent<CMeshRenderer>().Model = g_ResourceLocator->Models.Get("fantasy_game_inn");
 	g3.Transform.Translate({ 1.1f, -2.2f, 3.5f });
 
 	auto& g4{ scene.CreateGameObject("Crytek") };
-	g4.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("crytek");
+	g4.AddComponent<CMeshRenderer>().Model = g_ResourceLocator->Models.Get("crytek");
 	g4.Transform.SetScale(Vector3{ 0.03f });
 	g4.Transform.Rotate({ 0.f, 90.f, 0.f });
 	g4.Transform.Translate({ 0.f, -4.f, 0.f });
@@ -121,7 +121,7 @@ void reality::Editor::Render() const {
 	m_ComponentSystem.UpdateMeshesShadow(*g_SceneManager->ActiveScene);
 
 	GLContext::SetViewMatrix(m_Camera.GetViewMatrix());
-	m_Pipeline.BeginScenePass(g_SkyboxManager->Get("Saturne"));
+	m_Pipeline.BeginScenePass(g_ResourceLocator->Skyboxes.Get("Saturne"));
 	m_ComponentSystem.UpdateMeshes(*g_SceneManager->ActiveScene);
 	m_ComponentSystem.UpdateParticles(*g_SceneManager->ActiveScene);
 
@@ -180,12 +180,4 @@ void reality::Editor::UpdateIo() {
 			EnabledCamera = false;
 		}
 	}
-}
-
-void reality::Editor::UpdateResources() const {
-	g_ModelManager->Update();
-	g_TextureManager->Update();
-	g_FontManager->Update();
-	g_ShaderManager->Update();
-	g_SkyboxManager->Update();
 }

@@ -11,11 +11,7 @@ namespace reality {
 	class EditorAssets {
 	public:
 		void Draw();
-
-		void DropResource(std::string_view path);
-
-	private:
-		bool m_IsDropping{};
+		void DropResource(std::string_view path) const;
 	};
 }
 
@@ -27,9 +23,9 @@ inline void reality::EditorAssets::Draw() {
 	ImGui::End();
 }
 
-inline void reality::EditorAssets::DropResource(std::string_view filename) {
-	if (std::filesystem::path path{ filename }; Model::IsExtensionSupported(path.extension().string())) {
-		auto parent{ path.parent_path().stem().string() }, child{ path.filename().string() };
-		g_ModelManager->Load(path.stem().string().c_str(), { "Models/" + parent + '/' + child });
+inline void reality::EditorAssets::DropResource(std::string_view filename) const {
+	std::filesystem::path path{ filename };
+	if (Model::IsExtensionSupported(path.extension().string())) {
+		g_ResourceLocator->Models.Load(path.stem().string().c_str(), { filename.data() });
 	}
 }

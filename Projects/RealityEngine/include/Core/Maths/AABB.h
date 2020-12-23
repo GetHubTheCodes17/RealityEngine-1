@@ -58,8 +58,7 @@ constexpr reality::AABB::AABB(float minX, float minY, float minZ, float maxX, fl
 {}
 
 constexpr bool reality::AABB::operator==(const AABB& otherAABB) const {
-	return (Min == otherAABB.Min
-		&& otherAABB.Max == Max);
+	return (Min == otherAABB.Min && otherAABB.Max == Max);
 }
 
 constexpr bool reality::AABB::operator!=(const AABB& otherAABB) const {

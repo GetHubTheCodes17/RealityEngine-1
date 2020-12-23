@@ -23,24 +23,10 @@ reality::GameEngine::GameEngine() {
 	g_MeshHelper = new GLMeshHelper;
 	g_MeshHelper->Quad.Material = g_MeshHelper->Circle.Material = g_MeshHelper->Cube.Material =
 		g_MeshHelper->Sphere.Material = &g_MeshHelper->Default;
-
-	g_MeshManager = new std::unordered_map<std::string, reality::GLMesh>;
-	g_MaterialManager = new std::unordered_map<std::string, reality::GLMaterial>;
-	g_TextureManager = new ResourceManager<GLTexture, TextureSettings, GLTextureSettings, Texture>{ "Resources/Textures.json" };
-	g_ModelManager = new ResourceManager<GLModel, ModelSettings, GLMeshSettings, Model>{ "Resources/Models.json" };
-	g_SkyboxManager = new ResourceManager<GLCubeMap, SkyboxSettings, GLCubeMapSettings, Skybox>{ "Resources/Skyboxes.json" };
-	g_ShaderManager = new ResourceManager<GLShader, ShaderSettings, GLShaderSettings, Shader>{ "Resources/Shaders.json" };
-	g_FontManager = new ResourceManager<GLFont, FontSettings, GLFontSettings, Font>{ "Resources/Fonts.json" };
 }
 
 reality::GameEngine::~GameEngine() {
-	delete g_ModelManager;
-	delete g_MeshManager;
-	delete g_MaterialManager;
-	delete g_TextureManager;
-	delete g_FontManager;
-	delete g_ShaderManager;
-	delete g_SkyboxManager;
+	delete g_ResourceLocator;
 	delete g_SceneManager;
 	delete g_Logger;
 	delete g_AudioEngine;
@@ -62,19 +48,7 @@ RE_CORE reality::GLDebugDrawing* reality::g_DebugDrawing{};
 RE_CORE reality::GLMeshHelper* reality::g_MeshHelper{};
 RE_CORE reality::IO* reality::g_Io{};
 
-RE_CORE std::unordered_map<std::string, reality::GLMesh>* reality::g_MeshManager{};
-RE_CORE std::unordered_map<std::string, reality::GLMaterial>* reality::g_MaterialManager{};
-
-RE_CORE reality::ResourceManager<reality::GLModel, reality::ModelSettings, reality::GLMeshSettings,
-	reality::Model>* reality::g_ModelManager{};
-RE_CORE reality::ResourceManager<reality::GLCubeMap, reality::SkyboxSettings, reality::GLCubeMapSettings,
-	reality::Skybox>* reality::g_SkyboxManager{};
-RE_CORE reality::ResourceManager<reality::GLTexture, reality::TextureSettings, reality::GLTextureSettings,
-	reality::Texture>* reality::g_TextureManager{};
-RE_CORE reality::ResourceManager<reality::GLShader, reality::ShaderSettings, reality::GLShaderSettings,
-	reality::Shader>* reality::g_ShaderManager{};
-RE_CORE reality::ResourceManager<reality::GLFont, reality::FontSettings, reality::GLFontSettings,
-	reality::Font>* reality::g_FontManager{};
+RE_CORE reality::ResourceLocator* reality::g_ResourceLocator{};
 
 const reality::Quaternion reality::Quaternion::Identity{ 0.f, 0.f, 0.f, 1.f };
 

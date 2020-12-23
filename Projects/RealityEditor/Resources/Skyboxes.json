@@ -1,13 +1,13 @@
 {
     "Saturne": {
-        "settings": {
-            "Left": "Skyboxes/saturne/Right.png",
-            "Right": "Skyboxes/saturne/Left.png",
-            "Up": "Skyboxes/saturne/Up.png",
-            "Down": "Skyboxes/saturne/Down.png",
-            "Front": "Skyboxes/saturne/Front.png",
-            "Back": "Skyboxes/saturne/Back.png"
-        },
+      "settings": {
+        "Left": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Skyboxes\\saturne\\Right.png",
+        "Right": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Skyboxes\\saturne\\Left.png",
+        "Up": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Skyboxes\\saturne\\Up.png",
+        "Down": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Skyboxes\\saturne\\Down.png",
+        "Front": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Skyboxes\\saturne\\Front.png",
+        "Back": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Skyboxes\\saturne\\Back.png"
+      },
         "properties": {}
     }
 }

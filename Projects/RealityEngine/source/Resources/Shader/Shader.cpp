@@ -8,11 +8,10 @@
 
 reality::Shader::Shader(ShaderSettings settings) {
 	auto GetContentFromFile = [](const auto& source) -> std::string {
-		const auto path{ g_ResourcesPath + source };
-		if (std::ifstream file{ path }) {
+		if (std::ifstream file{ source }) {
 			return { std::istreambuf_iterator<char>{ file }, std::istreambuf_iterator<char>{} };
 		}
-		RE_LOG_WARNING("Cannot load the Shader %s", path.c_str());
+		RE_LOG_WARNING("Cannot load the Shader %s", source.c_str());
 		return {};
 	};
 

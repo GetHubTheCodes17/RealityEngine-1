@@ -73,7 +73,6 @@ namespace reality {
 	using uint32 = std::uint32_t;
 	using uint64 = std::uint64_t;
 
-	inline constexpr const char* g_ResourcesPath{ "../../Resources/" };
 	inline constexpr const char* g_ResourcesExtension{ ".binary" };
 }
 

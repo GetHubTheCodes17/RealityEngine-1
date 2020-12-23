@@ -7,14 +7,14 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <filesystem>
 
 #include "Core/Tools/Logger.h"
 
 reality::Model::Model(ModelSettings settings) : 
-	Path{ g_ResourcesPath + settings.Path } 
+	Path{ settings.Path } 
 {
-	const auto path{ Path.substr(0, Path.find_last_of('/')) };
-	const auto binaryPath{ path + path.substr(std::strlen(g_ResourcesPath) + sizeof("Models") - 1) + g_ResourcesExtension };
+	const auto binaryPath{ Path.substr(0, Path.find_last_of(".")) + g_ResourcesExtension };
 
 	if (auto inputFile{ std::fopen(binaryPath.c_str(), "rb") }) {
 		BinaryToModel(inputFile);
@@ -25,7 +25,7 @@ reality::Model::Model(ModelSettings settings) :
 		const auto scene{ importer.ReadFile(Path,
 			aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals |
 			aiProcess_GenBoundingBoxes | aiProcess_OptimizeMeshes | aiProcess_OptimizeGraph) };
-		Path = settings.Path.substr(0, settings.Path.find_last_of('/')).c_str();
+		Path = std::filesystem::path(settings.Path).parent_path().string() + '\\';
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 			RE_LOG_WARNING("Error with Assimp : %s", importer.GetErrorString());
@@ -232,28 +232,28 @@ void reality::Model::ProcessMaterial(const aiMesh* amesh, const aiScene* scene, 
 	aiString texturePath;
 	if (mat->GetTextureCount(aiTextureType_DIFFUSE)) {
 		mat->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath);
-		resource.Diffuse = Path + '/' + texturePath.C_Str();
+		resource.Diffuse = Path + texturePath.C_Str();
 	}
 	if (mat->GetTextureCount(aiTextureType_SPECULAR)) {
 		mat->GetTexture(aiTextureType_SPECULAR, 0, &texturePath);
-		resource.Specular = Path + '/' + texturePath.C_Str();
+		resource.Specular = Path + texturePath.C_Str();
 	}
 	if (mat->GetTextureCount(aiTextureType_NORMALS)) {
 		mat->GetTexture(aiTextureType_NORMALS, 0, &texturePath);
-		resource.Normal = Path + '/' + texturePath.C_Str();
+		resource.Normal = Path + texturePath.C_Str();
 	}
 	if (mat->GetTextureCount(aiTextureType_HEIGHT)) {
 		mat->GetTexture(aiTextureType_HEIGHT, 0, &texturePath);
-		resource.Height = Path + '/' + texturePath.C_Str();
+		resource.Height = Path + texturePath.C_Str();
 	}
 	if (mat->GetTextureCount(aiTextureType_EMISSIVE)) {
 		mat->GetTexture(aiTextureType_EMISSIVE, 0, &texturePath);
-		resource.Emissive = Path + '/' + texturePath.C_Str();
+		resource.Emissive = Path + texturePath.C_Str();
 	}
 
 	// TODO : Store the reflection texture in the ambient texture because aiTextureType_REFLECTION is not working
 	if (mat->GetTextureCount(aiTextureType_AMBIENT)) {
 		mat->GetTexture(aiTextureType_AMBIENT, 0, &texturePath);
-		resource.Reflection = Path + '/' + texturePath.C_Str();
+		resource.Reflection = Path + texturePath.C_Str();
 	}
 }

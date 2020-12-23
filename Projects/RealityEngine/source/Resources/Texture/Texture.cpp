@@ -10,8 +10,7 @@
 #include "Core/Tools/Logger.h"
 
 reality::Texture::Texture(TextureSettings settings) {
-	const auto path{ g_ResourcesPath + settings.Path };
-	const auto binaryPath{ path.substr(0, path.find_last_of('.')) + g_ResourcesExtension };
+	const auto binaryPath{ settings.Path.substr(0, settings.Path.find_last_of('.')) + g_ResourcesExtension };
 
 	stbi_set_flip_vertically_on_load_thread(Flipped);
 
@@ -24,9 +23,9 @@ reality::Texture::Texture(TextureSettings settings) {
 		std::fclose(inputFile);
 	}
 	else {
-		Image = std::unique_ptr<uint8[]>{ stbi_load(path.c_str(), &Width, &Height, &Channels, STBI_default) };
+		Image = std::unique_ptr<uint8[]>{ stbi_load(settings.Path.c_str(), &Width, &Height, &Channels, STBI_default) };
 		if (!Image) {
-			RE_LOG_WARNING("Cannot load the resource %s", path.c_str());
+			RE_LOG_WARNING("Cannot load the resource %s", settings.Path.c_str());
 			return;
 		}
 

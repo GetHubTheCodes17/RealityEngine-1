@@ -4,12 +4,14 @@
 
 #include <string>
 
+#include "Core/Platform.h"
+
 namespace reality {
 	struct ShaderSettings {
 		std::string VertexPath, FragmentPath, GeometryPath;
 	};
 
-	struct Shader {
+	struct RE_CORE Shader {
 		std::string VertexSource, FragmentSource, GeometrySource;
 
 		Shader() = default;

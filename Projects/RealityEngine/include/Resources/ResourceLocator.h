@@ -5,12 +5,34 @@
 #include "ResourceManager.h"
 
 namespace reality {
-	RE_CORE extern std::unordered_map<std::string, GLMesh>* g_MeshManager;
-	RE_CORE extern std::unordered_map<std::string, GLMaterial>* g_MaterialManager;
+	struct RE_CORE ResourceLocator final {
+		std::unordered_map<std::string, GLMesh> Meshes;
+		std::unordered_map<std::string, GLMaterial> Materials;
+		ResourceManager<GLModel, ModelSettings, GLMeshSettings, Model> Models;
+		ResourceManager<GLCubeMap, SkyboxSettings, GLCubeMapSettings, Skybox> Skyboxes;
+		ResourceManager<GLTexture, TextureSettings, GLTextureSettings, Texture> Textures;
+		ResourceManager<GLShader, ShaderSettings, GLShaderSettings, Shader> Shaders;
+		ResourceManager<GLFont, FontSettings, GLFontSettings, Font> Fonts;
 
-	RE_CORE extern ResourceManager<GLModel, ModelSettings, GLMeshSettings, Model>* g_ModelManager;
-	RE_CORE extern ResourceManager<GLCubeMap, SkyboxSettings, GLCubeMapSettings, Skybox>* g_SkyboxManager;
-	RE_CORE extern ResourceManager<GLTexture, TextureSettings, GLTextureSettings, Texture>* g_TextureManager;
-	RE_CORE extern ResourceManager<GLShader, ShaderSettings, GLShaderSettings, Shader>* g_ShaderManager;
-	RE_CORE extern ResourceManager<GLFont, FontSettings, GLFontSettings, Font>* g_FontManager;
+		ResourceLocator();
+		ResourceLocator(ResourceLocator&&) = delete;
+		ResourceLocator& operator=(ResourceLocator&&) = delete;
+
+		void Update();
+	};
+
+	RE_CORE extern ResourceLocator* g_ResourceLocator;
+}
+
+inline reality::ResourceLocator::ResourceLocator() :
+	Textures{ "Resources/Textures.json" }, Models{ "Resources/Models.json" }, Skyboxes{ "Resources/Skyboxes.json" },
+	Shaders{ "Resources/Shaders.json" }, Fonts{ "Resources/Fonts.json" }
+{}
+
+inline void reality::ResourceLocator::Update() {
+	Models.Update();
+	Textures.Update();
+	Fonts.Update();
+	Shaders.Update();
+	Skyboxes.Update();
 }

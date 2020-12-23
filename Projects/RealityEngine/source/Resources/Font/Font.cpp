@@ -13,7 +13,7 @@ reality::Font::Font(FontSettings settings) {
 		RE_LOG_WARNING("Failed to initialize the Freetype Library");
 		return;
 	}
-	const auto path{ g_ResourcesPath + settings.Path };
+	const auto path{ settings.Path };
 
 	FT_FaceRec_* Face{};
 	if (FT_New_Face(library, path.c_str(), 0, &Face)) {
