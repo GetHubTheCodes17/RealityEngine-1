@@ -39,6 +39,10 @@ reality::Model::Model(ModelSettings settings) :
 	}
 }
 
+bool reality::Model::IsExtensionSupported(std::string_view extension) {
+	return Assimp::Importer().IsExtensionSupported(extension.data());
+}
+
 void reality::Model::StringToBinary(std::FILE* outputFile, const std::string& string) {
 	const auto size{ (unsigned)string.size() };
 	std::fwrite(&size, sizeof(unsigned), 1, outputFile);

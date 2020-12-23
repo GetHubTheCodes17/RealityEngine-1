@@ -6,7 +6,6 @@
 #include <imgui/imgui_impl_glfw.h>
 
 #include "Gameplay/ComponentSystem.h"
-#include "Audio/AudioSource.h"
 
 reality::Editor::Editor() {
 	IMGUI_CHECKVERSION();
@@ -21,7 +20,12 @@ reality::Editor::Editor() {
 	g_Io->Window->SetTitle("Reality Engine");
 	g_Io->Window->SetPos({ 250.f, 150.f });
 	g_Logger->Callback = [this](const char* msg) { m_Log.AddLog(msg); };
-	g_Io->Window->SetDropCallback([](int pathCount, const char** paths) { RE_LOG_INFO("%s", paths[0]) });
+	g_Io->Window->SetDropCallback([this](int count, const char** paths) {
+		for (auto i{ 0 }; i < count; ++i) {
+			if (count) {
+				m_Assets.DropResource(paths[i]);
+			}
+		}});
 	CreateDefaultScene();
 }
 
@@ -29,9 +33,6 @@ reality::Editor::~Editor() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-
-	// Experimental ParticleSystem Component
-	//delete g_SceneManager->ActiveScene->FindGameObject("GameObject7")->GetComponent<CParticleSystem>()->System;
 }
 
 void reality::Editor::Run() {
@@ -57,10 +58,6 @@ void reality::Editor::Run() {
 }
 
 void reality::Editor::CreateDefaultScene() const {
-	g_ModelManager->Load("Nanosuit", { "Models/nanosuit/nanosuit.obj" });
-	g_ModelManager->Load("SpaceShip", { "Models/SciFi_Fighter/SciFi_Fighter.obj" });
-	g_ModelManager->Load("House", { "Models/fantasy_game_inn/fantasy_game_inn.obj" });
-	g_ModelManager->Load("Crytek", { "Models/crytek/sponza.obj" });
 	g_TextureManager->Load("Particle", { "Textures/particle.png" });
 	g_SkyboxManager->Load("Saturne", { 
 		"Skyboxes/saturne/Left.png", "Skyboxes/saturne/Right.png", "Skyboxes/saturne/Up.png",
@@ -74,14 +71,14 @@ void reality::Editor::CreateDefaultScene() const {
 	camera.AddComponent<CCamera>();
 
 	auto& g0{ scene.CreateGameObject("Nanosuit") };
-	g0.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("Nanosuit");
+	g0.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("nanosuit");
 	g0.Transform.Translate({ 0.f, -3.5f, 3.f });
 	g0.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g0.Transform.SetScale(Vector3{ 0.15f });
 
 	auto& g2{ scene.CreateGameObject("Child1") };
 	g2.Transform.Translate({ 0.f, -2.f, 7.f });
-	g2.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SpaceShip");
+	g2.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SciFi_Fighter");
 	g2.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g2.Transform.SetScale(Vector3{ 0.1f });
 
@@ -90,17 +87,17 @@ void reality::Editor::CreateDefaultScene() const {
 
 	auto& c3{ scene.CreateGameObject("Child11") };
 	c3.Transform.Translate({ 0.f, -2.f, 7.f });
-	c3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SpaceShip");
+	c3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("SciFi_Fighter");
 	c3.Transform.Rotate({ 0.f, 180.f, 0.f });
 	c3.Transform.SetScale(Vector3{ 0.6f });
 	c3.SetParent(g2);
 
 	auto& g3{ scene.CreateGameObject("House") };
-	g3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("House");
+	g3.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("fantasy_game_inn");
 	g3.Transform.Translate({ 1.1f, -2.2f, 3.5f });
 
 	auto& g4{ scene.CreateGameObject("Crytek") };
-	g4.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("Crytek");
+	g4.AddComponent<CMeshRenderer>().Model = g_ModelManager->Get("crytek");
 	g4.Transform.SetScale(Vector3{ 0.03f });
 	g4.Transform.Rotate({ 0.f, 90.f, 0.f });
 	g4.Transform.Translate({ 0.f, -4.f, 0.f });
@@ -117,8 +114,6 @@ void reality::Editor::CreateDefaultScene() const {
 	auto& g7 = scene.CreateGameObject("ParticleSystem");
 	g7.Transform.Translate({ 0.f, -2.f, 20.f });
 	g7.Transform.Rotate({ 90.f, 0.f, 0.f });
-	//g7.AddComponent<CParticleSystem>().System = new GLParticleSystem;
-	//g7.GetComponent<CParticleSystem>()->System->Texture = g_TextureManager->Get("Particle");
 }
 
 void reality::Editor::Render() const {

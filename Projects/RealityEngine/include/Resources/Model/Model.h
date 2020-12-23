@@ -39,6 +39,8 @@ namespace reality {
 		Model() = default;
 		explicit Model(ModelSettings settings);
 
+		static bool IsExtensionSupported(std::string_view extension);
+
 	private:
 		void StringToBinary(std::FILE* outputFile, const std::string& string);
 		void BinaryToString(std::FILE* inputFile, std::string& string);
