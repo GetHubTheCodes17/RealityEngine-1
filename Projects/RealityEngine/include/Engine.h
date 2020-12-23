@@ -14,7 +14,7 @@
 #include "Rendering/Opengl/GLShaderHelper.h"
 #include "Rendering/Opengl/GLDebugDrawing.h"
 #include "Rendering/Opengl/GLMeshHelper.h"
-#include "Resources/ResourceLocator.h"
+#include "Resources/ResourceManager.h"
 #include "Gameplay/SceneManager.h"
 #include "Audio/AudioEngine.h"
 

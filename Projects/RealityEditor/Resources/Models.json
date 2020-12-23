@@ -9,9 +9,29 @@
             "Attribute": 0
         }
     },
+    "cube": {
+        "settings": {
+            "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\cube\\cube.obj"
+        },
+        "properties": {
+            "Usage": 1,
+            "DrawType": 4,
+            "Attribute": 0
+        }
+    },
     "fantasy_game_inn": {
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\fantasy_game_inn\\fantasy_game_inn.obj"
+        },
+        "properties": {
+            "Usage": 1,
+            "DrawType": 4,
+            "Attribute": 0
+        }
+    },
+    "quad": {
+        "settings": {
+            "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\quad\\quad.obj"
         },
         "properties": {
             "Usage": 1,

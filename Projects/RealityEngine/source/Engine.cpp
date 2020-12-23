@@ -26,7 +26,7 @@ reality::GameEngine::GameEngine() {
 }
 
 reality::GameEngine::~GameEngine() {
-	delete g_ResourceLocator;
+	delete g_ResourceManager;
 	delete g_SceneManager;
 	delete g_Logger;
 	delete g_AudioEngine;
@@ -48,7 +48,7 @@ RE_CORE reality::GLDebugDrawing* reality::g_DebugDrawing{};
 RE_CORE reality::GLMeshHelper* reality::g_MeshHelper{};
 RE_CORE reality::IO* reality::g_Io{};
 
-RE_CORE reality::ResourceLocator* reality::g_ResourceLocator{};
+RE_CORE reality::ResourceManager* reality::g_ResourceManager{};
 
 const reality::Quaternion reality::Quaternion::Identity{ 0.f, 0.f, 0.f, 1.f };
 

@@ -1,16 +1,16 @@
 // Copyright Reality Engine. All Rights Reserved.
 
-#include "Resources/ResourceLocator.h"
+#include "Resources/ResourceManager.h"
 
 reality::GLModel reality::loader::ConvertModel(GLMeshSettings& properties, const Model& resource) {
 	auto CreateMesh = [](auto& properties, const auto& mesh) {
 		auto CreateMaterial = [](const auto& material) {
 			auto CreateTexture = [](const auto& path) {
 				return path.empty() ? nullptr :
-					&g_ResourceLocator->Textures.Load(path.substr(path.find_last_of("/") + 1).c_str(), { path });
+					&g_ResourceManager->Textures.Load(path.substr(path.find_last_of("/") + 1).c_str(), { path });
 			};
 
-			auto& materialGpu{ g_ResourceLocator->Materials.emplace(material.Name, GLMaterial{}).first->second };
+			auto& materialGpu{ g_ResourceManager->Materials.emplace(material.Name, GLMaterial{}).first->second };
 			materialGpu.Color = material.Color;
 			materialGpu.SpecularStrength = material.SpecularStrength;
 			materialGpu.Shininess = material.Shininess;
@@ -28,7 +28,7 @@ reality::GLModel reality::loader::ConvertModel(GLMeshSettings& properties, const
 		properties.Indices = mesh.Indices.data();
 		properties.IndicesSize = (unsigned)(mesh.Indices.size());
 		properties.Attribute = mesh.Attribute;
-		auto& meshGpu{ g_ResourceLocator->Meshes.emplace(mesh.Name, properties).first->second };
+		auto& meshGpu{ g_ResourceManager->Meshes.emplace(mesh.Name, properties).first->second };
 		meshGpu.Material = CreateMaterial(mesh.Material);
 		return &meshGpu;
 	};

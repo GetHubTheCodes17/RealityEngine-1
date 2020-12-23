@@ -385,12 +385,6 @@
     <ClInclude Include="include\Resources\ResourceConverter.h">
       <Filter>include\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="include\Resources\ResourceLocator.h">
-      <Filter>include\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Resources\ResourceManager.h">
-      <Filter>include\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="include\Gameplay\Component\MeshRenderer.h">
       <Filter>include\Gameplay\Component</Filter>
     </ClInclude>
@@ -402,6 +396,12 @@
     </ClInclude>
     <ClInclude Include="include\Core\Maths\AABB.h">
       <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceHandler.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceManager.h">
+      <Filter>include\Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

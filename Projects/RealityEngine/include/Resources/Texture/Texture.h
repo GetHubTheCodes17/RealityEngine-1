@@ -19,5 +19,7 @@ namespace reality {
 
 		Texture() = default;
 		explicit Texture(TextureSettings settings);
+
+		static bool IsExtensionSupported(std::string_view filename);
 	};
 }

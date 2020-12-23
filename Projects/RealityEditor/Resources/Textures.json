@@ -108,16 +108,16 @@
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\glass_ddn.png"
         },
-      "properties": {
-        "HasMipmap": true,
-        "InternalFormat": 2,
-        "Format": 1,
-        "InternalType": 0,
-        "Type": 1,
-        "Wrap": 0,
-        "Filter": 1,
-        "Samples": 0
-      }
+        "properties": {
+            "HasMipmap": true,
+            "InternalFormat": 2,
+            "Format": 1,
+            "InternalType": 0,
+            "Type": 1,
+            "Wrap": 0,
+            "Filter": 1,
+            "Samples": 0
+        }
     },
     "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\glass_refl.png": {
         "settings": {
@@ -168,16 +168,16 @@
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\leg_showroom_ddn.png"
         },
-      "properties": {
-        "HasMipmap": true,
-        "InternalFormat": 2,
-        "Format": 1,
-        "InternalType": 0,
-        "Type": 1,
-        "Wrap": 0,
-        "Filter": 1,
-        "Samples": 0
-      }
+        "properties": {
+            "HasMipmap": true,
+            "InternalFormat": 2,
+            "Format": 1,
+            "InternalType": 0,
+            "Type": 1,
+            "Wrap": 0,
+            "Filter": 1,
+            "Samples": 0
+        }
     },
     "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\leg_showroom_refl.png": {
         "settings": {
@@ -228,16 +228,16 @@
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\hand_showroom_ddn.png"
         },
-      "properties": {
-        "HasMipmap": true,
-        "InternalFormat": 2,
-        "Format": 1,
-        "InternalType": 0,
-        "Type": 1,
-        "Wrap": 0,
-        "Filter": 1,
-        "Samples": 0
-      }
+        "properties": {
+            "HasMipmap": true,
+            "InternalFormat": 2,
+            "Format": 1,
+            "InternalType": 0,
+            "Type": 1,
+            "Wrap": 0,
+            "Filter": 1,
+            "Samples": 0
+        }
     },
     "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\hand_showroom_refl.png": {
         "settings": {
@@ -288,16 +288,16 @@
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\body_showroom_ddn.png"
         },
-      "properties": {
-        "HasMipmap": true,
-        "InternalFormat": 2,
-        "Format": 1,
-        "InternalType": 0,
-        "Type": 1,
-        "Wrap": 0,
-        "Filter": 1,
-        "Samples": 0
-      }
+        "properties": {
+            "HasMipmap": true,
+            "InternalFormat": 2,
+            "Format": 1,
+            "InternalType": 0,
+            "Type": 1,
+            "Wrap": 0,
+            "Filter": 1,
+            "Samples": 0
+        }
     },
     "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\body_showroom_refl.png": {
         "settings": {
@@ -348,16 +348,16 @@
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\arm_showroom_ddn.png"
         },
-      "properties": {
-        "HasMipmap": true,
-        "InternalFormat": 2,
-        "Format": 1,
-        "InternalType": 0,
-        "Type": 1,
-        "Wrap": 0,
-        "Filter": 1,
-        "Samples": 0
-      }
+        "properties": {
+            "HasMipmap": true,
+            "InternalFormat": 2,
+            "Format": 1,
+            "InternalType": 0,
+            "Type": 1,
+            "Wrap": 0,
+            "Filter": 1,
+            "Samples": 0
+        }
     },
     "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\arm_showroom_refl.png": {
         "settings": {
@@ -408,16 +408,16 @@
         "settings": {
             "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\helmet_showroom_ddn.png"
         },
-      "properties": {
-        "HasMipmap": true,
-        "InternalFormat": 2,
-        "Format": 1,
-        "InternalType": 0,
-        "Type": 1,
-        "Wrap": 0,
-        "Filter": 1,
-        "Samples": 0
-      }
+        "properties": {
+            "HasMipmap": true,
+            "InternalFormat": 2,
+            "Format": 1,
+            "InternalType": 0,
+            "Type": 1,
+            "Wrap": 0,
+            "Filter": 1,
+            "Samples": 0
+        }
     },
     "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Models\\nanosuit\\helmet_showroom_refl.png": {
         "settings": {

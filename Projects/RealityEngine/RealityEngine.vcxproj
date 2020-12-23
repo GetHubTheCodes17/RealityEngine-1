@@ -96,13 +96,13 @@
     <ClInclude Include="include\Rendering\Settings\GLShaderSettings.h" />
     <ClInclude Include="include\Rendering\Settings\GLTextureSettings.h" />
     <ClInclude Include="include\Resources\Font\Font.h" />
-    <ClInclude Include="include\Resources\ResourceManager.h" />
+    <ClInclude Include="include\Resources\ResourceHandler.h" />
     <ClInclude Include="include\Resources\Model\Model.h" />
     <ClInclude Include="include\Resources\Model\ModelConverter.h" />
     <ClInclude Include="include\Resources\Model\Vertex.h" />
     <ClInclude Include="include\Resources\ResourceConverter.h" />
     <ClInclude Include="include\Resources\ResourceSerialize.h" />
-    <ClInclude Include="include\Resources\ResourceLocator.h" />
+    <ClInclude Include="include\Resources\ResourceManager.h" />
     <ClInclude Include="include\Resources\Shader\Shader.h" />
     <ClInclude Include="include\Resources\Skybox\Skybox.h" />
     <ClInclude Include="include\Resources\Texture\Texture.h" />
