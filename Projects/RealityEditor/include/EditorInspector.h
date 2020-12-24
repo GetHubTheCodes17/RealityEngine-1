@@ -52,7 +52,7 @@ inline void reality::EditorInspector::Draw(std::function<void(Component&)> func,
 	const auto& type{ typeid(Component) };
 	auto name{ std::string{ type.name(), sizeof("struct reality::"), std::string::npos } };
 
-	if (ImGui::TreeNodeEx((void*)type.hash_code(), ImGuiTreeNodeFlags_DefaultOpen, name.c_str())) {
+	if (ImGui::TreeNodeEx(reinterpret_cast<void*>(type.hash_code()), ImGuiTreeNodeFlags_DefaultOpen, name.c_str())) {
 		func(comp);
 		ImGui::TreePop();
 	}
