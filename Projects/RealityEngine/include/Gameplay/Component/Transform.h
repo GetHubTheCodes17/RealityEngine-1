@@ -15,6 +15,7 @@ namespace reality {
 		CTransform() = default;
 		CTransform(const CTransform&);
 		CTransform& operator=(const CTransform&);
+		~CTransform();
 
 		Vector3 TransformPoint(const Vector3& position) const;
 		Vector3 InverseTransformPoint(const Vector3& position) const;
@@ -73,6 +74,13 @@ inline reality::CTransform& reality::CTransform::operator=(const CTransform& oth
 	m_Scale = other.m_Scale;
 	SetParent(other.m_Parent);
 	return *this;
+}
+
+inline reality::CTransform::~CTransform() {
+	if (m_Parent) {
+		m_Parent->m_Children.erase(std::remove(m_Parent->m_Children.begin(), m_Parent->m_Children.end(), this),
+			m_Parent->m_Children.end());
+	}
 }
 
 inline reality::Vector3 reality::CTransform::TransformPoint(const Vector3& position) const {
@@ -182,10 +190,9 @@ inline reality::Vector3 reality::CTransform::GetForward() const {
 }
 
 inline void reality::CTransform::SetHasChanged(bool hasChanged) {
-	const auto oldHasChanged{ m_HasChanged };
 	m_HasChanged = hasChanged;
 
-	if (hasChanged && !oldHasChanged) {
+	if (hasChanged) {
 		auto parent{ m_Parent };
 		while (parent) {
 			parent->m_HasChanged = true;
@@ -195,7 +202,7 @@ inline void reality::CTransform::SetHasChanged(bool hasChanged) {
 }
 
 inline void reality::CTransform::SetParent(CTransform* parent) {
-	if (parent == m_Parent || parent == this) {
+	if (parent == m_Parent || parent == this || std::find(m_Children.cbegin(), m_Children.cend(), parent) != m_Children.cend()) {
 		return;
 	}
 
@@ -208,7 +215,8 @@ inline void reality::CTransform::SetParent(CTransform* parent) {
 	};
 
 	if (m_Parent) {
-		m_Parent->m_Children.erase(std::find(m_Parent->m_Children.cbegin(), m_Parent->m_Children.cend(), this));
+		m_Parent->m_Children.erase(std::remove(m_Parent->m_Children.begin(), m_Parent->m_Children.end(), this),
+			m_Parent->m_Children.end());
 	}
 
 	if (parent) {

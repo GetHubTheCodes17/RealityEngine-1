@@ -8,15 +8,6 @@ void reality::Scene::DestroyGameObjectUnsafe(const GameObject& object) {
 			continue;
 		}
 
-		if (auto parent{ object.Transform.GetParent() }) {
-			if (auto parentOfParent{ parent->GetParent() }) {
-				parent = parentOfParent;
-			}
-			for (const auto& child : object.Transform.GetChildren()) {
-				child->SetParent(parent);
-			}
-		}
-
 		(*it)->RemoveAllComponents();
 		m_GameObjects.erase(it);
 		break;

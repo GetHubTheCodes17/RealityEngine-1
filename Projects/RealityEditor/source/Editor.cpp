@@ -22,10 +22,9 @@ reality::Editor::Editor() {
 	g_Logger->Callback = [this](const char* msg) { m_Log.AddLog(msg); };
 	g_Io->Window->SetDropCallback([this](int count, const char** paths) {
 		for (auto i{ 0 }; i < count; ++i) {
-			if (count) {
-				m_Assets.DropResource(paths[i]);
-			}
-		}});
+			m_Assets.DropResource(paths[i]);
+		}
+	});
 	g_ResourceManager = new ResourceManager;
 	CreateDefaultScene();
 }
@@ -48,9 +47,6 @@ void reality::Editor::Run() {
 			m_ComponentSystem.UpdateCameras(*activeScene, m_ViewportSize);
 			m_ComponentSystem.UpdateLights(*activeScene);
 		}
-
-		if (ImGui::IsKeyPressed(keycode::RE_KEY_KP_5))
-		g_ResourceManager->Models.Remove("nanosuit");
 
 		Update();
 

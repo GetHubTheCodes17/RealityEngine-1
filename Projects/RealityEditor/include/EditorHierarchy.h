@@ -15,6 +15,8 @@ namespace reality {
 		void Draw(Scene& scene);
 
 	private:
+		bool m_IsDragging{};
+
 		void DisplayTree(GameObject& root);
 	};
 }
@@ -42,13 +44,13 @@ inline void reality::EditorHierarchy::Draw(Scene& scene) {
 }
 
 inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
+	const auto hovered{ &root };
+
 	const auto flags{ ImGuiTreeNodeFlags_FramePadding | ImGuiTreeNodeFlags_DefaultOpen |
 		ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick |
 		ImGuiTreeNodeFlags_SpanFullWidth | (!root.Transform.GetChildrenSize() ? ImGuiTreeNodeFlags_Leaf : 0) |
 		(Current == &root ? ImGuiTreeNodeFlags_Selected : 0) };
-
-	const auto isOpen{ ImGui::TreeNodeEx(root.Name.c_str(), flags) };
-	const auto current{ &root };
+	const auto isOpen{ ImGui::TreeNodeEx(reinterpret_cast<void*>(root.GetId()), flags, root.Name.c_str()) };
 
 	if (ImGui::IsItemClicked() || ImGui::IsItemFocused()) {
 		Current = &root;
@@ -56,16 +58,23 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
 
 	if (ImGui::BeginDragDropSource()) {
 		ImGui::SetDragDropPayload("Object_Hierarchy", &root, sizeof(&root));
+		m_IsDragging = true;
 		ImGui::EndDragDropSource();
 	}
 
 	if (ImGui::BeginDragDropTarget()) {
 		if (ImGui::AcceptDragDropPayload("Object_Hierarchy")) {
 			if (Current) {
-				Current->SetParent(*current);
+				Current->SetParent(*hovered);
 			}
 		}
+		m_IsDragging = false;
 		ImGui::EndDragDropTarget();
+	}
+
+	if (m_IsDragging && Current && ImGui::IsMouseReleased(ImGuiMouseButton_Left)) {
+		Current->Transform.SetParent(nullptr);
+		m_IsDragging = false;
 	}
 
 	if (isOpen) {
@@ -73,7 +82,9 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
 			DisplayTree(child->GetGameObject());
 		}
 
-		if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !ImGui::IsAnyItemHovered()) {
+		if (Current && ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left) 
+			&& !ImGui::IsAnyItemHovered()) 
+		{
 			Current = nullptr;
 		}
 
