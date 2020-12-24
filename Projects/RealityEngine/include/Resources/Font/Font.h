@@ -25,5 +25,7 @@ namespace reality {
 
 		Font() = default;
 		explicit Font(FontSettings settings);
+
+		static bool IsExtensionSupported(std::string_view extension);
 	};
 }

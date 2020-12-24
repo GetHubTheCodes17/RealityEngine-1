@@ -23,6 +23,7 @@ namespace reality {
 
 		void DrawName(GameObject& object);
 		void DrawComponents(GameObject& object);
+		void DrawAddComponent(GameObject& object);
 		static void DrawTransform(CTransform& transform);
 		static void DrawLight(CLight& light);
 		static void DrawCamera(CCamera& camera);
@@ -37,6 +38,10 @@ inline void reality::EditorInspector::Draw(GameObject* object) {
 			DrawName(*object);
 			Draw<CTransform>(DrawTransform, object->Transform);
 			DrawComponents(*object);
+
+			if (ImGui::Button("Add Component", { -1.f, 0.f })) {
+				DrawAddComponent(*object);
+			}
 		}
 	}
 	ImGui::End();
@@ -80,6 +85,9 @@ inline void reality::EditorInspector::DrawComponents(GameObject& object) {
 	}
 }
 
+inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
+}
+
 inline void reality::EditorInspector::DrawTransform(CTransform& transform) {
 	auto p{ transform.GetPosition() }, r{ transform.GetRotation().GetEulerAngles() }, s{ transform.GetScale() };
 
@@ -116,5 +124,13 @@ inline void reality::EditorInspector::DrawCamera(CCamera& camera) {
 }
 
 inline void reality::EditorInspector::DrawMeshRenderer(CMeshRenderer& mesh) {
-	
+	static const char* current{};
+	if (ImGui::BeginCombo("##Models", mesh.GetName().data())) {
+		for (auto& [name, model] : g_ResourceManager->Models.GetResources()) {
+			if (ImGui::Selectable(name.c_str())) {
+				mesh.SetModel(name);
+			}
+		}
+		ImGui::EndCombo();
+	}
 }

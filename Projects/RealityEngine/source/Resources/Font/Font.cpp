@@ -36,3 +36,7 @@ reality::Font::Font(FontSettings settings) {
 	}
 	FT_Done_FreeType(library);
 }
+
+bool reality::Font::IsExtensionSupported(std::string_view extension) {
+	return extension == ".ttf" || extension == ".cff" || extension == ".woff" || extension == ".fnt";
+}

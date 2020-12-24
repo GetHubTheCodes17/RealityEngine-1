@@ -25,10 +25,14 @@ inline void reality::EditorAssets::Draw() {
 
 inline void reality::EditorAssets::DropResource(std::string_view filename) const {
 	std::filesystem::path path{ filename };
-	if (Model::IsExtensionSupported(path.extension().string())) {
+	auto extension{ path.extension().string() };
+	if (Model::IsExtensionSupported(extension)) {
 		g_ResourceManager->Models.Load(path.stem().string().c_str(), { filename.data() });
 	}
 	else if (Texture::IsExtensionSupported(filename)) {
 		g_ResourceManager->Textures.Load(path.stem().string().c_str(), { filename.data() });
+	}
+	else if (Font::IsExtensionSupported(extension)) {
+		g_ResourceManager->Fonts.Load(path.stem().string().c_str(), { filename.data() });
 	}
 }

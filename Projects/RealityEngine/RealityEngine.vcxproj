@@ -60,6 +60,7 @@
     <ClInclude Include="include\Gameplay\Component\Behaviour.h" />
     <ClInclude Include="include\Gameplay\Component\Camera.h" />
     <ClInclude Include="include\Gameplay\Component\Light.h" />
+    <ClInclude Include="include\Gameplay\Component\MeshFilter.h" />
     <ClInclude Include="include\Gameplay\Component\MeshRenderer.h" />
     <ClInclude Include="include\Gameplay\Component\MonoBehaviour.h" />
     <ClInclude Include="include\Gameplay\Component\Component.h" />

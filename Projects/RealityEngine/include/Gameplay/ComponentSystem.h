@@ -100,7 +100,7 @@ inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 		for (const auto& mesh : *meshes) {
 			if (mesh->GetGameObject().IsActive) {
 				GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
-				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->Model }) {
+				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->GetModel() }) {
 					for (const auto& glmesh : glModel->Meshes) {
 						glmesh->Draw();
 					}
@@ -115,7 +115,7 @@ inline void reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
 		for (const auto& mesh : *meshes) {
 			if (mesh->GetGameObject().IsActive) {
 				GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
-				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->Model }) {
+				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->GetModel() }) {
 					for (const auto& glMesh : glModel->Meshes) {
 						if (const auto glMaterial{ glMesh->Material }) {
 							glMaterial->Bind();

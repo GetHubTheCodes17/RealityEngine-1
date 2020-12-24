@@ -403,6 +403,9 @@
     <ClInclude Include="include\Resources\ResourceManager.h">
       <Filter>include\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\MeshFilter.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Rendering\GLSLShaders\Default.fs">

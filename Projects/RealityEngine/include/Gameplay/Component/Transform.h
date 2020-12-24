@@ -77,7 +77,7 @@ inline reality::CTransform& reality::CTransform::operator=(const CTransform& oth
 }
 
 inline reality::CTransform::~CTransform() {
-	if (m_Parent) {
+	if (m_Parent && !m_Parent->m_Children.empty()) {
 		m_Parent->m_Children.erase(std::remove(m_Parent->m_Children.begin(), m_Parent->m_Children.end(), this),
 			m_Parent->m_Children.end());
 	}
