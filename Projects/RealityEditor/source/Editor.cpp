@@ -76,20 +76,20 @@ void reality::Editor::CreateDefaultScene() const {
 	g0.Transform.SetScale(Vector3{ 0.15f });
 
 	auto& g2{ scene.CreateGameObject("Child1") };
+	auto& g1{ scene.CreateGameObject("Parent1") };
+	g2.SetParent(g1);
+
 	g2.Transform.Translate({ 0.f, -2.f, 7.f });
 	g2.AddComponent<CMeshRenderer>().Model = g_ResourceManager->Models.Get("SciFi_Fighter");
 	g2.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g2.Transform.SetScale(Vector3{ 0.1f });
 
-	auto& g1{ scene.CreateGameObject("Parent1") };
-	g2.SetParent(g1);
-
 	auto& c3{ scene.CreateGameObject("Child11") };
+	c3.SetParent(g2);
 	c3.Transform.Translate({ 0.f, -2.f, 7.f });
 	c3.AddComponent<CMeshRenderer>().Model = g_ResourceManager->Models.Get("SciFi_Fighter");
 	c3.Transform.Rotate({ 0.f, 180.f, 0.f });
 	c3.Transform.SetScale(Vector3{ 0.6f });
-	c3.SetParent(g2);
 
 	auto& g3{ scene.CreateGameObject("House") };
 	g3.AddComponent<CMeshRenderer>().Model = g_ResourceManager->Models.Get("fantasy_game_inn");
@@ -130,7 +130,7 @@ void reality::Editor::Render() const {
 	g_MeshHelper->Cube.Draw();
 
 	// Draw Debug Text
-	//g_FontManager->Get("Arial")->Draw("Salut a tous !", { 0.1f, 0.1f, 0.5f, 0.5f }, m_ViewportSize);
+	g_ResourceManager->Fonts.Get("Arial")->Draw("Reality Engine !", { 0.1f, 0.1f, 0.5f, 0.5f }, m_ViewportSize);
 
 	m_Pipeline.BeginPostProcess();
 	m_Pipeline.GetDefaultPass().Bind();

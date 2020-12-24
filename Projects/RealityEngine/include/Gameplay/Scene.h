@@ -33,7 +33,7 @@ namespace reality {
 		std::vector<std::function<void()>> m_ToBeInstantiate;
 		std::multimap<Clock::time_point, GameObject*> m_ToBeRemoved;
 
-		void DestroyGameObjectUnsafe(const GameObject& object);
+		void DestroyGameObjectUnsafe(GameObject& object);
 		void UpdateDestroyed();
 		void UpdateInstantiated();
 	};

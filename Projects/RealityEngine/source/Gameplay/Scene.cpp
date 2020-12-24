@@ -2,16 +2,17 @@
 
 #include "Gameplay/Scene.h"
 
-void reality::Scene::DestroyGameObjectUnsafe(const GameObject& object) {
-	for (auto it{ m_GameObjects.cbegin() }; it != m_GameObjects.cend(); ++it) {
-		if (it->get() != &object) {
-			continue;
+void reality::Scene::DestroyGameObjectUnsafe(GameObject& object) {
+	std::function<void(GameObject&)> SetToBeDestroyed = [&SetToBeDestroyed](auto& root) {
+		root.m_Id = -1;
+		for (auto child : root.Transform.GetChildren()) {
+			SetToBeDestroyed(child->GetGameObject());
 		}
+	};
+	SetToBeDestroyed(object);
 
-		(*it)->RemoveAllComponents();
-		m_GameObjects.erase(it);
-		break;
-	}
+	m_GameObjects.erase(std::remove_if(m_GameObjects.begin(), m_GameObjects.end(), 
+		[](auto& elem) { return elem->m_Id == -1; }), m_GameObjects.end());
 	m_ToBeRemoved.erase(m_ToBeRemoved.cbegin());
 }
 

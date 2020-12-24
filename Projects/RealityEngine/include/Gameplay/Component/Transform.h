@@ -222,6 +222,10 @@ inline void reality::CTransform::SetParent(CTransform* parent) {
 	if (parent) {
 		parent->m_Children.emplace_back(this);
 		UpdateLevel(*this, parent->m_Level + 1);
+		
+		//m_Position = (m_Trs * Matrix4::Inverse(parent->GetTrs())).GetRow3(3);
+		//m_Scale = Matrix4::GetScale(m_Trs * Matrix4::Inverse(parent->GetTrs()));
+		//m_Rotation = Quaternion(m_Trs * Matrix4::Inverse(parent->GetTrs()));
 	}
 	else {
 		UpdateLevel(*this, 0);

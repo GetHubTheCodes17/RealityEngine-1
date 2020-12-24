@@ -10,6 +10,8 @@
 namespace reality {
 	class GameObject final {
 	public:
+		friend class Scene;
+
 		CTransform Transform;
 		std::string	Name;
 		bool IsActive{ true };
