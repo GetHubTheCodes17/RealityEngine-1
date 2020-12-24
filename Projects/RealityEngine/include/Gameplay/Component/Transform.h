@@ -195,15 +195,15 @@ inline void reality::CTransform::SetHasChanged(bool hasChanged) {
 }
 
 inline void reality::CTransform::SetParent(CTransform* parent) {
-	if (parent == m_Parent) {
+	if (parent == m_Parent || parent == this) {
 		return;
 	}
 
-	std::function<void(CTransform&, unsigned)> UpdateLevel = [&UpdateLevel](auto& parent, unsigned level) {
-		parent.m_Level = level;
+	std::function<void(CTransform&, unsigned)> UpdateLevel = [&UpdateLevel](auto& root, unsigned level) {
+		root.m_Level = level;
 
-		for (auto& child : parent.m_Children) {
-			UpdateLevel(*child, child->m_Parent->m_Level + 1);
+		for (auto child : root.m_Children) {
+			UpdateLevel(*child, root.m_Level + 1);
 		}
 	};
 

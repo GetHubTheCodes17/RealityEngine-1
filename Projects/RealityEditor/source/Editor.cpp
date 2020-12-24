@@ -154,7 +154,7 @@ void reality::Editor::Update() {
 	m_Assets.Draw();
 	m_Log.Draw();
 	m_Menu.Draw();
-	m_Hierarchy.Draw(g_SceneManager->ActiveScene);
+	m_Hierarchy.Draw(*g_SceneManager->ActiveScene);
 	m_Inspector.Draw(m_Hierarchy.Current);
 	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_Hierarchy.Current);
 	m_Dock.End();

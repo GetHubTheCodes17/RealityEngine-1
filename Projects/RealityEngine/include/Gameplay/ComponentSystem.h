@@ -78,7 +78,7 @@ inline void reality::ComponentSystem::UpdateLights(Scene& scene) const {
 			glLights[i].Position = light.GetGameObject().Transform.GetPosition();
 			glLights[i].Direction = light.GetGameObject().Transform.GetForward();
 			glLights[i].Cutoff = light.Range - 10.f;
-			glLights[i].Outcutoff = light.Range;
+			glLights[i].Outcutoff = light.SpotAngle;
 			glLights[i].Type = (enum GLLight::Type)light.Type;
 			glLights[i].Intensity = light.Intensity;
 			glLights[i].Shadow = (enum GLLight::Shadow)light.Shadow;
