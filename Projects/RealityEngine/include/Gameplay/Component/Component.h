@@ -15,7 +15,7 @@ namespace reality {
 
 		GameObject& GetGameObject() const;
 
-	private:
+	protected:
 		GameObject* m_GameObject{};
 
 		virtual Component* Clone() const = 0;
@@ -34,4 +34,9 @@ private:										\
 public:											\
 	virtual Component* Clone() const override {	\
 		return new T(*this);					\
+	}											\
+	void Reset() {								\
+		auto owner{ m_GameObject };				\
+		*this = T{};							\
+		m_GameObject = owner;					\
 	}

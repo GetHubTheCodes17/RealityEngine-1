@@ -15,7 +15,7 @@ namespace reality {
 
 	private:
 		template<class Component>
-		void Draw(std::function<void(Component&)> func, Component& comp);
+		bool Draw(std::function<void(Component&)> func, Component& comp);
 
 		void DrawName(GameObject& object);
 		void DrawComponents(GameObject& object);
@@ -32,7 +32,7 @@ inline void reality::EditorInspector::Draw(GameObject* object) {
 	{
 		if (object) {
 			DrawName(*object);
-			Draw<CTransform>(DrawTransform, object->Transform);
+			DrawTransform(object->Transform);
 			DrawComponents(*object);
 
 			if (ImGui::Button("Add Component", { -1.f, 0.f })) {
@@ -49,14 +49,29 @@ inline void reality::EditorInspector::Draw(GameObject* object) {
 }
 
 template<class Component>
-inline void reality::EditorInspector::Draw(std::function<void(Component&)> func, Component& comp) {
-	const auto& type{ typeid(Component) };
-	auto name{ std::string{ type.name(), sizeof("struct reality::"), std::string::npos } };
-
-	if (ImGui::TreeNodeEx(reinterpret_cast<void*>(type.hash_code()), ImGuiTreeNodeFlags_DefaultOpen, name.c_str())) {
+inline bool reality::EditorInspector::Draw(std::function<void(Component&)> func, Component& comp) {
+	bool isRemoved{};
+	if (ImGui::TreeNodeEx(rttr::type::get<Component>().get_name().data(), 
+		ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding)) {
+		ImGui::SameLine(ImGui::GetWindowWidth() - 30.f);
+		if (ImGui::Button("+")) {
+			ImGui::OpenPopup("ComponentSettings");
+		}
 		func(comp);
+
+		if (ImGui::BeginPopup("ComponentSettings")) {
+			if (ImGui::MenuItem("Remove")) {
+				comp.GetGameObject().RemoveComponent<Component>();
+				isRemoved = true;
+			}
+			else if (ImGui::MenuItem("Reset")) {
+				comp.Reset();
+			}
+			ImGui::EndPopup();
+		}
 		ImGui::TreePop();
 	}
+	return !isRemoved;
 }
 
 inline void reality::EditorInspector::DrawName(GameObject& object) {
@@ -74,14 +89,19 @@ inline void reality::EditorInspector::DrawName(GameObject& object) {
 
 inline void reality::EditorInspector::DrawComponents(GameObject& object) {
 	for (auto& comp : object.GetAllComponents()) {
+		bool isRemoved{};
 		if (auto light{ rttr::rttr_cast<CLight*>(comp.get()) }) {
-			Draw<CLight>(DrawLight, *light);
+			isRemoved = !Draw<CLight>(DrawLight, *light);
 		}
 		else if (auto camera{ rttr::rttr_cast<CCamera*>(comp.get()) }) {
-			Draw<CCamera>(DrawCamera, *camera);
+			isRemoved = !Draw<CCamera>(DrawCamera, *camera);
 		}
 		else if (auto mesh{ rttr::rttr_cast<CMeshRenderer*>(comp.get()) }) {
-			Draw<CMeshRenderer>(DrawMeshRenderer, *mesh);
+			isRemoved = !Draw<CMeshRenderer>(DrawMeshRenderer, *mesh);
+		}
+
+		if (isRemoved) {
+			break;
 		}
 	}
 }
@@ -103,16 +123,30 @@ inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
 }
 
 inline void reality::EditorInspector::DrawTransform(CTransform& transform) {
-	auto p{ transform.GetPosition() }, r{ transform.GetRotation().GetEulerAngles() }, s{ transform.GetScale() };
+	if (ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding)) {
+		ImGui::SameLine(ImGui::GetWindowWidth() - 30.f);
+		if (ImGui::Button("+")) {
+			ImGui::OpenPopup("TransformSettings");
+		}
 
-	if (ImGui::DragFloat3("Position", &p.X, .02f)) {
-		transform.SetPosition(p);
-	}
-	if (ImGui::DragFloat3("Rotation", &r.X, .5f)) {
-		transform.Rotate(-(r - transform.GetRotation().GetEulerAngles()));
-	}
-	if (ImGui::DragFloat3("Scale", &s.X, .005f)) {
-		transform.SetScale(s);
+		auto p{ transform.GetPosition() }, r{ transform.GetRotation().GetEulerAngles() }, s{ transform.GetScale() };
+		if (ImGui::DragFloat3("Position", &p.X, .02f)) {
+			transform.SetPosition(p);
+		}
+		if (ImGui::DragFloat3("Rotation", &r.X, .5f)) {
+			transform.Rotate(-(r - transform.GetRotation().GetEulerAngles()));
+		}
+		if (ImGui::DragFloat3("Scale", &s.X, .005f)) {
+			transform.SetScale(s);
+		}
+
+		if (ImGui::BeginPopup("TransformSettings")) {
+			if (ImGui::MenuItem("Reset")) {
+				transform.Reset();
+			}
+			ImGui::EndPopup();
+		}
+		ImGui::TreePop();
 	}
 }
 
