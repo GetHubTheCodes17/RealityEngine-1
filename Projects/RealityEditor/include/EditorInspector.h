@@ -5,11 +5,7 @@
 #include <imgui/imgui.h>
 
 #include "Gameplay/GameObject.h"
-#include "Gameplay/Component/ParticleSystem.h"
-#include "Gameplay/Component/MonoBehaviour.h"
-#include "Gameplay/Component/MeshRenderer.h"
-#include "Gameplay/Component/Camera.h"
-#include "Gameplay/Component/Light.h"
+#include "Gameplay/Component/EngineComponents.h"
 #include "Core/Tools/Logger.h"
 
 namespace reality {
@@ -40,7 +36,12 @@ inline void reality::EditorInspector::Draw(GameObject* object) {
 			DrawComponents(*object);
 
 			if (ImGui::Button("Add Component", { -1.f, 0.f })) {
+				ImGui::OpenPopup("AddComponentPopup");
+			}
+
+			if (ImGui::BeginPopup("AddComponentPopup")) {
 				DrawAddComponent(*object);
+				ImGui::EndPopup();
 			}
 		}
 	}
@@ -73,19 +74,32 @@ inline void reality::EditorInspector::DrawName(GameObject& object) {
 
 inline void reality::EditorInspector::DrawComponents(GameObject& object) {
 	for (auto& comp : object.GetAllComponents()) {
-		if (auto light{ dynamic_cast<CLight*>(comp.get()) }) {
+		if (auto light{ rttr::rttr_cast<CLight*>(comp.get()) }) {
 			Draw<CLight>(DrawLight, *light);
 		}
-		else if (auto camera{ dynamic_cast<CCamera*>(comp.get()) }) {
+		else if (auto camera{ rttr::rttr_cast<CCamera*>(comp.get()) }) {
 			Draw<CCamera>(DrawCamera, *camera);
 		}
-		else if (auto mesh{ dynamic_cast<CMeshRenderer*>(comp.get()) }) {
+		else if (auto mesh{ rttr::rttr_cast<CMeshRenderer*>(comp.get()) }) {
 			Draw<CMeshRenderer>(DrawMeshRenderer, *mesh);
 		}
 	}
 }
 
 inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
+	for (auto& type : rttr::type::get<Component>().get_derived_classes()) {
+		if (ImGui::MenuItem(type.get_name().data())) {
+			if (type.get_id() == rttr::type::get<CLight>().get_id()) {
+				object.AddComponent<CLight>();
+			}
+			else if (type.get_id() == rttr::type::get<CCamera>().get_id()) {
+				object.AddComponent<CCamera>();
+			}
+			else if (type.get_id() == rttr::type::get<CMeshRenderer>().get_id()) {
+				object.AddComponent<CMeshRenderer>();
+			}
+		}
+	}
 }
 
 inline void reality::EditorInspector::DrawTransform(CTransform& transform) {

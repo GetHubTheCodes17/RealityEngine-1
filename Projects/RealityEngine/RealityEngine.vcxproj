@@ -17,6 +17,7 @@
     <ClCompile Include="source\Core\Tools\Leaker.cpp" />
     <ClCompile Include="source\Core\Tools\Logger.cpp" />
     <ClCompile Include="source\Engine.cpp" />
+    <ClCompile Include="source\Gameplay\Component\EngineComponents.cpp" />
     <ClCompile Include="source\Gameplay\Scene.cpp" />
     <ClCompile Include="source\Rendering\Opengl\GLCubeMap.cpp" />
     <ClCompile Include="source\Rendering\Opengl\GLDebugDrawing.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="include\Gameplay\ComponentManager.h" />
     <ClInclude Include="include\Gameplay\Component\Behaviour.h" />
     <ClInclude Include="include\Gameplay\Component\Camera.h" />
+    <ClInclude Include="include\Gameplay\Component\EngineComponents.h" />
     <ClInclude Include="include\Gameplay\Component\Light.h" />
     <ClInclude Include="include\Gameplay\Component\MeshFilter.h" />
     <ClInclude Include="include\Gameplay\Component\MeshRenderer.h" />

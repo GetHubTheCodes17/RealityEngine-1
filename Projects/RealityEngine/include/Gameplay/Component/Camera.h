@@ -6,8 +6,8 @@
 #include "Core/Maths/Matrix4.h"
 
 namespace reality {
-	struct CCamera : CBehaviour {
-		RE_COMPONENT(CCamera, CBehaviour)
+	struct CCamera : Component {
+		RE_COMPONENT(CCamera, Component)
 		enum class Projection { Perspective, Orthographic };
 		enum class Clear { Skybox, SolidColor, DepthOnly, DontClear };
 

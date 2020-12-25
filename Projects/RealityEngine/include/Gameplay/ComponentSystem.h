@@ -9,11 +9,7 @@
 #include "Rendering/Opengl/GLLight.h"
 #include "Rendering/Opengl/GLMesh.h"
 #include "Rendering/Opengl/GLModel.h"
-#include "Component/ParticleSystem.h"
-#include "Component/MonoBehaviour.h"
-#include "Component/MeshRenderer.h"
-#include "Component/Camera.h"
-#include "Component/Light.h"
+#include "Component/EngineComponents.h"
 #include "Windowing/IO.h"
 #include "Scene.h"
 

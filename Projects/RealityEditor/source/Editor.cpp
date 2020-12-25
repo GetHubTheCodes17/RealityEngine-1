@@ -70,7 +70,7 @@ void reality::Editor::CreateDefaultScene() const {
 	camera.AddComponent<CCamera>();
 
 	auto& g0{ scene.CreateGameObject("Nanosuit") };
-	g0.AddComponent<CMeshRenderer>().SetModel("nanosuit");
+	g0.AddComponent<CMeshRenderer>()->SetModel("nanosuit");
 	g0.Transform.Translate({ 0.f, -3.5f, 3.f });
 	g0.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g0.Transform.SetScale(Vector3{ 0.15f });
@@ -80,34 +80,34 @@ void reality::Editor::CreateDefaultScene() const {
 	g2.SetParent(g1);
 
 	g2.Transform.Translate({ 0.f, -2.f, 7.f });
-	g2.AddComponent<CMeshRenderer>().SetModel("SciFi_Fighter");
+	g2.AddComponent<CMeshRenderer>()->SetModel("SciFi_Fighter");
 	g2.Transform.Rotate({ 0.f, 180.f, 0.f });
 	g2.Transform.SetScale(Vector3{ 0.1f });
 
 	auto& c3{ scene.CreateGameObject("Child11") };
 	c3.SetParent(g2);
 	c3.Transform.Translate({ 0.f, -2.f, 7.f });
-	c3.AddComponent<CMeshRenderer>().SetModel("SciFi_Fighter");
+	c3.AddComponent<CMeshRenderer>()->SetModel("SciFi_Fighter");
 	c3.Transform.Rotate({ 0.f, 180.f, 0.f });
 	c3.Transform.SetScale(Vector3{ 0.6f });
 
 	auto& g3{ scene.CreateGameObject("House") };
-	g3.AddComponent<CMeshRenderer>().SetModel("fantasy_game_inn");
+	g3.AddComponent<CMeshRenderer>()->SetModel("fantasy_game_inn");
 	g3.Transform.Translate({ 1.1f, -2.2f, 3.5f });
 
 	auto& g4{ scene.CreateGameObject("Crytek") };
-	g4.AddComponent<CMeshRenderer>().SetModel("crytek");
+	g4.AddComponent<CMeshRenderer>()->SetModel("crytek");
 	g4.Transform.SetScale(Vector3{ 0.03f });
 	g4.Transform.Rotate({ 0.f, 90.f, 0.f });
 	g4.Transform.Translate({ 0.f, -4.f, 0.f });
 
 	auto& g5{ scene.CreateGameObject("DirLight") };
 	g5.Transform.SetRotation({ 122.f, 180.f });
-	g5.AddComponent<CLight>().Shadow = CLight::Shadow::Soft;
+	g5.AddComponent<CLight>()->Shadow = CLight::Shadow::Soft;
 
 	auto& g6{ scene.CreateGameObject("PointLight") };
 	g6.Transform.Translate({ 0.f, 0.f, 20.f });
-	g6.AddComponent<CLight>().Type = CLight::Type::Point;
+	g6.AddComponent<CLight>()->Type = CLight::Type::Point;
 	g6.GetComponent<CLight>()->Color = Vector4::Right;
 
 	auto& g7 = scene.CreateGameObject("ParticleSystem");

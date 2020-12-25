@@ -96,6 +96,9 @@
     <Filter Include="include\Resources\Skybox">
       <UniqueIdentifier>{1f58cda6-c221-41e4-b5a1-b1d1c1c7c344}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\Gameplay\Component">
+      <UniqueIdentifier>{6e709cda-d5a0-4558-8710-9b4435690048}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Windowing\GlfwInput.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="source\Engine.cpp">
       <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Gameplay\Component\EngineComponents.cpp">
+      <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,6 +410,9 @@
       <Filter>include\Resources</Filter>
     </ClInclude>
     <ClInclude Include="include\Gameplay\Component\MeshFilter.h">
+      <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\Component\EngineComponents.h">
       <Filter>include\Gameplay\Component</Filter>
     </ClInclude>
   </ItemGroup>

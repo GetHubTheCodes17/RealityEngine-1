@@ -27,7 +27,9 @@ namespace reality {
 		uint64 GetId() const;
 		void SetParent(GameObject& parent);
 		template <class T>
-		T& AddComponent();
+		T* AddComponent();
+		template <class T>
+		bool HasComponent() const;
 		template <class T>
 		T* GetComponent() const;
 		template <class T>
@@ -123,8 +125,12 @@ inline void reality::GameObject::SetParent(GameObject& parent) {
 }
 
 template <class T>
-T& reality::GameObject::AddComponent() {
+T* reality::GameObject::AddComponent() {
 	static_assert(std::is_base_of_v<Component, T>);
+
+	if (HasComponent<T>()) {
+		return nullptr;
+	}
 
 	auto component{ m_Components.emplace_back(std::make_unique<T>()).get() };
 	component->m_GameObject = this;
@@ -132,7 +138,17 @@ T& reality::GameObject::AddComponent() {
 	if (m_Manager) {
 		m_Manager->AddComponent(component);
 	}
-	return *static_cast<T*>(component);
+	return static_cast<T*>(component);
+}
+
+template <class T>
+bool reality::GameObject::HasComponent() const {
+	for (auto& comp : m_Components) {
+		if (typeid(T) == typeid(*comp)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 template <class T>

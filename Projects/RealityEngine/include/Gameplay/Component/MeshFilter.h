@@ -6,7 +6,7 @@
 
 namespace reality {
 	struct CMeshFilter : Component {
-		//RE_COMPONENT(CMeshFilter, Component)
+		RE_COMPONENT(CMeshFilter, Component)
 
 		//const struct GLModel* Model{};
 	};
