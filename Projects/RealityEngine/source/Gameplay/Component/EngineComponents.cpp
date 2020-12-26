@@ -9,9 +9,18 @@ RTTR_REGISTRATION
     using namespace rttr;
     using namespace reality;
 
-    registration::class_<CLight>("Light");
-    registration::class_<CMeshRenderer>("MeshRenderer");
-    registration::class_<CMeshFilter>("MeshFilter");
-    registration::class_<CCamera>("Camera");
-    registration::class_<CParticleSystem>("ParticleSystem");
+    registration::class_<CLight>("Light")
+        .method("Instantiate", &CLight::Instantiate);
+
+    registration::class_<CCamera>("Camera")
+        .method("Instantiate", &CCamera::Instantiate);
+
+    registration::class_<CMeshFilter>("MeshFilter")
+        .method("Instantiate", &CMeshFilter::Instantiate);
+
+    registration::class_<CMeshRenderer>("MeshRenderer")
+        .method("Instantiate", &CMeshRenderer::Instantiate);
+
+    registration::class_<CParticleSystem>("ParticleSystem")
+        .method("Instantiate", &CParticleSystem::Instantiate);
 }

@@ -10,8 +10,6 @@
 
 namespace reality {
 	struct CTransform : Component {
-		RE_COMPONENT(CTransform, Component)
-
 		CTransform() = default;
 		CTransform(const CTransform&);
 		CTransform& operator=(const CTransform&);
@@ -46,6 +44,11 @@ namespace reality {
 		void SetRotation(Quaternion rotation);
 		void SetScale(Vector3 scale);
 		void SetTrs(const Matrix4& trs);
+
+	public:
+		virtual Component* Clone() const override;
+		void Reset();
+		static Component* Instantiate();
 
 	private:
 		Matrix4 m_Trs{ Matrix4::Identity };
@@ -258,4 +261,16 @@ inline void reality::CTransform::SetScale(Vector3 scale) {
 inline void reality::CTransform::SetTrs(const Matrix4& trs) {
 	m_Trs = trs;
 	SetHasChanged(true);
+}
+
+inline reality::Component* reality::CTransform::Clone() const {
+	return new CTransform{ *this };
+}
+inline void reality::CTransform::Reset() {
+	auto owner{ m_GameObject };
+	*this = CTransform{};
+	m_GameObject = owner;
+}
+inline reality::Component* reality::CTransform::Instantiate() {
+	return new CTransform;
 }

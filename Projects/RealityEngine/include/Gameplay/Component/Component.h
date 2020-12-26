@@ -33,10 +33,13 @@ private:										\
 	RTTR_ENABLE(Base)							\
 public:											\
 	virtual Component* Clone() const override {	\
-		return new T(*this);					\
+		return new T{ *this };					\
 	}											\
 	void Reset() {								\
 		auto owner{ m_GameObject };				\
 		*this = T{};							\
 		m_GameObject = owner;					\
-	}
+	}											\
+	static Component* Instantiate() {			\
+		return new T;							\
+	}											

@@ -28,6 +28,7 @@ namespace reality {
 		void SetParent(GameObject& parent);
 		template <class T>
 		T* AddComponent();
+		void AddComponent(const Component* component);
 		template <class T>
 		bool HasComponent() const;
 		template <class T>
@@ -141,10 +142,25 @@ T* reality::GameObject::AddComponent() {
 	return static_cast<T*>(component);
 }
 
+inline void reality::GameObject::AddComponent(const Component* component) {
+	for (auto& comp : m_Components) {
+		if (rttr::type::get(*comp) == rttr::type::get(*component)) {
+			return;
+		}
+	}
+
+	auto comp{ m_Components.emplace_back(component->Clone()).get() };
+	comp->m_GameObject = this;
+
+	if (m_Manager) {
+		m_Manager->AddComponent(comp);
+	}
+}
+
 template <class T>
 bool reality::GameObject::HasComponent() const {
-	for (auto& comp : m_Components) {
-		if (typeid(T) == typeid(*comp)) {
+	for (auto& comp : m_Components) {	
+		if (rttr::type::get<T>() == rttr::type::get(*comp)) {
 			return true;
 		}
 	}
@@ -156,7 +172,7 @@ T* reality::GameObject::GetComponent() const {
 	static_assert(std::is_base_of_v<Component, T>);
 
 	for (const auto& component : m_Components) {
-		if (auto comp{ dynamic_cast<T*>(component.get()) }) {
+		if (auto comp{ rttr::rttr_cast<T*>(component.get()) }) {
 			return comp;
 		}
 	}
@@ -188,7 +204,7 @@ std::vector<T*> reality::GameObject::GetComponents() const {
 
 	std::vector<T*> components;
 	for (const auto& component : m_Components) {
-		if (auto comp{ dynamic_cast<T*>(component.get()) }) {
+		if (auto comp{ rttr::rttr_cast<T*>(component.get()) }) {
 			components.emplace_back(comp);
 		}
 	}
@@ -213,7 +229,7 @@ std::vector<T*> reality::GameObject::GetComponentsInChildren() const {
 	std::vector<T*> components;
 	for (const auto& child : Transform.GetChildren()) {
 		for (const auto& component : child->GetGameObject().m_Components) {
-			if (auto comp{ dynamic_cast<T*>(component.get()) }) {
+			if (auto comp{ rttr::rttr_cast<T*>(component.get()) }) {
 				components.emplace_back(comp);
 			}
 		}
@@ -226,7 +242,7 @@ void reality::GameObject::RemoveComponent() {
 	static_assert(std::is_base_of_v<Component, T>);
 
 	for (auto it{ m_Components.cbegin() }; it != m_Components.cend(); ++it) {
-		if (auto comp{ dynamic_cast<T*>(it->get()) }) {
+		if (auto comp{ rttr::rttr_cast<T*>(it->get()) }) {
 			if (m_Manager) {
 				m_Manager->RemoveComponent(comp);
 			}
@@ -241,7 +257,7 @@ void reality::GameObject::RemoveComponents() {
 	static_assert(std::is_base_of_v<Component, T>);
 
 	for (auto it{ m_Components.cbegin() }; it != m_Components.cend(); ) {
-		if (auto comp{ dynamic_cast<T*>(it->get()) }) {
+		if (auto comp{ rttr::rttr_cast<T*>(it->get()) }) {
 			if (m_Manager) {
 				m_Manager->RemoveComponent(comp);
 			}

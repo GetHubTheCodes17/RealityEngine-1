@@ -109,15 +109,7 @@ inline void reality::EditorInspector::DrawComponents(GameObject& object) {
 inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
 	for (auto& type : rttr::type::get<Component>().get_derived_classes()) {
 		if (ImGui::MenuItem(type.get_name().data())) {
-			if (type.get_id() == rttr::type::get<CLight>().get_id()) {
-				object.AddComponent<CLight>();
-			}
-			else if (type.get_id() == rttr::type::get<CCamera>().get_id()) {
-				object.AddComponent<CCamera>();
-			}
-			else if (type.get_id() == rttr::type::get<CMeshRenderer>().get_id()) {
-				object.AddComponent<CMeshRenderer>();
-			}
+			object.AddComponent(type.get_method("Instantiate").invoke({}).convert<Component*>());
 		}
 	}
 }
