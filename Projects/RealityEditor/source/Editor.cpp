@@ -155,14 +155,16 @@ void reality::Editor::Update() {
 	m_Log.Draw();
 	m_Menu.Draw();
 	m_Hierarchy.Draw(*g_SceneManager->ActiveScene);
-	m_Inspector.Draw(m_Hierarchy.Current);
-	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_Hierarchy.Current);
+	m_Inspector.Draw(m_Hierarchy.GetCurrents());
+	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_Hierarchy.GetCurrents());
 	m_Dock.End();
 }
 
 void reality::Editor::UpdateIo() {
 	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_F)) {
-		m_Camera.Focus(m_Hierarchy.Current);
+		if (!m_Hierarchy.GetCurrents().empty()) {
+			m_Camera.Focus(m_Hierarchy.GetCurrents().back());
+		}
 	}
 	m_Camera.UpdateFocus();
 

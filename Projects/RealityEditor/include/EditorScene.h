@@ -12,7 +12,7 @@
 namespace reality {
 	class EditorScene {
 	public:
-		void Draw(GLPipeline& pipeline, EditorCamera& camera, Vector2& viewportSize, GameObject* object = {});
+		void Draw(GLPipeline& pipeline, EditorCamera& camera, Vector2& viewportSize, const std::vector<GameObject*>& objects);
 		bool IsHovered() const;
 
 
@@ -31,7 +31,9 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorScene::Draw(GLPipeline& pipeline, EditorCamera& camera, Vector2& viewportSize, GameObject* object) {
+inline void reality::EditorScene::Draw(GLPipeline& pipeline, EditorCamera& camera, Vector2& viewportSize, 
+	const std::vector<GameObject*>& object) 
+{
 	ImGui::Begin("Scene"); 
 	{
 		m_IsHovered = ImGui::IsWindowHovered();
@@ -51,8 +53,8 @@ inline void reality::EditorScene::Draw(GLPipeline& pipeline, EditorCamera& camer
 			(ImTextureID)(uint64)pipeline.GetFinalPass().GetHandle().ColorAttachments[0].GetHandle().Id,
 			m_WindowPos, { m_WindowSize.x + m_WindowPos.x, m_WindowSize.y + m_WindowPos.y }, { 0, 1 }, { 1, 0 });
 
-		if (object) {
-			DrawGuizmo(camera, *object);
+		if (!object.empty()) {
+			DrawGuizmo(camera, *object.back());
 		}
 	}
 	ImGui::End();

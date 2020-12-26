@@ -11,7 +11,7 @@
 namespace reality {
 	class EditorInspector {
 	public:
-		void Draw(GameObject* object);
+		void Draw(const std::vector<GameObject*>& objects);
 
 	private:
 		template<class Component>
@@ -27,10 +27,11 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorInspector::Draw(GameObject* object) {
+inline void reality::EditorInspector::Draw(const std::vector<GameObject*>& objects) {
 	ImGui::Begin("Inspector");
 	{
-		if (object) {
+		if (!objects.empty()) {
+			auto object{ objects.back() };
 			DrawName(*object);
 			DrawTransform(object->Transform);
 			DrawComponents(*object);

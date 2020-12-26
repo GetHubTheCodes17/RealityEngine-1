@@ -7,7 +7,7 @@
                     "valid": 1,
                     "data": {
                         "Name": "Camera",
-                        "m_Id": 1837750220264875263,
+                        "m_Id": 16506464707594722344,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -24,9 +24,9 @@
                                     "value9": 0.0,
                                     "value10": 1.0,
                                     "value11": 0.0,
-                                    "value12": -1.1059551239013672,
-                                    "value13": 0.14757482707500459,
-                                    "value14": -2.4610402584075929,
+                                    "value12": -1.331990361213684,
+                                    "value13": 0.6670472621917725,
+                                    "value14": -4.308685779571533,
                                     "value15": 1.0
                                 }
                             },
@@ -37,9 +37,9 @@
                                 "W": 1.0
                             },
                             "m_Position": {
-                                "X": -1.1059551239013672,
-                                "Y": 0.14757482707500459,
-                                "Z": -2.4610402584075929
+                                "X": -1.331990361213684,
+                                "Y": 0.6670472621917725,
+                                "Z": -4.308685779571533
                             },
                             "m_Scale": {
                                 "X": 1.0,
@@ -116,7 +116,7 @@
                     "valid": 1,
                     "data": {
                         "Name": "Nanosuit",
-                        "m_Id": 8265912210998640001,
+                        "m_Id": 16906302035007397379,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -179,7 +179,7 @@
                     "valid": 1,
                     "data": {
                         "Name": "Child1",
-                        "m_Id": 11059593848545238416,
+                        "m_Id": 5090633947666791713,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -220,7 +220,7 @@
                             },
                             "m_Level": 1,
                             "m_HasChanged": false,
-                            "m_ParentId": 9128749009845134934
+                            "m_ParentId": 14501477365534767988
                         },
                         "m_Components": [
                             {
@@ -241,7 +241,7 @@
                     "valid": 1,
                     "data": {
                         "Name": "Parent1",
-                        "m_Id": 9128749009845134934,
+                        "m_Id": 14501477365534767988,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -293,26 +293,26 @@
                     "valid": 1,
                     "data": {
                         "Name": "Child11",
-                        "m_Id": 17069709020913112265,
+                        "m_Id": 7553995865185433740,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
                                 "Array Row Major": {
-                                    "value0": 0.06000000238418579,
+                                    "value0": -0.6000000238418579,
                                     "value1": 0.0,
-                                    "value2": 1.0490733615142745e-8,
+                                    "value2": -5.245366807571372e-8,
                                     "value3": 0.0,
                                     "value4": 0.0,
-                                    "value5": 0.06000000238418579,
+                                    "value5": 0.6000000238418579,
                                     "value6": 0.0,
                                     "value7": 0.0,
-                                    "value8": -1.0490733615142745e-8,
+                                    "value8": 5.245366807571372e-8,
                                     "value9": 0.0,
-                                    "value10": 0.06000000238418579,
+                                    "value10": -0.6000000238418579,
                                     "value11": 0.0,
-                                    "value12": 6.119594786468952e-8,
-                                    "value13": -2.200000047683716,
-                                    "value14": 6.300000190734863,
+                                    "value12": 0.0,
+                                    "value13": -2.0,
+                                    "value14": 7.0,
                                     "value15": 1.0
                                 }
                             },
@@ -332,9 +332,9 @@
                                 "Y": 0.6000000238418579,
                                 "Z": 0.6000000238418579
                             },
-                            "m_Level": 2,
+                            "m_Level": 0,
                             "m_HasChanged": false,
-                            "m_ParentId": 11059593848545238416
+                            "m_ParentId": 0
                         },
                         "m_Components": [
                             {
@@ -355,7 +355,7 @@
                     "valid": 1,
                     "data": {
                         "Name": "House",
-                        "m_Id": 16441424649925640002,
+                        "m_Id": 11498770812646635986,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -416,100 +416,38 @@
                 "ptr_wrapper": {
                     "valid": 1,
                     "data": {
-                        "Name": "Crytek",
-                        "m_Id": 7049192583425029536,
+                        "Name": "GameObject",
+                        "m_Id": 4488873860400836585,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
                                 "Array Row Major": {
-                                    "value0": -3.5762786065873799e-9,
+                                    "value0": 1.0,
                                     "value1": 0.0,
-                                    "value2": 0.030000003054738046,
+                                    "value2": 0.0,
                                     "value3": 0.0,
                                     "value4": 0.0,
-                                    "value5": 0.029999999329447748,
+                                    "value5": 1.0,
                                     "value6": 0.0,
                                     "value7": 0.0,
-                                    "value8": -0.030000003054738046,
+                                    "value8": 0.0,
                                     "value9": 0.0,
-                                    "value10": -3.5762786065873799e-9,
+                                    "value10": 1.0,
                                     "value11": 0.0,
-                                    "value12": 0.0,
-                                    "value13": -4.0,
-                                    "value14": 0.0,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.0,
-                                "Y": 0.7071068286895752,
-                                "Z": 0.0,
-                                "W": 0.7071068286895752
-                            },
-                            "m_Position": {
-                                "X": 0.0,
-                                "Y": -4.0,
-                                "Z": 0.0
-                            },
-                            "m_Scale": {
-                                "X": 0.029999999329447748,
-                                "Y": 0.029999999329447748,
-                                "Z": 0.029999999329447748
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
-                                "polymorphic_id": 2,
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "m_Name": "crytek"
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "DirLight",
-                        "m_Id": 18161226528232860869,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": -0.9999998807907105,
-                                    "value1": -7.413871117023518e-8,
-                                    "value2": 4.632701688933594e-8,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": -0.5299192667007446,
-                                    "value6": -0.8480480313301086,
-                                    "value7": 0.0,
-                                    "value8": 8.742277657347586e-8,
-                                    "value9": -0.8480480313301086,
-                                    "value10": 0.5299193859100342,
-                                    "value11": 0.0,
-                                    "value12": 0.0,
+                                    "value12": -1.7421598434448243,
                                     "value13": 0.0,
                                     "value14": 0.0,
                                     "value15": 1.0
                                 }
                             },
                             "m_Rotation": {
-                                "X": -3.823084071541416e-8,
-                                "Y": 0.4848095774650574,
-                                "Z": -0.874619722366333,
-                                "W": -2.119169906222851e-8
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
                             },
                             "m_Position": {
-                                "X": 0.0,
+                                "X": -1.7421598434448243,
                                 "Y": 0.0,
                                 "Z": 0.0
                             },
@@ -531,83 +469,11 @@
                                     "data": {
                                         "Range": 20.0,
                                         "SpotAngle": 30.0,
-                                        "Intensity": 1.0,
+                                        "Intensity": 0.5,
                                         "Color": {
-                                            "X": 0.9481865167617798,
-                                            "Y": 0.45689818263053896,
-                                            "Z": 0.45689818263053896,
-                                            "W": 1.0
-                                        },
-                                        "Type": 0,
-                                        "Shadow": 1
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "PointLight",
-                        "m_Id": 4050253036818672184,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": 1.0,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": 1.0,
-                                    "value6": 0.0,
-                                    "value7": 0.0,
-                                    "value8": 0.0,
-                                    "value9": 0.0,
-                                    "value10": 1.0,
-                                    "value11": 0.0,
-                                    "value12": 0.0,
-                                    "value13": 0.0,
-                                    "value14": 20.0,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.0,
-                                "Y": 0.0,
-                                "Z": 0.0,
-                                "W": 1.0
-                            },
-                            "m_Position": {
-                                "X": 0.0,
-                                "Y": 0.0,
-                                "Z": 20.0
-                            },
-                            "m_Scale": {
-                                "X": 1.0,
-                                "Y": 1.0,
-                                "Z": 1.0
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
-                                "polymorphic_id": 3,
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "Range": 20.0,
-                                        "SpotAngle": 30.0,
-                                        "Intensity": 1.0,
-                                        "Color": {
-                                            "X": 1.0,
-                                            "Y": 0.0,
-                                            "Z": 0.0,
+                                            "X": 0.06273998320102692,
+                                            "Y": 0.637305736541748,
+                                            "Z": 0.3425801992416382,
                                             "W": 1.0
                                         },
                                         "Type": 1,
@@ -616,58 +482,6 @@
                                 }
                             }
                         ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "ParticleSystem",
-                        "m_Id": 18226572690230698066,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": 1.0,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": -1.1920928955078126e-7,
-                                    "value6": -1.0000001192092896,
-                                    "value7": 0.0,
-                                    "value8": 0.0,
-                                    "value9": 1.0000001192092896,
-                                    "value10": -1.1920928955078126e-7,
-                                    "value11": 0.0,
-                                    "value12": 0.0,
-                                    "value13": -2.0,
-                                    "value14": 20.0,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.7071068286895752,
-                                "Y": 0.0,
-                                "Z": 0.0,
-                                "W": 0.7071068286895752
-                            },
-                            "m_Position": {
-                                "X": 0.0,
-                                "Y": -2.0,
-                                "Z": 20.0
-                            },
-                            "m_Scale": {
-                                "X": 1.0,
-                                "Y": 1.0,
-                                "Z": 1.0
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": []
                     }
                 }
             }
