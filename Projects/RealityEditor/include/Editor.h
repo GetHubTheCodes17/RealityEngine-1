@@ -36,7 +36,6 @@ namespace reality {
 		EditorInspector m_Inspector;
 		bool EnabledCamera{};
 
-		void CreateDefaultScene() const;
 		void Render() const;
 		void Update();
 		void UpdateIo();

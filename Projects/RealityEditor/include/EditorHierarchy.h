@@ -104,7 +104,7 @@ inline void reality::EditorHierarchy::Selecting(GameObject& root, bool isCurrent
 				*std::find(m_Currents.begin(), m_Currents.end(), &root) = nullptr;
 			}
 		}
-		else if (!isCurrent) {
+		else {
 			m_Currents.clear();
 			m_Currents.emplace_back(&root);
 		}
