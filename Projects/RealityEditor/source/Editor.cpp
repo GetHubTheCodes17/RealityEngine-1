@@ -65,6 +65,34 @@ void reality::Editor::Run() {
 	}
 }
 
+reality::Vector3 reality::Editor::GetMouseRay() const {
+	Matrix4 viewMatrix{ m_Camera.GetViewMatrix() };
+	Vector2 currentRay{ g_Io->Input->GetCursorPos() - m_ViewportPos };
+
+	auto GetNormalizedCoords = [&](Vector2 mousePos) {
+		return Vector2{ (2.f * mousePos.X) / m_ViewportSize.X - 1.f, (2.f * mousePos.Y) / m_ViewportSize.Y - 1.f };
+	};
+
+	Vector2 normalizedCoords{ GetNormalizedCoords(currentRay) };
+	Vector4 clipCoords{ normalizedCoords.X, normalizedCoords.Y, -1.f, 1.f };
+
+	auto ToEyeSpace = [&](Vector4 clipCoords) {
+		Matrix4 invertedProj{ Matrix4::Inverse(m_Camera.Projection) };
+		Vector4 eyeCoords{ invertedProj * clipCoords };
+		return Vector4{ eyeCoords.X, eyeCoords.Y, -1.f, 0.f };
+	};
+
+	Vector4 eyeCoords{ ToEyeSpace(clipCoords) };
+
+	auto ToWorldSpace = [&](Vector4 eyeCoords) {
+		Matrix4 invertedView{ Matrix4::Inverse(viewMatrix) };
+		Vector4 ray{ invertedView * eyeCoords };
+		return Vector3{ ray.X, ray.Y, ray.Z };
+	};
+
+	return Vector3::Normalize(ToWorldSpace(eyeCoords));
+}
+
 void reality::Editor::Render() const {
 	m_Pipeline.BeginShadowPass();
 	m_ComponentSystem.UpdateMeshesShadow(*g_SceneManager->ActiveScene);
@@ -102,7 +130,7 @@ void reality::Editor::Update() {
 	m_Menu.Draw();
 	m_Hierarchy.Draw(*g_SceneManager->ActiveScene);
 	m_Inspector.Draw(m_Hierarchy.GetCurrents());
-	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_Hierarchy.GetCurrents());
+	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_ViewportPos, m_Hierarchy.GetCurrents());
 	m_Dock.End();
 }
 

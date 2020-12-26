@@ -25,6 +25,7 @@ namespace reality {
 		GameEngine m_Engine;
 		GLPipeline m_Pipeline;
 		Vector2 m_ViewportSize;
+		Vector2 m_ViewportPos;
 		ComponentSystem m_ComponentSystem;
 		EditorAssets m_Assets;
 		EditorCamera m_Camera;
@@ -36,6 +37,7 @@ namespace reality {
 		EditorInspector m_Inspector;
 		bool EnabledCamera{};
 
+		Vector3 GetMouseRay() const;
 		void Render() const;
 		void Update();
 		void UpdateIo();
