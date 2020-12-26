@@ -12,11 +12,11 @@ namespace reality {
 	public:
 		friend class Scene;
 
-		CTransform Transform;
 		std::string	Name;
+		CTransform Transform;
 		bool IsActive{ true };
 
-		explicit GameObject(std::string_view name, class Scene* scene = {}, ComponentManager* manager = {});
+		explicit GameObject(std::string_view name = {}, class Scene* scene = {}, ComponentManager* manager = {});
 		GameObject(const GameObject&);
 		GameObject& operator=(const GameObject&);
 		~GameObject();
@@ -55,6 +55,15 @@ namespace reality {
 		uint64 m_Id{};
 
 		inline static uint64 s_CurrentId{};
+
+		friend class cereal::access;
+		template <class Archive>
+		void serialize(Archive& archive) {
+			archive(CEREAL_NVP(Name));
+			//archive(CEREAL_NVP(Transform));
+			archive(CEREAL_NVP(IsActive));
+			//serialize(archive, m_Components);
+		}
 	};
 }
 
@@ -143,10 +152,10 @@ T* reality::GameObject::AddComponent() {
 }
 
 inline void reality::GameObject::AddComponent(const Component* component) {
-	for (auto& comp : m_Components) {
-		if (rttr::type::get(*comp) == rttr::type::get(*component)) {
-			return;
-		}
+	if (std::any_of(m_Components.cbegin(), m_Components.cend(), 
+		[component](auto& comp) { return rttr::type::get(*component) == rttr::type::get(*comp); })) 
+	{
+		return;
 	}
 
 	auto comp{ m_Components.emplace_back(component->Clone()).get() };
@@ -159,12 +168,9 @@ inline void reality::GameObject::AddComponent(const Component* component) {
 
 template <class T>
 bool reality::GameObject::HasComponent() const {
-	for (auto& comp : m_Components) {	
-		if (rttr::type::get<T>() == rttr::type::get(*comp)) {
-			return true;
-		}
-	}
-	return false;
+	return std::any_of(m_Components.cbegin(), m_Components.cend(), [](auto& comp) {
+		return rttr::type::get<T>() == rttr::type::get(*comp);
+	});
 }
 
 template <class T>

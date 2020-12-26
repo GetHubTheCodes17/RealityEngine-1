@@ -1,0 +1,97 @@
+{
+    "value0": {
+        "Name": "Scene0",
+        "value0": [
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Camera",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Nanosuit",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Child1",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Parent1",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Child11",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "House",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Crytek",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "DirLight",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "PointLight",
+                        "IsActive": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "ParticleSystem",
+                        "IsActive": true
+                    }
+                }
+            }
+        ]
+    }
+}

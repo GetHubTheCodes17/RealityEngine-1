@@ -6,6 +6,7 @@
 #include <imgui/imgui_impl_glfw.h>
 
 #include "Gameplay/ComponentSystem.h"
+#include "Gameplay/SceneSerializer.h"
 
 reality::Editor::Editor() {
 	IMGUI_CHECKVERSION();
@@ -33,6 +34,7 @@ reality::Editor::~Editor() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
+	SceneSerializer::Serialize(*g_SceneManager->ActiveScene);
 }
 
 void reality::Editor::Run() {

@@ -266,11 +266,13 @@ inline void reality::CTransform::SetTrs(const Matrix4& trs) {
 inline reality::Component* reality::CTransform::Clone() const {
 	return new CTransform{ *this };
 }
+
 inline void reality::CTransform::Reset() {
 	auto owner{ m_GameObject };
 	*this = CTransform{};
 	m_GameObject = owner;
 }
+
 inline reality::Component* reality::CTransform::Instantiate() {
 	return new CTransform;
 }

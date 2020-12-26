@@ -9,7 +9,7 @@
 #include "Rendering/Opengl/GLLight.h"
 #include "Rendering/Opengl/GLMesh.h"
 #include "Rendering/Opengl/GLModel.h"
-#include "Component/EngineComponents.h"
+#include "Component/Components.h"
 #include "Windowing/IO.h"
 #include "Scene.h"
 

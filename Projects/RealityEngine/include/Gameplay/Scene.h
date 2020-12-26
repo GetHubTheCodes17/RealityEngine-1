@@ -5,7 +5,7 @@
 #include <chrono>
 #include <map>
 
-#include "Gameplay/GameObject.h"
+#include "GameObject.h"
 
 namespace reality {
 	class RE_CORE Scene {
@@ -36,6 +36,13 @@ namespace reality {
 		void DestroyGameObjectUnsafe(GameObject& object);
 		void UpdateDestroyed();
 		void UpdateInstantiated();
+
+		friend class cereal::access;
+		template <class Archive>
+		void serialize(Archive& archive) {
+			archive(CEREAL_NVP(Name));
+			archive(m_GameObjects);
+		}
 	};
 }
 

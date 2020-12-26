@@ -5,7 +5,7 @@
 #include <imgui/imgui.h>
 
 #include "Gameplay/GameObject.h"
-#include "Gameplay/Component/EngineComponents.h"
+#include "Gameplay/Component/Components.h"
 #include "Core/Tools/Logger.h"
 
 namespace reality {
@@ -109,7 +109,9 @@ inline void reality::EditorInspector::DrawComponents(GameObject& object) {
 inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
 	for (auto& type : rttr::type::get<Component>().get_derived_classes()) {
 		if (ImGui::MenuItem(type.get_name().data())) {
-			object.AddComponent(type.get_method("Instantiate").invoke({}).convert<Component*>());
+			auto comp{ type.get_method("Instantiate").invoke({}).convert<Component*>() };
+			object.AddComponent(comp);
+			delete comp;
 		}
 	}
 }

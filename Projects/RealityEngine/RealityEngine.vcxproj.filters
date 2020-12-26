@@ -179,7 +179,7 @@
     <ClCompile Include="source\Engine.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="source\Gameplay\Component\EngineComponents.cpp">
+    <ClCompile Include="source\Gameplay\Component\Components.cpp">
       <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
   </ItemGroup>
@@ -412,8 +412,11 @@
     <ClInclude Include="include\Gameplay\Component\MeshFilter.h">
       <Filter>include\Gameplay\Component</Filter>
     </ClInclude>
-    <ClInclude Include="include\Gameplay\Component\EngineComponents.h">
+    <ClInclude Include="include\Gameplay\Component\Components.h">
       <Filter>include\Gameplay\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\SceneSerializer.h">
+      <Filter>include\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
