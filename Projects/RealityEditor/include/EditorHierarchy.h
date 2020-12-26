@@ -36,6 +36,12 @@ inline void reality::EditorHierarchy::Draw(Scene& scene) {
 			}
 		}
 
+		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL) && ImGui::IsKeyPressed(keycode::RE_KEY_D)) {
+			if (Current) {
+				scene.CreateGameObject(*Current);
+			}
+		}
+
 		for (auto root : scene.GetRootsGameObjects()) {
 			DisplayTree(*root);
 		}

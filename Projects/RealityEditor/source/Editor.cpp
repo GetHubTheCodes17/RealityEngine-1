@@ -27,14 +27,16 @@ reality::Editor::Editor() {
 		}
 	});
 	g_ResourceManager = new ResourceManager;
-	CreateDefaultScene();
+	//CreateDefaultScene();
+	auto& scene{ g_SceneManager->CreateScene("Scene0") };
+	SceneSerializer::Load(scene);
 }
 
 reality::Editor::~Editor() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-	SceneSerializer::Serialize(*g_SceneManager->ActiveScene);
+	SceneSerializer::Save(*g_SceneManager->ActiveScene);
 }
 
 void reality::Editor::Run() {

@@ -18,6 +18,7 @@
     <ClCompile Include="source\Core\Tools\Logger.cpp" />
     <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="source\Gameplay\Component\Components.cpp" />
+    <ClCompile Include="source\Gameplay\Component\Transform.cpp" />
     <ClCompile Include="source\Gameplay\Scene.cpp" />
     <ClCompile Include="source\Rendering\Opengl\GLCubeMap.cpp" />
     <ClCompile Include="source\Rendering\Opengl\GLDebugDrawing.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="include\Core\Maths\Frustrum.h" />
     <ClInclude Include="include\Core\Maths\Line.h" />
     <ClInclude Include="include\Core\Maths\Mathf.h" />
+    <ClInclude Include="include\Core\Maths\MathsSerializer.h" />
     <ClInclude Include="include\Core\Maths\Matrix4.h" />
     <ClInclude Include="include\Core\Maths\Quaternion.h" />
     <ClInclude Include="include\Core\Maths\Vector2.h" />

@@ -39,10 +39,9 @@ namespace reality {
 
 		friend class cereal::access;
 		template <class Archive>
-		void serialize(Archive& archive) {
-			archive(CEREAL_NVP(Name));
-			archive(m_GameObjects);
-		}
+		void load(Archive& archive);
+		template <class Archive>
+		void save(Archive& archive) const;
 	};
 }
 
@@ -102,4 +101,33 @@ inline void reality::Scene::UpdateInstantiated() {
 		instantiate();
 	}
 	m_ToBeInstantiate.clear();
+}
+
+template <class Archive>
+void reality::Scene::load(Archive& archive) {
+	archive(CEREAL_NVP(Name));
+	archive(CEREAL_NVP(m_GameObjects));
+
+	for (auto& object : m_GameObjects) {
+		object->m_Scene = this;
+		object->m_Manager = &m_Manager;
+		for (auto& comp : object->m_Components) {
+			comp->m_GameObject = object.get();
+			m_Manager.AddComponent(comp.get());
+		}
+		if (object->Transform.GetParentId()) {
+			auto parent{ std::find_if(m_GameObjects.begin(), m_GameObjects.end(),
+				[&object](auto& elem) { return elem->GetId() == object->Transform.GetParentId(); }) };
+
+			if (parent != m_GameObjects.cend()) {
+				object->SetParent(**parent);
+			}
+		}
+	}
+}
+
+template <class Archive>
+void reality::Scene::save(Archive& archive) const {
+	archive(CEREAL_NVP(Name));
+	archive(CEREAL_NVP(m_GameObjects));
 }

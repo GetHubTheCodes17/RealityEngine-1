@@ -3,6 +3,7 @@
 #pragma once
 
 #include <string>
+#include <cereal/types/string.hpp>
 
 #include "Component.h"
 #include "Resources/ResourceManager.h"
@@ -18,6 +19,17 @@ namespace reality {
 	private:
 		std::string m_Name;
 		const struct GLModel* m_Model{};
+
+		template <class Archive>
+		void load(Archive& archive) {
+			archive(CEREAL_NVP(m_Name));
+			SetModel(m_Name);
+		}
+
+		template <class Archive>
+		void save(Archive& archive) const {
+			archive(CEREAL_NVP(m_Name));
+		}
 	};
 }
 
@@ -35,3 +47,6 @@ inline void reality::CMeshRenderer::SetModel(std::string_view name) {
 		m_Name = name;
 	}
 }
+
+CEREAL_REGISTER_TYPE_WITH_NAME(reality::CMeshRenderer, "MeshRenderer");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CMeshRenderer)

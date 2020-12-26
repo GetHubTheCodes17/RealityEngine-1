@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Component.h"
-#include "Core/Maths/Matrix4.h"
+#include "Core/Maths/MathsSerializer.h"
 
 namespace reality {
 	struct CCamera : Component {
@@ -19,5 +19,22 @@ namespace reality {
 		Projection ProjectionType{ Projection::Perspective };
 		Matrix4 Projection{ Matrix4::Perspective((float)RE_WINDOW_WIDTH / (float)RE_WINDOW_HEIGHT, Near, Far, Fov) };
 		Matrix4 View{ Matrix4::LookAt(Vector3::Zero, Vector3::Forward) };
+
+	private:
+		template <class Archive>
+		void serialize(Archive& archive) {
+			archive(CEREAL_NVP(Depth));
+			archive(CEREAL_NVP(Fov));
+			archive(CEREAL_NVP(Near));
+			archive(CEREAL_NVP(Far));
+			archive(CEREAL_NVP(OrthoSize));
+			archive(CEREAL_NVP(Flag));
+			archive(CEREAL_NVP(ProjectionType));
+			archive(CEREAL_NVP(Projection));
+			archive(CEREAL_NVP(View));
+		}
 	};
 }
+
+CEREAL_REGISTER_TYPE_WITH_NAME(reality::CCamera, "Camera");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CCamera)

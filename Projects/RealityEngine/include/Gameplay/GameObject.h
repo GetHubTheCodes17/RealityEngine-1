@@ -2,8 +2,11 @@
 
 #pragma once
 
-#include <string>
+#include <cereal/types/memory.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
 
+#include "Core/Tools/Randomizer.h"
 #include "Component/Transform.h"
 #include "ComponentManager.h"
 
@@ -54,28 +57,39 @@ namespace reality {
 		Scene* m_Scene{};
 		uint64 m_Id{};
 
-		inline static uint64 s_CurrentId{};
-
 		friend class cereal::access;
 		template <class Archive>
-		void serialize(Archive& archive) {
+		void load(Archive& archive) {
 			archive(CEREAL_NVP(Name));
-			//archive(CEREAL_NVP(Transform));
+			archive(CEREAL_NVP(m_Id));
 			archive(CEREAL_NVP(IsActive));
-			//serialize(archive, m_Components);
+			archive(CEREAL_NVP(Transform));
+			Transform.m_GameObject = this;
+			archive(CEREAL_NVP(m_Components));
+		}
+
+		template <class Archive>
+		void save(Archive& archive) const {
+			archive(CEREAL_NVP(Name));
+			archive(CEREAL_NVP(m_Id));
+			archive(CEREAL_NVP(IsActive));
+			archive(CEREAL_NVP(Transform));
+			archive(CEREAL_NVP(m_Components));
 		}
 	};
 }
 
 inline reality::GameObject::GameObject(std::string_view name, Scene* scene, ComponentManager* manager) :
-	Name{ name }, m_Manager{ manager }, m_Scene{ scene }, m_Id{ s_CurrentId++ }
+	Name{ name }, m_Manager{ manager }, m_Scene{ scene }, 
+	m_Id{ g_Randomizer->GetInt(std::numeric_limits<uint64>::min(), std::numeric_limits<uint64>::max()) }
 {
 	Transform.m_GameObject = this;
 }
 
 inline reality::GameObject::GameObject(const GameObject& other) :
 	Transform{ other.Transform }, Name{ other.Name }, IsActive{ other.IsActive },
-	m_Manager{ other.m_Manager }, m_Scene{ other.m_Scene }, m_Id{ s_CurrentId++ }
+	m_Manager{ other.m_Manager }, m_Scene{ other.m_Scene }, 
+	m_Id{ g_Randomizer->GetInt(std::numeric_limits<uint64>::min(), std::numeric_limits<uint64>::max()) }
 {
 	for (const auto& component : other.m_Components) {
 		auto& comp{ m_Components.emplace_back(component->Clone()) };

@@ -182,6 +182,9 @@
     <ClCompile Include="source\Gameplay\Component\Components.cpp">
       <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
+    <ClCompile Include="source\Gameplay\Component\Transform.cpp">
+      <Filter>source\Gameplay\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Resources\Model\Model.h">
@@ -417,6 +420,9 @@
     </ClInclude>
     <ClInclude Include="include\Gameplay\SceneSerializer.h">
       <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Maths\MathsSerializer.h">
+      <Filter>include\Core\Maths</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

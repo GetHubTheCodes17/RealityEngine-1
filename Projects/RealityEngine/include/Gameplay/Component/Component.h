@@ -4,8 +4,6 @@
 
 #include <cereal/cereal.hpp>
 #include <cereal/types/memory.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 #include <rttr/type>
 
 namespace reality {
@@ -14,6 +12,7 @@ namespace reality {
 	struct Component {
 	public:
 		friend GameObject;
+		friend class Scene;
 
 		virtual	~Component() = default;
 
@@ -35,6 +34,7 @@ inline reality::GameObject& reality::Component::GetGameObject() const {
 #define RE_COMPONENT(T, Base)					\
 private:										\
 	RTTR_ENABLE(Base)							\
+	friend class cereal::access;				\
 public:											\
 	virtual Component* Clone() const override {	\
 		return new T{ *this };					\
