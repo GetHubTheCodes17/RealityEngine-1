@@ -4,12 +4,8 @@
 
 #include <cereal/cereal.hpp>
 
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Vector4.h"
-#include "Matrix4.h"
 #include "Quaternion.h"
-#include "AABB.h"
+#include "Vector2.h"
 
 namespace reality {
 	template <class Archive>
@@ -22,8 +18,6 @@ namespace reality {
 	void serialize(Archive& archive, Matrix4& m);
 	template <class Archive>
 	void serialize(Archive& archive, Quaternion& q);
-	template <class Archive>
-	void serialize(Archive& archive, AABB& a);
 }
 
 template<class Archive>
@@ -49,9 +43,4 @@ void reality::serialize(Archive& archive, Matrix4& m) {
 template<class Archive>
 void reality::serialize(Archive& archive, Quaternion& q) {
 	archive(cereal::make_nvp("X", q.X), cereal::make_nvp("Y", q.Y), cereal::make_nvp("Z", q.Z), cereal::make_nvp("W", q.W));
-}
-
-template<class Archive>
-void reality::serialize(Archive& archive, AABB& a) {
-	archive(a.Min, a.Max);
 }

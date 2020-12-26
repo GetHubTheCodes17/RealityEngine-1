@@ -10,19 +10,19 @@
 namespace reality {
 	class SceneSerializer {
 	public:
-		static void Load(Scene& scene);
-		static void Save(Scene& scene);
+		static void Load(std::string_view path, Scene& scene);
+		static void Save(std::string_view path, Scene& scene);
 	};
 }
 
-inline void reality::SceneSerializer::Load(Scene& scene) {
-	std::ifstream file{ "Resources/Scenes.json" };
+inline void reality::SceneSerializer::Load(std::string_view path, Scene& scene) {
+	std::ifstream file{ path };
 	cereal::JSONInputArchive archive{ file };
 	archive(scene);
 }
 
-inline void reality::SceneSerializer::Save(Scene& scene) {
-	std::ofstream file{ "Resources/Scenes.json" };
+inline void reality::SceneSerializer::Save(std::string_view path, Scene& scene) {
+	std::ofstream file{ path };
 	cereal::JSONOutputArchive archive{ file };
 	archive(scene);
 }

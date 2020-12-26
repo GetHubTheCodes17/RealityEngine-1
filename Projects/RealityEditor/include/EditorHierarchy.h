@@ -3,7 +3,6 @@
 #pragma once
 
 #include <imgui/imgui.h>
-#include <vector>
 
 #include "Gameplay/Scene.h"
 #include "Windowing/KeyCodes.h"
@@ -19,6 +18,7 @@ namespace reality {
 		bool m_IsDragging{};
 
 		void DisplayTree(GameObject& root);
+		void Selecting(GameObject& root, bool isCurrent);
 		void Dragging(GameObject& hovered);
 	};
 }
@@ -36,13 +36,21 @@ inline void reality::EditorHierarchy::Draw(Scene& scene) {
 		if (ImGui::Button("Create Empty")) {
 			auto& object{ scene.CreateGameObject("GameObject") };
 			if (!m_Currents.empty()) {			
-				object.SetParent(*m_Currents.front());
+				object.SetParent(*m_Currents.back());
 			}
 		}
 
-		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL) && ImGui::IsKeyPressed(keycode::RE_KEY_D)) {
-			for (auto go : m_Currents){
-				scene.CreateGameObject(*go);
+		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL)) {
+			if (ImGui::IsKeyPressed(keycode::RE_KEY_D)) {
+				for (auto go : m_Currents) {
+					scene.CreateGameObject(*go);
+				}
+			}
+			else if (ImGui::IsKeyPressed(keycode::RE_KEY_Q)) {
+				m_Currents.clear();
+				for (auto& elem : scene.GetGameObjects()) {
+					m_Currents.emplace_back(elem.get());
+				}
 			}
 		}
 
@@ -50,7 +58,9 @@ inline void reality::EditorHierarchy::Draw(Scene& scene) {
 			DisplayTree(*root);
 		}
 
-		m_Currents.erase(std::remove(m_Currents.begin(), m_Currents.end(), nullptr), m_Currents.end());
+		if (!m_Currents.empty()) {
+			m_Currents.erase(std::remove(m_Currents.begin(), m_Currents.end(), nullptr), m_Currents.end());
+		}
 	}
 	ImGui::End();
 }
@@ -66,21 +76,7 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
 		| (!root.Transform.GetChildrenSize() ? ImGuiTreeNodeFlags_Leaf : 0) | (isCurrent ? ImGuiTreeNodeFlags_Selected : 0) };
 	const auto isOpen{ ImGui::TreeNodeEx(reinterpret_cast<void*>(root.GetId()), flags, root.Name.c_str()) };
 
-	if (ImGui::IsItemClicked()) {
-		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL)) {
-			if (!isCurrent) {
-				m_Currents.emplace_back(&root);
-			}
-			else {
-				*std::find(m_Currents.begin(), m_Currents.end(), &root) = nullptr;
-			}
-		}
-		else if (!isCurrent) {
-			m_Currents.clear();
-			m_Currents.emplace_back(&root);
-		}
-	}
-
+	Selecting(root, isCurrent);
 	Dragging(root);
 
 	if (isOpen) {
@@ -95,6 +91,23 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
 		}
 
 		ImGui::TreePop();
+	}
+}
+
+inline void reality::EditorHierarchy::Selecting(GameObject& root, bool isCurrent) {
+	if (ImGui::IsItemClicked()) {
+		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL)) {
+			if (!isCurrent) {
+				m_Currents.emplace_back(&root);
+			}
+			else {
+				*std::find(m_Currents.begin(), m_Currents.end(), &root) = nullptr;
+			}
+		}
+		else if (!isCurrent) {
+			m_Currents.clear();
+			m_Currents.emplace_back(&root);
+		}
 	}
 }
 
