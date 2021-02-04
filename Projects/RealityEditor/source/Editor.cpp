@@ -34,26 +34,21 @@ reality::Editor::~Editor() {
 
 void reality::Editor::Run() {
 	auto& activeScene{ *g_SceneManager->ActiveScene };
-	auto& camera{ activeScene.FindGameObject("Camera")->Transform };
 
-	while (g_Io->Window->IsRunning() && !g_Io->Input->GetKeyDown(keycode::RE_KEY_ESCAPE)) {
+	while (g_Io->Window->IsRunning()) {
 		UpdateIo();
-
 		m_Engine.Update();
 
-		camera.SetPosition(m_Camera.Position);
 		activeScene.Update();
 		m_ComponentSystem.UpdateTransforms(activeScene);
 		m_ComponentSystem.UpdateCameras(activeScene, m_Viewport.Size);
 		m_ComponentSystem.UpdateLights(activeScene);
 
 		Update();
-
 		Render(m_Camera.GetViewMatrix());
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
 		g_Io->Update();
 	}
 }

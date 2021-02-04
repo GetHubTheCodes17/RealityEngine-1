@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <algorithm>
+
 #include "Mathf.h"
 #include "Vector3.h"
 
@@ -126,8 +128,8 @@ constexpr reality::Vector3 reality::AABB::GetExtremePoint(const Vector3& directi
 }
 
 constexpr reality::Vector3 reality::AABB::GetClosestPoint(const Vector3& targetPoint) const {
-	return { Mathf::Clamp(targetPoint.X, Min.X, Max.X), Mathf::Clamp(targetPoint.Y, Min.Y, Max.Y), 
-		Mathf::Clamp(targetPoint.Z, Min.Z, Max.Z) };
+	return { std::clamp(targetPoint.X, Min.X, Max.X), std::clamp(targetPoint.Y, Min.Y, Max.Y), 
+		std::clamp(targetPoint.Z, Min.Z, Max.Z) };
 }
 
 inline float reality::AABB::GetDistance(const Vector3& point) const {

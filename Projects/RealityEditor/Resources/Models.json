@@ -1,10 +1,10 @@
 {
     "value0": [
         {
-            "key": "nanosuit",
+            "key": "quad",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine\\Resources\\Models\\nanosuit\\nanosuit.obj"
+                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine\\Resources\\Models\\quad\\quad.obj"
                 },
                 "second": {
                     "Usage": 1,
@@ -14,10 +14,10 @@
             }
         },
         {
-            "key": "quad",
+            "key": "nanosuit",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine\\Resources\\Models\\quad\\quad.obj"
+                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine\\Resources\\Models\\nanosuit\\nanosuit.obj"
                 },
                 "second": {
                     "Usage": 1,

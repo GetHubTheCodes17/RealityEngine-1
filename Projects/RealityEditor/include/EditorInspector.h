@@ -5,7 +5,7 @@
 #include <imgui/imgui.h>
 
 #include "Gameplay/GameObject.h"
-#include "Gameplay/Component/Components.h"
+#include "Gameplay/ComponentHelper.h"
 
 namespace reality {
 	class EditorInspector {

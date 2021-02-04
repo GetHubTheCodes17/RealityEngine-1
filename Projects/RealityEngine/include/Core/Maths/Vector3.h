@@ -152,33 +152,33 @@ constexpr reality::Vector3& reality::Vector3::operator/=(float rhs) {
 }
 
 inline float reality::Vector3::Angle(const Vector3& lhs, const Vector3& rhs) {
-	return Mathf::Acos((lhs.X * rhs.X + lhs.Y * rhs.Y + lhs.Z * rhs.Z) /
-		Mathf::Sqrt((lhs.X * lhs.X + lhs.Y * lhs.Y + lhs.Z * lhs.Z) * (rhs.X * rhs.X + rhs.Y * rhs.Y + rhs.Z * rhs.Z)));
+	return std::acos((lhs.X * rhs.X + lhs.Y * rhs.Y + lhs.Z * rhs.Z) /
+		std::sqrt((lhs.X * lhs.X + lhs.Y * lhs.Y + lhs.Z * lhs.Z) * (rhs.X * rhs.X + rhs.Y * rhs.Y + rhs.Z * rhs.Z)));
 }
 
 inline float reality::Vector3::Distance(const Vector3& lhs, const Vector3& rhs) {
 	const auto X{ lhs.X - rhs.X }, Y{ lhs.Y - rhs.Y }, Z{ lhs.Z - rhs.Z };
-	return Mathf::Sqrt(X * X + Y * Y + Z * Z);
+	return std::sqrt(X * X + Y * Y + Z * Z);
 }
 
 inline float reality::Vector3::DistanceXZ(const Vector3& lhs, const Vector3& rhs) {
 	const auto X{ lhs.X - rhs.X }, Z{ lhs.Z - rhs.Z };
-	return Mathf::Sqrt(X * X + Z * Z);
+	return std::sqrt(X * X + Z * Z);
 }
 
 inline reality::Vector3 reality::Vector3::Normalize(const Vector3& u) {
-	const auto k{ Mathf::Sqrt(u.X * u.X + u.Y * u.Y + u.Z * u.Z) };
+	const auto k{ std::sqrt(u.X * u.X + u.Y * u.Y + u.Z * u.Z) };
 	return { u.X / k, u.Y / k, u.Z / k };
 }
 
 constexpr reality::Vector3 reality::Vector3::Abs(const Vector3& lhs) {
-	return { Mathf::Abs(lhs.X), Mathf::Abs(lhs.Y), Mathf::Abs(lhs.Z) };
+	return { std::abs(lhs.X), std::abs(lhs.Y), std::abs(lhs.Z) };
 }
 
 constexpr reality::Vector3 reality::Vector3::ClampMagnitude(const Vector3& u, float k) {
 	const auto sqr{ u.X * u.X + u.Y * u.Y + u.Z * u.Z };
 	if (sqr > k * k) {
-		return u / Mathf::Sqrt(sqr) * k;
+		return u / std::sqrt(sqr) * k;
 	}
 	return u;
 }
@@ -214,11 +214,11 @@ constexpr float reality::Vector3::SqrDistanceXZ(const Vector3& lhs, const Vector
 }
 
 inline float reality::Vector3::GetMagnitude() const {
-	return Mathf::Sqrt(X * X + Y * Y + Z * Z);
+	return std::sqrt(X * X + Y * Y + Z * Z);
 }
 
 inline float reality::Vector3::GetMagnitudeXZ() const {
-	return Mathf::Sqrt(X * X + Z * Z);
+	return std::sqrt(X * X + Z * Z);
 }
 
 constexpr bool reality::Vector3::IsNormalize() const {

@@ -179,14 +179,14 @@
     <ClCompile Include="source\Engine.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="source\Gameplay\Component\Components.cpp">
-      <Filter>source\Gameplay\Component</Filter>
-    </ClCompile>
     <ClCompile Include="source\Gameplay\Component\Transform.cpp">
       <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
     <ClCompile Include="source\Gameplay\GameObject.cpp">
       <Filter>source\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Gameplay\Component\ComponentsReflection.cpp">
+      <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -406,9 +406,6 @@
     <ClInclude Include="include\Gameplay\Component\MeshFilter.h">
       <Filter>include\Gameplay\Component</Filter>
     </ClInclude>
-    <ClInclude Include="include\Gameplay\Component\Components.h">
-      <Filter>include\Gameplay\Component</Filter>
-    </ClInclude>
     <ClInclude Include="include\Gameplay\SceneSerializer.h">
       <Filter>include\Gameplay</Filter>
     </ClInclude>
@@ -420,6 +417,9 @@
     </ClInclude>
     <ClInclude Include="include\Resources\ResourceSerializer.h">
       <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Gameplay\ComponentHelper.h">
+      <Filter>include\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

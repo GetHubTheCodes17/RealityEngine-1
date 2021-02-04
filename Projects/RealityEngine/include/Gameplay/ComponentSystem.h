@@ -9,7 +9,7 @@
 #include "Rendering/Opengl/GLLight.h"
 #include "Rendering/Opengl/GLMesh.h"
 #include "Rendering/Opengl/GLModel.h"
-#include "Component/Components.h"
+#include "ComponentHelper.h"
 #include "Windowing/IO.h"
 #include "Scene.h"
 
@@ -84,8 +84,8 @@ inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 		if (mesh->GetGameObject().IsActive) {
 			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
 			if (const auto glModel{ static_cast<const CMeshRenderer*>(mesh)->GetModel() }) {
-				for (const auto& glmesh : glModel->Meshes) {
-					glmesh->Draw();
+				for (const auto& glMesh : glModel->Meshes) {
+					glMesh->Draw();
 				}
 			}
 		}

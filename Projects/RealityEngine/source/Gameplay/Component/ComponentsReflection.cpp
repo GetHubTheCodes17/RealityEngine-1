@@ -2,7 +2,7 @@
 
 #include <rttr/registration>
 
-#include "Gameplay/Component/Components.h"
+#include "Gameplay/ComponentHelper.h"
 
 RTTR_REGISTRATION
 {

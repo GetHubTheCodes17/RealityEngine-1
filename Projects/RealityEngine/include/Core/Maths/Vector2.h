@@ -141,24 +141,24 @@ constexpr reality::Vector2& reality::Vector2::operator/=(float rhs) {
 }
 
 inline float reality::Vector2::Angle(const Vector2& lhs, const Vector2& rhs) {
-	return Mathf::Acos((lhs.X * rhs.X + lhs.Y * rhs.Y) / Mathf::Sqrt((lhs.X * lhs.X + lhs.Y * lhs.Y) *
+	return std::acos((lhs.X * rhs.X + lhs.Y * rhs.Y) / std::sqrt((lhs.X * lhs.X + lhs.Y * lhs.Y) *
 		(rhs.X * rhs.X + rhs.Y * rhs.Y)));
 }
 
 inline float reality::Vector2::Distance(const Vector2& lhs, const Vector2& rhs) {
 	const auto X{ lhs.X - rhs.X }, Y{ lhs.Y - rhs.Y };
-	return Mathf::Sqrt(X * X + Y * Y);
+	return std::sqrt(X * X + Y * Y);
 }
 
 inline reality::Vector2 reality::Vector2::Normalize(const Vector2& u) {
-	const auto k{ Mathf::Sqrt(u.X * u.X + u.Y * u.Y) };
+	const auto k{ std::sqrt(u.X * u.X + u.Y * u.Y) };
 	return { u.X / k, u.Y / k };
 }
 
 constexpr reality::Vector2 reality::Vector2::ClampMagnitude(const Vector2& u, float k) {
 	const auto sqr{ u.X * u.X + u.Y * u.Y };
 	if (sqr > k * k) {
-		return u / Mathf::Sqrt(sqr) * k;
+		return u / std::sqrt(sqr) * k;
 	}
 	return u;
 }
@@ -189,7 +189,7 @@ constexpr float reality::Vector2::SqrDistance(const Vector2& lhs, const Vector2&
 }
 
 inline float reality::Vector2::GetMagnitude() const {
-	return Mathf::Sqrt(X * X + Y * Y);
+	return std::sqrt(X * X + Y * Y);
 }
 
 constexpr bool reality::Vector2::IsNormalize() const {

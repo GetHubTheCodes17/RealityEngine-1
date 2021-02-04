@@ -183,8 +183,8 @@ constexpr reality::Quaternion& reality::Quaternion::operator/=(float k) {
 
 inline reality::Quaternion reality::Quaternion::AxisAngle(float angle, const Vector3& axis) {
 	const auto theta{ angle / 2.f };
-	const auto sinTheta{ Mathf::Sin(theta) };
-	return { axis.X * sinTheta, axis.Y * sinTheta, axis.Z * sinTheta, Mathf::Cos(theta) };
+	const auto sinTheta{ std::sin(theta) };
+	return { axis.X * sinTheta, axis.Y * sinTheta, axis.Z * sinTheta, std::cos(theta) };
 }
 
 inline reality::Quaternion reality::Quaternion::Difference(const Quaternion& lhs, const Quaternion& rhs) {
@@ -193,8 +193,8 @@ inline reality::Quaternion reality::Quaternion::Difference(const Quaternion& lhs
 
 inline reality::Quaternion reality::Quaternion::Euler(const Vector3& eulerAngles) {
 	const auto x{ eulerAngles.X / 2.f }, y{ eulerAngles.Y / 2.f }, z{ eulerAngles.Z / 2.f };
-	const auto cx{ Mathf::Cos(x) }, cy{ Mathf::Cos(y) }, cz{ Mathf::Cos(z) };
-	const auto sx{ Mathf::Sin(x) }, sy{ Mathf::Sin(y) }, sz{ Mathf::Sin(z) };
+	const auto cx{ std::cos(x) }, cy{ std::cos(y) }, cz{ std::cos(z) };
+	const auto sx{ std::sin(x) }, sy{ std::sin(y) }, sz{ std::sin(z) };
 	return {
 		sx * cy * cz - cx * sy * sz,
 		cx * sy * cz - sx * cy * sz,
@@ -208,13 +208,13 @@ inline reality::Quaternion reality::Quaternion::FromToRotation(Vector3& from, Ve
 	const auto sqrSizeFrom{ from.X * from.X + from.Y * from.Y + from.Z * from.Z };
 	const auto sqrSizeTo{ to.X * to.X + to.Y * to.Y + to.Z * to.Z };
 	const Vector3 axis{ from.Y * to.Z - to.Y * from.Z, from.Z * to.X - to.Z * from.X, from.X * to.Y - to.X * from.Y };
-	const auto theta{ Mathf::Acos(dotFromTo / Mathf::Sqrt(sqrSizeFrom * sqrSizeTo)) / 2.f };
-	const auto sinTheta{ Mathf::Sin(theta) };
-	return { axis.X * sinTheta, axis.Y * sinTheta, axis.Z * sinTheta, Mathf::Cos(theta) };
+	const auto theta{ std::acos(dotFromTo / std::sqrt(sqrSizeFrom * sqrSizeTo)) / 2.f };
+	const auto sinTheta{ std::sin(theta) };
+	return { axis.X * sinTheta, axis.Y * sinTheta, axis.Z * sinTheta, std::cos(theta) };
 }
 
 inline reality::Quaternion reality::Quaternion::Normalize(const Quaternion& q) {
-	const auto invSqr{ 1.f / Mathf::Sqrt(q.X * q.X + q.Y * q.Y + q.Z * q.Z + q.W * q.W) };
+	const auto invSqr{ 1.f / std::sqrt(q.X * q.X + q.Y * q.Y + q.Z * q.Z + q.W * q.W) };
 	return { q.X * invSqr, q.Y * invSqr, q.Z * invSqr, q.W * invSqr };
 }
 
@@ -232,10 +232,10 @@ inline reality::Quaternion reality::Quaternion::Slerp(const Quaternion& a, Quate
 		return a * (1.f - t) + b * t;
 	}
 
-	const auto sinOmega{ Mathf::Sqrt(1.f - cosOmega * cosOmega) };
-	const auto omega{ Mathf::Atan2(sinOmega, cosOmega) };
+	const auto sinOmega{ std::sqrt(1.f - cosOmega * cosOmega) };
+	const auto omega{ std::atan2(sinOmega, cosOmega) };
 	const auto invOmega{ 1.f / sinOmega };
-	return a * Mathf::Sin((1.f - t) * omega) * invOmega + b * Mathf::Sin(t * omega) * invOmega;
+	return a * std::sin((1.f - t) * omega) * invOmega + b * std::sin(t * omega) * invOmega;
 }
 
 constexpr reality::Quaternion reality::Quaternion::Conjugate(const Quaternion& q) {
@@ -264,7 +264,7 @@ constexpr reality::Quaternion reality::Quaternion::Lerp(const Quaternion& a, con
 }
 
 inline float reality::Quaternion::GetAngle() const {
-	return 2.f * Mathf::Acos(W);
+	return 2.f * std::acos(W);
 }
 
 inline reality::Vector3 reality::Quaternion::GetEulerAngles() const {
@@ -273,36 +273,36 @@ inline reality::Vector3 reality::Quaternion::GetEulerAngles() const {
 	const auto test{ X * Y + Z * W };
 
 	if (test > 0.499 * unit) {
-		return { 0.f, 2.f * Mathf::Atan2(X, W) * Mathf::Rad2Deg, std::numbers::pi_v<float> * 0.5f * Mathf::Rad2Deg };
+		return { 0.f, 2.f * std::atan2(X, W) * Mathf::Rad2Deg, std::numbers::pi_v<float> * 0.5f * Mathf::Rad2Deg };
 	}
 	if (test < -0.499 * unit) {
-		return { 0.f, -2.f * Mathf::Atan2(X, W) * Mathf::Rad2Deg, -std::numbers::pi_v<float> * 0.5f * Mathf::Rad2Deg };
+		return { 0.f, -2.f * std::atan2(X, W) * Mathf::Rad2Deg, -std::numbers::pi_v<float> * 0.5f * Mathf::Rad2Deg };
 	}
 	return { 
-		Mathf::Atan2(2.f * X * W - 2.f * Y * Z, -sqx + sqy - sqz + sqw) * Mathf::Rad2Deg,
-		Mathf::Atan2(2.f * Y * W - 2.f * X * Z, sqx - sqy - sqz + sqw) * Mathf::Rad2Deg,
-		Mathf::Asin(2.f * test / unit) * Mathf::Rad2Deg 
+		std::atan2(2.f * X * W - 2.f * Y * Z, -sqx + sqy - sqz + sqw) * Mathf::Rad2Deg,
+		std::atan2(2.f * Y * W - 2.f * X * Z, sqx - sqy - sqz + sqw) * Mathf::Rad2Deg,
+		std::asin(2.f * test / unit) * Mathf::Rad2Deg 
 	};
 }
 
 inline float reality::Quaternion::GetMagnitude() const {
-	return Mathf::Sqrt(X * X + Y * Y + Z * Z + W * W);
+	return std::sqrt(X * X + Y * Y + Z * Z + W * W);
 }
 
 inline reality::Quaternion& reality::Quaternion::Set(float angle, const Vector3& axis) {
 	const auto theta{ angle / 2.f };
-	const auto sinTheta{ Mathf::Sin(theta) };
+	const auto sinTheta{ std::sin(theta) };
 	X = axis.X * sinTheta;
 	Y = axis.Y * sinTheta;
 	Z = axis.Z * sinTheta;
-	W = Mathf::Cos(theta);
+	W = std::cos(theta);
 	return *this;
 }
 
 inline reality::Quaternion& reality::Quaternion::Set(const Vector3& eulerAngles) {
 	const auto x{ eulerAngles.X / 2.f }, y{ eulerAngles.Y / 2.f }, z{ eulerAngles.Z / 2.f };
-	const auto cx{ Mathf::Cos(x) }, cy{ Mathf::Cos(y) }, cz{ Mathf::Cos(z) };
-	const auto sx{ Mathf::Sin(x) }, sy{ Mathf::Sin(y) }, sz{ Mathf::Sin(z) };
+	const auto cx{ std::cos(x) }, cy{ std::cos(y) }, cz{ std::cos(z) };
+	const auto sx{ std::sin(x) }, sy{ std::sin(y) }, sz{ std::sin(z) };
 	X = sx * cy * cz - cx * sy * sz;
 	Y = cx * sy * cz - sx * cy * sz;
 	Z = cx * cy * sz - sx * sy * cz;
@@ -315,12 +315,12 @@ inline reality::Quaternion& reality::Quaternion::Set(const Vector3& from, const 
 	const auto sqrSizeFrom{ from.X * from.X + from.Y * from.Y + from.Z * from.Z };
 	const auto sqrSizeTo{ to.X * to.X + to.Y * to.Y + to.Z * to.Z };
 	const Vector3 axis{ from.Y * to.Z - to.Y * from.Z, from.Z * to.X - to.Z * from.X, from.X * to.Y - to.X * from.Y };
-	const auto theta{ Mathf::Acos(dotFromTo / Mathf::Sqrt(sqrSizeFrom * sqrSizeTo)) / 2.f };
-	const auto sinTheta{ Mathf::Sin(theta) };
+	const auto theta{ std::acos(dotFromTo / std::sqrt(sqrSizeFrom * sqrSizeTo)) / 2.f };
+	const auto sinTheta{ std::sin(theta) };
 	X = axis.X * sinTheta;
 	Y = axis.Y * sinTheta;
 	Z = axis.Z * sinTheta;
-	W = Mathf::Cos(theta);
+	W = std::cos(theta);
 	return *this;
 }
 
@@ -346,7 +346,7 @@ inline reality::Quaternion& reality::Quaternion::Set(const Matrix4& rotation) {
 		biggestIndex = 3;
 	}
 
-	const auto biggestVal{ Mathf::Sqrt(fourBiggestSquaredMinus1 + 1.f) * 0.5f };
+	const auto biggestVal{ std::sqrt(fourBiggestSquaredMinus1 + 1.f) * 0.5f };
 	const auto mult{ 0.25f / biggestVal };
 	switch (biggestIndex) {
 	case 0:

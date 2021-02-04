@@ -26,7 +26,7 @@ namespace reality {
 		GameObject& CreateGameObject(const GameObject& copy);
 		GameObject* FindGameObject(std::string_view name);
 		void DestroyGameObject(GameObject& object, std::chrono::milliseconds time = {});
-		void Instantiate(std::function<void()> func);
+		void AddCallback(std::function<void()> func);
 		std::span<GameObject*> GetRootsGameObjects();
 
 	private:
@@ -70,7 +70,7 @@ inline void reality::Scene::DestroyGameObject(GameObject& object, std::chrono::m
 	}
 }
 
-inline void reality::Scene::Instantiate(std::function<void()> func) {
+inline void reality::Scene::AddCallback(std::function<void()> func) {
 	m_ToBeInstantiate.emplace_back(func);
 }
 

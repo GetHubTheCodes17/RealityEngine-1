@@ -13,10 +13,11 @@ namespace reality {
 	public:
 		ComponentManager();
 
-		void AddComponent(const Component* comp);
-		void RemoveComponent(const Component* comp);
 		template <class T>
 		std::span<const Component*> GetComponents() requires std::derived_from<T, Component>;
+
+		void AddComponent(const Component* comp);
+		void RemoveComponent(const Component* comp);
 
 	private:
 		std::unordered_map<rttr::type, std::vector<const Component*>> m_Components;

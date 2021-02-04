@@ -324,7 +324,7 @@ constexpr reality::Matrix4& reality::Matrix4::operator/=(float k) {
 #endif
 
 inline reality::Matrix4 reality::Matrix4::AxisAngle(const Vector3& axis, float angle) {
-	const auto c{ Mathf::Cos(angle) }, s{ Mathf::Sin(angle) };
+	const auto c{ std::cos(angle) }, s{ std::sin(angle) };
 	const auto invCos{ 1.f - c };
 	return {
 		axis.X * axis.X * invCos + c, axis.X * axis.Y * invCos - axis.Z * s, axis.X * axis.Z * invCos + axis.Y * s, 0.f,
@@ -335,8 +335,8 @@ inline reality::Matrix4 reality::Matrix4::AxisAngle(const Vector3& axis, float a
 }
 
 inline reality::Matrix4 reality::Matrix4::Euler(const Vector3& eulerAngles) {
-	const auto cp{ Mathf::Cos(eulerAngles.X) }, cy{ Mathf::Cos(eulerAngles.Y) }, cr{ Mathf::Cos(eulerAngles.Z) };
-	const auto sp{ Mathf::Sin(eulerAngles.X) }, sy{ Mathf::Sin(eulerAngles.Y) }, sr{ Mathf::Sin(eulerAngles.Z) };
+	const auto cp{ std::cos(eulerAngles.X) }, cy{ std::cos(eulerAngles.Y) }, cr{ std::cos(eulerAngles.Z) };
+	const auto sp{ std::sin(eulerAngles.X) }, sy{ std::sin(eulerAngles.Y) }, sr{ std::sin(eulerAngles.Z) };
 	return {
 		cy * cr + sy * sp * sr, cp * sr, sr * cy * sp - sy * cr, 0.f,
 		cr * sy * sp - sr * sy, cr * cp, sy * sr + cr * cy * sp, 0.f,
@@ -359,7 +359,7 @@ inline reality::Matrix4 reality::Matrix4::LookAt(const Vector3& position, const 
 
 inline reality::Matrix4 reality::Matrix4::Perspective(float aspectRatio, float nearp, float farp, float fov) {
 	const auto zRange{ nearp - farp };
-	const auto tanHalfFOV{ Mathf::Tan(Mathf::Deg2Rad * (fov / 2.f)) };
+	const auto tanHalfFOV{ std::tan(Mathf::Deg2Rad * (fov / 2.f)) };
 	return {
 		1.f / (tanHalfFOV * aspectRatio), 0.f, 0.f, 0.f,
 		0.f, 1.f / tanHalfFOV, 0.f, 0.f,
@@ -396,11 +396,11 @@ inline reality::Vector3 reality::Matrix4::GetTranslation(const Matrix4& translat
 }
 
 inline reality::Vector3 reality::Matrix4::GetEulerAngles(const Matrix4& rotation) {
-	const auto x{ Mathf::Asin(-rotation.Array[9]) };
-	if (Mathf::Cos(x) > Mathf::Epsilon) {
-		return { x, Mathf::Atan2(rotation.Array[8], rotation.Array[10]), Mathf::Atan2(rotation.Array[1], rotation.Array[5]) };
+	const auto x{ std::asin(-rotation.Array[9]) };
+	if (std::cos(x) > Mathf::Epsilon) {
+		return { x, std::atan2(rotation.Array[8], rotation.Array[10]), std::atan2(rotation.Array[1], rotation.Array[5]) };
 	}
-	return { x, 0.f, Mathf::Atan2(-rotation.Array[4], rotation.Array[0]) };
+	return { x, 0.f, std::atan2(-rotation.Array[4], rotation.Array[0]) };
 }
 
 inline reality::Vector3 reality::Matrix4::GetScale(const Matrix4& scale) {
@@ -410,9 +410,9 @@ inline reality::Vector3 reality::Matrix4::GetScale(const Matrix4& scale) {
 		return { scale.Array[0], scale.Array[5], scale.Array[10] };
 	}
 	return { 
-		Mathf::Sqrt(scale.Array[0] * scale.Array[0] + scale.Array[1] * scale.Array[1] + scale.Array[2] * scale.Array[2]),
-		Mathf::Sqrt(scale.Array[4] * scale.Array[4] + scale.Array[5] * scale.Array[5] + scale.Array[6] * scale.Array[6]),
-		Mathf::Sqrt(scale.Array[8] * scale.Array[8] + scale.Array[9] * scale.Array[9] + scale.Array[10] * scale.Array[10])
+		std::sqrt(scale.Array[0] * scale.Array[0] + scale.Array[1] * scale.Array[1] + scale.Array[2] * scale.Array[2]),
+		std::sqrt(scale.Array[4] * scale.Array[4] + scale.Array[5] * scale.Array[5] + scale.Array[6] * scale.Array[6]),
+		std::sqrt(scale.Array[8] * scale.Array[8] + scale.Array[9] * scale.Array[9] + scale.Array[10] * scale.Array[10])
 	};
 }
 

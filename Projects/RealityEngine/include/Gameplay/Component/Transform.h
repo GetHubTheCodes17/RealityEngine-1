@@ -59,9 +59,14 @@ namespace reality {
 		bool m_HasChanged{};
 
 	public:
-		virtual Component* Clone() const override;
-		void Reset();
-		static std::shared_ptr<CTransform> Instantiate();
+		virtual Component* Clone() const override {
+			return new CTransform{ *this };
+		}
+		void Reset() {
+			auto owner{ m_GameObject };
+			*this = {};
+			m_GameObject = owner;
+		}
 
 	private:
 		friend class cereal::access;
@@ -226,20 +231,6 @@ inline void reality::CTransform::SetScale(Vector3 scale) {
 inline void reality::CTransform::SetTrs(const Matrix4& trs) {
 	m_Trs = trs;
 	SetHasChanged(true);
-}
-
-inline reality::Component* reality::CTransform::Clone() const {
-	return new CTransform{ *this };
-}
-
-inline void reality::CTransform::Reset() {
-	auto owner{ m_GameObject };
-	*this = CTransform{};
-	m_GameObject = owner;
-}
-
-inline std::shared_ptr<reality::CTransform> reality::CTransform::Instantiate() {
-	return std::make_shared<CTransform>();
 }
 
 template <class Archive>

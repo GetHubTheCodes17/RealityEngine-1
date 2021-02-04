@@ -17,7 +17,7 @@
     <ClCompile Include="source\Core\Tools\Leaker.cpp" />
     <ClCompile Include="source\Core\Tools\Logger.cpp" />
     <ClCompile Include="source\Engine.cpp" />
-    <ClCompile Include="source\Gameplay\Component\Components.cpp" />
+    <ClCompile Include="source\Gameplay\Component\ComponentsReflection.cpp" />
     <ClCompile Include="source\Gameplay\Component\Transform.cpp" />
     <ClCompile Include="source\Gameplay\GameObject.cpp" />
     <ClCompile Include="source\Gameplay\Scene.cpp" />
@@ -60,10 +60,10 @@
     <ClInclude Include="include\Core\Tools\Logger.h" />
     <ClInclude Include="include\Core\Tools\Randomizer.h" />
     <ClInclude Include="include\Engine.h" />
+    <ClInclude Include="include\Gameplay\ComponentHelper.h" />
     <ClInclude Include="include\Gameplay\ComponentManager.h" />
     <ClInclude Include="include\Gameplay\Component\Behaviour.h" />
     <ClInclude Include="include\Gameplay\Component\Camera.h" />
-    <ClInclude Include="include\Gameplay\Component\Components.h" />
     <ClInclude Include="include\Gameplay\Component\Light.h" />
     <ClInclude Include="include\Gameplay\Component\MeshFilter.h" />
     <ClInclude Include="include\Gameplay\Component\MeshRenderer.h" />

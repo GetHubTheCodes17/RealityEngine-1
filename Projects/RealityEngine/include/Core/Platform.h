@@ -87,13 +87,13 @@ namespace reality {
 #endif
 
 #ifdef RE_ASSERTIONS_ENABLE
-#include <cstdio>
+#include <crtdbg.h>
 #ifdef _MSC_VER
-#define RE_ASSERT(expr, message)														\
-		if (!(expr)) {																	\
-			std::printf("Assertion failed : (%s), %s\nFunction %s, file %s, line %d.\n",\
-				#expr, message, __func__, __FILE__, unsigned(__LINE__));				\
-			__debugbreak();																\
+#define RE_ASSERT(expr, message)																\
+		if (!(expr)) {																			\
+			_RPT4(_CRT_WARN, "Assertion failed : (%s), %s\nFunction %s, file %s, line %d.\n",	\
+				#expr, message, __func__, __FILE__, unsigned(__LINE__));						\
+			__debugbreak();																		\
 		}
 #else
 #include <cassert>
