@@ -6,6 +6,7 @@
 #include <string>
 #include <array>
 
+#include "Core/Platform.h"
 #include "Core/Maths/Vector2.h"
 
 namespace reality {

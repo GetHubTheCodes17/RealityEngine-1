@@ -2,8 +2,7 @@
 
 #pragma once
 
-#include <iterator>
-
+#include "Core/Platform.h"
 #include "GLPrimitiveHelper.h"
 #include "GLMaterial.h"
 #include "GLMesh.h"

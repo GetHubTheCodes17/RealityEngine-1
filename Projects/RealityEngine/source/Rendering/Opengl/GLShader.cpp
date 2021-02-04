@@ -5,6 +5,8 @@
 #include <glad/glad.h>
 
 #include "Core/Maths/Matrix4.h"
+#include "Core/Maths/Vector4.h"
+#include "Core/Maths/Vector3.h"
 #include "Core/Maths/Vector2.h"
 #include "Core/Tools/Logger.h"
 

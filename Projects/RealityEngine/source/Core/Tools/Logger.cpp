@@ -18,7 +18,7 @@ void reality::Logger::Log(const char*, int line, const char* func, LogVerbosity,
 		return;
 	}
 
-	std::unique_lock guard{ m_Lock };
+	std::lock_guard guard{ m_Lock };
 
 	static constexpr auto s_BufferSize{ 512ull };
 	char buffer[s_BufferSize];

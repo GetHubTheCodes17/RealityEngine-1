@@ -6,16 +6,15 @@
 
 #include "Gameplay/GameObject.h"
 #include "Gameplay/Component/Components.h"
-#include "Core/Tools/Logger.h"
 
 namespace reality {
 	class EditorInspector {
 	public:
-		void Draw(const std::vector<GameObject*>& objects);
+		void Draw(std::span<GameObject*> objects);
 
 	private:
-		template<class Component>
-		bool Draw(std::function<void(Component&)> func, Component& comp);
+		template<class T>
+		void Draw(std::function<void(T&)> func, T& comp) requires std::derived_from<T, Component>;
 
 		void DrawName(GameObject& object);
 		void DrawComponents(GameObject& object);
@@ -27,21 +26,20 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorInspector::Draw(const std::vector<GameObject*>& objects) {
+inline void reality::EditorInspector::Draw(std::span<GameObject*> objects) {
 	ImGui::Begin("Inspector");
 	{
 		if (!objects.empty()) {
-			auto object{ objects.back() };
-			DrawName(*object);
-			DrawTransform(object->Transform);
-			DrawComponents(*object);
+			auto& object{ *objects.back() };
+			DrawName(object);
+			DrawComponents(object);
 
 			if (ImGui::Button("Add Component", { -1.f, 0.f })) {
 				ImGui::OpenPopup("AddComponentPopup");
 			}
 
 			if (ImGui::BeginPopup("AddComponentPopup")) {
-				DrawAddComponent(*object);
+				DrawAddComponent(object);
 				ImGui::EndPopup();
 			}
 		}
@@ -49,10 +47,9 @@ inline void reality::EditorInspector::Draw(const std::vector<GameObject*>& objec
 	ImGui::End();
 }
 
-template<class Component>
-inline bool reality::EditorInspector::Draw(std::function<void(Component&)> func, Component& comp) {
-	bool isRemoved{};
-	if (ImGui::TreeNodeEx(rttr::type::get<Component>().get_name().data(), 
+template<class T>
+void reality::EditorInspector::Draw(std::function<void(T&)> func, T& comp) requires std::derived_from<T, Component> {
+	if (ImGui::TreeNodeEx(rttr::type::get<T>().get_name().data(),
 		ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding)) {
 		ImGui::SameLine(ImGui::GetWindowWidth() - 30.f);
 		if (ImGui::Button("+")) {
@@ -62,8 +59,7 @@ inline bool reality::EditorInspector::Draw(std::function<void(Component&)> func,
 
 		if (ImGui::BeginPopup("ComponentSettings")) {
 			if (ImGui::MenuItem("Remove")) {
-				comp.GetGameObject().RemoveComponent<Component>();
-				isRemoved = true;
+				comp.GetGameObject().RemoveComponent<T>();
 			}
 			else if (ImGui::MenuItem("Reset")) {
 				comp.Reset();
@@ -72,14 +68,12 @@ inline bool reality::EditorInspector::Draw(std::function<void(Component&)> func,
 		}
 		ImGui::TreePop();
 	}
-	return !isRemoved;
 }
 
 inline void reality::EditorInspector::DrawName(GameObject& object) {
 	ImGui::Checkbox("##IsActive", &object.IsActive);
 
-	char buf[128];
-	std::memset(buf, 0, sizeof(buf));
+	char buf[256]{};
 	strcpy_s(buf, sizeof(buf), object.Name.c_str());
 
 	ImGui::SameLine();
@@ -89,30 +83,23 @@ inline void reality::EditorInspector::DrawName(GameObject& object) {
 }
 
 inline void reality::EditorInspector::DrawComponents(GameObject& object) {
-	for (auto& comp : object.GetAllComponents()) {
-		bool isRemoved{};
-		if (auto light{ rttr::rttr_cast<CLight*>(comp.get()) }) {
-			isRemoved = !Draw<CLight>(DrawLight, *light);
-		}
-		else if (auto camera{ rttr::rttr_cast<CCamera*>(comp.get()) }) {
-			isRemoved = !Draw<CCamera>(DrawCamera, *camera);
-		}
-		else if (auto mesh{ rttr::rttr_cast<CMeshRenderer*>(comp.get()) }) {
-			isRemoved = !Draw<CMeshRenderer>(DrawMeshRenderer, *mesh);
-		}
+	DrawTransform(object.Transform);
 
-		if (isRemoved) {
-			break;
-		}
+	if (auto light{ object.GetComponent<CLight>() }) {
+		Draw<CLight>(DrawLight, *light);
+	}
+	if (auto camera{ object.GetComponent<CCamera>() }) {
+		Draw<CCamera>(DrawCamera, *camera);
+	}
+	if (auto mesh{ object.GetComponent<CMeshRenderer>() }) {
+		Draw<CMeshRenderer>(DrawMeshRenderer, *mesh);
 	}
 }
 
 inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
 	for (auto& type : rttr::type::get<Component>().get_derived_classes()) {
 		if (ImGui::MenuItem(type.get_name().data())) {
-			auto comp{ type.get_method("Instantiate").invoke({}).convert<Component*>() };
-			object.AddComponent(comp);
-			delete comp;
+			object.AddComponent(*type.get_method("Instantiate").invoke({}).convert<Component*>());
 		}
 	}
 }
@@ -167,7 +154,6 @@ inline void reality::EditorInspector::DrawCamera(CCamera& camera) {
 }
 
 inline void reality::EditorInspector::DrawMeshRenderer(CMeshRenderer& mesh) {
-	static const char* current{};
 	if (ImGui::BeginCombo("##Models", mesh.GetName().data())) {
 		for (auto& [name, model] : g_ResourceManager->Models.GetResources()) {
 			if (ImGui::Selectable(name.c_str())) {

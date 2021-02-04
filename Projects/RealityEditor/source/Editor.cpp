@@ -6,115 +6,70 @@
 #include <imgui/imgui_impl_glfw.h>
 
 #include "Gameplay/ComponentSystem.h"
-#include "Gameplay/SceneSerializer.h"
 
 reality::Editor::Editor() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	editorTheme::RealityStyle();
-	ImGui::GetIO().Fonts->AddFontFromFileTTF("../../Projects/RealityEditor/Config/LucidaGrande.ttf", 12.f);
-	ImGui::GetIO().IniFilename = "Config/imgui.ini";
-	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_NavEnableKeyboard;
-	ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
+	auto& io{ ImGui::GetIO() };
+	io.Fonts->AddFontFromFileTTF("../../Projects/RealityEditor/Config/LucidaGrande.ttf", 12.f);
+	io.IniFilename = "Config/imgui.ini";
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigWindowsMoveFromTitleBarOnly = true;
 	ImGui_ImplGlfw_InitForOpenGL(reinterpret_cast<GLFWwindow*>(g_Io->Window->GetHandle()), true);
 	ImGui_ImplOpenGL3_Init("#version 330 core");
-	g_Io->Window->SetTitle("Reality Engine");
-	g_Io->Window->SetPos({ 250.f, 150.f });
-	g_Logger->Callback = [this](const char* msg) { m_Log.AddLog(msg); };
-	g_Io->Window->SetDropCallback([this](int count, const char** paths) {
+	g_Logger->Callback = [this](auto msg) { m_Log.AddLog(msg); };
+	g_Io->Window->SetDropCallback([this](auto count, auto paths) {
 		for (auto i{ 0 }; i < count; ++i) {
 			m_Assets.DropResource(paths[i]);
 		}
 	});
-	g_ResourceManager = new ResourceManager;
-	g_ResourceManager->Skyboxes.Load("Saturne", {
-		"Skyboxes/saturne/Left.png", "Skyboxes/saturne/Right.png", "Skyboxes/saturne/Up.png",
-		"Skyboxes/saturne/Down.png", "Skyboxes/saturne/Front.png", "Skyboxes/saturne/Back.png"
-	});
-	g_ResourceManager->Fonts.Load("Arial", { "Fonts/Arial.ttf" });
-	auto& scene{ g_SceneManager->CreateScene("Scene0") };
-	SceneSerializer::Load("Resources/Scenes.json", scene);
 }
 
 reality::Editor::~Editor() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-	SceneSerializer::Save("Resources/Scenes.json", *g_SceneManager->ActiveScene);
 }
 
 void reality::Editor::Run() {
+	auto& activeScene{ *g_SceneManager->ActiveScene };
+	auto& camera{ activeScene.FindGameObject("Camera")->Transform };
+
 	while (g_Io->Window->IsRunning() && !g_Io->Input->GetKeyDown(keycode::RE_KEY_ESCAPE)) {
 		UpdateIo();
-		g_ResourceManager->Update();
 
-		if (auto activeScene{ g_SceneManager->ActiveScene }) {
-			activeScene->FindGameObject("Camera")->Transform.SetPosition(m_Camera.Position);
-			activeScene->Update();
-			m_ComponentSystem.UpdateTransforms(*activeScene);
-			m_ComponentSystem.UpdateCameras(*activeScene, m_ViewportSize);
-			m_ComponentSystem.UpdateLights(*activeScene);
-		}
+		m_Engine.Update();
+
+		camera.SetPosition(m_Camera.Position);
+		activeScene.Update();
+		m_ComponentSystem.UpdateTransforms(activeScene);
+		m_ComponentSystem.UpdateCameras(activeScene, m_Viewport.Size);
+		m_ComponentSystem.UpdateLights(activeScene);
 
 		Update();
 
-		if (g_SceneManager->ActiveScene) {
-			Render();
-		}
+		Render(m_Camera.GetViewMatrix());
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		g_Io->Update();
 	}
 }
 
-reality::Vector3 reality::Editor::GetMouseRay() const {
-	Matrix4 viewMatrix{ m_Camera.GetViewMatrix() };
-	Vector2 currentRay{ g_Io->Input->GetCursorPos() - m_ViewportPos };
+void reality::Editor::Render(const Matrix4& view) const {
+	GLContext::SetViewMatrix(view);
 
-	auto GetNormalizedCoords = [&](Vector2 mousePos) {
-		return Vector2{ (2.f * mousePos.X) / m_ViewportSize.X - 1.f, (2.f * mousePos.Y) / m_ViewportSize.Y - 1.f };
-	};
-
-	Vector2 normalizedCoords{ GetNormalizedCoords(currentRay) };
-	Vector4 clipCoords{ normalizedCoords.X, normalizedCoords.Y, -1.f, 1.f };
-
-	auto ToEyeSpace = [&](Vector4 clipCoords) {
-		Matrix4 invertedProj{ Matrix4::Inverse(m_Camera.Projection) };
-		Vector4 eyeCoords{ invertedProj * clipCoords };
-		return Vector4{ eyeCoords.X, eyeCoords.Y, -1.f, 0.f };
-	};
-
-	Vector4 eyeCoords{ ToEyeSpace(clipCoords) };
-
-	auto ToWorldSpace = [&](Vector4 eyeCoords) {
-		Matrix4 invertedView{ Matrix4::Inverse(viewMatrix) };
-		Vector4 ray{ invertedView * eyeCoords };
-		return Vector3{ ray.X, ray.Y, ray.Z };
-	};
-
-	return Vector3::Normalize(ToWorldSpace(eyeCoords));
-}
-
-void reality::Editor::Render() const {
 	m_Pipeline.BeginShadowPass();
 	m_ComponentSystem.UpdateMeshesShadow(*g_SceneManager->ActiveScene);
 
-	GLContext::SetViewMatrix(m_Camera.GetViewMatrix());
 	m_Pipeline.BeginScenePass(g_ResourceManager->Skyboxes.Get("Saturne"));
 	m_ComponentSystem.UpdateMeshes(*g_SceneManager->ActiveScene);
 	m_ComponentSystem.UpdateParticles(*g_SceneManager->ActiveScene);
 
-	// Draw Debug Cube with Default Material
-	GLContext::SetModelMatrix(Matrix4::Translate({ 2.f, 0.f, 2.f }));
-	g_MeshHelper->Cube.Material->Bind();
-	g_MeshHelper->Cube.Draw();
-
-	// Draw Debug Text
-	g_ResourceManager->Fonts.Get("Arial")->Draw("Reality Engine !", { 0.1f, 0.1f, 0.5f, 0.5f }, m_ViewportSize);
-
 	m_Pipeline.BeginPostProcess();
 	m_Pipeline.GetDefaultPass().Bind();
-
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void reality::Editor::Update() {
@@ -122,41 +77,40 @@ void reality::Editor::Update() {
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	ImGuizmo::BeginFrame();
+	UpdateWindows();
+}
+
+void reality::Editor::UpdateWindows() {
 	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.1f, 50.f);
 	m_Dock.Begin();
-	ImGui::ShowDemoWindow();
 	m_Assets.Draw();
 	m_Log.Draw();
 	m_Menu.Draw();
 	m_Hierarchy.Draw(*g_SceneManager->ActiveScene);
-	m_Inspector.Draw(m_Hierarchy.GetCurrents());
-	m_Scene.Draw(m_Pipeline, m_Camera, m_ViewportSize, m_ViewportPos, m_Hierarchy.GetCurrents());
+	m_Inspector.Draw(m_Hierarchy.GetSelected());
+	m_Scene.Draw(m_Pipeline, m_Camera, m_Viewport, m_Hierarchy.GetSelected());
 	m_Dock.End();
 }
 
 void reality::Editor::UpdateIo() {
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_F)) {
-		if (!m_Hierarchy.GetCurrents().empty()) {
-			m_Camera.Focus(m_Hierarchy.GetCurrents().back());
-		}
+	if (ImGui::IsKeyDown(keycode::RE_KEY_F) && !m_Hierarchy.GetSelected().empty()) {
+		m_Camera.Focus(m_Hierarchy.GetSelected().back());
 	}
 	m_Camera.UpdateFocus();
 
-	if (g_Io->Input->GetMouseButton(keycode::RE_MOUSE_BUTTON_RIGHT)) {
-		if (!EnabledCamera && m_Scene.IsHovered()) {
+	if (ImGui::IsMouseDown(keycode::RE_MOUSE_BUTTON_RIGHT)) {
+		if (!m_EnabledCamera && m_Scene.IsHovered()) {
 			ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_NoMouse;
 			g_Io->Window->HideAndLockCursor();
-			EnabledCamera = true;
+			m_EnabledCamera = true;
 		}
-		if (EnabledCamera) {
+		if (m_EnabledCamera) {
 			m_Camera.Update();
 		}
 	}
-	else {
-		if (EnabledCamera) {
-			ImGui::GetIO().ConfigFlags ^= ImGuiConfigFlags_NoMouse;
-			g_Io->Window->ShowCursor();
-			EnabledCamera = false;
-		}
+	else if (m_EnabledCamera) {
+		ImGui::GetIO().ConfigFlags ^= ImGuiConfigFlags_NoMouse;
+		g_Io->Window->ShowCursor();
+		m_EnabledCamera = false;
 	}
 }

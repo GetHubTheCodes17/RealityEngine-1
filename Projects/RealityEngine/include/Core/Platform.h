@@ -2,13 +2,11 @@
 
 #pragma once
 
-#include <cstdint>
-
 #ifndef __cplusplus
 #error The Engine requires C++ compiler to be used.
 #endif
 
-#if defined(_WIN64)
+#ifdef _WIN64
 	#define RE_WINDOWS_PLATFORM 1
 #elif __APPLE__
 	#include <TargetConditionals.h>
@@ -64,19 +62,19 @@
 #define RE_ASSERTIONS_ENABLE 1
 
 namespace reality {
-	using int8 = std::int8_t;
-	using int16 = std::int16_t;
-	using int32 = std::int32_t;
-	using int64 = std::int64_t;
-	using uint8 = std::uint8_t;
-	using uint16 = std::uint16_t;
-	using uint32 = std::uint32_t;
-	using uint64 = std::uint64_t;
+	using int8 = signed char;
+	using int16 = short;
+	using int32 = int;
+	using int64 = long long;
+	using uint8 = unsigned char;
+	using uint16 = unsigned short;
+	using uint32 = unsigned int;
+	using uint64 = unsigned long long;
 
 	inline constexpr const char* g_ResourcesExtension{ ".binary" };
 }
 
-#if RE_EXPORT
+#ifdef RE_EXPORT
 #define RE_CORE __declspec(dllexport)
 #else
 #define RE_CORE __declspec(dllimport)
@@ -88,7 +86,7 @@ namespace reality {
 #define RE_DEBUG 0
 #endif
 
-#if RE_ASSERTIONS_ENABLE
+#ifdef RE_ASSERTIONS_ENABLE
 #include <cstdio>
 #ifdef _MSC_VER
 #define RE_ASSERT(expr, message)														\

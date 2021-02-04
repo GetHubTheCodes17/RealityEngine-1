@@ -4,8 +4,8 @@
 
 #include <utility>
 
-#include "Rendering/Settings/GLShaderSettings.h"
 #include "Core/Platform.h"
+#include "Rendering/Settings/GLShaderSettings.h"
 
 namespace reality {
 	class RE_CORE GLShader {

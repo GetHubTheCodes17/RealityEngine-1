@@ -1,9 +1,14 @@
 {
-    "Arial": {
-      "settings": {
-        "Path": "C:\\Users\\hmarg\\Desktop\\Reality Engine Git\\Resources\\Fonts\\Arial.ttf",
-        "PixelSize": 36
-      },
-        "properties": {}
-    }
+    "value0": [
+        {
+            "key": "Arial",
+            "value": {
+                "first": {
+                    "Path": "../../Resources/Fonts/Arial.ttf",
+                    "PixelSize": 36
+                },
+                "second": {}
+            }
+        }
+    ]
 }

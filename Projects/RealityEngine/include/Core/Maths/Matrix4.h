@@ -2,18 +2,23 @@
 
 #pragma once
 
-#include "Frustrum.h"
-#include "Vector4.h"
-#include "Vector3.h"
+#include "Core/Platform.h"
 
-#if RE_SIMD_ENABLE
+#ifdef RE_SIMD_ENABLE
 #include <xmmintrin.h>
 #endif
+
+#include "Mathf.h"
+#include "Frustrum.h"
+#include "Viewport.h"
+#include "Vector4.h"
+#include "Vector3.h"
+#include "Vector2.h"
 
 namespace reality {
 	struct alignas(16) Matrix4 {
 		union {
-#if RE_SIMD_ENABLE
+#ifdef RE_SIMD_ENABLE
 			__m128 m_Simd[4];
 #endif
 			float Array[16]{};
@@ -43,7 +48,7 @@ namespace reality {
 		constexpr Matrix4 operator*(float rhs) const;
 		constexpr Matrix4 operator/(float rhs) const;
 
-#if RE_SIMD_ENABLE
+#ifdef RE_SIMD_ENABLE
 		Matrix4& operator+=(const Matrix4& rhs);
 		Matrix4& operator-=(const Matrix4& rhs);
 		Matrix4& operator*=(const Matrix4& rhs);
@@ -66,6 +71,7 @@ namespace reality {
 		static Vector3 GetTranslation(const Matrix4& translation);
 		static Vector3 GetEulerAngles(const Matrix4& rotation);
 		static Vector3 GetScale(const Matrix4& scale);
+		static Vector3 GetMouseRay(const Matrix4& view, const Matrix4& proj, const Viewport& viewport, Vector2 mousePos);
 		static constexpr Matrix4 Inverse(const Matrix4& m);
 		static constexpr Matrix4 Lerp(const Matrix4& a, const Matrix4& b, float t);
 		static constexpr Matrix4 Ortho(const Frustrum& frustrum);
@@ -213,7 +219,7 @@ constexpr reality::Matrix4 reality::Matrix4::operator/(float rhs) const {
 	return res;
 }
 
-#if RE_SIMD_ENABLE
+#ifdef RE_SIMD_ENABLE
 inline reality::Matrix4& reality::Matrix4::operator+=(const Matrix4& rhs) {
 	m_Simd[0] = _mm_add_ps(m_Simd[0], rhs.m_Simd[0]);
 	m_Simd[1] = _mm_add_ps(m_Simd[1], rhs.m_Simd[1]);
@@ -372,7 +378,6 @@ inline reality::Matrix4 reality::Matrix4::LightOrtho(const Vector3& position, co
 	const auto up{ Vector3::Cross(forward, right) };
 	const auto rl{ frustrum.Right - frustrum.Left }, tb{ frustrum.Top - frustrum.Bottom }, fn{ frustrum.Front - frustrum.Back };
 	const auto rl2{ 2.f / rl }, tb2{ 2.f / tb }, fn2{ -2.f / fn };
-	const auto a{ -(frustrum.Right + frustrum.Left) / rl };
 	const auto b{ -(frustrum.Top + frustrum.Bottom) / tb };
 	const auto c{ -(frustrum.Front + frustrum.Back) / fn };
 	const auto x{ -Vector3::Dot(position, right) * rl2 };
@@ -409,6 +414,30 @@ inline reality::Vector3 reality::Matrix4::GetScale(const Matrix4& scale) {
 		Mathf::Sqrt(scale.Array[4] * scale.Array[4] + scale.Array[5] * scale.Array[5] + scale.Array[6] * scale.Array[6]),
 		Mathf::Sqrt(scale.Array[8] * scale.Array[8] + scale.Array[9] * scale.Array[9] + scale.Array[10] * scale.Array[10])
 	};
+}
+
+inline reality::Vector3 reality::Matrix4::GetMouseRay(const Matrix4& view, const Matrix4& proj, const Viewport& viewport, Vector2 mousePos) {
+	Vector2 currentRay{ mousePos - viewport.Pos };
+
+	auto GetNormalizedCoords = [&viewport](const Vector2& mousePos) {
+		return Vector2{ (2.f * mousePos.X) / viewport.Size.X - 1.f, (2.f * mousePos.Y) / viewport.Size.Y - 1.f };
+	};
+
+	Vector2 normalizedCoords{ GetNormalizedCoords(currentRay) };
+	Vector4 clipCoords{ normalizedCoords.X, normalizedCoords.Y, -1.f, 1.f };
+
+	auto ToEyeSpace = [&proj](const Vector4& clipCoords) {
+		Matrix4 invertedProj{ Matrix4::Inverse(proj) };
+		Vector4 eyeCoords{ invertedProj * clipCoords };
+		return Vector4{ eyeCoords.X, eyeCoords.Y, -1.f, 0.f };
+	};
+
+	auto ToWorldSpace = [&view](const Vector4& eyeCoords) {
+		Matrix4 invertedView{ Matrix4::Inverse(view) };
+		Vector4 ray{ invertedView * eyeCoords };
+		return Vector3{ ray.X, ray.Y, ray.Z };
+	};
+	return Vector3::Normalize(ToWorldSpace(ToEyeSpace(clipCoords)));
 }
 
 constexpr reality::Matrix4 reality::Matrix4::Inverse(const Matrix4& m) {

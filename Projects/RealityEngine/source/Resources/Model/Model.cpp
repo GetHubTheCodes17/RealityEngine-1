@@ -23,8 +23,8 @@ reality::Model::Model(ModelSettings settings) :
 	else {
 		Assimp::Importer importer;
 		const auto scene{ importer.ReadFile(Path,
-			aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals |
-			aiProcess_GenBoundingBoxes | aiProcess_OptimizeMeshes | aiProcess_OptimizeGraph) };
+			unsigned(aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals |
+			aiProcess_GenBoundingBoxes | aiProcess_OptimizeMeshes | aiProcess_OptimizeGraph)) };
 		Path = std::filesystem::path(settings.Path).parent_path().string() + '\\';
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {

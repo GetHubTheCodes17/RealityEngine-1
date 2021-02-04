@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Rendering/Settings/GLCubeMapSettings.h"
 
 namespace reality {

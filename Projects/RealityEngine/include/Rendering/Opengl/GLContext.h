@@ -2,19 +2,22 @@
 
 #pragma once
 
+#include <span>
+
+#include "Core/Platform.h"
 #include "Core/Maths/Frustrum.h"
 #include "Core/Maths/Vector3.h"
 
 namespace reality {
 	class RE_CORE GLContext final {
 	public:
-		using ProcAddr = void(*)(const char*) noexcept;
+		using ProcAddr = void(*)(const char*);
 
 		static constexpr auto s_MaxLightsSize{ 100u };
 
 		static void Init(ProcAddr proc);
 		static void DrawSkybox(const class GLCubeMap& skybox);
-		static void SetLights(const struct GLLight* lights, unsigned size);
+		static void SetLights(std::span<struct GLLight> lights);
 		static void SetModelMatrix(const struct Matrix4& model);
 		static void SetViewMatrix(const Matrix4& view);
 		static void SetProjectionMatrix(const Matrix4& projection);

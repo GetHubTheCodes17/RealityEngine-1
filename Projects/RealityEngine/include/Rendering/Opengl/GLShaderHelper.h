@@ -2,20 +2,21 @@
 
 #pragma once
 
-#include "GLSLShader.h"
+#include "Core/Platform.h"
 #include "GLShader.h"
+#include "Resources/Shader/Shader.h"
 
 namespace reality {
 	struct RE_CORE GLShaderHelper {
-		const GLShader Default{ { shadersHelpers::g_DefaultVertexShader, shadersHelpers::g_DefaultFragmentShader } };
-		const GLShader Skybox{ { shadersHelpers::g_CubeMapVertexShader, shadersHelpers::g_CubeMapFragmentShader } };
-		const GLShader Shadow{ { shadersHelpers::g_ShadowVertexShader } };
-		const GLShader Blur{ { shadersHelpers::g_SimpleTextureVertexShader, shadersHelpers::g_BlurFragmentShader } };
-		const GLShader DownSample{ { shadersHelpers::g_SimpleTextureVertexShader, shadersHelpers::g_DownSampleFragmentShader } };
-		const GLShader LensFlare{ { shadersHelpers::g_SimpleTextureVertexShader, shadersHelpers::g_LensFlareFragmentShader } };
-		const GLShader Additive{ { shadersHelpers::g_SimpleTextureVertexShader, shadersHelpers::g_AdditiveFragmentShader } };
-		const GLShader Particle{ { shadersHelpers::g_ParticleVertexShader, shadersHelpers::g_ParticleFragmentShader } };
-		const GLShader Text{ { shadersHelpers::g_TextVertexShader, shadersHelpers::g_TextFragmentShader } };
+		const GLShader Default{ { Shader::GetShaderFromEngineFile("Default.vert"), Shader::GetShaderFromEngineFile("Default.frag") } };
+		const GLShader Skybox{ { Shader::GetShaderFromEngineFile("CubeMap.vert"), Shader::GetShaderFromEngineFile("CubeMap.frag") } };
+		const GLShader Shadow{ { Shader::GetShaderFromEngineFile("Shadow.vert") } };
+		const GLShader Blur{ { Shader::GetShaderFromEngineFile("Texture.vert"), Shader::GetShaderFromEngineFile("Blur.frag") } };
+		const GLShader DownSample{ { Shader::GetShaderFromEngineFile("Texture.vert"), Shader::GetShaderFromEngineFile("DownSample.frag") } };
+		const GLShader LensFlare{ { Shader::GetShaderFromEngineFile("Texture.vert"), Shader::GetShaderFromEngineFile("LensFlare.frag") } };
+		const GLShader Additive{ { Shader::GetShaderFromEngineFile("Texture.vert"), Shader::GetShaderFromEngineFile("Additive.frag") } };
+		const GLShader Particle{ { Shader::GetShaderFromEngineFile("Particle.vert"), Shader::GetShaderFromEngineFile("Particle.frag") } };
+		const GLShader Text{ { Shader::GetShaderFromEngineFile("Text.vert"), Shader::GetShaderFromEngineFile("Text.frag") } };
 	};
 
 	RE_CORE extern GLShaderHelper* g_ShaderHelper;

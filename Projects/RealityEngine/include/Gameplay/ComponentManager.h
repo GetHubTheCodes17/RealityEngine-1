@@ -3,46 +3,41 @@
 #pragma once
 
 #include <unordered_map>
-#include <typeindex>
 #include <vector>
-#include <memory>
+#include <span>
 
-#include "Core/Platform.h"
 #include "Gameplay/Component/Component.h"
 
 namespace reality {
 	class ComponentManager {
 	public:
-		void AddComponent(Component* comp);
-		void RemoveComponent(Component* comp);
+		ComponentManager();
+
+		void AddComponent(const Component* comp);
+		void RemoveComponent(const Component* comp);
 		template <class T>
-		const std::vector<Component*>* GetComponents() const;
+		std::span<const Component*> GetComponents() requires std::derived_from<T, Component>;
 
 	private:
-		std::unordered_map<std::type_index, std::vector<Component*>> m_Components;
+		std::unordered_map<rttr::type, std::vector<const Component*>> m_Components;
 	};
 }
 
-inline void reality::ComponentManager::AddComponent(Component* comp) {
-	m_Components[typeid(*comp)].emplace_back(comp);
+inline reality::ComponentManager::ComponentManager() {
+	for (const auto& type : rttr::type::get<Component>().get_derived_classes()) {
+		m_Components[type];
+	}
 }
 
-inline void reality::ComponentManager::RemoveComponent(Component* comp) {
-	auto it{ m_Components.find(typeid(*comp)) };
-	if (it == m_Components.cend()) {
-		return;
-	}
-	it->second.erase(std::remove(std::begin(it->second), std::end(it->second), comp), std::end(it->second));
+inline void reality::ComponentManager::AddComponent(const Component* comp) {
+	m_Components.at(rttr::type::get(*comp)).emplace_back(comp);
+}
 
-	if (it->second.empty()) {
-		m_Components.erase(it);
-	}
+inline void reality::ComponentManager::RemoveComponent(const Component* comp) {
+	std::erase(m_Components.at(rttr::type::get(*comp)), comp);
 }
 
 template <class T>
-const std::vector<reality::Component*>* reality::ComponentManager::GetComponents() const {
-	static_assert(std::is_base_of_v<Component, T>);
-
-	const auto it{ m_Components.find(typeid(T)) };
-	return it != m_Components.cend() ? &it->second : nullptr;
+std::span<const reality::Component*> reality::ComponentManager::GetComponents() requires std::derived_from<T, Component> {
+	return m_Components.at(rttr::type::get<T>());
 }

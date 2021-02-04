@@ -3,7 +3,6 @@
 #include "Rendering/Opengl/GLParticleSystem.h"
 
 #include <glad/glad.h>
-#include <algorithm>
 
 #include "Rendering/Opengl/GLShaderHelper.h"
 #include "Rendering/Opengl/GLTexture.h"
@@ -91,9 +90,9 @@ void reality::GLParticleSystem::UpdateParticles(float deltaTime, Vector3 cameraP
 		m_LastUnusedParticle = FindUnusedParticle();
 		m_Particles[m_LastUnusedParticle].Life = MaxLife;
 		m_Particles[m_LastUnusedParticle].Size = Size;
-		m_Particles[m_LastUnusedParticle].Speed.X = Direction.X + (std::rand() % 20 - 10.f) / 10.f * Spread;
-		m_Particles[m_LastUnusedParticle].Speed.Y = Direction.Y + (std::rand() % 20 - 10.f) / 10.f * Spread;
-		m_Particles[m_LastUnusedParticle].Speed.Z = Direction.Z + (std::rand() % 20 - 10.f) / 10.f * Spread;
+		m_Particles[m_LastUnusedParticle].Speed.X = Direction.X + (float(std::rand() % 20) - 10.f) / 10.f * Spread;
+		m_Particles[m_LastUnusedParticle].Speed.Y = Direction.Y + (float(std::rand() % 20) - 10.f) / 10.f * Spread;
+		m_Particles[m_LastUnusedParticle].Speed.Z = Direction.Z + (float(std::rand() % 20) - 10.f) / 10.f * Spread;
 		m_Particles[m_LastUnusedParticle].Position.X = Position.X;
 		m_Particles[m_LastUnusedParticle].Position.Y = Position.Y;
 		m_Particles[m_LastUnusedParticle].Position.Z = Position.Z;
@@ -115,7 +114,7 @@ void reality::GLParticleSystem::UpdateParticles(float deltaTime, Vector3 cameraP
 			m_Particles[i].DistanceToCamera = Vector3::SqrDistance(m_Particles[i].Position, cameraPosition);
 		}
 		else {
-			m_Particles[i].Position.X = Mathf::FloatMax;
+			m_Particles[i].Position.X = std::numeric_limits<float>::max();
 		}
 	}
 

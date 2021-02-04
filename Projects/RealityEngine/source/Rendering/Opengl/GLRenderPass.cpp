@@ -27,9 +27,9 @@ reality::GLRenderPass::GLRenderPass(GLRenderPassSettings settings) {
 		glDrawBuffers((GLsizei)colorIndices.size(), colorIndices.data());
 	}
 
-	if (hasDepthAttachment | hasStencilAttachment) {
+	if (hasDepthAttachment || hasStencilAttachment) {
 		m_Handle.DepthStencilAttachment = GLTexture{ settings.DepthStencilAttachment };
-		glFramebufferTexture2D(GL_FRAMEBUFFER, (GLenum)(hasDepthAttachment & hasStencilAttachment ?
+		glFramebufferTexture2D(GL_FRAMEBUFFER, (GLenum)(hasDepthAttachment && hasStencilAttachment ?
 			GL_DEPTH_STENCIL_ATTACHMENT : GL_DEPTH_ATTACHMENT), m_Handle.DepthStencilAttachment.GetHandle().Target,
 			m_Handle.DepthStencilAttachment.GetHandle().Id, 0);
 	}
@@ -52,7 +52,7 @@ void reality::GLRenderPass::Clear() const {
 
 	constexpr GLenum modes[]{ GL_FILL, GL_LINE, GL_POINT };
 	glPolygonMode(GL_FRONT_AND_BACK, modes[(int)Rasterization]);
-	glViewport((GLsizei)Viewport.X, (GLsizei)Viewport.Y, (GLsizei)Viewport.Width, (GLsizei)Viewport.Height);
+	glViewport((GLsizei)Viewport.Pos.X, (GLsizei)Viewport.Pos.Y, (GLsizei)Viewport.Size.X, (GLsizei)Viewport.Size.Y);
 	glLineWidth(1.f);
 	glPointSize(1.f);
 
@@ -73,20 +73,20 @@ void reality::GLRenderPass::Blit(const GLRenderPass& dest) const {
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, m_Handle.Id);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, dest.m_Handle.Id);
 
-	glViewport((GLsizei)dest.Viewport.X, (GLsizei)dest.Viewport.Y, (GLsizei)dest.Viewport.Width, (GLsizei)dest.Viewport.Height);
+	glViewport((GLsizei)dest.Viewport.Pos.X, (GLsizei)dest.Viewport.Pos.Y, (GLsizei)dest.Viewport.Size.X, (GLsizei)dest.Viewport.Size.Y);
 
-	// This check is for empty framebuffers, like the default framebuffer, who doesn't have any color attachment binded
+	// This check is for empty framebuffers like the default framebuffer who doesn't have any color attachment binded
 	if (dest.m_Handle.ColorAttachments.empty()) {
-		glBlitFramebuffer((GLint)Viewport.X, (GLint)Viewport.Y, (GLint)Viewport.Width, (GLint)Viewport.Height,
-			(GLint)dest.Viewport.X, (GLint)dest.Viewport.Y, (GLint)dest.Viewport.Width, (GLint)dest.Viewport.Height,
+		glBlitFramebuffer((GLint)Viewport.Pos.X, (GLint)Viewport.Pos.Y, (GLint)Viewport.Size.X, (GLint)Viewport.Size.Y,
+			(GLint)dest.Viewport.Pos.X, (GLint)dest.Viewport.Pos.Y, (GLint)dest.Viewport.Size.X, (GLint)dest.Viewport.Size.Y,
 			GL_COLOR_BUFFER_BIT, GL_LINEAR);
 	}
 	else {
 		for (std::size_t i{}; i < dest.m_Handle.ColorAttachments.size(); ++i) {
 			glReadBuffer(GL_COLOR_ATTACHMENT0 + (GLenum)i);
 			glDrawBuffer(GL_COLOR_ATTACHMENT0 + (GLenum)i);
-			glBlitFramebuffer((GLint)Viewport.X, (GLint)Viewport.Y, (GLint)Viewport.Width, (GLint)Viewport.Height,
-				(GLint)dest.Viewport.X, (GLint)dest.Viewport.Y, (GLint)dest.Viewport.Width, (GLint)dest.Viewport.Height,
+			glBlitFramebuffer((GLint)Viewport.Pos.X, (GLint)Viewport.Pos.Y, (GLint)Viewport.Size.X, (GLint)Viewport.Size.Y,
+				(GLint)dest.Viewport.Pos.X, (GLint)dest.Viewport.Pos.Y, (GLint)dest.Viewport.Size.X, (GLint)dest.Viewport.Size.Y,
 				GL_COLOR_BUFFER_BIT, GL_LINEAR);
 		}
 	}

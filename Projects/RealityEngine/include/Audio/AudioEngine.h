@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Core/Maths/Vector3.h"
 
 namespace irrklang { class ISoundEngine; }
@@ -10,6 +11,7 @@ namespace reality {
 	class RE_CORE AudioEngine {
 		friend class AudioClip;
 		friend class AudioSource;
+
 	public:
 		AudioEngine();
 

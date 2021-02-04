@@ -23,7 +23,7 @@ reality::GlfwWindow::GlfwWindow(const WindowSettings& settings) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_SAMPLES, (int)settings.Samples);
-#if RE_DEBUG
+#ifdef RE_DEBUG
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
 #endif
 	m_Window = glfwCreateWindow(settings.Width, settings.Height, settings.Title, nullptr, nullptr);

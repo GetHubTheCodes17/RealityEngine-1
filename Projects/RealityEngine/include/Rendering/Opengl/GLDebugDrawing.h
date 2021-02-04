@@ -2,9 +2,10 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Rendering/Settings/GLDebugDrawingSettings.h"
+#include "Resources/Shader/Shader.h"
 #include "Core/Maths/Line.h"
-#include "GLSLShader.h"
 #include "GLShader.h"
 #include "GLMesh.h"
 
@@ -17,7 +18,7 @@ namespace reality {
 		void DrawLines(const Line* lines, unsigned size, GLDebugDrawingSettings settings = {}) const;
 
 	private:
-		const GLShader m_DebugDraw{ { shadersHelpers::g_BasicVertexShader, shadersHelpers::g_OnlyColorFragmentShader } };
+		const GLShader m_DebugDraw{ { Shader::GetShaderFromEngineFile("Basic.vert"), Shader::GetShaderFromEngineFile("Color.frag") } };
 		const GLMesh m_Lines{ { {}, s_MaxLinesSize * 2, {}, 0, GLMeshUsage::Dynamic, GLMeshDrawType::Lines } };
 		const int m_DebugDrawColorLocation{ m_DebugDraw.GetLocation("uColor") };
 	};

@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <string_view>
+#include <string>
 
 namespace reality {
 	struct GLShaderSettings {
-		std::string_view VertexSource, FragmentSource, GeometrySource;
+		std::string VertexSource, FragmentSource, GeometrySource;
 	};
 }

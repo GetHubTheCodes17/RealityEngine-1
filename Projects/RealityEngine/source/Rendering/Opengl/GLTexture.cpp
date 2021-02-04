@@ -63,10 +63,10 @@ void reality::GLTexture::Resize(const Viewport& viewport, const uint8* image) co
 	glBindTexture(m_Handle.Target, m_Handle.Id);
 	if (m_Handle.Samples) {
 		glTexImage2DMultisample(m_Handle.Target, (GLsizei)m_Handle.Samples, m_Handle.InternalFormat,
-			(GLsizei)viewport.Width, (GLsizei)viewport.Height, GL_TRUE);
+			(GLsizei)viewport.Size.X, (GLsizei)viewport.Size.Y, GL_TRUE);
 	}
 	else {
-		glTexImage2D(m_Handle.Target, 0, (GLsizei)m_Handle.InternalFormat, (GLsizei)viewport.Width,
-			(GLsizei)viewport.Height, 0, m_Handle.Format, m_Handle.Type, image);
+		glTexImage2D(m_Handle.Target, 0, (GLsizei)m_Handle.InternalFormat, (GLsizei)viewport.Size.X,
+			(GLsizei)viewport.Size.Y, 0, m_Handle.Format, m_Handle.Type, image);
 	}
 }

@@ -2,10 +2,14 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "ResourceHandler.h"
 
 namespace reality {
-	struct RE_CORE ResourceManager final {
+	class RE_CORE ResourceManager final {
+		friend class GameEngine;
+
+	public:
 		std::unordered_map<std::string, GLMesh> Meshes;
 		std::unordered_map<std::string, GLMaterial> Materials;
 		ResourceHandler<GLModel, ModelSettings, GLMeshSettings, Model> Models;
@@ -14,6 +18,7 @@ namespace reality {
 		ResourceHandler<GLShader, ShaderSettings, GLShaderSettings, Shader> Shaders;
 		ResourceHandler<GLFont, FontSettings, GLFontSettings, Font> Fonts;
 
+	private:
 		ResourceManager();
 		ResourceManager(ResourceManager&&) = delete;
 		ResourceManager& operator=(ResourceManager&&) = delete;
@@ -25,7 +30,7 @@ namespace reality {
 }
 
 inline reality::ResourceManager::ResourceManager() :
-	Textures{ "Resources/Textures.json" }, Models{ "Resources/Models.json" }, Skyboxes{ "Resources/Skyboxes.json" },
+	Models{ "Resources/Models.json" }, Skyboxes{ "Resources/Skyboxes.json" }, Textures{ "Resources/Textures.json" },
 	Shaders{ "Resources/Shaders.json" }, Fonts{ "Resources/Fonts.json" }
 {}
 

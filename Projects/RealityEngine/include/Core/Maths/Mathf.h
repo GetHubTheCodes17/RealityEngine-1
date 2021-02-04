@@ -2,18 +2,13 @@
 
 #pragma once
 
-#include <limits>
+#include <numbers>
 #include <cmath>
 
 namespace reality {
 	namespace Mathf {
 		constexpr auto Deg2Rad{ 0.01745329251f };
-		constexpr auto Epsilon{ std::numeric_limits<float>::epsilon() };
-		constexpr auto FloatMax{ (std::numeric_limits<float>::max)() };
-		constexpr auto FloatMin{ (std::numeric_limits<float>::min)() };
-		constexpr auto Infinity{ std::numeric_limits<float>::infinity() };
-		constexpr auto QuietNan{ std::numeric_limits<float>::quiet_NaN() };
-		constexpr auto Pi{ 3.14159265359f };
+		constexpr auto Epsilon{ 1.192092896e-07f };
 		constexpr auto Rad2Deg{ 57.2957795131f };
 		constexpr auto G{ 9.81f };
 

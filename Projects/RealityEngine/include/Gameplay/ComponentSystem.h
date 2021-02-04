@@ -42,21 +42,17 @@ inline void reality::ComponentSystem::UpdateTransforms(Scene& scene) const {
 		root.SetHasChanged(false);
 	};
 
-	for (const auto& object : scene.GetGameObjects()) {
-		if (object->Transform.IsRoot()) {
-			UpdateHierarchy(object->Transform);
-		}
+	for (const auto& object : scene.m_Roots) {
+		UpdateHierarchy(object->Transform);
 	}
 }
 
 inline void reality::ComponentSystem::UpdateCameras(Scene& scene, Vector2 windowSize) const {
-	if (auto cameras{ scene.GetComponentManager().GetComponents<CCamera>() }) {
-		for (const auto& camera : *cameras) {
-			CCamera::s_Main = static_cast<CCamera*>(camera);
-		}
+	for (const auto camera : scene.m_Manager.GetComponents<CCamera>()) {
+		CCamera::s_Main = static_cast<const CCamera*>(camera);
 	}
 	if (CCamera::s_Main) {
-		if (const auto transform{ CCamera::s_Main->GetGameObject().GetComponent<CTransform>() }) {
+		if (const auto transform{ CCamera::s_Main->GetGameObject().GetComponent<CTransform>() }; transform && transform->HasChanged()) {
 			GLContext::SetProjectionMatrix(Matrix4::Perspective(windowSize.X / windowSize.Y, CCamera::s_Main->Near,
 				CCamera::s_Main->Far, CCamera::s_Main->Fov));
 			GLContext::SetViewMatrix(Matrix4::LookAt(transform->GetPosition(), transform->GetForward(), transform->GetUp()));
@@ -65,41 +61,31 @@ inline void reality::ComponentSystem::UpdateCameras(Scene& scene, Vector2 window
 }
 
 inline void reality::ComponentSystem::UpdateLights(Scene& scene) const {
-	if (const auto lights{ scene.GetComponentManager().GetComponents<CLight>() }) {
-		auto glLights{ new GLLight[lights->size()] };
-		const GLLight* directionalShadow{};
-		for (auto i{ 0 }; i < lights->size(); ++i) {
-			const auto& light{ *static_cast<const CLight*>((*lights)[i]) };
-			glLights[i].Color = light.Color;
-			glLights[i].Position = light.GetGameObject().Transform.GetPosition();
-			glLights[i].Direction = light.GetGameObject().Transform.GetForward();
-			glLights[i].Cutoff = light.Range - 10.f;
-			glLights[i].Outcutoff = light.SpotAngle;
-			glLights[i].Type = (enum GLLight::Type)light.Type;
-			glLights[i].Intensity = light.Intensity;
-			glLights[i].Shadow = (enum GLLight::Shadow)light.Shadow;
+	if (auto lights{ scene.m_Manager.GetComponents<CLight>() }; !lights.empty()) {
+		std::vector<GLLight> glLights(lights.size());
+		for (std::size_t i{}; i < glLights.size(); ++i) {
+			const auto& light{ *static_cast<const CLight*>(lights[i]) };
+			glLights[i] = { 
+				light.Color, light.GetGameObject().Transform.GetPosition(), 0, 
+				light.GetGameObject().Transform.GetForward(), 0, (enum GLLight::Type)light.Type, 
+				(enum GLLight::Shadow)light.Shadow, light.Intensity, light.Range - 10.f, light.SpotAngle 
+			};
 
 			if (light.Type == CLight::Type::Directional && light.Shadow == CLight::Shadow::Soft) {
-				directionalShadow = &glLights[i];
+				GLContext::SetShadowMatrix(glLights[i].Direction, {}, { -15.f, 15.f, -15.f, 15.f, -15.f, 15.f });
 			}
 		}
-		if (directionalShadow) {
-			GLContext::SetShadowMatrix(directionalShadow->Direction, {}, { -15.f, 15.f, -15.f, 15.f, -15.f, 15.f });
-		}
-		GLContext::SetLights(glLights, (unsigned)lights->size());
-		delete[] glLights;
+		GLContext::SetLights(glLights);
 	}
 }
 
 inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
-	if (const auto meshes{ scene.GetComponentManager().GetComponents<CMeshRenderer>() }) {
-		for (const auto& mesh : *meshes) {
-			if (mesh->GetGameObject().IsActive) {
-				GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
-				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->GetModel() }) {
-					for (const auto& glmesh : glModel->Meshes) {
-						glmesh->Draw();
-					}
+	for (const auto mesh : scene.m_Manager.GetComponents<CMeshRenderer>()) {
+		if (mesh->GetGameObject().IsActive) {
+			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
+			if (const auto glModel{ static_cast<const CMeshRenderer*>(mesh)->GetModel() }) {
+				for (const auto& glmesh : glModel->Meshes) {
+					glmesh->Draw();
 				}
 			}
 		}
@@ -107,17 +93,15 @@ inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 }
 
 inline void reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
-	if (const auto meshes{ scene.GetComponentManager().GetComponents<CMeshRenderer>() }) {
-		for (const auto& mesh : *meshes) {
-			if (mesh->GetGameObject().IsActive) {
-				GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
-				if (const auto glModel{ static_cast<CMeshRenderer*>(mesh)->GetModel() }) {
-					for (const auto& glMesh : glModel->Meshes) {
-						if (const auto glMaterial{ glMesh->Material }) {
-							glMaterial->Bind();
-						}
-						glMesh->Draw();
+	for (const auto mesh : scene.m_Manager.GetComponents<CMeshRenderer>()) {
+		if (mesh->GetGameObject().IsActive) {
+			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
+			if (const auto glModel{ static_cast<const CMeshRenderer*>(mesh)->GetModel() }) {
+				for (const auto& glMesh : glModel->Meshes) {
+					if (const auto glMaterial{ glMesh->Material }) {
+						glMaterial->Bind();
 					}
+					glMesh->Draw();
 				}
 			}
 		}
@@ -125,15 +109,13 @@ inline void reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
 }
 
 inline void reality::ComponentSystem::UpdateParticles(Scene& scene) const {
-	if (const auto systems{ scene.GetComponentManager().GetComponents<CParticleSystem>() }) {
-		for (const auto& system : *systems) {
-			if (const auto glSystem{ static_cast<CParticleSystem*>(system)->System }) {
-				glSystem->Direction = Vector3::Normalize(system->GetGameObject().Transform.GetForward());
-				glSystem->Position = system->GetGameObject().Transform.GetPosition();
-				if (auto camera{ CCamera::s_Main }) {
-					glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, 
-						camera->GetGameObject().Transform.GetPosition());
-				}
+	for (const auto& system : scene.m_Manager.GetComponents<CParticleSystem>()) {
+		if (const auto glSystem{ static_cast<const CParticleSystem*>(system)->System }) {
+			glSystem->Direction = Vector3::Normalize(system->GetGameObject().Transform.GetForward());
+			glSystem->Position = system->GetGameObject().Transform.GetPosition();
+			if (auto camera{ CCamera::s_Main }) {
+				glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, 
+					camera->GetGameObject().Transform.GetPosition());
 			}
 		}
 	}

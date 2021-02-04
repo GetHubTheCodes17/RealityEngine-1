@@ -42,9 +42,6 @@
     <ClCompile Include="..\..\Dependencies\Include\imgui\imgui_widgets.cpp">
       <Filter>source\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="source\ImGui\imgui_demo_window.cpp">
-      <Filter>source\ImGui</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Editor.h">

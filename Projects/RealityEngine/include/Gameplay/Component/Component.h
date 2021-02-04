@@ -8,12 +8,13 @@
 
 namespace reality {
 	class GameObject;
+	class Scene;
 
 	struct Component {
-	public:
 		friend GameObject;
-		friend class Scene;
+		friend Scene;
 
+	public:
 		virtual	~Component() = default;
 
 		GameObject& GetGameObject() const;
@@ -44,6 +45,6 @@ public:											\
 		*this = T{};							\
 		m_GameObject = owner;					\
 	}											\
-	static Component* Instantiate() {			\
-		return new T;							\
-	}											
+	static std::shared_ptr<T> Instantiate() {	\
+		return std::make_shared<T>();			\
+	}

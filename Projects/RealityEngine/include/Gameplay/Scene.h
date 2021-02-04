@@ -5,38 +5,41 @@
 #include <chrono>
 #include <map>
 
+#include "Core/Platform.h"
+#include "ComponentManager.h"
 #include "GameObject.h"
 
 namespace reality {
-	class RE_CORE Scene {
-		using Clock = std::chrono::steady_clock;
+	class RE_CORE Scene final {
+		friend GameObject;
+		friend class ComponentSystem;
+		friend class Editor;
+
 	public:
 		std::string	Name;
 
-		explicit Scene(std::string_view name);
+		Scene(std::string_view name);
 		Scene(Scene&&) noexcept = default;
 		Scene& operator=(Scene&&) noexcept = default;
 
-		void Update();
 		GameObject& CreateGameObject(std::string_view name);
 		GameObject& CreateGameObject(const GameObject& copy);
-		GameObject* FindGameObject(std::string_view name) const;
+		GameObject* FindGameObject(std::string_view name);
 		void DestroyGameObject(GameObject& object, std::chrono::milliseconds time = {});
 		void Instantiate(std::function<void()> func);
-		std::vector<GameObject*> GetRootsGameObjects() const;
-		const std::vector<std::unique_ptr<GameObject>>& GetGameObjects() const;
-		const ComponentManager& GetComponentManager() const;
+		std::span<GameObject*> GetRootsGameObjects();
 
 	private:
 		ComponentManager m_Manager;
 		std::vector<std::unique_ptr<GameObject>> m_GameObjects;
+		std::vector<GameObject*> m_Roots;
 		std::vector<std::function<void()>> m_ToBeInstantiate;
-		std::multimap<Clock::time_point, GameObject*> m_ToBeRemoved;
+		std::multimap<std::chrono::steady_clock::time_point, GameObject*> m_ToBeRemoved;
 
+		void Update();
 		void DestroyGameObjectUnsafe(GameObject& object);
-		void UpdateDestroyed();
-		void UpdateInstantiated();
 
+	private:
 		friend class cereal::access;
 		template <class Archive>
 		void load(Archive& archive);
@@ -49,24 +52,21 @@ inline reality::Scene::Scene(std::string_view name) :
 	Name{ name }
 {}
 
-inline void reality::Scene::Update() {
-	UpdateDestroyed();
-	UpdateInstantiated();
-}
-
 inline reality::GameObject& reality::Scene::CreateGameObject(std::string_view name) {
-	return *m_GameObjects.emplace_back(std::make_unique<GameObject>(name, this, &m_Manager));
+	return *m_Roots.emplace_back(m_GameObjects.emplace_back(std::make_unique<GameObject>(name)).get());
 }
 
 inline reality::GameObject& reality::Scene::CreateGameObject(const GameObject& copy) {
-	return *m_GameObjects.emplace_back(std::make_unique<GameObject>(copy));
+	auto go{ m_GameObjects.emplace_back(std::make_unique<GameObject>(copy)).get() };
+	if (go->Transform.IsRoot()) {
+		m_Roots.emplace_back(go);
+	}
+	return *go;
 }
 
 inline void reality::Scene::DestroyGameObject(GameObject& object, std::chrono::milliseconds time) {
-	if (std::find_if(m_ToBeRemoved.cbegin(), m_ToBeRemoved.cend(),
-		[&object](const auto& element) { return element.second == &object; }) == m_ToBeRemoved.cend()) 
-	{
-		m_ToBeRemoved.emplace(Clock::now() + time, &object);
+	if (std::ranges::find_if(m_ToBeRemoved, [&](auto& elem) { return elem.second == &object; }) == m_ToBeRemoved.cend()) {
+		m_ToBeRemoved.emplace(std::chrono::steady_clock::now() + time, &object);
 	}
 }
 
@@ -74,33 +74,8 @@ inline void reality::Scene::Instantiate(std::function<void()> func) {
 	m_ToBeInstantiate.emplace_back(func);
 }
 
-inline std::vector<reality::GameObject*> reality::Scene::GetRootsGameObjects() const {
-	std::vector<GameObject*> roots;
-	for (const auto& object : m_GameObjects) {
-		if (object->Transform.IsRoot()) {
-			roots.emplace_back(object.get());
-		}
-	}
-	return roots;
-}
-
-inline const std::vector<std::unique_ptr<reality::GameObject>>& reality::Scene::GetGameObjects() const {
-	return m_GameObjects;
-}
-
-inline const reality::ComponentManager& reality::Scene::GetComponentManager() const {
-	return m_Manager;
-}
-
-inline void reality::Scene::UpdateInstantiated() {
-	if (m_ToBeInstantiate.empty()) {
-		return;
-	}
-
-	for (const auto& instantiate : m_ToBeInstantiate) {
-		instantiate();
-	}
-	m_ToBeInstantiate.clear();
+inline std::span<reality::GameObject*> reality::Scene::GetRootsGameObjects() {
+	return m_Roots;
 }
 
 template <class Archive>
@@ -110,18 +85,20 @@ void reality::Scene::load(Archive& archive) {
 
 	for (auto& object : m_GameObjects) {
 		object->m_Scene = this;
-		object->m_Manager = &m_Manager;
 		for (auto& comp : object->m_Components) {
 			comp->m_GameObject = object.get();
 			m_Manager.AddComponent(comp.get());
 		}
 		if (object->Transform.GetParentId()) {
-			auto parent{ std::find_if(m_GameObjects.begin(), m_GameObjects.end(),
-				[&object](auto& elem) { return elem->GetId() == object->Transform.GetParentId(); }) };
-
+			auto parent{ std::ranges::find_if(m_GameObjects,
+				[&](auto& elem) { return elem->GetId() == object->Transform.GetParentId(); }) 
+			};
 			if (parent != m_GameObjects.cend()) {
 				object->SetParent(**parent);
 			}
+		}
+		else {
+			m_Roots.emplace_back(object.get());
 		}
 	}
 }

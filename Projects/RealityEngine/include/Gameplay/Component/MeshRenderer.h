@@ -20,6 +20,7 @@ namespace reality {
 		std::string m_Name;
 		const struct GLModel* m_Model{};
 
+	private:
 		template <class Archive>
 		void load(Archive& archive) {
 			archive(CEREAL_NVP(m_Name));

@@ -2,14 +2,15 @@
 
 #pragma once
 
-#include <functional>
 #include <vector>
+#include <span>
 
-#include "Component.h"
+#include "Core/Platform.h"
 #include "Core/Maths/MathsSerializer.h"
+#include "Component.h"
 
 namespace reality {
-	struct CTransform : Component {
+	struct RE_CORE CTransform : Component {
 		CTransform() = default;
 		CTransform(const CTransform&);
 		CTransform& operator=(const CTransform&);
@@ -23,7 +24,7 @@ namespace reality {
 		bool HasChanged() const;
 		CTransform* GetRoot();
 		CTransform* GetParent() const;
-		const std::vector<CTransform*>& GetChildren() const;
+		std::span<CTransform*> GetChildren();
 		CTransform* GetChild(unsigned index) const;
 		unsigned GetChildrenSize() const;
 		unsigned GetLevel() const;
@@ -39,17 +40,12 @@ namespace reality {
 		Vector3 GetUp() const;
 		Vector3 GetForward() const;
 		void SetHasChanged(bool hasChanged);
-		RE_CORE void SetParent(CTransform* parent);
+		void SetParent(CTransform* parent);
 		void SetPosition(Vector3 position);
 		void SetRotation(Vector3 eulerAngles);
 		void SetRotation(Quaternion rotation);
 		void SetScale(Vector3 scale);
 		void SetTrs(const Matrix4& trs);
-
-	public:
-		virtual Component* Clone() const override;
-		void Reset();
-		static Component* Instantiate();
 
 	private:
 		Matrix4 m_Trs{ Matrix4::Identity };
@@ -59,33 +55,18 @@ namespace reality {
 		std::vector<CTransform*> m_Children;
 		CTransform* m_Parent{};
 		uint64 m_ParentId{};
-		unsigned m_Level{};		
+		unsigned m_Level{};
 		bool m_HasChanged{};
+
+	public:
+		virtual Component* Clone() const override;
+		void Reset();
+		static std::shared_ptr<CTransform> Instantiate();
 
 	private:
 		friend class cereal::access;
 		template <class Archive>
-		void load(Archive& archive) {
-			archive(CEREAL_NVP(m_Trs));
-			archive(CEREAL_NVP(m_Rotation));
-			archive(CEREAL_NVP(m_Position));
-			archive(CEREAL_NVP(m_Scale));
-			archive(CEREAL_NVP(m_Level));
-			archive(CEREAL_NVP(m_HasChanged));
-			archive(CEREAL_NVP(m_ParentId));
-			SetHasChanged(m_HasChanged);
-		}
-
-		template <class Archive>
-		void save(Archive& archive) const {
-			archive(CEREAL_NVP(m_Trs));
-			archive(CEREAL_NVP(m_Rotation));
-			archive(CEREAL_NVP(m_Position));
-			archive(CEREAL_NVP(m_Scale));
-			archive(CEREAL_NVP(m_Level));
-			archive(CEREAL_NVP(m_HasChanged));
-			archive(CEREAL_NVP(m_ParentId));
-		}
+		void serialize(Archive& archive);
 	};
 }
 
@@ -108,25 +89,24 @@ inline reality::CTransform& reality::CTransform::operator=(const CTransform& oth
 
 inline reality::CTransform::~CTransform() {
 	if (m_Parent && !m_Parent->m_Children.empty()) {
-		m_Parent->m_Children.erase(std::remove(m_Parent->m_Children.begin(), m_Parent->m_Children.end(), this),
-			m_Parent->m_Children.end());
+		std::erase(m_Parent->m_Children, this);
 	}
 }
 
 inline reality::Vector3 reality::CTransform::TransformPoint(const Vector3& position) const {
-	return { 
+	return {
 		m_Trs[0] * position.X + m_Trs[4] * position.Y + m_Trs[8] * position.Z + m_Trs[12],
 		m_Trs[1] * position.X + m_Trs[5] * position.Y + m_Trs[9] * position.Z + m_Trs[13],
-		m_Trs[2] * position.X + m_Trs[6] * position.Y + m_Trs[10] * position.Z + m_Trs[14] 
+		m_Trs[2] * position.X + m_Trs[6] * position.Y + m_Trs[10] * position.Z + m_Trs[14]
 	};
 }
 
 inline reality::Vector3 reality::CTransform::InverseTransformPoint(const Vector3& position) const {
 	const auto pos{ position - m_Position };
-	return { 
+	return {
 		m_Trs[0] * pos.X + m_Trs[1] * pos.Y + m_Trs[2] * pos.Z + m_Trs[4],
 		m_Trs[4] * pos.X + m_Trs[5] * pos.Y + m_Trs[6] * pos.Z + m_Trs[7],
-		m_Trs[8] * pos.X + m_Trs[9] * pos.Y + m_Trs[10] * pos.Z + m_Trs[11] 
+		m_Trs[8] * pos.X + m_Trs[9] * pos.Y + m_Trs[10] * pos.Z + m_Trs[11]
 	};
 }
 
@@ -145,14 +125,7 @@ inline bool reality::CTransform::IsRoot() const {
 }
 
 inline bool reality::CTransform::HasChanged() const {
-	auto parent{ m_Parent };
-	while (parent) {
-		if (parent->m_HasChanged) {
-			return true;
-		}
-		parent = parent->m_Parent;
-	}
-	return m_HasChanged;
+	return m_Parent ? m_Parent->HasChanged() : m_HasChanged;
 }
 
 inline reality::CTransform* reality::CTransform::GetRoot() {
@@ -163,7 +136,7 @@ inline reality::CTransform* reality::CTransform::GetParent() const {
 	return m_Parent;
 }
 
-inline const std::vector<reality::CTransform*>& reality::CTransform::GetChildren() const {
+inline std::span<reality::CTransform*> reality::CTransform::GetChildren() {
 	return m_Children;
 }
 
@@ -172,7 +145,7 @@ inline reality::CTransform* reality::CTransform::GetChild(unsigned index) const 
 }
 
 inline unsigned reality::CTransform::GetChildrenSize() const {
-	return (unsigned)(m_Children.size());
+	return (unsigned)m_Children.size();
 }
 
 inline unsigned reality::CTransform::GetLevel() const {
@@ -225,13 +198,8 @@ inline reality::Vector3 reality::CTransform::GetForward() const {
 
 inline void reality::CTransform::SetHasChanged(bool hasChanged) {
 	m_HasChanged = hasChanged;
-
-	if (hasChanged) {
-		auto parent{ m_Parent };
-		while (parent) {
-			parent->m_HasChanged = true;
-			parent = parent->m_Parent;
-		}
+	if (m_Parent && hasChanged) {
+		m_Parent->SetHasChanged(m_HasChanged);
 	}
 }
 
@@ -270,8 +238,19 @@ inline void reality::CTransform::Reset() {
 	m_GameObject = owner;
 }
 
-inline reality::Component* reality::CTransform::Instantiate() {
-	return new CTransform;
+inline std::shared_ptr<reality::CTransform> reality::CTransform::Instantiate() {
+	return std::make_shared<CTransform>();
+}
+
+template <class Archive>
+void reality::CTransform::serialize(Archive& archive) {
+	archive(CEREAL_NVP(m_Trs));
+	archive(CEREAL_NVP(m_Rotation));
+	archive(CEREAL_NVP(m_Position));
+	archive(CEREAL_NVP(m_Scale));
+	archive(CEREAL_NVP(m_Level));
+	archive(CEREAL_NVP(m_HasChanged));
+	archive(CEREAL_NVP(m_ParentId));
 }
 
 CEREAL_REGISTER_TYPE_WITH_NAME(reality::CTransform, "Transform");

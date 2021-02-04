@@ -2,8 +2,11 @@
 
 #pragma once
 
-#include "Component.h"
+#include <cereal/cereal.hpp>
+
+#include "Core/Platform.h"
 #include "Core/Maths/MathsSerializer.h"
+#include "Component.h"
 
 namespace reality {
 	struct CCamera : Component {
@@ -11,7 +14,7 @@ namespace reality {
 		enum class Projection { Perspective, Orthographic };
 		enum class Clear { Skybox, SolidColor, DepthOnly, DontClear };
 
-		inline static CCamera* s_Main{};
+		inline static const CCamera* s_Main{};
 
 		int Depth{};
 		float Fov{ 60.f }, Near{ 0.003f }, Far{ 1000.f }, OrthoSize{ 10.f };

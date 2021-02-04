@@ -5,8 +5,9 @@
 #include <string>
 #include <vector>
 
-#include "Vertex.h"
+#include "Core/Platform.h"
 #include "Core/Maths/AABB.h"
+#include "Vertex.h"
 
 struct aiNode; struct aiScene; struct aiMesh;
 

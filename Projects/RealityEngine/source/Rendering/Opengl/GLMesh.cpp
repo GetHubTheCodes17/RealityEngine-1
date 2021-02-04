@@ -64,8 +64,7 @@ void reality::GLMesh::Draw(unsigned instances) const {
 			glDrawElements(m_Handle.DrawType, (GLsizei)m_Handle.IndicesSize, GL_UNSIGNED_INT, nullptr);
 		}
 		else {
-			glDrawElementsInstanced(m_Handle.DrawType, (GLsizei)m_Handle.IndicesSize, GL_UNSIGNED_INT, nullptr,
-				(GLsizei)instances);
+			glDrawElementsInstanced(m_Handle.DrawType, (GLsizei)m_Handle.IndicesSize, GL_UNSIGNED_INT, nullptr, (GLsizei)instances);
 		}
 	}
 	else {

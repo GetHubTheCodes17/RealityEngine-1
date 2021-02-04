@@ -8,8 +8,7 @@
 namespace reality {
 	class EditorCamera {
 	public:
-		Matrix4 Projection{ Matrix4::Perspective((float)RE_WINDOW_WIDTH / (float)RE_WINDOW_HEIGHT) };
-		Matrix4 Model;
+		Matrix4 Model, Projection{ Matrix4::Perspective((float)RE_WINDOW_WIDTH / (float)RE_WINDOW_HEIGHT) };
 		Vector3 Position;
 		float MovementSpeed{ 5.f }, RotationSpeed{ 4.f }, FocusSpeed{ 5.f };
 
@@ -20,8 +19,7 @@ namespace reality {
 
 	private:
 		Matrix4 m_View{ Matrix4::LookAt(Vector3::Zero, Vector3::Forward) };
-		Vector3 m_Euler;
-		Vector3 m_Destination;
+		Vector3 m_Euler, m_FocusDestination;
 		const GameObject* m_Target{};
 		float m_OldMovementMagnitude{};
 
@@ -51,9 +49,9 @@ inline void reality::EditorCamera::Update() {
 
 inline void reality::EditorCamera::UpdateFocus() {
 	if (m_Target) {
-		Position = Vector3::Lerp(Position, m_Destination, g_Io->Time->GetDeltaTime() * FocusSpeed);
+		Position = Vector3::Lerp(Position, m_FocusDestination, g_Io->Time->GetDeltaTime() * FocusSpeed);
 
-		if (Vector3::Distance(Position, m_Destination) < 0.01f) {
+		if (Vector3::Distance(Position, m_FocusDestination) < 0.01f) {
 			m_Target = nullptr;
 		}
 		UpdateModelView();
@@ -63,7 +61,7 @@ inline void reality::EditorCamera::UpdateFocus() {
 inline void reality::EditorCamera::Focus(const GameObject* target) {
 	m_Target = target;
 	if (m_Target) {
-		m_Destination = target->Transform.GetTrs().GetRow3(3) - Model.GetRow3(2) * 3.f;
+		m_FocusDestination = target->Transform.GetTrs().GetRow3(3) - Model.GetRow3(2) * 3.f;
 	}
 }
 
@@ -74,27 +72,27 @@ inline const reality::Matrix4& reality::EditorCamera::GetViewMatrix() const {
 inline void reality::EditorCamera::HandleKeys() {
 	const auto deltaTime{ g_Io->Time->GetDeltaTime() };
 
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_W)) {
+	if (ImGui::IsKeyDown(keycode::RE_KEY_W)) {
 		Position += Model.GetRow3(2) * deltaTime * MovementSpeed;
 		m_Target = nullptr;
 	}
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_S)) {
+	if (ImGui::IsKeyDown(keycode::RE_KEY_S)) {
 		Position -= Model.GetRow3(2) * deltaTime * MovementSpeed;
 		m_Target = nullptr;
 	}
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_D)) {
+	if (ImGui::IsKeyDown(keycode::RE_KEY_D)) {
 		Position -= Model.GetRow3(0) * deltaTime * MovementSpeed;
 		m_Target = nullptr;
 	}
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_A)) {
+	if (ImGui::IsKeyDown(keycode::RE_KEY_A)) {
 		Position += Model.GetRow3(0) * deltaTime * MovementSpeed;
 		m_Target = nullptr;
 	}
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_E)) {
+	if (ImGui::IsKeyDown(keycode::RE_KEY_E)) {
 		Position += Vector3::Up * deltaTime * MovementSpeed;
 		m_Target = nullptr;
 	}
-	if (g_Io->Input->GetKeyDown(keycode::RE_KEY_Q)) {
+	if (ImGui::IsKeyDown(keycode::RE_KEY_Q)) {
 		Position -= Vector3::Up * deltaTime * MovementSpeed;
 		m_Target = nullptr;
 	}

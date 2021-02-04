@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Rendering/Settings/GLFontSettings.h"
 #include "Core/Maths/Vector4.h"
 

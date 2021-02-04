@@ -4,6 +4,8 @@
 
 #include <utility>
 
+#include "Core/Platform.h"
+#include "Core/Maths/Mathf.h"
 #include "Core/Maths/Vector3.h"
 
 namespace reality {

@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Window.h"
 
 struct GLFWwindow;

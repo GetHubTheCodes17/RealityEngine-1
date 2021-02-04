@@ -23,6 +23,12 @@ reality::GlfwInput::GlfwInput(GLFWwindow* window) {
 			s_CursorPosition.X = (float)x;
 			s_CursorPosition.Y = (float)y;
 		});
+	glfwSetKeyCallback(currentWindow, [](GLFWwindow*, int key, int scancode, int action, int mods) noexcept {
+			s_KeysDown[key] = (bool)action;
+		});
+	glfwSetMouseButtonCallback(currentWindow, [](GLFWwindow*, int button, int action, int mods) noexcept {
+			s_MouseButtonsDown[button] = (bool)action;
+		});
 }
 
 void reality::GlfwInput::PollEvents() const {
@@ -36,15 +42,15 @@ void reality::GlfwInput::WaitEvents() const {
 }
 
 bool reality::GlfwInput::GetKeyDown(int keycode) const {
-	return (bool)glfwGetKey(glfwGetCurrentContext(), keycode);
+	return s_KeysDown[keycode];
 }
 
 bool reality::GlfwInput::GetKeyUp(int keycode) const {
-	return !glfwGetKey(glfwGetCurrentContext(), keycode);
+	return s_KeysDown[keycode];
 }
 
-int reality::GlfwInput::GetMouseButton(int button) const {
-	return glfwGetMouseButton(glfwGetCurrentContext(), button);
+bool reality::GlfwInput::GetMouseButton(int button) const {
+	return s_MouseButtonsDown[button];
 }
 
 reality::Vector2 reality::GlfwInput::GetCursorPos() const {

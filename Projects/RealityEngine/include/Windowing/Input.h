@@ -14,7 +14,7 @@ namespace reality {
 		virtual void WaitEvents() const = 0;
 		virtual bool GetKeyDown(int key) const = 0;
 		virtual bool GetKeyUp(int key) const = 0;
-		virtual int GetMouseButton(int button) const = 0;
+		virtual bool GetMouseButton(int button) const = 0;
 		virtual Vector2 GetCursorPos() const = 0;
 		virtual Vector2 GetRelativeMousePos() const = 0;
 		virtual Vector2 GetMouseScroll() const = 0;

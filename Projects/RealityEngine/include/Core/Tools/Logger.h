@@ -30,13 +30,13 @@ namespace reality {
 	RE_CORE extern Logger* g_Logger;
 }
 
-#if RE_LOG_ENABLE
+#ifdef RE_LOG_ENABLE
 	#define RE_LOG_INFO(message, ...) \
-		reality::g_Logger->Log(__FILE__, __LINE__, __func__, LogVerbosity::Info, 0, "[INFO] " message "\n", ##__VA_ARGS__);
+		reality::g_Logger->Log(__FILE__, __LINE__, __func__, LogVerbosity::Info, 0, "[INFO] " message "\n" __VA_OPT__(,) __VA_ARGS__);
 	#define RE_LOG_WARNING(message, ...) \
-		reality::g_Logger->Log(__FILE__, __LINE__, __func__, LogVerbosity::Warning, 1, "[WARN] " message "\n", ##__VA_ARGS__);
+		reality::g_Logger->Log(__FILE__, __LINE__, __func__, LogVerbosity::Warning, 1, "[WARN] " message "\n" __VA_OPT__(,) __VA_ARGS__);
 	#define RE_LOG_ERROR(message, ...) \
-		reality::g_Logger->Log(__FILE__, __LINE__, __func__, LogVerbosity::Error, 2, "[ERR] " message "\n", ##__VA_ARGS__);
+		reality::g_Logger->Log(__FILE__, __LINE__, __func__, LogVerbosity::Error, 2, "[ERR] " message "\n" __VA_OPT__(,) __VA_ARGS__);
 #else
 	#define RE_LOG_INFO(message, ...);
 	#define RE_LOG_WARNING(message, ...);

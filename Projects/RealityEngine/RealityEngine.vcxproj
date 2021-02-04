@@ -19,6 +19,7 @@
     <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="source\Gameplay\Component\Components.cpp" />
     <ClCompile Include="source\Gameplay\Component\Transform.cpp" />
+    <ClCompile Include="source\Gameplay\GameObject.cpp" />
     <ClCompile Include="source\Gameplay\Scene.cpp" />
     <ClCompile Include="source\Rendering\Opengl\GLCubeMap.cpp" />
     <ClCompile Include="source\Rendering\Opengl\GLDebugDrawing.cpp" />
@@ -76,7 +77,6 @@
     <ClInclude Include="include\Gameplay\SceneManager.h" />
     <ClInclude Include="include\Gameplay\ComponentSystem.h" />
     <ClInclude Include="include\Gameplay\SceneSerializer.h" />
-    <ClInclude Include="include\Rendering\GLSLShaders\Basic.vs" />
     <ClInclude Include="include\Rendering\Opengl\GLCubeMap.h" />
     <ClInclude Include="include\Rendering\Opengl\GLDebugDrawing.h" />
     <ClInclude Include="include\Rendering\Opengl\GLFont.h" />
@@ -92,7 +92,6 @@
     <ClInclude Include="include\Rendering\Opengl\GLShader.h" />
     <ClInclude Include="include\Rendering\Opengl\GLShaderHelper.h" />
     <ClInclude Include="include\Rendering\Opengl\GLMeshHelper.h" />
-    <ClInclude Include="include\Rendering\Opengl\GLSLShader.h" />
     <ClInclude Include="include\Rendering\Opengl\GLTexture.h" />
     <ClInclude Include="include\Rendering\Settings\GLCubeMapSettings.h" />
     <ClInclude Include="include\Rendering\Settings\GLDebugDrawingSettings.h" />
@@ -107,7 +106,7 @@
     <ClInclude Include="include\Resources\Model\ModelConverter.h" />
     <ClInclude Include="include\Resources\Model\Vertex.h" />
     <ClInclude Include="include\Resources\ResourceConverter.h" />
-    <ClInclude Include="include\Resources\ResourceSerialize.h" />
+    <ClInclude Include="include\Resources\ResourceSerializer.h" />
     <ClInclude Include="include\Resources\ResourceManager.h" />
     <ClInclude Include="include\Resources\Shader\Shader.h" />
     <ClInclude Include="include\Resources\Skybox\Skybox.h" />
@@ -122,21 +121,22 @@
     <ClInclude Include="include\Windowing\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\Rendering\GLSLShaders\Additive.fs" />
-    <None Include="include\Rendering\GLSLShaders\Blur.fs" />
-    <None Include="include\Rendering\GLSLShaders\Color.fs" />
-    <None Include="include\Rendering\GLSLShaders\CubeMap.fs" />
-    <None Include="include\Rendering\GLSLShaders\CubeMap.vs" />
-    <None Include="include\Rendering\GLSLShaders\Default.fs" />
-    <None Include="include\Rendering\GLSLShaders\Default.vs" />
-    <None Include="include\Rendering\GLSLShaders\DownSample.fs" />
-    <None Include="include\Rendering\GLSLShaders\LensFlare.fs" />
-    <None Include="include\Rendering\GLSLShaders\Particle.fs" />
-    <None Include="include\Rendering\GLSLShaders\Particle.vs" />
-    <None Include="include\Rendering\GLSLShaders\Shadow.vs" />
-    <None Include="include\Rendering\GLSLShaders\Text.fs" />
-    <None Include="include\Rendering\GLSLShaders\Text.vs" />
-    <None Include="include\Rendering\GLSLShaders\Texture.vs" />
+    <None Include="include\Rendering\GLSLShaders\Additive.frag" />
+    <None Include="include\Rendering\GLSLShaders\Basic.vert" />
+    <None Include="include\Rendering\GLSLShaders\Blur.frag" />
+    <None Include="include\Rendering\GLSLShaders\Color.frag" />
+    <None Include="include\Rendering\GLSLShaders\CubeMap.frag" />
+    <None Include="include\Rendering\GLSLShaders\CubeMap.vert" />
+    <None Include="include\Rendering\GLSLShaders\Default.frag" />
+    <None Include="include\Rendering\GLSLShaders\Default.vert" />
+    <None Include="include\Rendering\GLSLShaders\DownSample.frag" />
+    <None Include="include\Rendering\GLSLShaders\LensFlare.frag" />
+    <None Include="include\Rendering\GLSLShaders\Particle.frag" />
+    <None Include="include\Rendering\GLSLShaders\Particle.vert" />
+    <None Include="include\Rendering\GLSLShaders\Shadow.vert" />
+    <None Include="include\Rendering\GLSLShaders\Text.frag" />
+    <None Include="include\Rendering\GLSLShaders\Text.vert" />
+    <None Include="include\Rendering\GLSLShaders\Texture.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -190,13 +190,14 @@
       <PreprocessorDefinitions>RE_EXPORT;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;4710;4711;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;4710;4711;5105;</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
-      <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHsc /Zc:preprocessor %(AdditionalOptions)</AdditionalOptions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -216,13 +217,14 @@
       <PreprocessorDefinitions>RE_EXPORT;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;4710;4711;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;4710;4711;5105;</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
-      <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHsc /Zc:preprocessor /translateInclude %(AdditionalOptions)</AdditionalOptions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

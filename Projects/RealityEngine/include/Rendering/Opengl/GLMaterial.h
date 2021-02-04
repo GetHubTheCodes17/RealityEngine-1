@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Core/Maths/Vector3.h"
 
 namespace reality {

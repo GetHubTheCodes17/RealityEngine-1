@@ -23,9 +23,17 @@ reality::GameEngine::GameEngine() {
 	g_MeshHelper = new GLMeshHelper;
 	g_MeshHelper->Quad.Material = g_MeshHelper->Circle.Material = g_MeshHelper->Cube.Material =
 		g_MeshHelper->Sphere.Material = &g_MeshHelper->Default;
+
+	g_ResourceManager = new ResourceManager;
+
+	g_Io->Window->SetTitle("Reality Engine");
+	g_Io->Window->SetPos({ 250.f, 150.f });
+	SceneSerializer::Load("Resources/Scenes.json", g_SceneManager->CreateScene("Scene0"));
 }
 
 reality::GameEngine::~GameEngine() {
+	SceneSerializer::Save("Resources/Scenes.json", *g_SceneManager->ActiveScene);
+
 	delete g_ResourceManager;
 	delete g_SceneManager;
 	delete g_Logger;
@@ -38,6 +46,10 @@ reality::GameEngine::~GameEngine() {
 	delete g_Io;
 }
 
+void reality::GameEngine::Update() {
+	g_ResourceManager->Update();
+}
+
 RE_CORE reality::PlayerPref* reality::g_PlayerPref{};
 RE_CORE reality::Randomizer* reality::g_Randomizer{};
 RE_CORE reality::Logger* reality::g_Logger{};
@@ -47,7 +59,6 @@ RE_CORE reality::GLShaderHelper* reality::g_ShaderHelper{};
 RE_CORE reality::GLDebugDrawing* reality::g_DebugDrawing{};
 RE_CORE reality::GLMeshHelper* reality::g_MeshHelper{};
 RE_CORE reality::IO* reality::g_Io{};
-
 RE_CORE reality::ResourceManager* reality::g_ResourceManager{};
 
 const reality::Quaternion reality::Quaternion::Identity{ 0.f, 0.f, 0.f, 1.f };

@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "GLRenderPass.h"
 
 namespace reality {

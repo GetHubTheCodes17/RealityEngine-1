@@ -4,6 +4,7 @@
 
 #include <utility>
 
+#include "Core/Platform.h"
 #include "Rendering/Settings/GLTextureSettings.h"
 #include "Core/Maths/Viewport.h"
 
@@ -20,7 +21,7 @@ namespace reality {
 		void Resize(const Viewport& viewport, const uint8* image = {}) const;
 
 		struct Handle {
-			unsigned Id{}, Target{ 3553 }, InternalFormat{}, Format{}, Type{}, Samples{};
+			unsigned Id{}, Target{ 3553u }, InternalFormat{}, Format{}, Type{}, Samples{};
 		};
 		const Handle& GetHandle() const;
 

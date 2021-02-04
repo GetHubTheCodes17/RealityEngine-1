@@ -15,7 +15,7 @@ void reality::GLContext::Init(ProcAddr proc) {
 	const auto success{ gladLoadGLLoader(reinterpret_cast<GLADloadproc>(proc)) };
 	RE_ASSERT(success, "Cannot find the loader for Opengl");
 
-#if RE_DEBUG
+#ifdef RE_DEBUG
 	GLint flags{};
 	glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
 	if (flags & GL_CONTEXT_FLAG_DEBUG_BIT && GLAD_GL_KHR_debug) {
@@ -67,10 +67,11 @@ void reality::GLContext::DrawSkybox(const GLCubeMap& skybox) {
 	}
 }
 
-void reality::GLContext::SetLights(const GLLight* lights, unsigned size) {
+void reality::GLContext::SetLights(std::span<GLLight> lights) {
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_LightsLocation);
+	auto size{ lights.size() };
 	glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLuint) * 4, &size);
-	glBufferSubData(GL_SHADER_STORAGE_BUFFER, sizeof(GLuint) * 4, (GLsizeiptr)(sizeof(GLLight) * size), lights);
+	glBufferSubData(GL_SHADER_STORAGE_BUFFER, sizeof(GLuint) * 4, (GLsizeiptr)(sizeof(GLLight) * size), lights.data());
 }
 
 void reality::GLContext::SetModelMatrix(const Matrix4& model) {

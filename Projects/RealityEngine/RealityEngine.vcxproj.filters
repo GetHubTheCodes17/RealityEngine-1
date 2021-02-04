@@ -185,6 +185,9 @@
     <ClCompile Include="source\Gameplay\Component\Transform.cpp">
       <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
+    <ClCompile Include="source\Gameplay\GameObject.cpp">
+      <Filter>source\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Resources\Model\Model.h">
@@ -222,9 +225,6 @@
     </ClInclude>
     <ClInclude Include="include\Resources\Shader\Shader.h">
       <Filter>include\Resources\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Maths\Mathf.h">
-      <Filter>include\Core\Maths</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Maths\Matrix4.h">
       <Filter>include\Core\Maths</Filter>
@@ -319,9 +319,6 @@
     <ClInclude Include="include\Core\Maths\Viewport.h">
       <Filter>include\Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="include\Resources\ResourceSerialize.h">
-      <Filter>include\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="include\Rendering\Opengl\GLPrimitiveHelper.h">
       <Filter>include\Rendering\Opengl</Filter>
     </ClInclude>
@@ -333,12 +330,6 @@
     </ClInclude>
     <ClInclude Include="include\Audio\AudioEngine.h">
       <Filter>include\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Opengl\GLSLShader.h">
-      <Filter>include\Rendering\Opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\GLSLShaders\Basic.vs">
-      <Filter>include\Rendering\GLSLShaders</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\Opengl\GLMeshHelper.h">
       <Filter>include\Rendering\Opengl</Filter>
@@ -424,51 +415,60 @@
     <ClInclude Include="include\Core\Maths\MathsSerializer.h">
       <Filter>include\Core\Maths</Filter>
     </ClInclude>
+    <ClInclude Include="include\Core\Maths\Mathf.h">
+      <Filter>include\Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\ResourceSerializer.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\Rendering\GLSLShaders\Default.fs">
+    <None Include="include\Rendering\GLSLShaders\Additive.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Default.vs">
+    <None Include="include\Rendering\GLSLShaders\Basic.vert">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\CubeMap.vs">
+    <None Include="include\Rendering\GLSLShaders\Blur.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\CubeMap.fs">
+    <None Include="include\Rendering\GLSLShaders\Color.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Shadow.vs">
+    <None Include="include\Rendering\GLSLShaders\CubeMap.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Color.fs">
+    <None Include="include\Rendering\GLSLShaders\CubeMap.vert">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Texture.vs">
+    <None Include="include\Rendering\GLSLShaders\Default.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Blur.fs">
+    <None Include="include\Rendering\GLSLShaders\Default.vert">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Additive.fs">
+    <None Include="include\Rendering\GLSLShaders\DownSample.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\LensFlare.fs">
+    <None Include="include\Rendering\GLSLShaders\LensFlare.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\DownSample.fs">
+    <None Include="include\Rendering\GLSLShaders\Particle.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Particle.vs">
+    <None Include="include\Rendering\GLSLShaders\Particle.vert">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Particle.fs">
+    <None Include="include\Rendering\GLSLShaders\Shadow.vert">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Text.vs">
+    <None Include="include\Rendering\GLSLShaders\Text.frag">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
-    <None Include="include\Rendering\GLSLShaders\Text.fs">
+    <None Include="include\Rendering\GLSLShaders\Text.vert">
+      <Filter>include\Rendering\GLSLShaders</Filter>
+    </None>
+    <None Include="include\Rendering\GLSLShaders\Texture.vert">
       <Filter>include\Rendering\GLSLShaders</Filter>
     </None>
   </ItemGroup>

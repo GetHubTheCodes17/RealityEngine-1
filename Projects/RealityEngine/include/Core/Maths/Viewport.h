@@ -2,8 +2,10 @@
 
 #pragma once
 
+#include "Vector2.h"
+
 namespace reality {
 	struct Viewport {
-		float X{}, Y{}, Width{ 1.f }, Height{ 1.f };
+		Vector2 Pos, Size{ Vector2::One };
 	};
 }

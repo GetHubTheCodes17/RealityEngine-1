@@ -61,7 +61,7 @@ inline void reality::EditorLog::Draw() {
         const auto bufferBegin{ m_Buffer.begin() };
         auto line{ bufferBegin };
 
-        for (auto lineNb{ 0 }; line != nullptr; ++lineNb) {
+        for (auto lineNb{ 0 }; line; ++lineNb) {
             auto lineEnd{ (lineNb < m_LineOffsets.Size) ? bufferBegin + m_LineOffsets[lineNb] : nullptr };
             if (m_Filter.PassFilter(line, lineEnd)) {
                 ImGui::TextUnformatted(line, lineEnd);

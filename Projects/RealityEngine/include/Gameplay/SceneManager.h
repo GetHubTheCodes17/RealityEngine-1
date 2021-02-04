@@ -5,25 +5,26 @@
 #include "Scene.h"
 
 namespace reality {
-	class SceneManager {
+	class SceneManager final {
 	public:
 		Scene* ActiveScene{};
 
 		Scene& CreateScene(std::string_view name);
-		Scene* GetScene(std::string name) const;
+		Scene* GetScene(std::string_view name);
 
 	private:
-		std::unordered_map<std::string, std::unique_ptr<Scene>>	m_Scenes;
+		std::unordered_map<std::string, Scene>	m_Scenes;
 	};
 
 	RE_CORE extern SceneManager* g_SceneManager;
 }
 
 inline reality::Scene& reality::SceneManager::CreateScene(std::string_view name) {
-	return *(ActiveScene = m_Scenes.emplace(std::make_pair(name, std::make_unique<Scene>(name))).first->second.get());
+	ActiveScene = &m_Scenes.emplace(name, Scene{ name }).first->second;
+	return *ActiveScene;
 }
 
-inline reality::Scene* reality::SceneManager::GetScene(std::string name) const {
-	const auto it{ m_Scenes.find(name) };
-	return it != m_Scenes.cend() ? it->second.get() : nullptr;
+inline reality::Scene* reality::SceneManager::GetScene(std::string_view name) {
+	const auto it{ m_Scenes.find(name.data()) };
+	return it != m_Scenes.cend() ? &it->second : nullptr;
 }

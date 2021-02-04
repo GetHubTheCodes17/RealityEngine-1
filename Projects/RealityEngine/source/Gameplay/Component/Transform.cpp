@@ -2,10 +2,12 @@
 
 #include "Gameplay/Component/Transform.h"
 
+#include <functional>
+
 #include "Gameplay/GameObject.h"
 
 void reality::CTransform::SetParent(CTransform* parent) {
-	if (parent == m_Parent || parent == this || std::find(m_Children.cbegin(), m_Children.cend(), parent) != m_Children.cend()) {
+	if (parent == m_Parent || parent == this || std::ranges::any_of(m_Children, [parent](auto child) { return child == parent; })) {
 		return;
 	}
 
@@ -18,8 +20,7 @@ void reality::CTransform::SetParent(CTransform* parent) {
 	};
 
 	if (m_Parent) {
-		m_Parent->m_Children.erase(std::remove(m_Parent->m_Children.begin(), m_Parent->m_Children.end(), this),
-			m_Parent->m_Children.end());
+		std::erase(m_Parent->m_Children, this);
 	}
 
 	if (parent) {
@@ -27,6 +28,7 @@ void reality::CTransform::SetParent(CTransform* parent) {
 		m_ParentId = parent->GetGameObject().GetId();
 		UpdateLevel(*this, parent->m_Level + 1);
 
+		// TODO : Update world position
 		//m_Position = (m_Trs * Matrix4::Inverse(parent->GetTrs())).GetRow3(3);
 		//m_Scale = Matrix4::GetScale(m_Trs * Matrix4::Inverse(parent->GetTrs()));
 		//m_Rotation = Quaternion(m_Trs * Matrix4::Inverse(parent->GetTrs()));

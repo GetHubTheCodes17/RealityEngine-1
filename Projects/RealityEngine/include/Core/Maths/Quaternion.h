@@ -2,7 +2,10 @@
 
 #pragma once
 
+#include "Core/Platform.h"
 #include "Matrix4.h"
+#include "Vector3.h"
+#include "Mathf.h"
 
 namespace reality {
 	struct alignas(16) Quaternion {
@@ -52,6 +55,7 @@ namespace reality {
 		Quaternion& Set(float angle, const Vector3& axis);
 		Quaternion& Set(const Vector3& eulerAngles);
 		Quaternion& Set(const Vector3& from, const Vector3& to);
+		Quaternion& Set(const Matrix4& rotation);
 		constexpr bool IsIdentity() const;
 		constexpr bool IsNormalized() const;
 		constexpr Vector3 GetAxis() const;
@@ -68,88 +72,19 @@ constexpr reality::Quaternion::Quaternion(const float* xyzw) :
 {}
 
 inline reality::Quaternion::Quaternion(float angle, const Vector3& axis) {
-	const auto theta{ angle / 2.f };
-	const auto sinTheta{ Mathf::Sin(theta) };
-	X = axis.X * sinTheta;
-	Y = axis.Y * sinTheta;
-	Z = axis.Z * sinTheta;
-	W = Mathf::Cos(theta);
+	Set(angle, axis);
 }
 
 inline reality::Quaternion::Quaternion(const Vector3& eulerAngles) {
-	const auto x{ eulerAngles.X / 2.f }, y{ eulerAngles.Y / 2.f }, z{ eulerAngles.Z / 2.f };
-	const auto cx{ Mathf::Cos(x) }, cy{ Mathf::Cos(y) }, cz{ Mathf::Cos(z) };
-	const auto sx{ Mathf::Sin(x) }, sy{ Mathf::Sin(y) }, sz{ Mathf::Sin(z) };
-	X = sx * cy * cz - cx * sy * sz;
-	Y = cx * sy * cz - sx * cy * sz;
-	Z = cx * cy * sz - sx * sy * cz;
-	W = cx * cy * cz - sx * sy * sz;
+	Set(eulerAngles);
 }
 
 inline reality::Quaternion::Quaternion(const Vector3& from, const Vector3& to) {
-	const auto dotFromTo{ from.X * to.X + from.Y * to.Y + from.Z * to.Z };
-	const auto sqrSizeFrom{ from.X * from.X + from.Y * from.Y + from.Z * from.Z };
-	const auto sqrSizeTo{ to.X * to.X + to.Y * to.Y + to.Z * to.Z };
-	const auto angle{ Mathf::Acos(dotFromTo / Mathf::Sqrt(sqrSizeFrom * sqrSizeTo)) };
-	const Vector3 axis{ from.Y * to.Z - to.Y * from.Z, from.Z * to.X - to.Z * from.X, from.X * to.Y - to.X * from.Y };
-	const auto theta{ angle / 2.f };
-	const auto sinTheta{ Mathf::Sin(theta) };
-	X = axis.X * sinTheta;
-	Y = axis.Y * sinTheta;
-	Z = axis.Z * sinTheta;
-	W = Mathf::Cos(theta);
+	Set(from, to);
 }
 
 inline reality::Quaternion::Quaternion(const Matrix4& rotation) {
-	const auto fourXSquaredMinus1{ rotation.Array[0] - rotation.Array[5] - rotation.Array[10] };
-	const auto fourYSquaredMinus1{ rotation.Array[5] - rotation.Array[0] - rotation.Array[10] };
-	const auto fourZSquaredMinus1{ rotation.Array[10] - rotation.Array[0] - rotation.Array[5] };
-	const auto fourWSquaredMinus1{ rotation.Array[0] + rotation.Array[5] + rotation.Array[10] };
-
-	auto biggestIndex{ 0 };
-	auto fourBiggestSquaredMinus1{ fourWSquaredMinus1 };
-
-	if (fourXSquaredMinus1 > fourBiggestSquaredMinus1) {
-		fourBiggestSquaredMinus1 = fourXSquaredMinus1;
-		biggestIndex = 1;
-	}
-	if (fourYSquaredMinus1 > fourBiggestSquaredMinus1) {
-		fourBiggestSquaredMinus1 = fourYSquaredMinus1;
-		biggestIndex = 2;
-	}
-	if (fourZSquaredMinus1 > fourBiggestSquaredMinus1) {
-		fourBiggestSquaredMinus1 = fourZSquaredMinus1;
-		biggestIndex = 3;
-	}
-
-	const auto biggestVal{ Mathf::Sqrt(fourBiggestSquaredMinus1 + 1.f) * 0.5f };
-	const auto mult{ 0.25f / biggestVal };
-	switch (biggestIndex) {
-	case 0:
-		W = biggestVal;
-		X = (rotation.Array[6] - rotation.Array[9]) * mult;
-		Y = (rotation.Array[8] - rotation.Array[2]) * mult;
-		Z = (rotation.Array[1] - rotation.Array[4]) * mult;
-		break;
-	case 1:
-		X = biggestVal;
-		W = (rotation.Array[6] - rotation.Array[9]) * mult;
-		Y = (rotation.Array[1] + rotation.Array[4]) * mult;
-		Z = (rotation.Array[8] + rotation.Array[2]) * mult;
-		break;
-	case 2:
-		Y = biggestVal;
-		W = (rotation.Array[8] - rotation.Array[2]) * mult;
-		X = (rotation.Array[1] + rotation.Array[4]) * mult;
-		Z = (rotation.Array[6] + rotation.Array[9]) * mult;
-		break;
-	case 3:
-		Z = biggestVal;
-		W = (rotation.Array[1] - rotation.Array[4]) * mult;
-		X = (rotation.Array[8] + rotation.Array[2]) * mult;
-		Y = (rotation.Array[6] + rotation.Array[9]) * mult;
-		break;
-	}
+	Set(rotation);
 }
 
 constexpr reality::Quaternion::Quaternion(const Vector3& xyz, float w) :
@@ -338,10 +273,10 @@ inline reality::Vector3 reality::Quaternion::GetEulerAngles() const {
 	const auto test{ X * Y + Z * W };
 
 	if (test > 0.499 * unit) {
-		return { 0.f, 2.f * Mathf::Atan2(X, W) * Mathf::Rad2Deg, Mathf::Pi * 0.5f * Mathf::Rad2Deg };
+		return { 0.f, 2.f * Mathf::Atan2(X, W) * Mathf::Rad2Deg, std::numbers::pi_v<float> * 0.5f * Mathf::Rad2Deg };
 	}
 	if (test < -0.499 * unit) {
-		return { 0.f, -2.f * Mathf::Atan2(X, W) * Mathf::Rad2Deg, -Mathf::Pi * 0.5f * Mathf::Rad2Deg };
+		return { 0.f, -2.f * Mathf::Atan2(X, W) * Mathf::Rad2Deg, -std::numbers::pi_v<float> * 0.5f * Mathf::Rad2Deg };
 	}
 	return { 
 		Mathf::Atan2(2.f * X * W - 2.f * Y * Z, -sqx + sqy - sqz + sqw) * Mathf::Rad2Deg,
@@ -386,6 +321,59 @@ inline reality::Quaternion& reality::Quaternion::Set(const Vector3& from, const 
 	Y = axis.Y * sinTheta;
 	Z = axis.Z * sinTheta;
 	W = Mathf::Cos(theta);
+	return *this;
+}
+
+inline reality::Quaternion& reality::Quaternion::Set(const Matrix4& rotation) {
+	const auto fourXSquaredMinus1{ rotation.Array[0] - rotation.Array[5] - rotation.Array[10] };
+	const auto fourYSquaredMinus1{ rotation.Array[5] - rotation.Array[0] - rotation.Array[10] };
+	const auto fourZSquaredMinus1{ rotation.Array[10] - rotation.Array[0] - rotation.Array[5] };
+	const auto fourWSquaredMinus1{ rotation.Array[0] + rotation.Array[5] + rotation.Array[10] };
+
+	auto biggestIndex{ 0 };
+	auto fourBiggestSquaredMinus1{ fourWSquaredMinus1 };
+
+	if (fourXSquaredMinus1 > fourBiggestSquaredMinus1) {
+		fourBiggestSquaredMinus1 = fourXSquaredMinus1;
+		biggestIndex = 1;
+	}
+	if (fourYSquaredMinus1 > fourBiggestSquaredMinus1) {
+		fourBiggestSquaredMinus1 = fourYSquaredMinus1;
+		biggestIndex = 2;
+	}
+	if (fourZSquaredMinus1 > fourBiggestSquaredMinus1) {
+		fourBiggestSquaredMinus1 = fourZSquaredMinus1;
+		biggestIndex = 3;
+	}
+
+	const auto biggestVal{ Mathf::Sqrt(fourBiggestSquaredMinus1 + 1.f) * 0.5f };
+	const auto mult{ 0.25f / biggestVal };
+	switch (biggestIndex) {
+	case 0:
+		W = biggestVal;
+		X = (rotation.Array[6] - rotation.Array[9]) * mult;
+		Y = (rotation.Array[8] - rotation.Array[2]) * mult;
+		Z = (rotation.Array[1] - rotation.Array[4]) * mult;
+		break;
+	case 1:
+		X = biggestVal;
+		W = (rotation.Array[6] - rotation.Array[9]) * mult;
+		Y = (rotation.Array[1] + rotation.Array[4]) * mult;
+		Z = (rotation.Array[8] + rotation.Array[2]) * mult;
+		break;
+	case 2:
+		Y = biggestVal;
+		W = (rotation.Array[8] - rotation.Array[2]) * mult;
+		X = (rotation.Array[1] + rotation.Array[4]) * mult;
+		Z = (rotation.Array[6] + rotation.Array[9]) * mult;
+		break;
+	case 3:
+		Z = biggestVal;
+		W = (rotation.Array[1] - rotation.Array[4]) * mult;
+		X = (rotation.Array[8] + rotation.Array[2]) * mult;
+		Y = (rotation.Array[6] + rotation.Array[9]) * mult;
+		break;
+	}
 	return *this;
 }
 

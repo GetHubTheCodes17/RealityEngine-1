@@ -11,7 +11,7 @@ namespace reality {
 	class EditorAssets {
 	public:
 		void Draw();
-		void DropResource(std::string_view path) const;
+		void DropResource(std::string_view filename) const;
 	};
 }
 

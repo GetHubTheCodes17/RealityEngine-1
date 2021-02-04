@@ -4,6 +4,7 @@
 
 #include <utility>
 
+#include "Core/Platform.h"
 #include "Rendering/Settings/GLMeshSettings.h"
 
 namespace reality {

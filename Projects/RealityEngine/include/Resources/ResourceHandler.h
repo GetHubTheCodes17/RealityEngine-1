@@ -3,22 +3,23 @@
 #pragma once
 
 #include <cereal/archives/json.hpp>
-#include <unordered_map>
+#include <cereal/types/unordered_map.hpp>
+#include <cereal/types/utility.hpp>
 #include <fstream>
 #include <future>
 
-#include "ResourceSerialize.h"
+#include "ResourceSerializer.h"
 #include "ResourceConverter.h"
 
 namespace reality {
 	template <class Resource, class Settings, class Properties, class TmpResource>
 	class ResourceHandler final {
-	public:
-		explicit ResourceHandler(std::string_view path);
+		friend class ResourceManager;
 
-		void Update();
+	public:
 		const Resource& Load(std::string_view key, const Settings& settings, const Properties& properties = {});
 		bool Remove(std::string_view key);
+		bool Exist(std::string_view key) const;
 		const Resource* Get(std::string_view key) const;
 		std::string_view GetPath() const;
 		const std::unordered_map<std::string, Resource>& GetResources() const;
@@ -26,7 +27,13 @@ namespace reality {
 	private:
 		std::string m_Path;
 		std::unordered_map<std::string, Resource> m_Resources;
-		std::unordered_map<std::string, std::pair<Properties, std::future<TmpResource>>> m_TmpResources;
+		std::unordered_map<std::string, std::pair<Settings, Properties>> m_Properties;
+		std::unordered_map<std::string, std::future<TmpResource>> m_TmpResources;
+
+		explicit ResourceHandler(std::string_view path);
+		~ResourceHandler();
+
+		void Update();
 	};
 }
 
@@ -34,34 +41,33 @@ template <class Resource, class Settings, class Properties, class TmpResource>
 reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::ResourceHandler(std::string_view path) :
 	m_Path{ path }
 {
-	std::fstream file{ m_Path };
-	if (file.peek() == std::fstream::traits_type::eof()) {
-		file.seekg(std::ios_base::beg);
-		file << "{}";
-		return;
+	if (std::ifstream file{ m_Path }) {
+		cereal::JSONInputArchive archive{ file };
+		archive(m_Properties);
+
+		for (auto& [key, value] : m_Properties) {
+			auto& [settings, properties] { value };
+			m_TmpResources.emplace(key, std::future<TmpResource>{}).first->second =
+				std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
+			m_Resources.emplace(key, Resource{});
+		}
 	}
+}
 
-	std::istream fileInputBuffer{ file.rdbuf() };
-	cereal::JSONInputArchive inArchive{ fileInputBuffer };
-
-	Settings settings;
-	Properties properties;
-	while (const auto key{ inArchive.getNodeName() }) {
-		inArchive.startNode();
-		inArchive(settings, properties);
-		m_TmpResources.emplace(key, std::make_pair(properties, std::future<TmpResource>{})).first->second.second =
-			std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
-		m_Resources.emplace(key, Resource{});
-		inArchive.finishNode();
+template<class Resource, class Settings, class Properties, class TmpResource>
+reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::~ResourceHandler() {
+	if (std::ofstream file{ m_Path }) {
+		cereal::JSONOutputArchive archive{ file };
+		archive(m_Properties);
 	}
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
 void reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Update() {
 	for (auto it{ m_TmpResources.begin() }; it != m_TmpResources.cend(); ) {
-		auto& [settings, resource] { it->second };
+		auto& resource{ it->second };
 		if (resource.wait_for(std::chrono::seconds{ 0 }) == std::future_status::ready) {
-			m_Resources.at(it->first) = loader::Convert<Resource>(settings, resource.get());
+			m_Resources.at(it->first) = loader::Convert<Resource>(m_Properties.at(it->first).second, resource.get());
 			it = m_TmpResources.erase(it);
 		}
 		else {
@@ -78,30 +84,8 @@ const Resource& reality::ResourceHandler<Resource, Settings, Properties, TmpReso
 		return it->second;
 	}
 
-	std::fstream file{ m_Path };
-	std::istream fileInputBuffer{ file.rdbuf() };
-	cereal::JSONInputArchive inArchive{ fileInputBuffer };
-	file = std::fstream{ m_Path, std::fstream::out | std::fstream::trunc };
-	cereal::JSONOutputArchive outArchive{ file };
-
-	auto WriteResourceToArchive{ [](auto& archive, auto key, auto& settings, auto& properties) {
-		archive.setNextName(key);
-		archive.startNode();
-		archive(CEREAL_NVP(settings), CEREAL_NVP(properties));
-		archive.finishNode();
-	} };
-
-	Settings oldSettings;
-	Properties oldProperties;
-	while (const auto oldKey{ inArchive.getNodeName() }) {
-		inArchive.startNode();
-		inArchive(oldSettings, oldProperties);
-		WriteResourceToArchive(outArchive, oldKey, oldSettings, oldProperties);
-		inArchive.finishNode();
-	}
-	WriteResourceToArchive(outArchive, key.data(), settings, properties);
-
-	m_TmpResources.emplace(key, std::make_pair(properties, std::future<TmpResource>{})).first->second.second =
+	m_Properties.emplace(key, std::pair{ settings, properties });
+	m_TmpResources.emplace(key, std::future<TmpResource>{}).first->second =
 		std::async(std::launch::async, [settings] { return TmpResource{ settings }; });
 	return m_Resources.emplace(key, Resource{}).first->second;
 }
@@ -112,27 +96,14 @@ bool reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Remo
 		return false;
 	}
 
-	std::fstream file{ m_Path };
-	std::istream fileInputBuffer{ file.rdbuf() };
-	cereal::JSONInputArchive inArchive{ fileInputBuffer };
-	file = std::fstream{ m_Path, std::fstream::out | std::fstream::trunc };
-	cereal::JSONOutputArchive outArchive{ file };
-
-	Settings settings;
-	Properties properties;
-	while (const auto oldKey{ inArchive.getNodeName() }) {
-		inArchive.startNode();
-		inArchive(settings, properties);
-		if (oldKey != key) {
-			outArchive.setNextName(oldKey);
-			outArchive.startNode();
-			outArchive(CEREAL_NVP(settings), CEREAL_NVP(properties));
-			outArchive.finishNode();
-		}
-		inArchive.finishNode();
-	}
+	m_Properties.erase(key.data());
 	m_Resources.erase(key.data());
 	return true;
+}
+
+template<class Resource, class Settings, class Properties, class TmpResource>
+bool reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Exist(std::string_view key) const {
+	return m_Resources.contains(key.data());
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>

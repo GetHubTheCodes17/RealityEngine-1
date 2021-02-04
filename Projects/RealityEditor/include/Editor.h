@@ -24,8 +24,7 @@ namespace reality {
 	private:
 		GameEngine m_Engine;
 		GLPipeline m_Pipeline;
-		Vector2 m_ViewportSize;
-		Vector2 m_ViewportPos;
+		Viewport m_Viewport;
 		ComponentSystem m_ComponentSystem;
 		EditorAssets m_Assets;
 		EditorCamera m_Camera;
@@ -35,11 +34,11 @@ namespace reality {
 		EditorScene m_Scene;
 		EditorHierarchy m_Hierarchy;
 		EditorInspector m_Inspector;
-		bool EnabledCamera{};
+		bool m_EnabledCamera{};
 
-		Vector3 GetMouseRay() const;
-		void Render() const;
+		void Render(const Matrix4& view) const;
 		void Update();
+		void UpdateWindows();
 		void UpdateIo();
 	};
 }

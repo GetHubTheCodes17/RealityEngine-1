@@ -4,6 +4,7 @@
 
 #include <imgui/imgui.h>
 
+#include "EditorTheme.h"
 #include "Core/Tools/Logger.h"
 
 namespace reality {
@@ -73,6 +74,10 @@ inline void reality::EditorMenu::Draw() const {
 				if (ImGui::MenuItem("Light")) {
 					ImGui::StyleColorsLight();
 					RE_LOG_INFO("StyleColorsLight");
+				}
+				if (ImGui::MenuItem("Reality")) {
+					editorTheme::RealityStyle();
+					RE_LOG_INFO("StyleColorsReality");
 				}
 				ImGui::EndMenu();
 			}

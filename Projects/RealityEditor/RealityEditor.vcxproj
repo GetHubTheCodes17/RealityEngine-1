@@ -60,14 +60,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLAD_GLAPI_EXPORT;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;5105;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include;$(SolutionDir)Projects\RealityEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
-      <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHsc /Zc:preprocessor %(AdditionalOptions)</AdditionalOptions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,14 +86,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLAD_GLAPI_EXPORT;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;5105;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include;$(SolutionDir)Projects\RealityEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
-      <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHsc /Zc:preprocessor /translateInclude %(AdditionalOptions)</AdditionalOptions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -110,7 +113,6 @@
     <ClCompile Include="..\..\Dependencies\Include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="..\..\Dependencies\Include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="source\Editor.cpp" />
-    <ClCompile Include="source\ImGui\imgui_demo_window.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>

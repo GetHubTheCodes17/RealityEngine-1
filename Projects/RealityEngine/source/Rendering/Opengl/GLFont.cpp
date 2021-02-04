@@ -49,16 +49,16 @@ void reality::GLFont::Draw(std::string_view text, const Viewport& viewport, Vect
 	g_ShaderHelper->Text.Set(1, Matrix4::Ortho({ 0.f, windowSize.X, windowSize.Y, 0.f, -1.f, 1.f }));
 	g_ShaderHelper->Text.Set(3, Color);
 
-	auto x{ viewport.X * windowSize.X };
-	const auto y{ viewport.Y * windowSize.Y };
+	auto x{ viewport.Pos.X * windowSize.X };
+	const auto y{ viewport.Pos.Y * windowSize.Y };
 
 	for (const auto& c : text) {
 		const auto& character{ m_Handle.Characters[(std::size_t)(c)] };
-		const auto xPos{ x + character.Bearing.X * viewport.Width };
-		const auto yPos{ y + (m_Handle.Characters['X'].Bearing.Y - character.Bearing.Y) * viewport.Height };
-		const auto width{ character.Size.X * viewport.Width };
-		const auto height{ character.Size.Y * viewport.Height };
-		x += (character.Advance >> 6) * viewport.Width;
+		const auto xPos{ x + character.Bearing.X * viewport.Size.X };
+		const auto yPos{ y + (m_Handle.Characters['X'].Bearing.Y - character.Bearing.Y) * viewport.Size.Y };
+		const auto width{ character.Size.X * viewport.Size.X };
+		const auto height{ character.Size.Y * viewport.Size.Y };
+		x += float(character.Advance >> 6) * viewport.Size.X;
 
 		const std::array vertices{ std::array{ xPos, yPos + height, 0.f, 1.f }, std::array{ xPos + width, yPos, 1.f, 0.f }, 
 			std::array{ xPos, yPos, 0.f, 0.f }, std::array{ xPos, yPos + height, 0.f, 1.f },

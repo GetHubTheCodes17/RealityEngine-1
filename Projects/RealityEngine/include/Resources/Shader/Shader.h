@@ -16,5 +16,8 @@ namespace reality {
 
 		Shader() = default;
 		explicit Shader(ShaderSettings settings);
+
+		static std::string GetShaderFromFile(std::string_view path);
+		static std::string GetShaderFromEngineFile(std::string_view filename);
 	};
 }

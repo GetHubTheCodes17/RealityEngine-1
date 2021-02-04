@@ -26,5 +26,5 @@ reality::Leaker::~Leaker() {
 	_CrtDumpMemoryLeaks();
 
 	CloseHandle(logFile);
-	delete m_TempLeak;
+	delete[] m_TempLeak;
 }

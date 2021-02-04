@@ -38,5 +38,5 @@ reality::Texture::Texture(TextureSettings settings) {
 }
 
 bool reality::Texture::IsExtensionSupported(std::string_view filename) {
-	return stbi_info(filename.data(), nullptr, nullptr, nullptr);
+	return (bool)stbi_info(filename.data(), nullptr, nullptr, nullptr);
 }

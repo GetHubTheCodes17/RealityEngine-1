@@ -8,8 +8,7 @@ extern "C" {
 	__declspec(dllexport) auto AmdPowerXpressRequestHighPerformance{ 1 };
 }
 
-int WinMain()
-{
+int WinMain() {
 	reality::Leaker leaker;
 	reality::Editor editor;
 	editor.Run();
