@@ -68,7 +68,7 @@ namespace reality {
 	using int64 = long long;
 	using uint8 = unsigned char;
 	using uint16 = unsigned short;
-	using uint32 = unsigned int;
+	using uint32 = unsigned;
 	using uint64 = unsigned long long;
 
 	inline constexpr const char* g_ResourcesExtension{ ".binary" };

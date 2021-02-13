@@ -19,8 +19,6 @@ namespace reality {
 		Editor();
 		~Editor();
 
-		void Run();
-
 	private:
 		GameEngine m_Engine;
 		GLPipeline m_Pipeline;
@@ -36,6 +34,7 @@ namespace reality {
 		EditorInspector m_Inspector;
 		bool m_EnabledCamera{};
 
+		void Run();
 		void Render(const Matrix4& view) const;
 		void Update();
 		void UpdateWindows();

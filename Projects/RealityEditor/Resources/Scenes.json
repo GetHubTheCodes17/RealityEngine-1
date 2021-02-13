@@ -6,8 +6,71 @@
                 "ptr_wrapper": {
                     "valid": 1,
                     "data": {
+                        "Name": "Nanosuit",
+                        "m_Id": 13195823293891745935,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09968167543411255,
+                                    "value1": 0.0,
+                                    "value2": 0.007973063737154007,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000000149011612,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": -0.007973063737154007,
+                                    "value9": 0.0,
+                                    "value10": -0.09968167543411255,
+                                    "value11": 0.0,
+                                    "value12": -2.423971068310493e-7,
+                                    "value13": -1.1160813570022584,
+                                    "value14": 1.517024278640747,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.9992038607597351,
+                                "Z": 0.0,
+                                "W": 0.03989708051085472
+                            },
+                            "m_Position": {
+                                "X": -2.423971068310493e-7,
+                                "Y": -1.1160813570022584,
+                                "Z": 1.517024278640747
+                            },
+                            "m_Scale": {
+                                "X": 0.10000000149011612,
+                                "Y": 0.10000000149011612,
+                                "Z": 0.10000000149011612
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 2147483649,
+                                "polymorphic_name": "MeshRenderer",
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
                         "Name": "Camera",
-                        "m_Id": 16506464707594722344,
+                        "m_Id": 17913755919818615105,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -24,9 +87,9 @@
                                     "value9": 0.0,
                                     "value10": 1.0,
                                     "value11": 0.0,
-                                    "value12": -0.19255274534225465,
-                                    "value13": 1.1480337381362916,
-                                    "value14": -2.66515851020813,
+                                    "value12": 0.0,
+                                    "value13": 0.0,
+                                    "value14": 0.0,
                                     "value15": 1.0
                                 }
                             },
@@ -37,9 +100,9 @@
                                 "W": 1.0
                             },
                             "m_Position": {
-                                "X": -0.19255274534225465,
-                                "Y": 1.1480337381362916,
-                                "Z": -2.66515851020813
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0
                             },
                             "m_Scale": {
                                 "X": 1.0,
@@ -52,7 +115,7 @@
                         },
                         "m_Components": [
                             {
-                                "polymorphic_id": 2147483649,
+                                "polymorphic_id": 2147483650,
                                 "polymorphic_name": "Camera",
                                 "ptr_wrapper": {
                                     "valid": 1,
@@ -115,8 +178,8 @@
                 "ptr_wrapper": {
                     "valid": 1,
                     "data": {
-                        "Name": "House",
-                        "m_Id": 11498770812646635986,
+                        "Name": "Quad",
+                        "m_Id": 6550650173182252891,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -133,9 +196,9 @@
                                     "value9": 0.0,
                                     "value10": 1.0,
                                     "value11": 0.0,
-                                    "value12": 1.6353859901428223,
-                                    "value13": 0.0,
-                                    "value14": 2.2253494262695314,
+                                    "value12": 0.0,
+                                    "value13": -0.28402650356292727,
+                                    "value14": 2.3213050365448,
                                     "value15": 1.0
                                 }
                             },
@@ -146,72 +209,9 @@
                                 "W": 1.0
                             },
                             "m_Position": {
-                                "X": 1.6353859901428223,
-                                "Y": 0.0,
-                                "Z": 2.2253494262695314
-                            },
-                            "m_Scale": {
-                                "X": 1.0,
-                                "Y": 1.0,
-                                "Z": 1.0
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
-                                "polymorphic_id": 2147483650,
-                                "polymorphic_name": "MeshRenderer",
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "m_Name": "fantasy_game_inn"
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "DirLight",
-                        "m_Id": 4488873860400836585,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": -0.8630581498146057,
-                                    "value1": -0.4753105938434601,
-                                    "value2": -0.17091041803359986,
-                                    "value3": 0.0,
-                                    "value4": 0.41101911664009097,
-                                    "value5": -0.4641990065574646,
-                                    "value6": -0.7845906615257263,
-                                    "value7": 0.0,
-                                    "value8": 0.2935878038406372,
-                                    "value9": -0.747394859790802,
-                                    "value10": 0.5959925651550293,
-                                    "value11": 0.0,
-                                    "value12": -1.8201533555984498,
-                                    "value13": -0.20745761692523957,
-                                    "value14": 0.7836861610412598,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.035875797271728519,
-                                "Y": -0.44801411032676699,
-                                "Z": 0.8548756837844849,
-                                "W": 0.2591984272003174
-                            },
-                            "m_Position": {
-                                "X": -1.8201533555984498,
-                                "Y": -0.20745761692523957,
-                                "Z": 0.7836861610412598
+                                "X": 0.0,
+                                "Y": -0.28402650356292727,
+                                "Z": 2.3213050365448
                             },
                             "m_Scale": {
                                 "X": 1.0,
@@ -225,150 +225,6 @@
                         "m_Components": [
                             {
                                 "polymorphic_id": 2147483651,
-                                "polymorphic_name": "Light",
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "Range": 20.0,
-                                        "SpotAngle": 30.0,
-                                        "Intensity": 1.0,
-                                        "Color": {
-                                            "X": 0.40379607677459719,
-                                            "Y": 0.48695415258407595,
-                                            "Z": 0.8756476640701294,
-                                            "W": 1.0
-                                        },
-                                        "Type": 0,
-                                        "Shadow": 1
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "Crytek",
-                        "m_Id": 4674624777685624040,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": -0.0009209466516040266,
-                                    "value1": 0.0,
-                                    "value2": -0.030638618394732477,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": 0.030652441084384919,
-                                    "value6": 0.0,
-                                    "value7": 0.0,
-                                    "value8": 0.030638618394732477,
-                                    "value9": 0.0,
-                                    "value10": -0.0009209466516040266,
-                                    "value11": 0.0,
-                                    "value12": 1.8392913341522217,
-                                    "value13": -2.7911224365234377,
-                                    "value14": 1.8641464710235596,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.0,
-                                "Y": -0.7176505923271179,
-                                "Z": 0.0,
-                                "W": 0.6964033842086792
-                            },
-                            "m_Position": {
-                                "X": 1.8392913341522217,
-                                "Y": -2.7911224365234377,
-                                "Z": 1.8641464710235596
-                            },
-                            "m_Scale": {
-                                "X": 0.030652454122900964,
-                                "Y": 0.030652441084384919,
-                                "Z": 0.030652454122900964
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
-                                "polymorphic_id": 2,
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "m_Name": "crytek"
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "Nanosuit",
-                        "m_Id": 13159663122350363544,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": -0.1299729198217392,
-                                    "value1": 0.0,
-                                    "value2": 0.06867360323667526,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": 0.1470000147819519,
-                                    "value6": 0.0,
-                                    "value7": 0.0,
-                                    "value8": -0.06867360323667526,
-                                    "value9": 0.0,
-                                    "value10": -0.1299729198217392,
-                                    "value11": 0.0,
-                                    "value12": 0.22863075137138368,
-                                    "value13": -1.357275128364563,
-                                    "value14": 4.0536041259765629,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.0,
-                                "Y": 0.9706104397773743,
-                                "Z": 0.0,
-                                "W": 0.24065640568733216
-                            },
-                            "m_Position": {
-                                "X": 0.22863075137138368,
-                                "Y": -1.357275128364563,
-                                "Z": 4.0536041259765629
-                            },
-                            "m_Scale": {
-                                "X": 0.1470000445842743,
-                                "Y": 0.1470000147819519,
-                                "Z": 0.1470000445842743
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
-                                "polymorphic_id": 2,
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "m_Name": "nanosuit"
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2147483652,
                                 "polymorphic_name": "MeshFilter",
                                 "ptr_wrapper": {
                                     "valid": 1,
@@ -376,126 +232,12 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483653,
-                                "polymorphic_name": "ParticleSystem",
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {}
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "Name": "GameObject",
-                        "m_Id": 6703350199095242764,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": 1.0,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": 1.0,
-                                    "value6": 0.0,
-                                    "value7": 0.0,
-                                    "value8": 0.0,
-                                    "value9": 0.0,
-                                    "value10": 1.0,
-                                    "value11": 0.0,
-                                    "value12": -1.633906602859497,
-                                    "value13": 0.3737279176712036,
-                                    "value14": 7.398965835571289,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.0,
-                                "Y": 0.0,
-                                "Z": 0.0,
-                                "W": 1.0
-                            },
-                            "m_Position": {
-                                "X": -1.633906602859497,
-                                "Y": 0.3737279176712036,
-                                "Z": 7.398965835571289
-                            },
-                            "m_Scale": {
-                                "X": 1.0,
-                                "Y": 1.0,
-                                "Z": 1.0
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
                                     "valid": 1,
                                     "data": {
-                                        "Depth": 0,
-                                        "Fov": 60.0,
-                                        "Near": 0.003000000026077032,
-                                        "Far": 1000.0,
-                                        "OrthoSize": 10.0,
-                                        "Flag": 0,
-                                        "ProjectionType": 0,
-                                        "Projection": {
-                                            "Array Row Major": {
-                                                "value0": 1.154700517654419,
-                                                "value1": 0.0,
-                                                "value2": 0.0,
-                                                "value3": 0.0,
-                                                "value4": 0.0,
-                                                "value5": 1.732050895690918,
-                                                "value6": 0.0,
-                                                "value7": 0.0,
-                                                "value8": 0.0,
-                                                "value9": 0.0,
-                                                "value10": -1.0000059604644776,
-                                                "value11": -1.0,
-                                                "value12": 0.0,
-                                                "value13": 0.0,
-                                                "value14": -0.006000017747282982,
-                                                "value15": 0.0
-                                            }
-                                        },
-                                        "View": {
-                                            "Array Row Major": {
-                                                "value0": -1.0,
-                                                "value1": 0.0,
-                                                "value2": 0.0,
-                                                "value3": 0.0,
-                                                "value4": 0.0,
-                                                "value5": 1.0,
-                                                "value6": 0.0,
-                                                "value7": 0.0,
-                                                "value8": 0.0,
-                                                "value9": 0.0,
-                                                "value10": -1.0,
-                                                "value11": 0.0,
-                                                "value12": -0.0,
-                                                "value13": -0.0,
-                                                "value14": -0.0,
-                                                "value15": 1.0
-                                            }
-                                        }
+                                        "m_Name": "quad"
                                     }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 5,
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {}
                                 }
                             }
                         ]
@@ -506,8 +248,8 @@
                 "ptr_wrapper": {
                     "valid": 1,
                     "data": {
-                        "Name": "GameObject",
-                        "m_Id": 17635132099420924000,
+                        "Name": "DirLight",
+                        "m_Id": 18144469683999783040,
                         "IsActive": true,
                         "Transform": {
                             "m_Trs": {
@@ -552,18 +294,22 @@
                         },
                         "m_Components": [
                             {
-                                "polymorphic_id": 4,
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {}
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2,
+                                "polymorphic_id": 2147483652,
+                                "polymorphic_name": "Light",
                                 "ptr_wrapper": {
                                     "valid": 1,
                                     "data": {
-                                        "m_Name": "cube"
+                                        "Range": 20.0,
+                                        "SpotAngle": 30.0,
+                                        "Intensity": 1.0,
+                                        "Color": {
+                                            "X": 1.0,
+                                            "Y": 1.0,
+                                            "Z": 1.0,
+                                            "W": 1.0
+                                        },
+                                        "Type": 0,
+                                        "Shadow": 0
                                     }
                                 }
                             }

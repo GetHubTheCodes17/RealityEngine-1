@@ -28,7 +28,9 @@ reality::GameEngine::GameEngine() {
 
 	g_Io->Window->SetTitle("Reality Engine");
 	g_Io->Window->SetPos({ 250.f, 150.f });
-	SceneSerializer::Load("Resources/Scenes.json", g_SceneManager->CreateScene("Scene0"));
+
+	auto& scene{ g_SceneManager->CreateScene("Scene0") };
+	SceneSerializer::Load("Resources/Scenes.json", scene);
 }
 
 reality::GameEngine::~GameEngine() {

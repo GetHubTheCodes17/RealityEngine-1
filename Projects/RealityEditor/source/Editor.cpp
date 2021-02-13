@@ -24,6 +24,7 @@ reality::Editor::Editor() {
 			m_Assets.DropResource(paths[i]);
 		}
 	});
+	Run();
 }
 
 reality::Editor::~Editor() {
