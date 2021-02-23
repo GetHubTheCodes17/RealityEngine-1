@@ -9,8 +9,8 @@
 namespace reality {
     class EditorLog {
     public:
-        void Clear();
         void AddLog(const char* msg);
+        void Clear();
         void Draw();
 
     private:
@@ -19,11 +19,6 @@ namespace reality {
         ImVector<int> m_LineOffsets;
         bool m_ScrollToBottom{ true };
     };
-}
-
-inline void reality::EditorLog::Clear() {
-    m_Buffer.clear();
-    m_LineOffsets.clear();
 }
 
 inline void reality::EditorLog::AddLog(const char* msg) {
@@ -35,6 +30,11 @@ inline void reality::EditorLog::AddLog(const char* msg) {
         }
     }
     m_ScrollToBottom = true;
+}
+
+inline void reality::EditorLog::Clear() {
+    m_Buffer.clear();
+    m_LineOffsets.clear();
 }
 
 inline void reality::EditorLog::Draw() {

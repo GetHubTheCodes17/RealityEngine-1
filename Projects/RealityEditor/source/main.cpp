@@ -2,10 +2,15 @@
 
 #include "Editor.h"
 
+#ifdef RE_WINDOWS_PLATFORM
 extern "C" {
-	__declspec(dllexport) auto NvOptimusEnablement{ 1 };
+	// Ensure the use of the NVIDIA graphic card if available
+	__declspec(dllexport) auto NvOptimusEnablement{ 1 }; 
+
+	// Ensure the use of the AMD graphic card if available
 	__declspec(dllexport) auto AmdPowerXpressRequestHighPerformance{ 1 };
 }
+#endif
 
 int WinMain() {
 	reality::Editor editor;
