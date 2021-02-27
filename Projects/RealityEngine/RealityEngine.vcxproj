@@ -14,6 +14,7 @@
     <ClCompile Include="..\..\Dependencies\Include\glad\glad.c" />
     <ClCompile Include="source\Audio\AudioEngine.cpp" />
     <ClCompile Include="source\Audio\AudioSource.cpp" />
+    <ClCompile Include="source\Core\Tools\HotReload.cpp" />
     <ClCompile Include="source\Core\Tools\Leaker.cpp" />
     <ClCompile Include="source\Core\Tools\Logger.cpp" />
     <ClCompile Include="source\Engine.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="include\Core\Maths\Vector4.h" />
     <ClInclude Include="include\Core\Maths\Viewport.h" />
     <ClInclude Include="include\Core\Platform.h" />
+    <ClInclude Include="include\Core\Tools\HotReload.h" />
     <ClInclude Include="include\Core\Tools\Leaker.h" />
     <ClInclude Include="include\Core\Tools\Logger.h" />
     <ClInclude Include="include\Core\Tools\Randomizer.h" />
@@ -197,7 +199,7 @@
       <AdditionalOptions>/EHsc /Zc:preprocessor %(AdditionalOptions)</AdditionalOptions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
-      <EnableModules>true</EnableModules>
+      <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -224,7 +226,7 @@
       <AdditionalOptions>/EHsc /Zc:preprocessor /translateInclude %(AdditionalOptions)</AdditionalOptions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
-      <EnableModules>true</EnableModules>
+      <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -6,6 +6,7 @@
 
 namespace reality {
 	struct CMonoBehaviour : CBehaviour {
+		RE_INTERFACE(CBehaviour)
 		virtual ~CMonoBehaviour() = 0;
 
 		virtual void Awake() {};

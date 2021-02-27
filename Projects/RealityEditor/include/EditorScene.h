@@ -4,11 +4,14 @@
 
 #include <imgui/imgui.h>
 #include <imgui/ImGuizmo.h>
+#include <span>
 
 #include "EditorCamera.h"
 #include "Rendering/Opengl/GLPipeline.h"
 #include "Rendering/Opengl/GLContext.h"
 #include "Gameplay/GameObject.h"
+#include "Core/Maths/Viewport.h"
+#include "Core/Maths/Vector3.h"
 
 namespace reality {
 	class EditorScene {

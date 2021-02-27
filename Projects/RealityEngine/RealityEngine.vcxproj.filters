@@ -188,6 +188,9 @@
     <ClCompile Include="source\Gameplay\Component\ComponentsReflection.cpp">
       <Filter>source\Gameplay\Component</Filter>
     </ClCompile>
+    <ClCompile Include="source\Core\Tools\HotReload.cpp">
+      <Filter>source\Core\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Resources\Model\Model.h">
@@ -420,6 +423,9 @@
     </ClInclude>
     <ClInclude Include="include\Gameplay\ComponentHelper.h">
       <Filter>include\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Tools\HotReload.h">
+      <Filter>include\Core\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

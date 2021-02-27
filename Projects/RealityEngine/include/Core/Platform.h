@@ -80,6 +80,12 @@ namespace reality {
 #define RE_CORE __declspec(dllimport)
 #endif
 
+#ifdef RE_GAME_EXPORT
+#define RE_GAME __declspec(dllexport)
+#else
+#define RE_GAME __declspec(dllimport)
+#endif
+
 #ifndef NDEBUG
 #define RE_DEBUG 1
 #else

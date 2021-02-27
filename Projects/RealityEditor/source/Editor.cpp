@@ -7,7 +7,13 @@
 
 #include "Gameplay/ComponentSystem.h"
 
-reality::Editor::Editor() {
+reality::editor::Editor::Editor() :
+#if RE_DEBUG
+	hr{ "../../Binaries/Debug/Game.dll" }
+#else
+	hr{ "../../Binaries/Release/Game.dll" }
+#endif
+{
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	editorTheme::RealityStyle();
@@ -25,18 +31,25 @@ reality::Editor::Editor() {
 		}
 	});
 	Run();
+
+	rttr::library lib("Game");
+	lib.load();
 }
 
-reality::Editor::~Editor() {
+reality::editor::Editor::~Editor() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 }
 
-void reality::Editor::Run() {
+void reality::editor::Editor::Run() {
 	auto& activeScene{ *g_SceneManager->ActiveScene };
 
 	while (g_Io->Window->IsRunning()) {
+		if (ImGui::IsKeyDown(keycode::RE_KEY_R)) {
+			hr.Reload();
+		}
+
 		UpdateIo();
 		m_Engine.Update();
 
@@ -44,6 +57,7 @@ void reality::Editor::Run() {
 		m_ComponentSystem.UpdateTransforms(activeScene);
 		m_ComponentSystem.UpdateCameras(activeScene, m_Viewport.Size);
 		m_ComponentSystem.UpdateLights(activeScene);
+		m_ComponentSystem.UpdateMonoBehaviours(activeScene);
 
 		Update();
 		Render(m_Camera.GetViewMatrix());
@@ -54,7 +68,7 @@ void reality::Editor::Run() {
 	}
 }
 
-void reality::Editor::Render(const Matrix4& view) const {
+void reality::editor::Editor::Render(const Matrix4& view) const {
 	GLContext::SetViewMatrix(view);
 
 	m_Pipeline.BeginShadowPass();
@@ -68,7 +82,7 @@ void reality::Editor::Render(const Matrix4& view) const {
 	m_Pipeline.GetDefaultPass().Bind();
 }
 
-void reality::Editor::Update() {
+void reality::editor::Editor::Update() {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
@@ -76,7 +90,7 @@ void reality::Editor::Update() {
 	UpdateWindows();
 }
 
-void reality::Editor::UpdateWindows() {
+void reality::editor::Editor::UpdateWindows() {
 	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.1f, 50.f);
 	m_Dock.Begin();
 	m_Assets.Draw();
@@ -88,7 +102,7 @@ void reality::Editor::UpdateWindows() {
 	m_Dock.End();
 }
 
-void reality::Editor::UpdateIo() {
+void reality::editor::Editor::UpdateIo() {
 	if (ImGui::IsKeyDown(keycode::RE_KEY_F) && !m_Hierarchy.GetSelected().empty()) {
 		m_Camera.Focus(m_Hierarchy.GetSelected().back());
 	}

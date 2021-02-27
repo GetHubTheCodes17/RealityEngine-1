@@ -6,6 +6,7 @@
 #include <vector>
 #include <span>
 
+#include "Gameplay/Component/MonoBehaviour.h"
 #include "Gameplay/Component/Component.h"
 
 namespace reality {
@@ -14,13 +15,13 @@ namespace reality {
 		ComponentManager();
 
 		template <class T>
-		std::span<const Component*> GetComponents() requires std::derived_from<T, Component>;
+		std::span<Component*> GetComponents() requires std::derived_from<T, Component>;
 
-		void AddComponent(const Component* comp);
-		void RemoveComponent(const Component* comp);
+		void AddComponent(Component* comp);
+		void RemoveComponent(Component* comp);
 
 	private:
-		std::unordered_map<rttr::type, std::vector<const Component*>> m_Components;
+		std::unordered_map<rttr::type, std::vector<Component*>> m_Components;
 	};
 }
 
@@ -28,17 +29,23 @@ inline reality::ComponentManager::ComponentManager() {
 	for (const auto& type : rttr::type::get<Component>().get_derived_classes()) {
 		m_Components[type];
 	}
+	m_Components[rttr::type::get<CMonoBehaviour>()];
 }
 
-inline void reality::ComponentManager::AddComponent(const Component* comp) {
-	m_Components.at(rttr::type::get(*comp)).emplace_back(comp);
+inline void reality::ComponentManager::AddComponent(Component* comp) {
+	if (rttr::type::get(*comp).is_derived_from<CMonoBehaviour>()) {
+		m_Components.at(rttr::type::get<CMonoBehaviour>()).emplace_back(comp);
+	}
+	else {
+		m_Components.at(rttr::type::get(*comp)).emplace_back(comp);
+	}
 }
 
-inline void reality::ComponentManager::RemoveComponent(const Component* comp) {
+inline void reality::ComponentManager::RemoveComponent(Component* comp) {
 	std::erase(m_Components.at(rttr::type::get(*comp)), comp);
 }
 
 template <class T>
-std::span<const reality::Component*> reality::ComponentManager::GetComponents() requires std::derived_from<T, Component> {
+std::span<reality::Component*> reality::ComponentManager::GetComponents() requires std::derived_from<T, Component> {
 	return m_Components.at(rttr::type::get<T>());
 }

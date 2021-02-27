@@ -2,12 +2,11 @@
 
 #pragma once
 
-#include "Core/Platform.h"
-
 #ifdef RE_SIMD_ENABLE
 #include <xmmintrin.h>
 #endif
 
+#include "Core/Platform.h"
 #include "Mathf.h"
 #include "Frustrum.h"
 #include "Viewport.h"

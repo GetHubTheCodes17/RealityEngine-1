@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <unordered_map>
+
 #include "Core/Platform.h"
 #include "ResourceHandler.h"
 

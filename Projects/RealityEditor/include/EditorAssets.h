@@ -4,6 +4,7 @@
 
 #include <imgui/imgui.h>
 #include <filesystem>
+#include <string_view>
 
 #include "Resources/ResourceManager.h"
 

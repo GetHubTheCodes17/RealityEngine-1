@@ -5,25 +5,40 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealityEditor", "Projects\RealityEditor\RealityEditor.vcxproj", "{EC24CFB9-7282-47EE-9C03-8367A8934FE9}"
 	ProjectSection(ProjectDependencies) = postProject
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E} = {418B5013-5A55-4EC4-9257-59F6B3647C2E}
 		{51FA2B87-4587-48F2-98EE-59E25FD7FC92} = {51FA2B87-4587-48F2-98EE-59E25FD7FC92}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealityEngine", "Projects\RealityEngine\RealityEngine.vcxproj", "{51FA2B87-4587-48F2-98EE-59E25FD7FC92}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Projects\Game\Game.vcxproj", "{418B5013-5A55-4EC4-9257-59F6B3647C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Debug|x64.ActiveCfg = Debug|x64
 		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Debug|x64.Build.0 = Debug|x64
+		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Debug|x86.ActiveCfg = Debug|x64
 		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Release|x64.ActiveCfg = Release|x64
 		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Release|x64.Build.0 = Release|x64
+		{EC24CFB9-7282-47EE-9C03-8367A8934FE9}.Release|x86.ActiveCfg = Release|x64
 		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Debug|x64.ActiveCfg = Debug|x64
 		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Debug|x64.Build.0 = Debug|x64
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Debug|x86.ActiveCfg = Debug|x64
 		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Release|x64.ActiveCfg = Release|x64
 		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Release|x64.Build.0 = Release|x64
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92}.Release|x86.ActiveCfg = Release|x64
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E}.Debug|x64.ActiveCfg = Debug|x64
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E}.Debug|x64.Build.0 = Debug|x64
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E}.Debug|x86.ActiveCfg = Debug|x64
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E}.Release|x64.ActiveCfg = Release|x64
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E}.Release|x64.Build.0 = Release|x64
+		{418B5013-5A55-4EC4-9257-59F6B3647C2E}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

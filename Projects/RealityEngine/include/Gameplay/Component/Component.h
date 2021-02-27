@@ -47,4 +47,13 @@ public:											\
 	}											\
 	static std::shared_ptr<T> Instantiate() {	\
 		return std::make_shared<T>();			\
-	}
+	}			
+
+#define RE_INTERFACE(Base)						\
+private:										\
+	RTTR_ENABLE(Base)							\
+	friend class cereal::access;				\
+public:											\
+	virtual Component* Clone() const override {	\
+		return nullptr;							\
+	}											\

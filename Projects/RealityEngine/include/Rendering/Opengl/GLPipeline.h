@@ -25,8 +25,9 @@ namespace reality {
 inline void reality::GLPipeline::ResizePasses(const Viewport& viewport) {
 	m_ScenePass.Resize(viewport);
 	m_MidPass.Resize(viewport);
-	m_BlurPasses[0].Resize(viewport);
-	m_BlurPasses[1].Resize(viewport);
+	for (auto& blurPass : m_BlurPasses) {
+		blurPass.Resize(viewport);
+	}
 	m_DownPass.Resize(viewport);
 	m_LensPass.Resize(viewport);
 	m_FinalPass.Resize(viewport);

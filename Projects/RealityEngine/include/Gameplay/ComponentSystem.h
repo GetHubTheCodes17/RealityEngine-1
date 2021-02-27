@@ -22,6 +22,7 @@ namespace reality {
 		void UpdateMeshesShadow(Scene& scene) const;
 		void UpdateMeshes(Scene& scene) const;
 		void UpdateParticles(Scene& scene) const;
+		void UpdateMonoBehaviours(Scene& scene) const;
 	};
 }
 
@@ -117,6 +118,14 @@ inline void reality::ComponentSystem::UpdateParticles(Scene& scene) const {
 				glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, 
 					camera->GetGameObject().Transform.GetPosition());
 			}
+		}
+	}
+}
+
+inline void reality::ComponentSystem::UpdateMonoBehaviours(Scene& scene) const {
+	for (const auto& mono : scene.m_Manager.GetComponents<CMonoBehaviour>()) {
+		if (const auto script{ static_cast<CMonoBehaviour*>(mono) }) {
+			script->Update();
 		}
 	}
 }

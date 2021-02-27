@@ -10,10 +10,12 @@
 #include "GameObject.h"
 
 namespace reality {
+	namespace editor { class Editor; }
+
 	class RE_CORE Scene final {
 		friend GameObject;
 		friend class ComponentSystem;
-		friend class Editor;
+		friend class editor::Editor;
 
 	public:
 		std::string	Name;

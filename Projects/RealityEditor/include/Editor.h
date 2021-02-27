@@ -2,24 +2,29 @@
 
 #pragma once
 
-#include "EditorHierarchy.h"
-#include "EditorInspector.h"
-#include "EditorDocking.h"
+#include "Engine.h"
+#include "Rendering/Opengl/GLPipeline.h"
+#include "Gameplay/ComponentSystem.h"
+#include "Core/Maths/Viewport.h"
 #include "EditorAssets.h"
 #include "EditorCamera.h"
-#include "EditorTheme.h"
-#include "EditorScene.h"
-#include "EditorMenu.h"
 #include "EditorLog.h"
-#include "Engine.h"
+#include "EditorMenu.h"
+#include "EditorDocking.h"
+#include "EditorScene.h"
+#include "EditorHierarchy.h"
+#include "EditorInspector.h"
+#include "EditorTheme.h"
+#include "Core/Tools/HotReload.h"
 
-namespace reality {
+namespace reality::editor {
 	class Editor final {
 	public:
 		Editor();
 		~Editor();
 
 	private:
+		HotReload hr;
 		GameEngine m_Engine;
 		GLPipeline m_Pipeline;
 		Viewport m_Viewport;

@@ -3,9 +3,12 @@
 #pragma once
 
 #include <imgui/imgui.h>
+#include <functional>
+#include <span>
 
 #include "Gameplay/GameObject.h"
 #include "Gameplay/ComponentHelper.h"
+#include "Core/Maths/Vector3.h"
 
 namespace reality {
 	class EditorInspector {

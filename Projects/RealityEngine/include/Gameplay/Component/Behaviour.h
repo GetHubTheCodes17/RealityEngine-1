@@ -6,6 +6,7 @@
 
 namespace reality {
 	struct CBehaviour : Component {
+		RE_INTERFACE(Component)
 		bool Enabled{ true };
 
 		virtual ~CBehaviour() = 0;

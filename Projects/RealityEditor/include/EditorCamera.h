@@ -4,6 +4,9 @@
 
 #include "Windowing/IO.h"
 #include "Gameplay/GameObject.h"
+#include "Core/Maths/Quaternion.h"
+#include "Core/Maths/Matrix4.h"
+#include "Core/Maths/Vector3.h"
 
 namespace reality {
 	class EditorCamera {

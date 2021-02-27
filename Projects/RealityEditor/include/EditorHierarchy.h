@@ -3,8 +3,11 @@
 #pragma once
 
 #include <imgui/imgui.h>
+#include <vector>
+#include <span>
 
 #include "Gameplay/Scene.h"
+#include "Gameplay/GameObject.h"
 #include "Windowing/KeyCodes.h"
 
 namespace reality {
