@@ -31,9 +31,6 @@ reality::editor::Editor::Editor() :
 		}
 	});
 	Run();
-
-	rttr::library lib("Game");
-	lib.load();
 }
 
 reality::editor::Editor::~Editor() {

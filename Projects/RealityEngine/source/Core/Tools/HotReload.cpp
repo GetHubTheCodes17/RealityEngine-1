@@ -2,6 +2,11 @@
 
 #include "Core/Tools/HotReload.h"
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+
+#include <chrono>
+
 reality::HotReload::HotReload(std::string_view dllPath, std::span<std::string> procs) :
 	m_Path{ dllPath }, m_TempName{ m_Path + ".re.dll" }
 {
@@ -22,7 +27,7 @@ void reality::HotReload::Poll() {
 	auto lastWriteTime{ std::filesystem::last_write_time(m_Path) };
 	if (m_LastWriteTime < lastWriteTime) {
 		if (m_Module) {
-			FreeLibrary(m_Module);
+			FreeLibrary((HMODULE)m_Module);
 			m_Module = nullptr;
 		}
 
@@ -30,7 +35,7 @@ void reality::HotReload::Poll() {
 			m_Module = LoadLibraryA(m_TempName.c_str());
 			if (m_Module) {
 				for (auto& [name, proc] : m_Procs) {
-					proc = GetProcAddress(m_Module, name.c_str());
+					proc = GetProcAddress((HMODULE)m_Module, name.c_str());
 					m_LastWriteTime = lastWriteTime;
 				}
 			}
@@ -49,7 +54,7 @@ void reality::HotReload::Reload() {
 
 	auto lastWriteTime{ std::filesystem::last_write_time(m_Path) };
 	if (m_Module) {
-		FreeLibrary(m_Module);
+		FreeLibrary((HMODULE)m_Module);
 		m_Module = nullptr;
 	}
 
@@ -59,6 +64,6 @@ void reality::HotReload::Reload() {
 	CloseHandle(file);
 }
 
-FARPROC reality::HotReload::GetProc(std::string_view name) {
+void* reality::HotReload::GetProc(std::string_view name) {
 	return m_Procs.at(name.data());
 }

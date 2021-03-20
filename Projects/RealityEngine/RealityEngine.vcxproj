@@ -200,11 +200,12 @@
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
       <EnableModules>false</EnableModules>
+      <PrecompiledHeaderFile>Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3dll.lib;Game.lib;irrKlang.lib;freetype.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -227,13 +228,14 @@
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
       <EnableModules>false</EnableModules>
+      <PrecompiledHeaderFile>Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;assimp-vc142-mt.lib;rttr_core.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3dll.lib;Game.lib;irrKlang.lib;freetype.lib;assimp-vc142-mt.lib;rttr_core.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
