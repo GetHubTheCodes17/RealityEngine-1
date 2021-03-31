@@ -8,7 +8,7 @@
 #include <chrono>
 
 Reality::HotReload::HotReload(std::string_view dllPath, std::span<std::string> procs) :
-	m_Path{ std::string{ dllPath } + "Game" }, m_TempName{ m_Path + ".re.dll" }
+	m_Path{ std::string{ dllPath } + "Game.dll" }, m_TempName{ m_Path + ".re.dll" }
 {
 	for (const auto& proc : procs) {
 		m_Procs[proc];
