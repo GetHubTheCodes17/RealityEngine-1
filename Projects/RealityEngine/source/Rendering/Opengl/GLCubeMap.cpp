@@ -4,7 +4,7 @@
 
 #include <glad/glad.h>
 
-reality::GLCubeMap::GLCubeMap(GLCubeMapSettings settings) {
+Reality::GLCubeMap::GLCubeMap(GLCubeMapSettings settings) {
 	glGenTextures(1, &m_Handle.Id);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_Handle.Id);
 
@@ -20,11 +20,11 @@ reality::GLCubeMap::GLCubeMap(GLCubeMapSettings settings) {
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
-reality::GLCubeMap::~GLCubeMap() {
+Reality::GLCubeMap::~GLCubeMap() {
 	glDeleteTextures(1, &m_Handle.Id);
 }
 
-void reality::GLCubeMap::Bind(unsigned index) const {
+void Reality::GLCubeMap::Bind(unsigned index) const {
 	glActiveTexture(GL_TEXTURE0 + index);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_Handle.Id);
 }

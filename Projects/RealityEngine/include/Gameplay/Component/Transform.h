@@ -9,7 +9,7 @@
 #include "Core/Maths/MathsSerializer.h"
 #include "Component.h"
 
-namespace reality {
+namespace Reality {
 	struct RE_CORE CTransform : Component {
 		CTransform() = default;
 		CTransform(const CTransform&);
@@ -75,14 +75,14 @@ namespace reality {
 	};
 }
 
-inline reality::CTransform::CTransform(const CTransform& other) :
+inline Reality::CTransform::CTransform(const CTransform& other) :
 	m_Trs{ other.m_Trs }, m_Rotation{ other.m_Rotation }, m_Position{ other.m_Position }, m_Scale{ other.m_Scale }
 {
 	SetHasChanged(true);
 	SetParent(other.m_Parent);
 }
 
-inline reality::CTransform& reality::CTransform::operator=(const CTransform& other) {
+inline Reality::CTransform& Reality::CTransform::operator=(const CTransform& other) {
 	SetHasChanged(true);
 	m_Trs = other.m_Trs;
 	m_Rotation = other.m_Rotation;
@@ -92,13 +92,13 @@ inline reality::CTransform& reality::CTransform::operator=(const CTransform& oth
 	return *this;
 }
 
-inline reality::CTransform::~CTransform() {
+inline Reality::CTransform::~CTransform() {
 	if (m_Parent && !m_Parent->m_Children.empty()) {
 		std::erase(m_Parent->m_Children, this);
 	}
 }
 
-inline reality::Vector3 reality::CTransform::TransformPoint(const Vector3& position) const {
+inline Reality::Vector3 Reality::CTransform::TransformPoint(const Vector3& position) const {
 	return {
 		m_Trs[0] * position.X + m_Trs[4] * position.Y + m_Trs[8] * position.Z + m_Trs[12],
 		m_Trs[1] * position.X + m_Trs[5] * position.Y + m_Trs[9] * position.Z + m_Trs[13],
@@ -106,7 +106,7 @@ inline reality::Vector3 reality::CTransform::TransformPoint(const Vector3& posit
 	};
 }
 
-inline reality::Vector3 reality::CTransform::InverseTransformPoint(const Vector3& position) const {
+inline Reality::Vector3 Reality::CTransform::InverseTransformPoint(const Vector3& position) const {
 	const auto pos{ position - m_Position };
 	return {
 		m_Trs[0] * pos.X + m_Trs[1] * pos.Y + m_Trs[2] * pos.Z + m_Trs[4],
@@ -115,126 +115,126 @@ inline reality::Vector3 reality::CTransform::InverseTransformPoint(const Vector3
 	};
 }
 
-inline void reality::CTransform::Rotate(const Vector3& eulerAngles) {
+inline void Reality::CTransform::Rotate(const Vector3& eulerAngles) {
 	m_Rotation = Quaternion::Normalize(m_Rotation * Quaternion{ eulerAngles * Mathf::Deg2Rad });
 	SetHasChanged(true);
 }
 
-inline void reality::CTransform::Translate(const Vector3& translation) {
+inline void Reality::CTransform::Translate(const Vector3& translation) {
 	m_Position += translation;
 	SetHasChanged(true);
 }
 
-inline bool reality::CTransform::IsRoot() const {
+inline bool Reality::CTransform::IsRoot() const {
 	return !m_Level;
 }
 
-inline bool reality::CTransform::HasChanged() const {
+inline bool Reality::CTransform::HasChanged() const {
 	return m_Parent ? m_Parent->HasChanged() : m_HasChanged;
 }
 
-inline reality::CTransform* reality::CTransform::GetRoot() {
+inline Reality::CTransform* Reality::CTransform::GetRoot() {
 	return m_Parent ? m_Parent->GetRoot() : this;
 }
 
-inline reality::CTransform* reality::CTransform::GetParent() const {
+inline Reality::CTransform* Reality::CTransform::GetParent() const {
 	return m_Parent;
 }
 
-inline std::span<reality::CTransform*> reality::CTransform::GetChildren() {
+inline std::span<Reality::CTransform*> Reality::CTransform::GetChildren() {
 	return m_Children;
 }
 
-inline reality::CTransform* reality::CTransform::GetChild(unsigned index) const {
+inline Reality::CTransform* Reality::CTransform::GetChild(unsigned index) const {
 	return index < m_Children.size() ? m_Children[index] : nullptr;
 }
 
-inline unsigned reality::CTransform::GetChildrenSize() const {
+inline unsigned Reality::CTransform::GetChildrenSize() const {
 	return (unsigned)m_Children.size();
 }
 
-inline unsigned reality::CTransform::GetLevel() const {
+inline unsigned Reality::CTransform::GetLevel() const {
 	return m_Level;
 }
 
-inline reality::uint64 reality::CTransform::GetParentId() const {
+inline Reality::uint64 Reality::CTransform::GetParentId() const {
 	return m_ParentId;
 }
 
-inline const reality::Vector3& reality::CTransform::GetPosition() const {
+inline const Reality::Vector3& Reality::CTransform::GetPosition() const {
 	return m_Position;
 }
 
-inline const reality::Quaternion& reality::CTransform::GetRotation() const {
+inline const Reality::Quaternion& Reality::CTransform::GetRotation() const {
 	return m_Rotation;
 }
 
-inline const reality::Vector3& reality::CTransform::GetScale() const {
+inline const Reality::Vector3& Reality::CTransform::GetScale() const {
 	return m_Scale;
 }
 
-inline reality::Quaternion reality::CTransform::GetLocalRotation() const {
+inline Reality::Quaternion Reality::CTransform::GetLocalRotation() const {
 	return m_Parent ? Quaternion::Inverse(m_Parent->m_Rotation * m_Rotation) : m_Rotation;
 }
 
-inline reality::Vector3 reality::CTransform::GetLocalPosition() const {
+inline Reality::Vector3 Reality::CTransform::GetLocalPosition() const {
 	return m_Parent ? m_Parent->TransformPoint(m_Position) : m_Position;
 }
 
-inline reality::Matrix4 reality::CTransform::GetWorldToLocalMatrix() const {
+inline Reality::Matrix4 Reality::CTransform::GetWorldToLocalMatrix() const {
 	return Matrix4::Inverse(m_Trs);
 }
 
-inline const reality::Matrix4& reality::CTransform::GetTrs() const {
+inline const Reality::Matrix4& Reality::CTransform::GetTrs() const {
 	return m_Trs;
 }
 
-inline reality::Vector3 reality::CTransform::GetRight() const {
+inline Reality::Vector3 Reality::CTransform::GetRight() const {
 	return m_Trs.GetRow3(0);
 }
 
-inline reality::Vector3 reality::CTransform::GetUp() const {
+inline Reality::Vector3 Reality::CTransform::GetUp() const {
 	return m_Trs.GetRow3(1);
 }
 
-inline reality::Vector3 reality::CTransform::GetForward() const {
+inline Reality::Vector3 Reality::CTransform::GetForward() const {
 	return m_Trs.GetRow3(2);
 }
 
-inline void reality::CTransform::SetHasChanged(bool hasChanged) {
+inline void Reality::CTransform::SetHasChanged(bool hasChanged) {
 	m_HasChanged = hasChanged;
 	if (m_Parent && hasChanged) {
 		m_Parent->SetHasChanged(m_HasChanged);
 	}
 }
 
-inline void reality::CTransform::SetPosition(Vector3 position) {
+inline void Reality::CTransform::SetPosition(Vector3 position) {
 	m_Position = std::move(position);
 	SetHasChanged(true);
 }
 
-inline void reality::CTransform::SetRotation(Vector3 eulerAngles) {
+inline void Reality::CTransform::SetRotation(Vector3 eulerAngles) {
 	m_Rotation = Quaternion{ eulerAngles * Mathf::Deg2Rad };
 	SetHasChanged(true);
 }
 
-inline void reality::CTransform::SetRotation(Quaternion rotation) {
+inline void Reality::CTransform::SetRotation(Quaternion rotation) {
 	m_Rotation = std::move(rotation);
 	SetHasChanged(true);
 }
 
-inline void reality::CTransform::SetScale(Vector3 scale) {
+inline void Reality::CTransform::SetScale(Vector3 scale) {
 	m_Scale = std::move(scale);
 	SetHasChanged(true);
 }
 
-inline void reality::CTransform::SetTrs(const Matrix4& trs) {
+inline void Reality::CTransform::SetTrs(const Matrix4& trs) {
 	m_Trs = trs;
 	SetHasChanged(true);
 }
 
 template <class Archive>
-void reality::CTransform::serialize(Archive& archive) {
+void Reality::CTransform::serialize(Archive& archive) {
 	archive(CEREAL_NVP(m_Trs));
 	archive(CEREAL_NVP(m_Rotation));
 	archive(CEREAL_NVP(m_Position));
@@ -244,5 +244,5 @@ void reality::CTransform::serialize(Archive& archive) {
 	archive(CEREAL_NVP(m_ParentId));
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(reality::CTransform, "Transform");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CTransform)
+CEREAL_REGISTER_TYPE_WITH_NAME(Reality::CTransform, "Transform");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Reality::Component, Reality::CTransform)

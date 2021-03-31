@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace reality {
+namespace Reality {
 	struct GLModel {
 		std::vector<class GLMesh*> Meshes;
 	};

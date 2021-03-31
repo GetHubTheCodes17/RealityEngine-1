@@ -7,7 +7,7 @@
 #include "Rendering/Opengl/GLShaderHelper.h"
 #include "Core/Maths/Matrix4.h"
 
-reality::GLFont::GLFont(GLFontSettings settings) {
+Reality::GLFont::GLFont(GLFontSettings settings) {
 	glGenVertexArrays(1, &m_Handle.Vao);
 	glBindVertexArray(m_Handle.Vao);
 	glGenBuffers(1, &m_Handle.Vbo);
@@ -27,7 +27,7 @@ reality::GLFont::GLFont(GLFontSettings settings) {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 }
 
-void reality::GLFont::Draw(std::string_view text, const Viewport& viewport, Vector2 windowSize) const {
+void Reality::GLFont::Draw(std::string_view text, const Viewport& viewport, Vector2 windowSize) const {
 	GLint previousShaderProgram{};
 	glGetIntegerv(GL_CURRENT_PROGRAM, &previousShaderProgram);
 	GLboolean previousBlendState{};

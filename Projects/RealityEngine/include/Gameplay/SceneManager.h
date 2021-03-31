@@ -4,7 +4,7 @@
 
 #include "Scene.h"
 
-namespace reality {
+namespace Reality {
 	class SceneManager final {
 	public:
 		Scene* ActiveScene{};
@@ -19,12 +19,12 @@ namespace reality {
 	RE_CORE extern SceneManager* g_SceneManager;
 }
 
-inline reality::Scene& reality::SceneManager::CreateScene(std::string_view name) {
+inline Reality::Scene& Reality::SceneManager::CreateScene(std::string_view name) {
 	ActiveScene = &m_Scenes.emplace(name, Scene{ name }).first->second;
 	return *ActiveScene;
 }
 
-inline reality::Scene* reality::SceneManager::GetScene(std::string_view name) {
+inline Reality::Scene* Reality::SceneManager::GetScene(std::string_view name) {
 	const auto it{ m_Scenes.find(name.data()) };
 	return it != m_Scenes.cend() ? &it->second : nullptr;
 }

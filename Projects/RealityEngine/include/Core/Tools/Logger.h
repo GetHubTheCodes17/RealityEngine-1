@@ -8,7 +8,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	enum class LogVerbosity { Info, Warning, Error };
 
 	class RE_CORE Logger {
@@ -32,11 +32,11 @@ namespace reality {
 
 #ifdef RE_LOG_ENABLE
 	#define RE_LOG_INFO(message, ...) \
-		reality::g_Logger->Log(__FILE__, __LINE__, __func__, reality::LogVerbosity::Info, 0, "[INFO] " message "\n", ##__VA_ARGS__);
+		Reality::g_Logger->Log(__FILE__, __LINE__, __func__, Reality::LogVerbosity::Info, 0, "[INFO] " message "\n", ##__VA_ARGS__);
 	#define RE_LOG_WARNING(message, ...) \
-		reality::g_Logger->Log(__FILE__, __LINE__, __func__, reality::LogVerbosity::Warning, 1, "[WARN] " message "\n", ##__VA_ARGS__);
+		Reality::g_Logger->Log(__FILE__, __LINE__, __func__, Reality::LogVerbosity::Warning, 1, "[WARN] " message "\n", ##__VA_ARGS__);
 	#define RE_LOG_ERROR(message, ...) \
-		reality::g_Logger->Log(__FILE__, __LINE__, __func__, reality::LogVerbosity::Error, 2, "[ERR] " message "\n", ##__VA_ARGS__);
+		Reality::g_Logger->Log(__FILE__, __LINE__, __func__, Reality::LogVerbosity::Error, 2, "[ERR] " message "\n", ##__VA_ARGS__);
 #else
 	#define RE_LOG_INFO(message, ...);
 	#define RE_LOG_WARNING(message, ...);

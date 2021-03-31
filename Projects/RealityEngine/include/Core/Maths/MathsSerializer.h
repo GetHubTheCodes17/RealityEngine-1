@@ -10,7 +10,7 @@
 #include "Vector3.h"
 #include "Vector2.h"
 
-namespace reality {
+namespace Reality {
 	template <class Archive>
 	void serialize(Archive& archive, Vector2& v);
 	template <class Archive>
@@ -24,26 +24,26 @@ namespace reality {
 }
 
 template<class Archive>
-void reality::serialize(Archive& archive, Vector2& v) {
+void Reality::serialize(Archive& archive, Vector2& v) {
 	archive(cereal::make_nvp("X", v.X), cereal::make_nvp("Y", v.Y));
 }
 
 template<class Archive>
-void reality::serialize(Archive& archive, Vector3& v) {
+void Reality::serialize(Archive& archive, Vector3& v) {
 	archive(cereal::make_nvp("X", v.X), cereal::make_nvp("Y", v.Y), cereal::make_nvp("Z", v.Z));
 }
 
 template<class Archive>
-void reality::serialize(Archive& archive, Vector4& v) {
+void Reality::serialize(Archive& archive, Vector4& v) {
 	archive(cereal::make_nvp("X", v.X), cereal::make_nvp("Y", v.Y), cereal::make_nvp("Z", v.Z), cereal::make_nvp("W", v.W));
 }
 
 template<class Archive>
-void reality::serialize(Archive& archive, Matrix4& m) {
+void Reality::serialize(Archive& archive, Matrix4& m) {
 	archive(cereal::make_nvp("Array Row Major", m.Array));
 }
 
 template<class Archive>
-void reality::serialize(Archive& archive, Quaternion& q) {
+void Reality::serialize(Archive& archive, Quaternion& q) {
 	archive(cereal::make_nvp("X", q.X), cereal::make_nvp("Y", q.Y), cereal::make_nvp("Z", q.Z), cereal::make_nvp("W", q.W));
 }

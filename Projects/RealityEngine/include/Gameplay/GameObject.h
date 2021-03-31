@@ -12,7 +12,7 @@
 #include "Core/Platform.h"
 #include "Component/Transform.h"
 
-namespace reality {
+namespace Reality {
 	class Scene;
 
 	class RE_CORE GameObject final {
@@ -75,7 +75,7 @@ namespace reality {
 }
 
 template <class T>
-T* reality::GameObject::AddComponent() requires std::derived_from<T, Component> {
+T* Reality::GameObject::AddComponent() requires std::derived_from<T, Component> {
 	if (HasComponent<T>()) {
 		return nullptr;
 	}
@@ -88,12 +88,12 @@ T* reality::GameObject::AddComponent() requires std::derived_from<T, Component> 
 }
 
 template <class T>
-bool reality::GameObject::HasComponent() const requires std::derived_from<T, Component> {
+bool Reality::GameObject::HasComponent() const requires std::derived_from<T, Component> {
 	return std::ranges::any_of(m_Components, [](auto& comp) { return rttr::type::get<T>() == rttr::type::get(*comp); });
 }
 
 template <class T>
-T* reality::GameObject::GetComponent() const requires std::derived_from<T, Component> {
+T* Reality::GameObject::GetComponent() const requires std::derived_from<T, Component> {
 	for (const auto& component : m_Components) {
 		if (auto comp{ rttr::rttr_cast<T*>(component.get()) }) {
 			return comp;
@@ -103,12 +103,12 @@ T* reality::GameObject::GetComponent() const requires std::derived_from<T, Compo
 }
 
 template <class T>
-T* reality::GameObject::GetComponentInParent() const requires std::derived_from<T, Component> {
+T* Reality::GameObject::GetComponentInParent() const requires std::derived_from<T, Component> {
 	return !Transform.GetParent() ? GetComponent() : Transform.GetParent()->GetGameObject().GetComponent();
 }
 
 template <class T>
-T* reality::GameObject::GetComponentInChildren() const requires std::derived_from<T, Component> {
+T* Reality::GameObject::GetComponentInChildren() const requires std::derived_from<T, Component> {
 	for (const auto& child : Transform.GetChildren()) {
 		if (auto component{ child->GetGameObject().GetComponent() }) {
 			return component;
@@ -118,7 +118,7 @@ T* reality::GameObject::GetComponentInChildren() const requires std::derived_fro
 }
 
 template <class T>
-std::vector<T*> reality::GameObject::GetComponents() const requires std::derived_from<T, Component> {
+std::vector<T*> Reality::GameObject::GetComponents() const requires std::derived_from<T, Component> {
 	std::vector<T*> components;
 	for (const auto& component : m_Components) {
 		if (auto comp{ rttr::rttr_cast<T*>(component.get()) }) {
@@ -129,12 +129,12 @@ std::vector<T*> reality::GameObject::GetComponents() const requires std::derived
 }
 
 template <class T>
-std::vector<T*> reality::GameObject::GetComponentsInParent() const requires std::derived_from<T, Component> {
+std::vector<T*> Reality::GameObject::GetComponentsInParent() const requires std::derived_from<T, Component> {
 	return !Transform.GetParent() ? GetComponents() : Transform.GetParent()->GetGameObject().GetComponents();
 }
 
 template <class T>
-std::vector<T*> reality::GameObject::GetComponentsInChildren() const requires std::derived_from<T, Component> {
+std::vector<T*> Reality::GameObject::GetComponentsInChildren() const requires std::derived_from<T, Component> {
 	if (!Transform.GetChildrenSize()) {
 		return GetComponents();
 	}
@@ -151,7 +151,7 @@ std::vector<T*> reality::GameObject::GetComponentsInChildren() const requires st
 }
 
 template <class T>
-void reality::GameObject::RemoveComponent() requires std::derived_from<T, Component> {
+void Reality::GameObject::RemoveComponent() requires std::derived_from<T, Component> {
 	for (auto it{ m_Components.cbegin() }; it != m_Components.cend(); ++it) {
 		if (auto comp{ rttr::rttr_cast<T*>(it->get()) }) {
 			RemoveManagerComponent(comp);
@@ -162,7 +162,7 @@ void reality::GameObject::RemoveComponent() requires std::derived_from<T, Compon
 }
 
 template <class T>
-void reality::GameObject::RemoveComponents() requires std::derived_from<T, Component> {
+void Reality::GameObject::RemoveComponents() requires std::derived_from<T, Component> {
 	for (auto it{ m_Components.cbegin() }; it != m_Components.cend(); ) {
 		if (auto comp{ rttr::rttr_cast<T*>(it->get()) }) {
 			RemoveManagerComponent(comp);
@@ -175,7 +175,7 @@ void reality::GameObject::RemoveComponents() requires std::derived_from<T, Compo
 }
 
 template <class Archive>
-void reality::GameObject::load(Archive& archive) {
+void Reality::GameObject::load(Archive& archive) {
 	archive(CEREAL_NVP(Name));
 	archive(CEREAL_NVP(m_Id));
 	archive(CEREAL_NVP(IsActive));
@@ -185,7 +185,7 @@ void reality::GameObject::load(Archive& archive) {
 }
 
 template <class Archive>
-void reality::GameObject::save(Archive& archive) const {
+void Reality::GameObject::save(Archive& archive) const {
 	archive(CEREAL_NVP(Name));
 	archive(CEREAL_NVP(m_Id));
 	archive(CEREAL_NVP(IsActive));

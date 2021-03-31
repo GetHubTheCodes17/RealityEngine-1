@@ -7,7 +7,7 @@
 #include "Core/Platform.h"
 #include "Rendering/Settings/GLShaderSettings.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLShader {
 	public:
 		GLShader() = default;
@@ -49,15 +49,15 @@ namespace reality {
 	};
 }
 
-inline reality::GLShader::GLShader(GLShader&& other) noexcept :
+inline Reality::GLShader::GLShader(GLShader&& other) noexcept :
 	m_Handle{ std::exchange(other.m_Handle, {}) } 
 {}
 
-inline reality::GLShader& reality::GLShader::operator=(GLShader&& other) noexcept {
+inline Reality::GLShader& Reality::GLShader::operator=(GLShader&& other) noexcept {
 	m_Handle = std::exchange(other.m_Handle, {});
 	return *this;
 }
 
-inline const reality::GLShader::Handle& reality::GLShader::GetHandle() const {
+inline const Reality::GLShader::Handle& Reality::GLShader::GetHandle() const {
 	return m_Handle;
 }

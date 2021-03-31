@@ -4,7 +4,7 @@
 
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
+namespace Reality {
 	enum class GLDebugDrawingRasterization { Fill, Line, Point };
 
 	enum GLDebugDrawingCapacity : uint8 {

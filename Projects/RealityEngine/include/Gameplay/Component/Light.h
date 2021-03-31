@@ -5,7 +5,7 @@
 #include "Component.h"
 #include "Core/Maths/MathsSerializer.h"
 
-namespace reality {
+namespace Reality {
 	struct CLight : Component {
 		RE_COMPONENT(CLight, Component)
 		enum class Type { Directional, Point, Spot };
@@ -29,5 +29,5 @@ namespace reality {
 	};
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(reality::CLight, "Light");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CLight)
+CEREAL_REGISTER_TYPE_WITH_NAME(Reality::CLight, "Light");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Reality::Component, Reality::CLight)

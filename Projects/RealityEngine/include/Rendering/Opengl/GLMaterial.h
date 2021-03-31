@@ -5,7 +5,7 @@
 #include "Core/Platform.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLMaterial {
 	public:
 		Vector3 Color{ Vector3::One }, SpecularStrength{ Vector3::One };

@@ -5,7 +5,7 @@
 #define GLFW_INCLUDE_NONE
 #include <glfw/glfw3.h>
 
-reality::GlfwInput::GlfwInput(GLFWwindow* window) {
+Reality::GlfwInput::GlfwInput(GLFWwindow* window) {
 	auto currentWindow{ window ? window : glfwGetCurrentContext() };
 	RE_ASSERT(currentWindow, "Trying to create GlfwInput class without any current glfw context");
 
@@ -31,40 +31,40 @@ reality::GlfwInput::GlfwInput(GLFWwindow* window) {
 		});
 }
 
-void reality::GlfwInput::PollEvents() const {
+void Reality::GlfwInput::PollEvents() const {
 	s_OldCursorPosition = s_CursorPosition;
 	glfwPollEvents();
 }
 
-void reality::GlfwInput::WaitEvents() const {
+void Reality::GlfwInput::WaitEvents() const {
 	s_OldCursorPosition = s_CursorPosition;
 	glfwWaitEvents();
 }
 
-bool reality::GlfwInput::GetKeyDown(int keycode) const {
+bool Reality::GlfwInput::GetKeyDown(int keycode) const {
 	return s_KeysDown[keycode];
 }
 
-bool reality::GlfwInput::GetKeyUp(int keycode) const {
+bool Reality::GlfwInput::GetKeyUp(int keycode) const {
 	return s_KeysDown[keycode];
 }
 
-bool reality::GlfwInput::GetMouseButton(int button) const {
+bool Reality::GlfwInput::GetMouseButton(int button) const {
 	return s_MouseButtonsDown[button];
 }
 
-reality::Vector2 reality::GlfwInput::GetCursorPos() const {
+Reality::Vector2 Reality::GlfwInput::GetCursorPos() const {
 	return s_CursorPosition;
 }
 
-reality::Vector2 reality::GlfwInput::GetRelativeMousePos() const {
+Reality::Vector2 Reality::GlfwInput::GetRelativeMousePos() const {
 	return s_CursorPosition - s_OldCursorPosition;
 }
 
-reality::Vector2 reality::GlfwInput::GetMouseScroll() const {
+Reality::Vector2 Reality::GlfwInput::GetMouseScroll() const {
 	return s_Scroll;
 }
 
-void reality::GlfwInput::SetCursorPos(float x, float y) const {
+void Reality::GlfwInput::SetCursorPos(float x, float y) const {
 	glfwSetCursorPos(glfwGetCurrentContext(), (double)x, (double)y);
 }

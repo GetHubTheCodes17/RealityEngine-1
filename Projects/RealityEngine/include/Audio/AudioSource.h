@@ -9,7 +9,7 @@
 
 namespace irrklang { class ISound; class ISoundSource; }
 
-namespace reality {
+namespace Reality {
 	struct AudioClipSettings {
 		std::string Path;
 	};

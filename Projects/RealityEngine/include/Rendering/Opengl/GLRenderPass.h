@@ -7,7 +7,7 @@
 #include "Core/Maths/Vector4.h"
 #include "GLTexture.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLRenderPass {
 	public:
 		uint8 Capacity{};
@@ -39,13 +39,13 @@ namespace reality {
 	};
 }
 
-inline reality::GLRenderPass::GLRenderPass(GLRenderPass&& other) noexcept : 
+inline Reality::GLRenderPass::GLRenderPass(GLRenderPass&& other) noexcept : 
 	Capacity{ std::move(other.Capacity) }, ClearBuffer{ std::move(other.ClearBuffer) }, 
 	Rasterization{ std::move(other.Rasterization) }, ClearColor{ std::move(other.ClearColor) },
 	Viewport{ std::move(other.Viewport) }, m_Handle{ std::exchange(other.m_Handle, {}) } 
 {}
 
-inline reality::GLRenderPass& reality::GLRenderPass::operator=(GLRenderPass&& other) noexcept {
+inline Reality::GLRenderPass& Reality::GLRenderPass::operator=(GLRenderPass&& other) noexcept {
 	Capacity = std::move(other.Capacity);
 	ClearBuffer = std::move(other.ClearBuffer);
 	Rasterization = std::move(other.Rasterization);
@@ -55,6 +55,6 @@ inline reality::GLRenderPass& reality::GLRenderPass::operator=(GLRenderPass&& ot
 	return *this;
 }
 
-inline const reality::GLRenderPass::Handle& reality::GLRenderPass::GetHandle() const {
+inline const Reality::GLRenderPass::Handle& Reality::GLRenderPass::GetHandle() const {
 	return m_Handle;
 }

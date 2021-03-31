@@ -7,7 +7,7 @@
 #include "Vector3.h"
 #include "Mathf.h"
 
-namespace reality {
+namespace Reality {
 	struct alignas(16) Quaternion {
 		float X{}, Y{}, Z{}, W{ 1.f };
 
@@ -67,55 +67,55 @@ namespace reality {
 	};
 }
 
-constexpr reality::Quaternion::Quaternion(const float* xyzw) :
+constexpr Reality::Quaternion::Quaternion(const float* xyzw) :
 	X{ xyzw[0] }, Y{ xyzw[1] }, Z{ xyzw[2] }, W{ xyzw[3] }
 {}
 
-inline reality::Quaternion::Quaternion(float angle, const Vector3& axis) {
+inline Reality::Quaternion::Quaternion(float angle, const Vector3& axis) {
 	Set(angle, axis);
 }
 
-inline reality::Quaternion::Quaternion(const Vector3& eulerAngles) {
+inline Reality::Quaternion::Quaternion(const Vector3& eulerAngles) {
 	Set(eulerAngles);
 }
 
-inline reality::Quaternion::Quaternion(const Vector3& from, const Vector3& to) {
+inline Reality::Quaternion::Quaternion(const Vector3& from, const Vector3& to) {
 	Set(from, to);
 }
 
-inline reality::Quaternion::Quaternion(const Matrix4& rotation) {
+inline Reality::Quaternion::Quaternion(const Matrix4& rotation) {
 	Set(rotation);
 }
 
-constexpr reality::Quaternion::Quaternion(const Vector3& xyz, float w) :
+constexpr Reality::Quaternion::Quaternion(const Vector3& xyz, float w) :
 	X{ xyz.X }, Y{ xyz.Y }, Z{ xyz.Z }, W{ w } 
 {}
 
-constexpr reality::Quaternion::Quaternion(float x, float y, float z, float w) :
+constexpr Reality::Quaternion::Quaternion(float x, float y, float z, float w) :
 	X{ x }, Y{ y }, Z{ z }, W{ w }
 {}
 
-constexpr bool reality::Quaternion::operator==(const Quaternion& rhs) const {
+constexpr bool Reality::Quaternion::operator==(const Quaternion& rhs) const {
 	return Mathf::Approx(X, rhs.X) && Mathf::Approx(Y, rhs.Y) && Mathf::Approx(Z, rhs.Z) && Mathf::Approx(W, rhs.W);
 }
 
-constexpr bool reality::Quaternion::operator!=(const Quaternion& rhs) const {
+constexpr bool Reality::Quaternion::operator!=(const Quaternion& rhs) const {
 	return !Mathf::Approx(X, rhs.X) || !Mathf::Approx(Y, rhs.Y) || !Mathf::Approx(Z, rhs.Z) || !Mathf::Approx(W, rhs.W);
 }
 
-constexpr reality::Quaternion reality::Quaternion::operator+(const Quaternion& rhs) const {
+constexpr Reality::Quaternion Reality::Quaternion::operator+(const Quaternion& rhs) const {
 	return { X + rhs.X, Y + rhs.Y, Z + rhs.Z, W + rhs.W };
 }
 
-constexpr reality::Quaternion reality::Quaternion::operator-(const Quaternion& rhs) const {
+constexpr Reality::Quaternion Reality::Quaternion::operator-(const Quaternion& rhs) const {
 	return { X - rhs.X, Y - rhs.Y, Z - rhs.Z, W - rhs.W };
 }
 
-constexpr reality::Quaternion reality::Quaternion::operator-() const {
+constexpr Reality::Quaternion Reality::Quaternion::operator-() const {
 	return { -X, -Y, -Z, -W };
 }
 
-constexpr reality::Quaternion reality::Quaternion::operator*(const Quaternion& rhs) const {
+constexpr Reality::Quaternion Reality::Quaternion::operator*(const Quaternion& rhs) const {
 	return { 
 		W * rhs.X + rhs.W * X + Y * rhs.Z - Z * rhs.Y,
 		W * rhs.Y + rhs.W * Y + Z * rhs.X - X * rhs.Z,
@@ -124,24 +124,24 @@ constexpr reality::Quaternion reality::Quaternion::operator*(const Quaternion& r
 	};
 }
 
-constexpr reality::Vector3 reality::Quaternion::operator*(const Vector3& rhs) const {
+constexpr Reality::Vector3 Reality::Quaternion::operator*(const Vector3& rhs) const {
 	const Vector3 v{ X, Y, Z };
 	return v * 2.f * (v | rhs) + rhs * (W * W - (v | v)) + (v ^ rhs) * 2.f * W;
 }
 
-constexpr reality::Quaternion reality::Quaternion::operator*(float k) const {
+constexpr Reality::Quaternion Reality::Quaternion::operator*(float k) const {
 	return { X * k, Y * k, Z * k, W * k };
 }
 
-constexpr reality::Quaternion reality::Quaternion::operator/(float k) const {
+constexpr Reality::Quaternion Reality::Quaternion::operator/(float k) const {
 	return { X / k, Y / k, Z / k, W / k };
 }
 
-constexpr float reality::Quaternion::operator|(const Quaternion& rhs) const {
+constexpr float Reality::Quaternion::operator|(const Quaternion& rhs) const {
 	return X * rhs.X + Y * rhs.Y + Z * rhs.Z + W * rhs.W;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::operator+=(const Quaternion& rhs) {
+constexpr Reality::Quaternion& Reality::Quaternion::operator+=(const Quaternion& rhs) {
 	X += rhs.X;
 	Y += rhs.Y;
 	Z += rhs.Z;
@@ -149,7 +149,7 @@ constexpr reality::Quaternion& reality::Quaternion::operator+=(const Quaternion&
 	return *this;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::operator-=(const Quaternion& rhs) {
+constexpr Reality::Quaternion& Reality::Quaternion::operator-=(const Quaternion& rhs) {
 	X -= rhs.X;
 	Y -= rhs.Y;
 	Z -= rhs.Z;
@@ -157,7 +157,7 @@ constexpr reality::Quaternion& reality::Quaternion::operator-=(const Quaternion&
 	return *this;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::operator*=(const Quaternion& rhs) {
+constexpr Reality::Quaternion& Reality::Quaternion::operator*=(const Quaternion& rhs) {
 	X = W * rhs.X + rhs.W * X + Y * rhs.Z - Z * rhs.Y;
 	Y = W * rhs.Y + rhs.W * Y + Z * rhs.X - X * rhs.Z;
 	Z = W * rhs.Z + rhs.W * Z + X * rhs.Y - Y * rhs.X;
@@ -165,7 +165,7 @@ constexpr reality::Quaternion& reality::Quaternion::operator*=(const Quaternion&
 	return *this;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::operator*=(float k) {
+constexpr Reality::Quaternion& Reality::Quaternion::operator*=(float k) {
 	X *= k;
 	Y *= k;
 	Z *= k;
@@ -173,7 +173,7 @@ constexpr reality::Quaternion& reality::Quaternion::operator*=(float k) {
 	return *this;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::operator/=(float k) {
+constexpr Reality::Quaternion& Reality::Quaternion::operator/=(float k) {
 	X /= k;
 	Y /= k;
 	Z /= k;
@@ -181,17 +181,17 @@ constexpr reality::Quaternion& reality::Quaternion::operator/=(float k) {
 	return *this;
 }
 
-inline reality::Quaternion reality::Quaternion::AxisAngle(float angle, const Vector3& axis) {
+inline Reality::Quaternion Reality::Quaternion::AxisAngle(float angle, const Vector3& axis) {
 	const auto theta{ angle / 2.f };
 	const auto sinTheta{ std::sin(theta) };
 	return { axis.X * sinTheta, axis.Y * sinTheta, axis.Z * sinTheta, std::cos(theta) };
 }
 
-inline reality::Quaternion reality::Quaternion::Difference(const Quaternion& lhs, const Quaternion& rhs) {
+inline Reality::Quaternion Reality::Quaternion::Difference(const Quaternion& lhs, const Quaternion& rhs) {
 	return rhs * Inverse(lhs);
 }
 
-inline reality::Quaternion reality::Quaternion::Euler(const Vector3& eulerAngles) {
+inline Reality::Quaternion Reality::Quaternion::Euler(const Vector3& eulerAngles) {
 	const auto x{ eulerAngles.X / 2.f }, y{ eulerAngles.Y / 2.f }, z{ eulerAngles.Z / 2.f };
 	const auto cx{ std::cos(x) }, cy{ std::cos(y) }, cz{ std::cos(z) };
 	const auto sx{ std::sin(x) }, sy{ std::sin(y) }, sz{ std::sin(z) };
@@ -203,7 +203,7 @@ inline reality::Quaternion reality::Quaternion::Euler(const Vector3& eulerAngles
 	};
 }
 
-inline reality::Quaternion reality::Quaternion::FromToRotation(Vector3& from, Vector3& to) {
+inline Reality::Quaternion Reality::Quaternion::FromToRotation(Vector3& from, Vector3& to) {
 	const auto dotFromTo{ from.X * to.X + from.Y * to.Y + from.Z * to.Z };
 	const auto sqrSizeFrom{ from.X * from.X + from.Y * from.Y + from.Z * from.Z };
 	const auto sqrSizeTo{ to.X * to.X + to.Y * to.Y + to.Z * to.Z };
@@ -213,12 +213,12 @@ inline reality::Quaternion reality::Quaternion::FromToRotation(Vector3& from, Ve
 	return { axis.X * sinTheta, axis.Y * sinTheta, axis.Z * sinTheta, std::cos(theta) };
 }
 
-inline reality::Quaternion reality::Quaternion::Normalize(const Quaternion& q) {
+inline Reality::Quaternion Reality::Quaternion::Normalize(const Quaternion& q) {
 	const auto invSqr{ 1.f / std::sqrt(q.X * q.X + q.Y * q.Y + q.Z * q.Z + q.W * q.W) };
 	return { q.X * invSqr, q.Y * invSqr, q.Z * invSqr, q.W * invSqr };
 }
 
-inline reality::Quaternion reality::Quaternion::Slerp(const Quaternion& a, Quaternion b, float t) {
+inline Reality::Quaternion Reality::Quaternion::Slerp(const Quaternion& a, Quaternion b, float t) {
 	auto cosOmega{ Dot(a, b) };
 	if (cosOmega < 0.f) {
 		b.X = -b.X;
@@ -238,20 +238,20 @@ inline reality::Quaternion reality::Quaternion::Slerp(const Quaternion& a, Quate
 	return a * std::sin((1.f - t) * omega) * invOmega + b * std::sin(t * omega) * invOmega;
 }
 
-constexpr reality::Quaternion reality::Quaternion::Conjugate(const Quaternion& q) {
+constexpr Reality::Quaternion Reality::Quaternion::Conjugate(const Quaternion& q) {
 	return { -q.X, -q.Y, -q.Z, q.W };
 }
 
-constexpr float reality::Quaternion::Dot(const Quaternion& lhs, const Quaternion& rhs) {
+constexpr float Reality::Quaternion::Dot(const Quaternion& lhs, const Quaternion& rhs) {
 	return lhs.X * rhs.X + lhs.Y * rhs.Y + lhs.Z * rhs.Z + lhs.W * rhs.W;
 }
 
-constexpr bool reality::Quaternion::Equals(const Quaternion& q1, const Quaternion& q2, float eps) {
+constexpr bool Reality::Quaternion::Equals(const Quaternion& q1, const Quaternion& q2, float eps) {
 	return Mathf::Approx(q1.X, q2.X, eps) && Mathf::Approx(q1.Y, q2.Y, eps) && 
 		Mathf::Approx(q1.Z, q2.Z, eps) && Mathf::Approx(q1.W, q2.W, eps);
 }
 
-constexpr reality::Quaternion reality::Quaternion::Inverse(const Quaternion& q) {
+constexpr Reality::Quaternion Reality::Quaternion::Inverse(const Quaternion& q) {
 	const auto sqr{ q.X * q.X + q.Y * q.Y + q.Z * q.Z + q.W * q.W };
 	if (Mathf::Approx(sqr, 0.f)) {
 		return { -q.X, -q.Y, -q.Z, q.W };
@@ -259,15 +259,15 @@ constexpr reality::Quaternion reality::Quaternion::Inverse(const Quaternion& q) 
 	return { -q.X / sqr, -q.Y / sqr, -q.Z / sqr, q.W / sqr };
 }
 
-constexpr reality::Quaternion reality::Quaternion::Lerp(const Quaternion& a, const Quaternion& b, float t) {
+constexpr Reality::Quaternion Reality::Quaternion::Lerp(const Quaternion& a, const Quaternion& b, float t) {
 	return Dot(a, b) < 0.f ? a + (-b - a) * t : a + (b - a) * t;
 }
 
-inline float reality::Quaternion::GetAngle() const {
+inline float Reality::Quaternion::GetAngle() const {
 	return 2.f * std::acos(W);
 }
 
-inline reality::Vector3 reality::Quaternion::GetEulerAngles() const {
+inline Reality::Vector3 Reality::Quaternion::GetEulerAngles() const {
 	const auto sqx{ X * X }, sqy{ Y * Y }, sqz{ Z * Z }, sqw{ W * W };
 	const auto unit{ sqx + sqy + sqz + sqw };
 	const auto test{ X * Y + Z * W };
@@ -285,11 +285,11 @@ inline reality::Vector3 reality::Quaternion::GetEulerAngles() const {
 	};
 }
 
-inline float reality::Quaternion::GetMagnitude() const {
+inline float Reality::Quaternion::GetMagnitude() const {
 	return std::sqrt(X * X + Y * Y + Z * Z + W * W);
 }
 
-inline reality::Quaternion& reality::Quaternion::Set(float angle, const Vector3& axis) {
+inline Reality::Quaternion& Reality::Quaternion::Set(float angle, const Vector3& axis) {
 	const auto theta{ angle / 2.f };
 	const auto sinTheta{ std::sin(theta) };
 	X = axis.X * sinTheta;
@@ -299,7 +299,7 @@ inline reality::Quaternion& reality::Quaternion::Set(float angle, const Vector3&
 	return *this;
 }
 
-inline reality::Quaternion& reality::Quaternion::Set(const Vector3& eulerAngles) {
+inline Reality::Quaternion& Reality::Quaternion::Set(const Vector3& eulerAngles) {
 	const auto x{ eulerAngles.X / 2.f }, y{ eulerAngles.Y / 2.f }, z{ eulerAngles.Z / 2.f };
 	const auto cx{ std::cos(x) }, cy{ std::cos(y) }, cz{ std::cos(z) };
 	const auto sx{ std::sin(x) }, sy{ std::sin(y) }, sz{ std::sin(z) };
@@ -310,7 +310,7 @@ inline reality::Quaternion& reality::Quaternion::Set(const Vector3& eulerAngles)
 	return *this;
 }
 
-inline reality::Quaternion& reality::Quaternion::Set(const Vector3& from, const Vector3& to) {
+inline Reality::Quaternion& Reality::Quaternion::Set(const Vector3& from, const Vector3& to) {
 	const auto dotFromTo{ from.X * to.X + from.Y * to.Y + from.Z * to.Z };
 	const auto sqrSizeFrom{ from.X * from.X + from.Y * from.Y + from.Z * from.Z };
 	const auto sqrSizeTo{ to.X * to.X + to.Y * to.Y + to.Z * to.Z };
@@ -324,7 +324,7 @@ inline reality::Quaternion& reality::Quaternion::Set(const Vector3& from, const 
 	return *this;
 }
 
-inline reality::Quaternion& reality::Quaternion::Set(const Matrix4& rotation) {
+inline Reality::Quaternion& Reality::Quaternion::Set(const Matrix4& rotation) {
 	const auto fourXSquaredMinus1{ rotation.Array[0] - rotation.Array[5] - rotation.Array[10] };
 	const auto fourYSquaredMinus1{ rotation.Array[5] - rotation.Array[0] - rotation.Array[10] };
 	const auto fourZSquaredMinus1{ rotation.Array[10] - rotation.Array[0] - rotation.Array[5] };
@@ -377,20 +377,20 @@ inline reality::Quaternion& reality::Quaternion::Set(const Matrix4& rotation) {
 	return *this;
 }
 
-constexpr bool reality::Quaternion::IsIdentity() const {
+constexpr bool Reality::Quaternion::IsIdentity() const {
 	return Mathf::Approx(X, 0.f) && Mathf::Approx(Y, 0.f) && Mathf::Approx(Z, 0.f) && Mathf::Approx(W, 1.f);
 }
 
-constexpr bool reality::Quaternion::IsNormalized() const {
+constexpr bool Reality::Quaternion::IsNormalized() const {
 	return Mathf::Approx(X * X + Y * Y + Z * Z + W * W, 1.f);
 }
 
-constexpr reality::Vector3 reality::Quaternion::GetAxis() const {
+constexpr Reality::Vector3 Reality::Quaternion::GetAxis() const {
 	const auto sqr{ X * X + Y * Y + Z * Z };
 	return { X / sqr, Y / sqr, Z / sqr };
 }
 
-constexpr reality::Matrix4 reality::Quaternion::GetMatrix() const {
+constexpr Reality::Matrix4 Reality::Quaternion::GetMatrix() const {
 	return {
 		1.f - 2.f * Y * Y - 2.f * Z * Z, 2.f * X * Y - 2.f * W * Z, 2.f * X * Z + 2.f * W * Y, 0.f,
 		2.f * X * Y + 2.f * W * Z, 1.f - 2.f * X * X - 2.f * Z * Z, 2.f * Y * Z - 2.f * W * X, 0.f,
@@ -399,11 +399,11 @@ constexpr reality::Matrix4 reality::Quaternion::GetMatrix() const {
 	};
 }
 
-constexpr float reality::Quaternion::GetSqrMagnitude() const {
+constexpr float Reality::Quaternion::GetSqrMagnitude() const {
 	return X * X + Y * Y + Z * Z + W * W;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::Set(const float* xyzw) {
+constexpr Reality::Quaternion& Reality::Quaternion::Set(const float* xyzw) {
 	X = xyzw[0];
 	Y = xyzw[1];
 	Z = xyzw[2];
@@ -411,7 +411,7 @@ constexpr reality::Quaternion& reality::Quaternion::Set(const float* xyzw) {
 	return *this;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::Set(const Vector3& xyz, float w) {
+constexpr Reality::Quaternion& Reality::Quaternion::Set(const Vector3& xyz, float w) {
 	X = xyz.X;
 	Y = xyz.Y;
 	Z = xyz.Z;
@@ -419,7 +419,7 @@ constexpr reality::Quaternion& reality::Quaternion::Set(const Vector3& xyz, floa
 	return *this;
 }
 
-constexpr reality::Quaternion& reality::Quaternion::Set(float x, float y, float z, float w) {
+constexpr Reality::Quaternion& Reality::Quaternion::Set(float x, float y, float z, float w) {
 	X = x;
 	Y = y;
 	Z = z;

@@ -6,7 +6,7 @@
 
 #include "GLTextureSettings.h"
 
-namespace reality {
+namespace Reality {
 	struct GLCubeMapSettings {
 		std::array<GLTextureSettings, 6> Textures;
 	};

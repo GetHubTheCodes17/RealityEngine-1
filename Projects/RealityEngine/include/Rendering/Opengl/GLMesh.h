@@ -7,7 +7,7 @@
 #include "Core/Platform.h"
 #include "Rendering/Settings/GLMeshSettings.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLMesh {
 	public:
 		const class GLMaterial* Material{};
@@ -30,16 +30,16 @@ namespace reality {
 	};
 }
 
-inline reality::GLMesh::GLMesh(GLMesh&& other) noexcept :
+inline Reality::GLMesh::GLMesh(GLMesh&& other) noexcept :
 	Material{ other.Material }, m_Handle{ std::exchange(other.m_Handle, {}) }
 {}
 
-inline reality::GLMesh& reality::GLMesh::operator=(GLMesh&& other) noexcept {
+inline Reality::GLMesh& Reality::GLMesh::operator=(GLMesh&& other) noexcept {
 	Material = other.Material;
 	m_Handle = std::exchange(other.m_Handle, {});
 	return *this;
 }
 
-inline const reality::GLMesh::Handle& reality::GLMesh::GetHandle() const {
+inline const Reality::GLMesh::Handle& Reality::GLMesh::GetHandle() const {
 	return m_Handle;
 }

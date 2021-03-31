@@ -3,13 +3,15 @@
 #pragma once
 
 #include <imgui/imgui.h>
+#include <string_view>
 
+#include "EditorWindow.h"
 #include "Core/Tools/Logger.h"
 
-namespace reality {
-    class EditorLog {
+namespace Reality::Editor {
+    class EditorLog : public EditorWindow {
     public:
-        void AddLog(const char* msg);
+        void AddLog(std::string_view msg);
         void Clear();
         void Draw();
 
@@ -21,9 +23,9 @@ namespace reality {
     };
 }
 
-inline void reality::EditorLog::AddLog(const char* msg) {
+inline void Reality::Editor::EditorLog::AddLog(std::string_view msg) {
     auto oldSize{ m_Buffer.size() };
-    m_Buffer.append(msg);
+    m_Buffer.append(msg.data());
     for (auto newSize{ m_Buffer.size() }; oldSize < newSize; ++oldSize) {
         if (m_Buffer[oldSize] == '\n') {
             m_LineOffsets.push_back(oldSize);
@@ -32,12 +34,12 @@ inline void reality::EditorLog::AddLog(const char* msg) {
     m_ScrollToBottom = true;
 }
 
-inline void reality::EditorLog::Clear() {
+inline void Reality::Editor::EditorLog::Clear() {
     m_Buffer.clear();
     m_LineOffsets.clear();
 }
 
-inline void reality::EditorLog::Draw() {
+inline void Reality::Editor::EditorLog::Draw() {
     ImGui::Begin("Console");
     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 

@@ -12,8 +12,6 @@ extern "C" {
 }
 #endif
 
-#include <Windows.h>
-
-int __stdcall WinMain(HINSTANCE, HINSTANCE, char*, int) {
-	reality::editor::Editor editor;
+int WinMain() {
+	Reality::Editor::Editor editor;
 }

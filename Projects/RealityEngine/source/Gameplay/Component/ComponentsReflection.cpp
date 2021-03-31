@@ -7,7 +7,7 @@
 RTTR_REGISTRATION
 {
     using namespace rttr;
-    using namespace reality;
+    using namespace Reality;
 
     registration::class_<CLight>("Light")
         .method("Instantiate", &CLight::Instantiate);

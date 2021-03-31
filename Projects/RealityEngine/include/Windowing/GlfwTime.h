@@ -5,7 +5,7 @@
 #include "Core/Platform.h"
 #include "Time.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GlfwTime final : public Time {
 	public:
 		void Update() override;
@@ -19,16 +19,16 @@ namespace reality {
 	};
 }
 
-inline void reality::GlfwTime::Update() {
+inline void Reality::GlfwTime::Update() {
 	const auto time{ GetTime() };
 	m_DeltaTime = time - m_PreviousTime;
 	m_PreviousTime = time;
 }
 
-inline float reality::GlfwTime::GetDeltaTime() const {
+inline float Reality::GlfwTime::GetDeltaTime() const {
 	return m_DeltaTime;
 }
 
-inline float reality::GlfwTime::GetFps() const {
+inline float Reality::GlfwTime::GetFps() const {
 	return 1.f / m_DeltaTime;
 }

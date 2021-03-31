@@ -7,7 +7,7 @@
 #include "Core/Platform.h"
 #include "ResourceHandler.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE ResourceManager final {
 		friend class GameEngine;
 
@@ -31,12 +31,12 @@ namespace reality {
 	RE_CORE extern ResourceManager* g_ResourceManager;
 }
 
-inline reality::ResourceManager::ResourceManager() :
+inline Reality::ResourceManager::ResourceManager() :
 	Models{ "Resources/Models.json" }, Skyboxes{ "Resources/Skyboxes.json" }, Textures{ "Resources/Textures.json" },
 	Shaders{ "Resources/Shaders.json" }, Fonts{ "Resources/Fonts.json" }
 {}
 
-inline void reality::ResourceManager::Update() {
+inline void Reality::ResourceManager::Update() {
 	Models.Update();
 	Textures.Update();
 	Fonts.Update();

@@ -8,7 +8,7 @@
 #include "Core/Maths/MathsSerializer.h"
 #include "Component.h"
 
-namespace reality {
+namespace Reality {
 	struct CCamera : Component {
 		RE_COMPONENT(CCamera, Component)
 		enum class Projection { Perspective, Orthographic };
@@ -39,5 +39,5 @@ namespace reality {
 	};
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(reality::CCamera, "Camera");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CCamera)
+CEREAL_REGISTER_TYPE_WITH_NAME(Reality::CCamera, "Camera");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Reality::Component, Reality::CCamera)

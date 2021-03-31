@@ -7,7 +7,7 @@
 #include "Rendering/Opengl/GLShaderHelper.h"
 #include "Rendering/Opengl/GLTexture.h"
 
-reality::GLParticleSystem::GLParticleSystem() {
+Reality::GLParticleSystem::GLParticleSystem() {
 	constexpr GLfloat quadPositions[]{ -0.5f,-0.5f,0.f,0.5f,-0.5f,0.f,-0.5f,0.5f,0.f,0.5f,0.5f,0.f };
 	glGenVertexArrays(1, &m_Handle.Vao);
 	glBindVertexArray(m_Handle.Vao);
@@ -31,14 +31,14 @@ reality::GLParticleSystem::GLParticleSystem() {
 	glVertexAttribDivisor(2, 1);
 }
 
-reality::GLParticleSystem::~GLParticleSystem() {
+Reality::GLParticleSystem::~GLParticleSystem() {
 	glDeleteVertexArrays(1, &m_Handle.QuadVbo);
 	glDeleteVertexArrays(1, &m_Handle.Vbo);
 	glDeleteVertexArrays(1, &m_Handle.Vao);
 	delete[] m_Particles;
 }
 
-void reality::GLParticleSystem::Render() const {
+void Reality::GLParticleSystem::Render() const {
 	GLint previousShaderProgram{};
 	glGetIntegerv(GL_CURRENT_PROGRAM, &previousShaderProgram);
 	GLboolean previousBlendState{};
@@ -70,7 +70,7 @@ void reality::GLParticleSystem::Render() const {
 	glUseProgram((GLuint)previousShaderProgram);
 }
 
-void reality::GLParticleSystem::UpdateParticles(float deltaTime, Vector3 cameraPosition) {
+void Reality::GLParticleSystem::UpdateParticles(float deltaTime, Vector3 cameraPosition) {
 	auto FindUnusedParticle = [this] {
 		for (auto i{ m_LastUnusedParticle }; i < s_MaxParticlesSize; ++i) {
 			if (m_Particles[i].Life <= 0.f) {

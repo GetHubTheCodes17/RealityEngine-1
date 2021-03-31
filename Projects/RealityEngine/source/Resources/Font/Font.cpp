@@ -7,7 +7,7 @@
 
 #include "Core/Tools/Logger.h"
 
-reality::Font::Font(FontSettings settings) {
+Reality::Font::Font(FontSettings settings) {
 	FT_LibraryRec_* library{};
 	if (FT_Init_FreeType(&library)) {
 		RE_LOG_WARNING("Failed to initialize the Freetype Library");
@@ -37,6 +37,6 @@ reality::Font::Font(FontSettings settings) {
 	FT_Done_FreeType(library);
 }
 
-bool reality::Font::IsExtensionSupported(std::string_view extension) {
+bool Reality::Font::IsExtensionSupported(std::string_view extension) {
 	return extension == ".ttf" || extension == ".cff" || extension == ".woff" || extension == ".fnt";
 }

@@ -11,7 +11,7 @@
 
 #include "Core/Tools/Logger.h"
 
-reality::Model::Model(ModelSettings settings) : 
+Reality::Model::Model(ModelSettings settings) : 
 	Path{ settings.Path } 
 {
 	const auto binaryPath{ Path.substr(0, Path.find_last_of(".")) + g_ResourcesExtension };
@@ -39,11 +39,11 @@ reality::Model::Model(ModelSettings settings) :
 	}
 }
 
-bool reality::Model::IsExtensionSupported(std::string_view extension) {
+bool Reality::Model::IsExtensionSupported(std::string_view extension) {
 	return Assimp::Importer{}.IsExtensionSupported(extension.data());
 }
 
-void reality::Model::StringToBinary(std::FILE* outputFile, const std::string& string) {
+void Reality::Model::StringToBinary(std::FILE* outputFile, const std::string& string) {
 	const auto size{ (unsigned)string.size() };
 	std::fwrite(&size, sizeof(unsigned), 1, outputFile);
 
@@ -53,7 +53,7 @@ void reality::Model::StringToBinary(std::FILE* outputFile, const std::string& st
 	std::fwrite(string.c_str(), sizeof(char), string.size(), outputFile);
 }
 
-void reality::Model::BinaryToString(std::FILE* inputFile, std::string& string) {
+void Reality::Model::BinaryToString(std::FILE* inputFile, std::string& string) {
 	auto size{ 0u };
 	std::fread(&size, sizeof(unsigned), 1, inputFile);
 
@@ -63,7 +63,7 @@ void reality::Model::BinaryToString(std::FILE* inputFile, std::string& string) {
 	}
 }
 
-void reality::Model::MaterialToBinary(std::FILE* outputFile, const Material& resource) {
+void Reality::Model::MaterialToBinary(std::FILE* outputFile, const Material& resource) {
 	std::fwrite(&resource, offsetof(Material, Ambient), 1, outputFile);
 	StringToBinary(outputFile, resource.Ambient);
 	StringToBinary(outputFile, resource.Diffuse);
@@ -75,7 +75,7 @@ void reality::Model::MaterialToBinary(std::FILE* outputFile, const Material& res
 	StringToBinary(outputFile, resource.Name);
 }
 
-reality::Material reality::Model::BinaryToMaterial(std::FILE* inputFile) {
+Reality::Material Reality::Model::BinaryToMaterial(std::FILE* inputFile) {
 	Material material;
 	std::fread(&material, offsetof(Material, Ambient), 1, inputFile);
 	BinaryToString(inputFile, material.Ambient);
@@ -89,7 +89,7 @@ reality::Material reality::Model::BinaryToMaterial(std::FILE* inputFile) {
 	return material;
 }
 
-void reality::Model::ModelToBinary(std::FILE* outputFile) {
+void Reality::Model::ModelToBinary(std::FILE* outputFile) {
 	const auto meshesSize{ (unsigned)Meshes.size() };
 	std::fwrite(&meshesSize, sizeof(unsigned), 1, outputFile);
 
@@ -117,7 +117,7 @@ void reality::Model::ModelToBinary(std::FILE* outputFile) {
 	}
 }
 
-void reality::Model::BinaryToModel(std::FILE* inputFile) {
+void Reality::Model::BinaryToModel(std::FILE* inputFile) {
 	auto meshesSize{ 0u }, verticesSize{ 0u }, indicesSize{ 0u };
 	std::fread(&meshesSize, sizeof(unsigned), 1, inputFile);
 	Meshes.resize(meshesSize);
@@ -144,7 +144,7 @@ void reality::Model::BinaryToModel(std::FILE* inputFile) {
 	}
 }
 
-void reality::Model::ProcessNode(const aiNode* node, const aiScene* scene) {
+void Reality::Model::ProcessNode(const aiNode* node, const aiScene* scene) {
 	Meshes.reserve(node->mNumMeshes);
 	for (auto i{ 0u }; i < node->mNumMeshes; ++i) {
 		auto mesh{ scene->mMeshes[node->mMeshes[i]] };
@@ -156,7 +156,7 @@ void reality::Model::ProcessNode(const aiNode* node, const aiScene* scene) {
 	}
 }
 
-reality::Mesh reality::Model::ProcessMesh(const aiMesh* amesh, const aiScene* scene) {
+Reality::Mesh Reality::Model::ProcessMesh(const aiMesh* amesh, const aiScene* scene) {
 	Mesh mesh;
 	mesh.Name = amesh->mName.C_Str();
 	ProcessVertices(amesh, mesh);
@@ -170,7 +170,7 @@ reality::Mesh reality::Model::ProcessMesh(const aiMesh* amesh, const aiScene* sc
 	return mesh;
 }
 
-void reality::Model::ProcessVertices(const aiMesh* amesh, Mesh& resource) {
+void Reality::Model::ProcessVertices(const aiMesh* amesh, Mesh& resource) {
 	resource.Attribute |= amesh->HasNormals() ? VertexAttribute::Normal : 0;
 	resource.Attribute |= amesh->HasTextureCoords(0) ? VertexAttribute::Uv : 0;
 	resource.Attribute |= amesh->HasTangentsAndBitangents() ? VertexAttribute::Tangents : 0;
@@ -203,7 +203,7 @@ void reality::Model::ProcessVertices(const aiMesh* amesh, Mesh& resource) {
 	}
 }
 
-void reality::Model::ProcessIndices(const aiMesh* amesh, Mesh& resource) {
+void Reality::Model::ProcessIndices(const aiMesh* amesh, Mesh& resource) {
 	for (auto i{ 0u }; i < amesh->mNumFaces; ++i) {
 		const auto& face{ amesh->mFaces[i] };
 		for (auto j{ 0u }; j < face.mNumIndices; ++j) {
@@ -212,7 +212,7 @@ void reality::Model::ProcessIndices(const aiMesh* amesh, Mesh& resource) {
 	}
 }
 
-void reality::Model::ProcessMaterial(const aiMesh* amesh, const aiScene* scene, Material& resource) {
+void Reality::Model::ProcessMaterial(const aiMesh* amesh, const aiScene* scene, Material& resource) {
 	const auto mat{ scene->mMaterials[amesh->mMaterialIndex] };
 	mat->Get(AI_MATKEY_SHININESS, resource.Shininess);
 	mat->Get(AI_MATKEY_OPACITY, resource.Opacity);

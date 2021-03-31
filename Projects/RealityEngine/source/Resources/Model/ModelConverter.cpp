@@ -5,7 +5,7 @@
 #include "Rendering/Opengl/GLMesh.h"
 #include "Resources/Model/Model.h"
 
-reality::GLModel reality::loader::ConvertModel(GLMeshSettings& properties, const Model& resource) {
+Reality::GLModel Reality::loader::ConvertModel(GLMeshSettings& properties, const Model& resource) {
 	auto CreateMesh = [](auto& properties, const auto& mesh) {
 		auto CreateMaterial = [](const auto& material) {
 			auto CreateTexture = [](const auto& path) {

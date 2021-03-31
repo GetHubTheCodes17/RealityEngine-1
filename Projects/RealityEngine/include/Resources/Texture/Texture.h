@@ -7,7 +7,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	struct TextureSettings {
 		std::string Path;
 	};

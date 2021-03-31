@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace reality {
+namespace Reality {
 	struct GLShaderSettings {
 		std::string VertexSource, FragmentSource, GeometrySource;
 	};

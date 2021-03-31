@@ -5,7 +5,7 @@
 #include "Rendering/Opengl/GLTexture.h"
 #include "Resources/Font/Font.h"
 
-namespace reality {
+namespace Reality {
 	struct GLCharacter {
 		GLTexture Texture;
 		Vector2	Size, Bearing;

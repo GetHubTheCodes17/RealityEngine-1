@@ -17,15 +17,15 @@
 #include "EditorTheme.h"
 #include "Core/Tools/HotReload.h"
 
-namespace reality::editor {
+namespace Reality::Editor {
 	class Editor final {
 	public:
 		Editor();
 		~Editor();
 
 	private:
-		HotReload hr;
 		GameEngine m_Engine;
+		HotReload m_HotReload{ g_DllPath };
 		GLPipeline m_Pipeline;
 		Viewport m_Viewport;
 		ComponentSystem m_ComponentSystem;
@@ -34,7 +34,7 @@ namespace reality::editor {
 		EditorLog m_Log;
 		EditorMenu m_Menu;
 		EditorDocking m_Dock;
-		EditorScene m_Scene;
+		EditorScene m_Scene{ m_Pipeline, m_Camera, m_Viewport };
 		EditorHierarchy m_Hierarchy;
 		EditorInspector m_Inspector;
 		bool m_EnabledCamera{};

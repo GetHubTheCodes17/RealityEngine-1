@@ -6,7 +6,7 @@
 #include "GLShader.h"
 #include "Resources/Shader/Shader.h"
 
-namespace reality {
+namespace Reality {
 	struct RE_CORE GLShaderHelper {
 		const GLShader Default{ { Shader::GetShaderFromEngineFile("Default.vert"), Shader::GetShaderFromEngineFile("Default.frag") } };
 		const GLShader Skybox{ { Shader::GetShaderFromEngineFile("CubeMap.vert"), Shader::GetShaderFromEngineFile("CubeMap.frag") } };

@@ -11,7 +11,7 @@
 #include "Core/Maths/Matrix4.h"
 #include "Core/Tools/Logger.h"
 
-void reality::GLContext::Init(ProcAddr proc) {
+void Reality::GLContext::Init(ProcAddr proc) {
 	const auto success{ gladLoadGLLoader(reinterpret_cast<GLADloadproc>(proc)) };
 	RE_ASSERT(success, "Cannot find the loader for Opengl");
 
@@ -21,7 +21,7 @@ void reality::GLContext::Init(ProcAddr proc) {
 	if (flags & GL_CONTEXT_FLAG_DEBUG_BIT && GLAD_GL_KHR_debug) {
 		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-		glDebugMessageCallback(reality::GLContext::DebugOutput, nullptr);
+		glDebugMessageCallback(Reality::GLContext::DebugOutput, nullptr);
 		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 	}
 #endif
@@ -38,7 +38,7 @@ void reality::GLContext::Init(ProcAddr proc) {
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, m_LightsLocation);
 }
 
-void reality::GLContext::DrawSkybox(const GLCubeMap& skybox) {
+void Reality::GLContext::DrawSkybox(const GLCubeMap& skybox) {
 	GLint previousShaderProgram{};
 	glGetIntegerv(GL_CURRENT_PROGRAM, &previousShaderProgram);
 	GLboolean previousCullState{};
@@ -67,37 +67,37 @@ void reality::GLContext::DrawSkybox(const GLCubeMap& skybox) {
 	}
 }
 
-void reality::GLContext::SetLights(std::span<GLLight> lights) {
+void Reality::GLContext::SetLights(std::span<GLLight> lights) {
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_LightsLocation);
 	auto size{ lights.size() };
 	glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLuint) * 4, &size);
 	glBufferSubData(GL_SHADER_STORAGE_BUFFER, sizeof(GLuint) * 4, (GLsizeiptr)(sizeof(GLLight) * size), lights.data());
 }
 
-void reality::GLContext::SetModelMatrix(const Matrix4& model) {
+void Reality::GLContext::SetModelMatrix(const Matrix4& model) {
 	glBindBuffer(GL_UNIFORM_BUFFER, m_MatricesLocation);
 	glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(Matrix4), model.Array);
 }
 
-void reality::GLContext::SetViewMatrix(const Matrix4& view) {
+void Reality::GLContext::SetViewMatrix(const Matrix4& view) {
 	const auto invView{ Matrix4::Inverse(view) };
 	glBindBuffer(GL_UNIFORM_BUFFER, m_MatricesLocation);
 	glBufferSubData(GL_UNIFORM_BUFFER, sizeof(Matrix4), sizeof(Matrix4), view.Array);
 	glBufferSubData(GL_UNIFORM_BUFFER, sizeof(Matrix4) * 2, sizeof(Matrix4), invView.Array);
 }
 
-void reality::GLContext::SetProjectionMatrix(const Matrix4& projection) {
+void Reality::GLContext::SetProjectionMatrix(const Matrix4& projection) {
 	glBindBuffer(GL_UNIFORM_BUFFER, m_MatricesLocation);
 	glBufferSubData(GL_UNIFORM_BUFFER, sizeof(Matrix4) * 3, sizeof(Matrix4), projection.Array);
 }
 
-void reality::GLContext::SetShadowMatrix(Vector3 lightDirection, Vector3 viewPosition, const Frustrum& frustrum) {
+void Reality::GLContext::SetShadowMatrix(Vector3 lightDirection, Vector3 viewPosition, const Frustrum& frustrum) {
 	glBindBuffer(GL_UNIFORM_BUFFER, m_MatricesLocation);
 	glBufferSubData(GL_UNIFORM_BUFFER, sizeof(Matrix4) * 4, sizeof(Matrix4),
 		Matrix4::LightOrtho(viewPosition, lightDirection, frustrum).Array);
 }
 
-void reality::GLContext::DebugOutput(unsigned source, unsigned type, unsigned id, unsigned severity,
+void Reality::GLContext::DebugOutput(unsigned source, unsigned type, unsigned id, unsigned severity,
 	int, const char* message, const void*)
 {
 	// Ignore useless error or warnings

@@ -4,17 +4,18 @@
 
 #include <imgui/imgui.h>
 
+#include "EditorWindow.h"
 #include "EditorTheme.h"
 #include "Core/Tools/Logger.h"
 
-namespace reality {
-	class EditorMenu {
+namespace Reality::Editor {
+	class EditorMenu : public EditorWindow {
 	public:
 		void Draw() const;
 	};
 }
 
-inline void reality::EditorMenu::Draw() const {
+inline void Reality::Editor::EditorMenu::Draw() const {
 	if (ImGui::BeginMenuBar()) {
 		if (ImGui::BeginMenu("File")) {
 			if (ImGui::MenuItem("New Scene", "Ctrl+N")) {
@@ -76,7 +77,7 @@ inline void reality::EditorMenu::Draw() const {
 					RE_LOG_INFO("StyleColorsLight");
 				}
 				if (ImGui::MenuItem("Reality")) {
-					editorTheme::RealityStyle();
+					EditorTheme::RealityStyle();
 					RE_LOG_INFO("StyleColorsReality");
 				}
 				ImGui::EndMenu();

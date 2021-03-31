@@ -4,7 +4,7 @@
 
 #include "Behaviour.h"
 
-namespace reality {
+namespace Reality {
 	struct CMonoBehaviour : CBehaviour {
 		RE_INTERFACE(CBehaviour)
 		virtual ~CMonoBehaviour() = 0;
@@ -19,9 +19,9 @@ namespace reality {
 	};
 }
 
-inline reality::CMonoBehaviour::~CMonoBehaviour() = default;
+inline Reality::CMonoBehaviour::~CMonoBehaviour() = default;
 
-inline void reality::CMonoBehaviour::SetEnable(bool enabled) {
+inline void Reality::CMonoBehaviour::SetEnable(bool enabled) {
 	if (!Enabled && enabled) {
 		OnEnable();
 	}

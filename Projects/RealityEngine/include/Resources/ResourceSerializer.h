@@ -16,7 +16,7 @@
 #include "Resources/Texture/Texture.h"
 #include "Resources/Skybox/Skybox.h"
 
-namespace reality {
+namespace Reality {
 	template <class Archive>
 	void serialize(Archive& archive, ModelSettings& settings);
 	template <class Archive>
@@ -40,19 +40,19 @@ namespace reality {
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, ModelSettings& settings) {
+void Reality::serialize(Archive& archive, ModelSettings& settings) {
 	archive(cereal::make_nvp("Path", settings.Path));
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, ShaderSettings& settings) {
+void Reality::serialize(Archive& archive, ShaderSettings& settings) {
 	archive(cereal::make_nvp("VertexPath", settings.VertexPath),
 		cereal::make_nvp("FragmentPath", settings.FragmentPath),
 		cereal::make_nvp("GeometryPath", settings.GeometryPath));
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, SkyboxSettings& settings) {
+void Reality::serialize(Archive& archive, SkyboxSettings& settings) {
 	archive(cereal::make_nvp("Left", settings.Left.Path),
 		cereal::make_nvp("Right", settings.Right.Path),
 		cereal::make_nvp("Up", settings.Up.Path),
@@ -62,33 +62,33 @@ void reality::serialize(Archive& archive, SkyboxSettings& settings) {
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, TextureSettings& settings) {
+void Reality::serialize(Archive& archive, TextureSettings& settings) {
 	archive(cereal::make_nvp("Path", settings.Path));
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, FontSettings& settings) {
+void Reality::serialize(Archive& archive, FontSettings& settings) {
 	archive(cereal::make_nvp("Path", settings.Path),
 		cereal::make_nvp("PixelSize", settings.PixelSize));
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, GLMeshSettings& settings) {
+void Reality::serialize(Archive& archive, GLMeshSettings& settings) {
 	archive(cereal::make_nvp("Usage", settings.Usage),
 		cereal::make_nvp("DrawType", settings.DrawType),
 		cereal::make_nvp("Attribute", settings.Attribute));
 }
 
 template <class Archive>
-void reality::serialize(Archive&, GLShaderSettings&) {
+void Reality::serialize(Archive&, GLShaderSettings&) {
 }
 
 template <class Archive>
-void reality::serialize(Archive&, GLCubeMapSettings&) {
+void Reality::serialize(Archive&, GLCubeMapSettings&) {
 }
 
 template <class Archive>
-void reality::serialize(Archive& archive, GLTextureSettings& settings) {
+void Reality::serialize(Archive& archive, GLTextureSettings& settings) {
 	archive(cereal::make_nvp("HasMipmap", settings.HasMipmap),
 		cereal::make_nvp("InternalFormat", settings.InternalFormat),
 		cereal::make_nvp("Format", settings.Format),
@@ -100,5 +100,5 @@ void reality::serialize(Archive& archive, GLTextureSettings& settings) {
 }
 
 template<class Archive>
-void reality::serialize(Archive&, GLFontSettings&) {
+void Reality::serialize(Archive&, GLFontSettings&) {
 }

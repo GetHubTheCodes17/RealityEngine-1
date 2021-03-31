@@ -6,10 +6,10 @@
 
 #include "Core/Maths/Vector2.h"
 
-namespace reality {
+namespace Reality {
 	struct WindowSettings {
 		const int Width{ RE_WINDOW_WIDTH }, Height{ RE_WINDOW_HEIGHT };
-		const char* Title{ "Untitled" };
+		std::string_view Title{ "Untitled" };
 		const unsigned Samples{ 4 };
 	};
 

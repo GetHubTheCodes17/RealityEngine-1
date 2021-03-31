@@ -4,6 +4,6 @@
 
 #include "Rendering/Opengl/GLModel.h"
 
-namespace reality::loader {
+namespace Reality::loader {
 	GLModel ConvertModel(GLMeshSettings& properties, const Model& resource);
 }

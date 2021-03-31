@@ -8,7 +8,7 @@
 #include "Core/Maths/Mathf.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLParticleSystem {
 	public:
 		static constexpr auto s_MaxParticlesSize{ 2500u };
@@ -46,7 +46,7 @@ namespace reality {
 	};
 }
 
-inline reality::GLParticleSystem::GLParticleSystem(GLParticleSystem&& other) noexcept :
+inline Reality::GLParticleSystem::GLParticleSystem(GLParticleSystem&& other) noexcept :
 	Texture{ other.Texture }, Speed{ other.Speed }, Spread{ other.Spread }, Size{ other.Size },
 	MaxLife{ other.MaxLife }, Gravity{ other.Gravity }, Direction{ std::move(other.Direction) },
 	StartColor{ std::move(other.StartColor) }, EndColor{ std::move(other.EndColor) },
@@ -54,7 +54,7 @@ inline reality::GLParticleSystem::GLParticleSystem(GLParticleSystem&& other) noe
 	m_Handle{ std::exchange(other.m_Handle, {}) }
 {}
 
-inline reality::GLParticleSystem& reality::GLParticleSystem::operator=(GLParticleSystem&& other) noexcept {
+inline Reality::GLParticleSystem& Reality::GLParticleSystem::operator=(GLParticleSystem&& other) noexcept {
 	Texture = other.Texture;
 	Speed = other.Speed;
 	Spread = other.Spread;
@@ -70,7 +70,7 @@ inline reality::GLParticleSystem& reality::GLParticleSystem::operator=(GLParticl
 	return *this;
 }
 
-inline void reality::GLParticleSystem::Update(float deltaTime, Vector3 cameraPosition) {
+inline void Reality::GLParticleSystem::Update(float deltaTime, Vector3 cameraPosition) {
 	UpdateParticles(deltaTime * Speed, cameraPosition);
 	Render();
 }

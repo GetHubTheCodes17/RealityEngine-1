@@ -2,7 +2,7 @@
 
 #include "Gameplay/Scene.h"
 
-reality::GameObject* reality::Scene::FindGameObject(std::string_view name) {
+Reality::GameObject* Reality::Scene::FindGameObject(std::string_view name) {
 	if (auto object{ std::ranges::find_if(m_GameObjects,
 		[&name](const auto& object) { return object->Name == name; }) }; object != m_GameObjects.cend())
 	{
@@ -15,7 +15,7 @@ reality::GameObject* reality::Scene::FindGameObject(std::string_view name) {
 	return nullptr;
 }
 
-void reality::Scene::Update() {
+void Reality::Scene::Update() {
 	if (!m_ToBeInstantiate.empty()) {
 		for (const auto& instantiate : m_ToBeInstantiate) {
 			instantiate();
@@ -35,7 +35,7 @@ void reality::Scene::Update() {
 	}
 }
 
-void reality::Scene::DestroyGameObjectUnsafe(GameObject& object) {
+void Reality::Scene::DestroyGameObjectUnsafe(GameObject& object) {
 	std::function<void(GameObject&)> SetToBeDestroyed = [&SetToBeDestroyed](auto& root) {
 		root.m_Id = (uint64)-1;
 		for (auto child : root.Transform.GetChildren()) {

@@ -6,7 +6,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE Leaker {
 	public:
 		explicit Leaker(std::string_view filename = "Logs/MemoryLeaks.txt");

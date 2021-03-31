@@ -7,7 +7,7 @@
 
 namespace irrklang { class ISoundEngine; }
 
-namespace reality {
+namespace Reality {
 	class RE_CORE AudioEngine {
 		friend class AudioClip;
 		friend class AudioSource;

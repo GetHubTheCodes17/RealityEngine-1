@@ -7,14 +7,14 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-reality::Leaker::Leaker(std::string_view filename) :
+Reality::Leaker::Leaker(std::string_view filename) :
 	m_FileName{ filename }, m_TempLeak{ new char[17] } 
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	strcpy_s(m_TempLeak, 17, "--ExternalLeak--");
 }
 
-reality::Leaker::~Leaker() {
+Reality::Leaker::~Leaker() {
 	auto logFile{ CreateFileA(static_cast<LPCSTR>(m_FileName.c_str()), GENERIC_WRITE, FILE_SHARE_WRITE,
 		nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr) };
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);

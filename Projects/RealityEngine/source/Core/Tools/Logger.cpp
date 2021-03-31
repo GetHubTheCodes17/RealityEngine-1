@@ -5,13 +5,13 @@
 #include <cstdarg>
 #include <fstream>
 
-reality::Logger::Logger() :
+Reality::Logger::Logger() :
 	m_File{ std::make_unique<std::ofstream>(L"Logs/Logs.txt", std::ios::out | std::ios::trunc) }
 {}
 
-reality::Logger::~Logger() = default;
+Reality::Logger::~Logger() = default;
 
-void reality::Logger::Log(const char*, int line, const char* func, LogVerbosity, unsigned severity, 
+void Reality::Logger::Log(const char*, int line, const char* func, LogVerbosity, unsigned severity, 
 	const char* message, ...) 
 {
 	if (severity < Severity) {

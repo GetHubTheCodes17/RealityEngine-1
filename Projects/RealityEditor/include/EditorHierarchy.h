@@ -6,14 +6,15 @@
 #include <vector>
 #include <span>
 
+#include "EditorWindow.h"
 #include "Gameplay/Scene.h"
 #include "Gameplay/GameObject.h"
 #include "Windowing/KeyCodes.h"
 
-namespace reality {
-	class EditorHierarchy {
+namespace Reality::Editor {
+	class EditorHierarchy : public EditorWindow {
 	public:
-		void Draw(Scene& scene);
+		void Draw();
 		std::span<GameObject*> GetSelected();
 
 	private:
@@ -27,7 +28,9 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorHierarchy::Draw(Scene& scene) {
+inline void Reality::Editor::EditorHierarchy::Draw() {
+	auto& scene{ *g_SceneManager->ActiveScene };
+
 	ImGui::Begin("Hierarchy");
 	{
 		HandleShortcuts(scene);
@@ -43,11 +46,11 @@ inline void reality::EditorHierarchy::Draw(Scene& scene) {
 	ImGui::End();
 }
 
-inline std::span<reality::GameObject*> reality::EditorHierarchy::GetSelected() {
+inline std::span<Reality::GameObject*> Reality::Editor::EditorHierarchy::GetSelected() {
 	return m_Selected;
 }
 
-inline void reality::EditorHierarchy::HandleShortcuts(Scene& scene) {
+inline void Reality::Editor::EditorHierarchy::HandleShortcuts(Scene& scene) {
 	if (!m_Selected.empty() && ImGui::IsKeyPressed(keycode::RE_KEY_DELETE)) {
 		for (auto go : m_Selected) {
 			scene.DestroyGameObject(*go);
@@ -80,7 +83,7 @@ inline void reality::EditorHierarchy::HandleShortcuts(Scene& scene) {
 	}
 }
 
-inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
+inline void Reality::Editor::EditorHierarchy::DisplayTree(GameObject& root) {
 	const auto isCurrent{ std::ranges::any_of(m_Selected, [&root](auto& elem) { return elem == &root; }) };
 	const auto flags{ ImGuiTreeNodeFlags_FramePadding | ImGuiTreeNodeFlags_DefaultOpen 
 		| ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanFullWidth 
@@ -105,7 +108,7 @@ inline void reality::EditorHierarchy::DisplayTree(GameObject& root) {
 	}
 }
 
-inline void reality::EditorHierarchy::Select(GameObject& root, bool isCurrent) {
+inline void Reality::Editor::EditorHierarchy::Select(GameObject& root, bool isCurrent) {
 	if (ImGui::IsItemClicked()) {
 		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL)) {
 			if (!isCurrent) {
@@ -122,7 +125,7 @@ inline void reality::EditorHierarchy::Select(GameObject& root, bool isCurrent) {
 	}
 }
 
-inline void reality::EditorHierarchy::Drag(GameObject& hovered) {
+inline void Reality::Editor::EditorHierarchy::Drag(GameObject& hovered) {
 	if (ImGui::BeginDragDropSource()) {
 		ImGui::SetDragDropPayload("Object_Hierarchy", &hovered, sizeof(&hovered));
 		m_IsDragging = true;

@@ -8,7 +8,7 @@
 #include "Input.h"
 #include "Time.h"
 
-namespace reality {
+namespace Reality {
 	class IO final {
 	public:
 		std::unique_ptr<Window> Window;
@@ -21,7 +21,7 @@ namespace reality {
 	RE_CORE extern IO* g_Io;
 }
 
-inline void reality::IO::Update() {
+inline void Reality::IO::Update() {
 	Input->PollEvents();
 	Window->SwapBuffers();
 	Time->Update();

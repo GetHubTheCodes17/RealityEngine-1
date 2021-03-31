@@ -6,17 +6,18 @@
 #include <filesystem>
 #include <string_view>
 
+#include "EditorWindow.h"
 #include "Resources/ResourceManager.h"
 
-namespace reality {
-	class EditorAssets {
+namespace Reality::Editor {
+	class EditorAssets : public EditorWindow {
 	public:
 		void Draw();
 		void DropResource(std::string_view filename) const;
 	};
 }
 
-inline void reality::EditorAssets::Draw() {
+inline void Reality::Editor::EditorAssets::Draw() {
 	ImGui::Begin("Assets");
 	{
 
@@ -24,7 +25,7 @@ inline void reality::EditorAssets::Draw() {
 	ImGui::End();
 }
 
-inline void reality::EditorAssets::DropResource(std::string_view filename) const {
+inline void Reality::Editor::EditorAssets::DropResource(std::string_view filename) const {
 	std::filesystem::path path{ filename };
 	auto extension{ path.extension().string() };
 	if (Model::IsExtensionSupported(extension)) {

@@ -5,7 +5,7 @@
 #include "Core/Maths/Vector3.h"
 #include "Core/Maths/Vector2.h"
 
-namespace reality {
+namespace Reality {
 	enum VertexAttribute : uint8 {
 		Position,
 		Normal = 1 << 0,

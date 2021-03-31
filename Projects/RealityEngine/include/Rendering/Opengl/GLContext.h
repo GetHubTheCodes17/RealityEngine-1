@@ -8,7 +8,7 @@
 #include "Core/Maths/Frustrum.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLContext final {
 	public:
 		using ProcAddr = void(*)(const char*);

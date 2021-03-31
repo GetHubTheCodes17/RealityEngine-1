@@ -7,7 +7,7 @@
 
 struct GLFWwindow;
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GlfwWindow final : public Window {
 	public:
 		explicit GlfwWindow(const WindowSettings& settings = {});

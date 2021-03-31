@@ -20,7 +20,7 @@
 #include "Resources/ResourceManager.h"
 #include "Audio/AudioEngine.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GameEngine final {
 	public:
 		GameEngine();

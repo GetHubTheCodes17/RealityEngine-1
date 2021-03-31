@@ -9,7 +9,7 @@
 
 struct GLFWwindow;
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GlfwInput final : public Input {
 	public:
 		explicit GlfwInput(GLFWwindow* window = {});

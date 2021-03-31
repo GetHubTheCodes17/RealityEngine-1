@@ -4,10 +4,10 @@
 
 #include <glad/glad.h>
 
-reality::GLTexture::GLTexture(GLTextureSettings settings) {
+Reality::GLTexture::GLTexture(GLTextureSettings settings) {
 	m_Handle.Samples = settings.Samples;
 	m_Handle.Target = settings.Type == GLTextureType::Texture1D ? GL_TEXTURE_1D :
-		(unsigned)(settings.Type == GLTextureType::Texture2D ?
+		unsigned(settings.Type == GLTextureType::Texture2D ?
 			(m_Handle.Samples ? GL_TEXTURE_2D_MULTISAMPLE : GL_TEXTURE_2D) : GL_TEXTURE_3D);
 
 	constexpr GLenum internalFormats[]{ GL_RED, GL_RGB, GL_SRGB, GL_RGBA, GL_RGB16F, GL_DEPTH_COMPONENT, GL_DEPTH24_STENCIL8 };
@@ -50,16 +50,16 @@ reality::GLTexture::GLTexture(GLTextureSettings settings) {
 	}
 }
 
-reality::GLTexture::~GLTexture() {
+Reality::GLTexture::~GLTexture() {
 	glDeleteTextures(1, &m_Handle.Id);
 }
 
-void reality::GLTexture::Bind(unsigned index) const {
+void Reality::GLTexture::Bind(unsigned index) const {
 	glActiveTexture(GL_TEXTURE0 + index);
 	glBindTexture(m_Handle.Target, m_Handle.Id);
 }
 
-void reality::GLTexture::Resize(const Viewport& viewport, const uint8* image) const {
+void Reality::GLTexture::Resize(const Viewport& viewport, const uint8* image) const {
 	glBindTexture(m_Handle.Target, m_Handle.Id);
 	if (m_Handle.Samples) {
 		glTexImage2DMultisample(m_Handle.Target, (GLsizei)m_Handle.Samples, m_Handle.InternalFormat,

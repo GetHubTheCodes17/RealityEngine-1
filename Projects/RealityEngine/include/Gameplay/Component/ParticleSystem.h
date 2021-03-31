@@ -4,7 +4,7 @@
 
 #include "Component.h"
 
-namespace reality {
+namespace Reality {
 	struct CParticleSystem : Component {
 		RE_COMPONENT(CParticleSystem, Component)
 
@@ -17,5 +17,5 @@ namespace reality {
 	};
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(reality::CParticleSystem, "ParticleSystem");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CParticleSystem)
+CEREAL_REGISTER_TYPE_WITH_NAME(Reality::CParticleSystem, "ParticleSystem");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Reality::Component, Reality::CParticleSystem)

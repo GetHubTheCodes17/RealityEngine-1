@@ -5,7 +5,7 @@
 #include "Rendering/Opengl/GLShaderHelper.h"
 #include "Rendering/Opengl/GLTexture.h"
 
-void reality::GLMaterial::Bind() const {
+void Reality::GLMaterial::Bind() const {
 	uint8 Mask{};
 
 	if (Albedo) {

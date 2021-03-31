@@ -4,11 +4,11 @@
 
 #include <imgui/imgui.h>
 
-namespace reality::editorTheme {
+namespace Reality::Editor::EditorTheme {
 	void RealityStyle();
 }
 
-inline void reality::editorTheme::RealityStyle() {
+inline void Reality::Editor::EditorTheme::RealityStyle() {
 	auto colors{ ImGui::GetStyle().Colors };
 	colors[ImGuiCol_Text] = { 1.00f, 1.00f, 1.00f, 1.00f };
 	colors[ImGuiCol_TextDisabled] = { 0.50f, 0.50f, 0.50f, 1.00f };

@@ -11,7 +11,7 @@
 #include "ResourceSerializer.h"
 #include "ResourceConverter.h"
 
-namespace reality {
+namespace Reality {
 	template <class Resource, class Settings, class Properties, class TmpResource>
 	class ResourceHandler final {
 		friend class ResourceManager;
@@ -38,7 +38,7 @@ namespace reality {
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::ResourceHandler(std::string_view path) :
+Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::ResourceHandler(std::string_view path) :
 	m_Path{ path }
 {
 	if (std::ifstream file{ m_Path }) {
@@ -55,7 +55,7 @@ reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::ResourceH
 }
 
 template<class Resource, class Settings, class Properties, class TmpResource>
-reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::~ResourceHandler() {
+Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::~ResourceHandler() {
 	if (std::ofstream file{ m_Path }) {
 		cereal::JSONOutputArchive archive{ file };
 		archive(m_Properties);
@@ -63,7 +63,7 @@ reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::~Resource
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-void reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Update() {
+void Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Update() {
 	for (auto it{ m_TmpResources.begin() }; it != m_TmpResources.cend(); ) {
 		auto& resource{ it->second };
 		if (resource.wait_for(std::chrono::seconds{ 0 }) == std::future_status::ready) {
@@ -77,7 +77,7 @@ void reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Upda
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-const Resource& reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Load(std::string_view key,
+const Resource& Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Load(std::string_view key,
 	const Settings& settings, const Properties& properties)
 {
 	if (const auto it{ m_Resources.find(key.data()) }; it != m_Resources.cend()) {
@@ -91,7 +91,7 @@ const Resource& reality::ResourceHandler<Resource, Settings, Properties, TmpReso
 }
 
 template<class Resource, class Settings, class Properties, class TmpResource>
-bool reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Remove(std::string_view key) {
+bool Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Remove(std::string_view key) {
 	if (const auto it{ m_Resources.find(key.data()) }; it == m_Resources.cend()) {
 		return false;
 	}
@@ -102,12 +102,12 @@ bool reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Remo
 }
 
 template<class Resource, class Settings, class Properties, class TmpResource>
-bool reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Exist(std::string_view key) const {
+bool Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Exist(std::string_view key) const {
 	return m_Resources.contains(key.data());
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
-const Resource* reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Get(std::string_view key) const {
+const Resource* Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::Get(std::string_view key) const {
 	if (const auto it{ m_Resources.find(key.data()) }; it != m_Resources.cend()) {
 		return &it->second;
 	}
@@ -115,12 +115,12 @@ const Resource* reality::ResourceHandler<Resource, Settings, Properties, TmpReso
 }
 
 template<class Resource, class Settings, class Properties, class TmpResource>
-std::string_view reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::GetPath() const {
+std::string_view Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::GetPath() const {
 	return m_Path;
 }
 
 template <class Resource, class Settings, class Properties, class TmpResource>
 const std::unordered_map<std::string, Resource>& 
-reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::GetResources() const {
+Reality::ResourceHandler<Resource, Settings, Properties, TmpResource>::GetResources() const {
 	return m_Resources;
 }

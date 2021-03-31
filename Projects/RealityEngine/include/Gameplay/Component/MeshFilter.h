@@ -4,7 +4,7 @@
 
 #include "Component.h"
 
-namespace reality {
+namespace Reality {
 	struct CMeshFilter : Component {
 		RE_COMPONENT(CMeshFilter, Component)
 
@@ -15,5 +15,5 @@ namespace reality {
 	};
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(reality::CMeshFilter, "MeshFilter");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CMeshFilter)
+CEREAL_REGISTER_TYPE_WITH_NAME(Reality::CMeshFilter, "MeshFilter");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Reality::Component, Reality::CMeshFilter)

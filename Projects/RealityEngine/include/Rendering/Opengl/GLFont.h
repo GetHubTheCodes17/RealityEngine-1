@@ -6,7 +6,7 @@
 #include "Rendering/Settings/GLFontSettings.h"
 #include "Core/Maths/Vector4.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLFont {
 	public:
 		Vector4 Color{ Vector4::One };
@@ -29,16 +29,16 @@ namespace reality {
 	};
 }
 
-inline reality::GLFont::GLFont(GLFont&& other) noexcept :
+inline Reality::GLFont::GLFont(GLFont&& other) noexcept :
 	Color{ std::move(other.Color) }, m_Handle{ std::exchange(other.m_Handle, {}) }
 {}
 
-inline reality::GLFont& reality::GLFont::operator=(GLFont&& other) noexcept {
+inline Reality::GLFont& Reality::GLFont::operator=(GLFont&& other) noexcept {
 	Color = std::move(other.Color);
 	m_Handle = std::exchange(other.m_Handle, {});
 	return *this;
 }
 
-inline const reality::GLFont::Handle& reality::GLFont::GetHandle() const {
+inline const Reality::GLFont::Handle& Reality::GLFont::GetHandle() const {
 	return m_Handle;
 }

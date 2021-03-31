@@ -7,7 +7,7 @@
 #include "GLMaterial.h"
 #include "GLMesh.h"
 
-namespace reality {
+namespace Reality {
 	struct GLMeshHelper {
 		GLMaterial Default;
 		GLMesh Quad{ { primitiveHelper::g_Quad, (unsigned)std::size(primitiveHelper::g_Quad) / 8u, {}, 0,

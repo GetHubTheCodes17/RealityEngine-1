@@ -9,7 +9,7 @@
 #include "Core/Platform.h"
 #include "Core/Maths/Vector2.h"
 
-namespace reality {
+namespace Reality {
 	struct Character {
 		std::unique_ptr<uint8[]> Buffer;
 		Vector2 Size, Bearing;

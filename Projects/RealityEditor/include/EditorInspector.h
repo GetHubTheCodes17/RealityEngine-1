@@ -6,12 +6,13 @@
 #include <functional>
 #include <span>
 
+#include "EditorWindow.h"
 #include "Gameplay/GameObject.h"
 #include "Gameplay/ComponentHelper.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
-	class EditorInspector {
+namespace Reality::Editor {
+	class EditorInspector : public EditorWindow {
 	public:
 		void Draw(std::span<GameObject*> objects);
 
@@ -29,7 +30,7 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorInspector::Draw(std::span<GameObject*> objects) {
+inline void Reality::Editor::EditorInspector::Draw(std::span<GameObject*> objects) {
 	ImGui::Begin("Inspector");
 	{
 		if (!objects.empty()) {
@@ -51,7 +52,7 @@ inline void reality::EditorInspector::Draw(std::span<GameObject*> objects) {
 }
 
 template<class T>
-void reality::EditorInspector::Draw(std::function<void(T&)> func, T& comp) requires std::derived_from<T, Component> {
+void Reality::Editor::EditorInspector::Draw(std::function<void(T&)> func, T& comp) requires std::derived_from<T, Component> {
 	if (ImGui::TreeNodeEx(rttr::type::get<T>().get_name().data(),
 		ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding)) {
 		ImGui::SameLine(ImGui::GetWindowWidth() - 30.f);
@@ -73,7 +74,7 @@ void reality::EditorInspector::Draw(std::function<void(T&)> func, T& comp) requi
 	}
 }
 
-inline void reality::EditorInspector::DrawName(GameObject& object) {
+inline void Reality::Editor::EditorInspector::DrawName(GameObject& object) {
 	ImGui::Checkbox("##IsActive", &object.IsActive);
 
 	char buf[256]{};
@@ -85,7 +86,7 @@ inline void reality::EditorInspector::DrawName(GameObject& object) {
 	}
 }
 
-inline void reality::EditorInspector::DrawComponents(GameObject& object) {
+inline void Reality::Editor::EditorInspector::DrawComponents(GameObject& object) {
 	DrawTransform(object.Transform);
 
 	if (auto light{ object.GetComponent<CLight>() }) {
@@ -99,7 +100,7 @@ inline void reality::EditorInspector::DrawComponents(GameObject& object) {
 	}
 }
 
-inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
+inline void Reality::Editor::EditorInspector::DrawAddComponent(GameObject& object) {
 	for (auto& type : rttr::type::get<Component>().get_derived_classes()) {
 		if (ImGui::MenuItem(type.get_name().data())) {
 			object.AddComponent(*type.get_method("Instantiate").invoke({}).convert<Component*>());
@@ -107,7 +108,7 @@ inline void reality::EditorInspector::DrawAddComponent(GameObject& object) {
 	}
 }
 
-inline void reality::EditorInspector::DrawTransform(CTransform& transform) {
+inline void Reality::Editor::EditorInspector::DrawTransform(CTransform& transform) {
 	if (ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding)) {
 		ImGui::SameLine(ImGui::GetWindowWidth() - 30.f);
 		if (ImGui::Button("+")) {
@@ -135,7 +136,7 @@ inline void reality::EditorInspector::DrawTransform(CTransform& transform) {
 	}
 }
 
-inline void reality::EditorInspector::DrawLight(CLight& light) {
+inline void Reality::Editor::EditorInspector::DrawLight(CLight& light) {
 	ImGui::Combo("Type", reinterpret_cast<int*>(&light.Type), "Directional\0Point\0Spot");
 	ImGui::Combo("Shadow", reinterpret_cast<int*>(&light.Shadow), "None\0Soft");
 	ImGui::ColorEdit4("Color", &light.Color.X);
@@ -144,7 +145,7 @@ inline void reality::EditorInspector::DrawLight(CLight& light) {
 	ImGui::DragFloat("SpotAngle", &light.SpotAngle, 0.5f, 0.f, 70.f);
 }
 
-inline void reality::EditorInspector::DrawCamera(CCamera& camera) {
+inline void Reality::Editor::EditorInspector::DrawCamera(CCamera& camera) {
 	ImGui::Combo("Clear flag", reinterpret_cast<int*>(&camera.Flag), "Skybox\0SolidColor\0DepthOnly\0DontClear");
 	ImGui::Combo("Projection", reinterpret_cast<int*>(&camera.ProjectionType), "Perspective\0Orthographic");
 	ImGui::DragFloat("Fov", &camera.Fov, 1.f, 1.f, 180.f);
@@ -156,7 +157,7 @@ inline void reality::EditorInspector::DrawCamera(CCamera& camera) {
 	ImGui::DragInt("Depth", &camera.Depth, 1.f, -100, 100);
 }
 
-inline void reality::EditorInspector::DrawMeshRenderer(CMeshRenderer& mesh) {
+inline void Reality::Editor::EditorInspector::DrawMeshRenderer(CMeshRenderer& mesh) {
 	if (ImGui::BeginCombo("##Models", mesh.GetName().data())) {
 		for (auto& [name, model] : g_ResourceManager->Models.GetResources()) {
 			if (ImGui::Selectable(name.c_str())) {

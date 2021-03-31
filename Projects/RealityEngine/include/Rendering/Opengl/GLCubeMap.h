@@ -5,7 +5,7 @@
 #include "Core/Platform.h"
 #include "Rendering/Settings/GLCubeMapSettings.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLCubeMap {
 	public:
 		GLCubeMap() = default;
@@ -26,15 +26,15 @@ namespace reality {
 	};
 }
 
-inline reality::GLCubeMap::GLCubeMap(GLCubeMap&& other) noexcept :
+inline Reality::GLCubeMap::GLCubeMap(GLCubeMap&& other) noexcept :
 	m_Handle{ std::exchange(other.m_Handle, {}) } 
 {}
 
-inline reality::GLCubeMap& reality::GLCubeMap::operator=(GLCubeMap&& other) noexcept {
+inline Reality::GLCubeMap& Reality::GLCubeMap::operator=(GLCubeMap&& other) noexcept {
 	m_Handle = std::exchange(other.m_Handle, {});
 	return *this;
 }
 
-inline const reality::GLCubeMap::Handle& reality::GLCubeMap::GetHandle() const {
+inline const Reality::GLCubeMap::Handle& Reality::GLCubeMap::GetHandle() const {
 	return m_Handle;
 }

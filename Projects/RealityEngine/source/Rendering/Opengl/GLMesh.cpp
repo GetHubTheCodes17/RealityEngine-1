@@ -4,7 +4,7 @@
 
 #include <glad/glad.h>
 
-reality::GLMesh::GLMesh(GLMeshSettings settings) {
+Reality::GLMesh::GLMesh(GLMeshSettings settings) {
 	constexpr GLenum drawTypes[]{ GL_POINTS, GL_LINES, GL_LINE_LOOP, GL_LINE_STRIP, GL_TRIANGLES,
 		GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN };
 	m_Handle.DrawType = drawTypes[(int)settings.DrawType];
@@ -50,13 +50,13 @@ reality::GLMesh::GLMesh(GLMeshSettings settings) {
 	}
 }
 
-reality::GLMesh::~GLMesh() {
+Reality::GLMesh::~GLMesh() {
 	glDeleteBuffers(1, &m_Handle.Ebo);
 	glDeleteBuffers(1, &m_Handle.Vbo);
 	glDeleteVertexArrays(1, &m_Handle.Vao);
 }
 
-void reality::GLMesh::Draw(unsigned instances) const {
+void Reality::GLMesh::Draw(unsigned instances) const {
 	glBindVertexArray(m_Handle.Vao);
 
 	if (m_Handle.IndicesSize) {

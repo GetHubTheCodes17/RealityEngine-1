@@ -9,7 +9,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE HotReload final {
 	public:
 		explicit HotReload(std::string_view dllPath, std::span<std::string> procs = {});

@@ -5,7 +5,7 @@
 #include <imgui/imgui_internal.h>
 #include <imgui/imgui.h>
 
-namespace reality {
+namespace Reality::Editor {
 	class EditorDocking {
 	public:
 		void Begin();
@@ -16,7 +16,7 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorDocking::Begin() {
+inline void Reality::Editor::EditorDocking::Begin() {
 	if (!m_DockspaceId) {
 		m_DockspaceId = ImGui::GetID("DockSpace");
 		ImGui::DockBuilderRemoveNode(m_DockspaceId);
@@ -25,7 +25,7 @@ inline void reality::EditorDocking::Begin() {
 		auto mainId{ m_DockspaceId };
 		ImGui::DockBuilderDockWindow("Hierarchy", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Left, 0.2f, nullptr, &mainId));
 		ImGui::DockBuilderDockWindow("Inspector", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Right, 0.25f, nullptr, &mainId));
-		auto logId{ ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Down, 0.3f, nullptr, &mainId) };
+		const auto logId{ ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Down, 0.3f, nullptr, &mainId) };
 		ImGui::DockBuilderDockWindow("Console", logId);
 		ImGui::DockBuilderDockWindow("Assets", logId);
 		ImGui::DockBuilderDockWindow("Scene", ImGui::DockBuilderSplitNode(mainId, ImGuiDir_Up, 1.f, nullptr, &mainId));
@@ -44,6 +44,6 @@ inline void reality::EditorDocking::Begin() {
 	ImGui::DockSpace(m_DockspaceId);
 }
 
-inline void reality::EditorDocking::End() const {
+inline void Reality::Editor::EditorDocking::End() const {
 	ImGui::End();
 }

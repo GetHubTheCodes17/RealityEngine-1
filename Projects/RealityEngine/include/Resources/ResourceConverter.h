@@ -4,7 +4,7 @@
 
 #include "Model/ModelConverter.h"
 
-namespace reality::loader {
+namespace Reality::loader {
 	template <class Resource, class Properties, class TmpResource>
 	inline Resource Convert(Properties&, const TmpResource&) = delete;
 	template <>
@@ -20,7 +20,7 @@ namespace reality::loader {
 }
 
 template<>
-reality::GLTexture reality::loader::Convert(GLTextureSettings& properties, const Texture& resource) {
+Reality::GLTexture Reality::loader::Convert(GLTextureSettings& properties, const Texture& resource) {
 	properties.Image = resource.Image.get();
 	properties.Width = resource.Width;
 	properties.Height = resource.Height;
@@ -35,7 +35,7 @@ reality::GLTexture reality::loader::Convert(GLTextureSettings& properties, const
 }
 
 template<>
-reality::GLCubeMap reality::loader::Convert(GLCubeMapSettings& properties, const Skybox& resource) {
+Reality::GLCubeMap Reality::loader::Convert(GLCubeMapSettings& properties, const Skybox& resource) {
 	for (std::size_t i{}; i < properties.Textures.size(); ++i) {
 		properties.Textures[i].Image = resource.Textures[i].Image.get();
 		properties.Textures[i].Width = resource.Textures[i].Width;
@@ -45,7 +45,7 @@ reality::GLCubeMap reality::loader::Convert(GLCubeMapSettings& properties, const
 }
 
 template<>
-reality::GLShader reality::loader::Convert(GLShaderSettings& properties, const Shader& resource) {
+Reality::GLShader Reality::loader::Convert(GLShaderSettings& properties, const Shader& resource) {
 	properties.VertexSource = resource.VertexSource;
 	properties.FragmentSource = !resource.FragmentSource.empty() ? resource.FragmentSource : "";
 	properties.GeometrySource = !resource.GeometrySource.empty() ? resource.GeometrySource : "";
@@ -53,12 +53,12 @@ reality::GLShader reality::loader::Convert(GLShaderSettings& properties, const S
 }
 
 template<>
-reality::GLModel reality::loader::Convert(GLMeshSettings& properties, const Model& resource) {
+Reality::GLModel Reality::loader::Convert(GLMeshSettings& properties, const Model& resource) {
 	return ConvertModel(properties, resource);
 }
 
 template<>
-reality::GLFont reality::loader::Convert(GLFontSettings& properties, const Font& resource) {
+Reality::GLFont Reality::loader::Convert(GLFontSettings& properties, const Font& resource) {
 	for (std::size_t i{}; i < resource.Characters.size(); ++i) {
 		properties.Characters[i].Size = resource.Characters[i].Size;
 		properties.Characters[i].Bearing = resource.Characters[i].Bearing;

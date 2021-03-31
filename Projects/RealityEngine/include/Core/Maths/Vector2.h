@@ -5,7 +5,7 @@
 #include "Core/Platform.h"
 #include "Mathf.h"
 
-namespace reality {
+namespace Reality {
 	struct Vector2 {
 		float X{}, Y{};
 
@@ -52,110 +52,110 @@ namespace reality {
 	};
 }
 
-constexpr reality::Vector2::Vector2(const float* xy) :
+constexpr Reality::Vector2::Vector2(const float* xy) :
 	X{ xy[0] }, Y{ xy[1] } 
 {}
 
-constexpr reality::Vector2::Vector2(float x, float y) : 
+constexpr Reality::Vector2::Vector2(float x, float y) : 
 	X{ x }, Y{ y }
 {}
 
-constexpr reality::Vector2::Vector2(float xy) : 
+constexpr Reality::Vector2::Vector2(float xy) : 
 	X{ xy }, Y{ xy }
 {}
 
-constexpr reality::Vector2& reality::Vector2::operator=(const float* xy) {
+constexpr Reality::Vector2& Reality::Vector2::operator=(const float* xy) {
 	X = xy[0];
 	Y = xy[1];
 	return *this;
 }
 
-constexpr bool reality::Vector2::operator==(const Vector2& rhs) const {
+constexpr bool Reality::Vector2::operator==(const Vector2& rhs) const {
 	return Mathf::Approx(X, rhs.X) && Mathf::Approx(Y, rhs.Y);
 }
 
-constexpr bool reality::Vector2::operator!=(const Vector2& rhs) const {
+constexpr bool Reality::Vector2::operator!=(const Vector2& rhs) const {
 	return !Mathf::Approx(X, rhs.X) || !Mathf::Approx(Y, rhs.Y);
 }
 
-constexpr reality::Vector2 reality::Vector2::operator+(const Vector2& rhs) const {
+constexpr Reality::Vector2 Reality::Vector2::operator+(const Vector2& rhs) const {
 	return { X + rhs.X, Y + rhs.Y };
 }
 
-constexpr reality::Vector2 reality::Vector2::operator-(const Vector2& rhs) const {
+constexpr Reality::Vector2 Reality::Vector2::operator-(const Vector2& rhs) const {
 	return { X - rhs.X, Y - rhs.Y };
 }
 
-constexpr reality::Vector2 reality::Vector2::operator-() const {
+constexpr Reality::Vector2 Reality::Vector2::operator-() const {
 	return { -X, -Y };
 }
 
-constexpr reality::Vector2 reality::Vector2::operator*(const Vector2& rhs) const {
+constexpr Reality::Vector2 Reality::Vector2::operator*(const Vector2& rhs) const {
 	return { X * rhs.X, Y * rhs.Y };
 }
 
-constexpr reality::Vector2 reality::Vector2::operator*(float rhs) const {
+constexpr Reality::Vector2 Reality::Vector2::operator*(float rhs) const {
 	return { X * rhs, Y * rhs };
 }
 
-constexpr reality::Vector2 reality::Vector2::operator/(float rhs) const {
+constexpr Reality::Vector2 Reality::Vector2::operator/(float rhs) const {
 	return { X / rhs, Y / rhs };
 }
 
-constexpr float reality::Vector2::operator|(const Vector2& rhs) const {
+constexpr float Reality::Vector2::operator|(const Vector2& rhs) const {
 	return X * rhs.X + Y * rhs.Y;
 }
 
-constexpr float reality::Vector2::operator^(const Vector2& rhs) const {
+constexpr float Reality::Vector2::operator^(const Vector2& rhs) const {
 	return X * rhs.Y - rhs.X * Y;
 }
 
-constexpr reality::Vector2& reality::Vector2::operator+=(const Vector2& rhs) {
+constexpr Reality::Vector2& Reality::Vector2::operator+=(const Vector2& rhs) {
 	X += rhs.X;
 	Y += rhs.Y;
 	return *this;
 }
 
-constexpr reality::Vector2& reality::Vector2::operator-=(const Vector2& rhs) {
+constexpr Reality::Vector2& Reality::Vector2::operator-=(const Vector2& rhs) {
 	X -= rhs.X;
 	Y -= rhs.Y;
 	return *this;
 }
 
-constexpr reality::Vector2& reality::Vector2::operator*=(const Vector2& rhs) {
+constexpr Reality::Vector2& Reality::Vector2::operator*=(const Vector2& rhs) {
 	X *= rhs.X;
 	Y *= rhs.Y;
 	return *this;
 }
 
-constexpr reality::Vector2& reality::Vector2::operator*=(float rhs) {
+constexpr Reality::Vector2& Reality::Vector2::operator*=(float rhs) {
 	X *= rhs;
 	Y *= rhs;
 	return *this;
 }
 
-constexpr reality::Vector2& reality::Vector2::operator/=(float rhs) {
+constexpr Reality::Vector2& Reality::Vector2::operator/=(float rhs) {
 	X /= rhs;
 	Y /= rhs;
 	return *this;
 }
 
-inline float reality::Vector2::Angle(const Vector2& lhs, const Vector2& rhs) {
+inline float Reality::Vector2::Angle(const Vector2& lhs, const Vector2& rhs) {
 	return std::acos((lhs.X * rhs.X + lhs.Y * rhs.Y) / std::sqrt((lhs.X * lhs.X + lhs.Y * lhs.Y) *
 		(rhs.X * rhs.X + rhs.Y * rhs.Y)));
 }
 
-inline float reality::Vector2::Distance(const Vector2& lhs, const Vector2& rhs) {
+inline float Reality::Vector2::Distance(const Vector2& lhs, const Vector2& rhs) {
 	const auto X{ lhs.X - rhs.X }, Y{ lhs.Y - rhs.Y };
 	return std::sqrt(X * X + Y * Y);
 }
 
-inline reality::Vector2 reality::Vector2::Normalize(const Vector2& u) {
+inline Reality::Vector2 Reality::Vector2::Normalize(const Vector2& u) {
 	const auto k{ std::sqrt(u.X * u.X + u.Y * u.Y) };
 	return { u.X / k, u.Y / k };
 }
 
-constexpr reality::Vector2 reality::Vector2::ClampMagnitude(const Vector2& u, float k) {
+constexpr Reality::Vector2 Reality::Vector2::ClampMagnitude(const Vector2& u, float k) {
 	const auto sqr{ u.X * u.X + u.Y * u.Y };
 	if (sqr > k * k) {
 		return u / std::sqrt(sqr) * k;
@@ -163,56 +163,56 @@ constexpr reality::Vector2 reality::Vector2::ClampMagnitude(const Vector2& u, fl
 	return u;
 }
 
-constexpr float reality::Vector2::Cross(const Vector2& lhs, const Vector2& rhs) {
+constexpr float Reality::Vector2::Cross(const Vector2& lhs, const Vector2& rhs) {
 	return lhs.X * rhs.Y - lhs.Y * rhs.X;
 }
 
-constexpr float reality::Vector2::Dot(const Vector2& lhs, const Vector2& rhs) {
+constexpr float Reality::Vector2::Dot(const Vector2& lhs, const Vector2& rhs) {
 	return lhs.X * rhs.X + lhs.Y * rhs.Y;
 }
 
-constexpr bool reality::Vector2::Equals(const Vector2& lhs, const Vector2& rhs, float eps) {
+constexpr bool Reality::Vector2::Equals(const Vector2& lhs, const Vector2& rhs, float eps) {
 	return Mathf::Approx(lhs.X, rhs.X, eps) && Mathf::Approx(lhs.Y, rhs.Y, eps);
 }
 
-constexpr reality::Vector2 reality::Vector2::Lerp(const Vector2& a, const Vector2& b, float t) {
+constexpr Reality::Vector2 Reality::Vector2::Lerp(const Vector2& a, const Vector2& b, float t) {
 	return a + (b - a) * t;
 }
 
-constexpr reality::Vector2 reality::Vector2::Scale(const Vector2& lhs, const Vector2& rhs) {
+constexpr Reality::Vector2 Reality::Vector2::Scale(const Vector2& lhs, const Vector2& rhs) {
 	return { lhs.X * rhs.X, lhs.Y * rhs.Y };
 }
 
-constexpr float reality::Vector2::SqrDistance(const Vector2& lhs, const Vector2& rhs) {
+constexpr float Reality::Vector2::SqrDistance(const Vector2& lhs, const Vector2& rhs) {
 	const auto X{ lhs.X - rhs.X }, Y{ lhs.Y - rhs.Y };
 	return X * X + Y * Y;
 }
 
-inline float reality::Vector2::GetMagnitude() const {
+inline float Reality::Vector2::GetMagnitude() const {
 	return std::sqrt(X * X + Y * Y);
 }
 
-constexpr bool reality::Vector2::IsNormalize() const {
+constexpr bool Reality::Vector2::IsNormalize() const {
 	return Mathf::Approx(X * X + Y * Y, 1.f);
 }
 
-constexpr float reality::Vector2::GetSqrMagnitude() const {
+constexpr float Reality::Vector2::GetSqrMagnitude() const {
 	return X * X + Y * Y;
 }
 
-constexpr reality::Vector2& reality::Vector2::Set(const float* xy) {
+constexpr Reality::Vector2& Reality::Vector2::Set(const float* xy) {
 	X = xy[0];
 	Y = xy[1];
 	return *this;
 }
 
-constexpr reality::Vector2& reality::Vector2::Set(float x, float y) {
+constexpr Reality::Vector2& Reality::Vector2::Set(float x, float y) {
 	X = x;
 	Y = y;
 	return *this;
 }
 
-constexpr reality::Vector2& reality::Vector2::Set(float xy) {
+constexpr Reality::Vector2& Reality::Vector2::Set(float xy) {
 	X = Y = xy;
 	return *this;
 }

@@ -4,7 +4,7 @@
 
 #include "Vector3.h"
 
-namespace reality {
+namespace Reality {
 	struct Line {
 		Vector3 Begin, End;
 	};

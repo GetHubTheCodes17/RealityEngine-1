@@ -4,7 +4,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	enum class GLTextureType { Texture1D, Texture2D, Texture3D };
 	enum class GLTextureFormat { Red, Rgb, Srgb, Rgba, Rgbf16, Depth, DepthStencil };
 	enum class GLTextureInternalType { Ubyte, Float, Uint24_8 };

@@ -9,7 +9,7 @@
 #include "GLShader.h"
 #include "GLMesh.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLDebugDrawing {
 	public:
 		static constexpr auto s_MaxLinesSize{ 1000u };

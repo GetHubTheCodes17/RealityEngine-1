@@ -5,7 +5,7 @@
 #include "Core/Maths/Vector4.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
+namespace Reality {
 	struct alignas(16) GLLight {
 		enum class Type { Directional, Point, Spot };
 		enum class Shadow { None, Soft };

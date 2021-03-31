@@ -6,7 +6,7 @@
 
 #include "GLTextureSettings.h"
 
-namespace reality {
+namespace Reality {
 	enum class GLRenderPassRasterization { Fill, Line, Point };
 
 	enum GLRenderPassCapacity : uint8 {

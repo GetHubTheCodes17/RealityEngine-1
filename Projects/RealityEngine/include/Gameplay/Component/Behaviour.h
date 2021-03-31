@@ -4,7 +4,7 @@
 
 #include "Component.h"
 
-namespace reality {
+namespace Reality {
 	struct CBehaviour : Component {
 		RE_INTERFACE(Component)
 		bool Enabled{ true };
@@ -13,4 +13,4 @@ namespace reality {
 	};
 }
 
-inline reality::CBehaviour::~CBehaviour() = default;
+inline Reality::CBehaviour::~CBehaviour() = default;

@@ -4,7 +4,7 @@
 
 #include "Resources/Model/Vertex.h"
 
-namespace reality {
+namespace Reality {
 	enum class GLMeshUsage { Stream, Static, Dynamic };
 	enum class GLMeshDrawType { Points, Lines, LineLoop, LineStrip, Triangles, TriangleStrip, TriangleFan };
 

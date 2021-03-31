@@ -7,7 +7,7 @@
 #include "Rendering/Opengl/GLContext.h"
 #include "Rendering/Opengl/GLCubeMap.h"
 
-reality::GLPipeline::GLPipeline(const Viewport& viewport) {
+Reality::GLPipeline::GLPipeline(const Viewport& viewport) {
 	m_ScenePass = GLRenderPass{ { GLRenderPassFramebufferTexture::ColorAttachment |
 		GLRenderPassFramebufferTexture::DepthAttachment, { 2, { nullptr, (int)viewport.Size.X, (int)viewport.Size.Y,
 		false, GLTextureFormat::Rgbf16, GLTextureFormat::Rgb, GLTextureInternalType::Float, GLTextureType::Texture2D,
@@ -46,12 +46,12 @@ reality::GLPipeline::GLPipeline(const Viewport& viewport) {
 		m_FinalPass.Viewport = viewport;
 }
 
-void reality::GLPipeline::BeginShadowPass() const {
+void Reality::GLPipeline::BeginShadowPass() const {
 	m_ShadowPass.Clear();
 	g_ShaderHelper->Shadow.Bind();
 }
 
-void reality::GLPipeline::BeginScenePass(const GLCubeMap* skybox) const {
+void Reality::GLPipeline::BeginScenePass(const GLCubeMap* skybox) const {
 	m_ScenePass.Clear();
 	g_ShaderHelper->Default.Bind();
 	m_ShadowPass.GetHandle().DepthStencilAttachment.Bind(7);
@@ -62,7 +62,7 @@ void reality::GLPipeline::BeginScenePass(const GLCubeMap* skybox) const {
 	}
 }
 
-void reality::GLPipeline::BeginPostProcess() const {
+void Reality::GLPipeline::BeginPostProcess() const {
 	static constexpr auto s_BlurAmount{ 8u };
 	m_ScenePass.Blit(m_MidPass);
 

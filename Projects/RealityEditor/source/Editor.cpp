@@ -7,16 +7,10 @@
 
 #include "Gameplay/ComponentSystem.h"
 
-reality::editor::Editor::Editor() :
-#if RE_DEBUG
-	hr{ "../../Binaries/Debug/Game.dll" }
-#else
-	hr{ "../../Binaries/Release/Game.dll" }
-#endif
-{
+Reality::Editor::Editor::Editor() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	editorTheme::RealityStyle();
+	EditorTheme::RealityStyle();
 	auto& io{ ImGui::GetIO() };
 	io.Fonts->AddFontFromFileTTF("../../Projects/RealityEditor/Config/LucidaGrande.ttf", 12.f);
 	io.IniFilename = "Config/imgui.ini";
@@ -33,18 +27,18 @@ reality::editor::Editor::Editor() :
 	Run();
 }
 
-reality::editor::Editor::~Editor() {
+Reality::Editor::Editor::~Editor() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 }
 
-void reality::editor::Editor::Run() {
+void Reality::Editor::Editor::Run() {
 	auto& activeScene{ *g_SceneManager->ActiveScene };
 
 	while (g_Io->Window->IsRunning()) {
 		if (ImGui::IsKeyDown(keycode::RE_KEY_R)) {
-			hr.Reload();
+			m_HotReload.Reload();
 		}
 
 		UpdateIo();
@@ -65,7 +59,7 @@ void reality::editor::Editor::Run() {
 	}
 }
 
-void reality::editor::Editor::Render(const Matrix4& view) const {
+void Reality::Editor::Editor::Render(const Matrix4& view) const {
 	GLContext::SetViewMatrix(view);
 
 	m_Pipeline.BeginShadowPass();
@@ -79,7 +73,7 @@ void reality::editor::Editor::Render(const Matrix4& view) const {
 	m_Pipeline.GetDefaultPass().Bind();
 }
 
-void reality::editor::Editor::Update() {
+void Reality::Editor::Editor::Update() {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
@@ -87,19 +81,19 @@ void reality::editor::Editor::Update() {
 	UpdateWindows();
 }
 
-void reality::editor::Editor::UpdateWindows() {
+void Reality::Editor::Editor::UpdateWindows() {
 	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.1f, 50.f);
 	m_Dock.Begin();
 	m_Assets.Draw();
 	m_Log.Draw();
 	m_Menu.Draw();
-	m_Hierarchy.Draw(*g_SceneManager->ActiveScene);
+	m_Hierarchy.Draw();
 	m_Inspector.Draw(m_Hierarchy.GetSelected());
-	m_Scene.Draw(m_Pipeline, m_Camera, m_Viewport, m_Hierarchy.GetSelected());
+	m_Scene.Draw(m_Hierarchy.GetSelected());
 	m_Dock.End();
 }
 
-void reality::editor::Editor::UpdateIo() {
+void Reality::Editor::Editor::UpdateIo() {
 	if (ImGui::IsKeyDown(keycode::RE_KEY_F) && !m_Hierarchy.GetSelected().empty()) {
 		m_Camera.Focus(m_Hierarchy.GetSelected().back());
 	}

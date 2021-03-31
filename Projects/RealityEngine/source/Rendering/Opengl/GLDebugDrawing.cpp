@@ -7,7 +7,7 @@
 #include "Rendering/Opengl/GLContext.h"
 #include "Core/Maths/Matrix4.h"
 
-void reality::GLDebugDrawing::DrawShape(const GLMesh& shape, const Matrix4& globalTransform,
+void Reality::GLDebugDrawing::DrawShape(const GLMesh& shape, const Matrix4& globalTransform,
 	GLDebugDrawingSettings settings) const 
 {
 	m_DebugDraw.Bind();
@@ -25,7 +25,7 @@ void reality::GLDebugDrawing::DrawShape(const GLMesh& shape, const Matrix4& glob
 	shape.Draw();
 }
 
-void reality::GLDebugDrawing::DrawLines(const Line* lines, unsigned size, GLDebugDrawingSettings settings) const {
+void Reality::GLDebugDrawing::DrawLines(const Line* lines, unsigned size, GLDebugDrawingSettings settings) const {
 	m_DebugDraw.Bind();
 	glLineWidth(settings.Thickness);
 	glPointSize(settings.Thickness);

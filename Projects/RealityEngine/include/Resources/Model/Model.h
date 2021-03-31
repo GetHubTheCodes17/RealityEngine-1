@@ -11,7 +11,7 @@
 
 struct aiNode; struct aiScene; struct aiMesh;
 
-namespace reality {
+namespace Reality {
 	struct Material {
 		Vector3 Color{ Vector3::One }, SpecularStrength{ Vector3::One };
 		float Shininess{ 64.f }, Opacity{}, Dissolve{};

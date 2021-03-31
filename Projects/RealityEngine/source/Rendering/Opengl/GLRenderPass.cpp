@@ -9,7 +9,7 @@
 #include "Rendering/Opengl/GLCubeMap.h"
 #include "Core/Tools/Logger.h"
 
-reality::GLRenderPass::GLRenderPass(GLRenderPassSettings settings) {
+Reality::GLRenderPass::GLRenderPass(GLRenderPassSettings settings) {
 	glGenFramebuffers(1, &m_Handle.Id);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_Handle.Id);
 
@@ -39,15 +39,15 @@ reality::GLRenderPass::GLRenderPass(GLRenderPassSettings settings) {
 	}
 }
 
-reality::GLRenderPass::~GLRenderPass() {
+Reality::GLRenderPass::~GLRenderPass() {
 	glDeleteFramebuffers(1, &m_Handle.Id);
 }
 
-void reality::GLRenderPass::Bind() const {
+void Reality::GLRenderPass::Bind() const {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_Handle.Id);
 }
 
-void reality::GLRenderPass::Clear() const {
+void Reality::GLRenderPass::Clear() const {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_Handle.Id);
 
 	constexpr GLenum modes[]{ GL_FILL, GL_LINE, GL_POINT };
@@ -69,7 +69,7 @@ void reality::GLRenderPass::Clear() const {
 	(Capacity & GLRenderPassCapacity::Culling ? glEnable : glDisable)(GL_CULL_FACE);
 }
 
-void reality::GLRenderPass::Blit(const GLRenderPass& dest) const {
+void Reality::GLRenderPass::Blit(const GLRenderPass& dest) const {
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, m_Handle.Id);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, dest.m_Handle.Id);
 
@@ -92,7 +92,7 @@ void reality::GLRenderPass::Blit(const GLRenderPass& dest) const {
 	}
 }
 
-void reality::GLRenderPass::Resize(const struct Viewport& viewport) {
+void Reality::GLRenderPass::Resize(const struct Viewport& viewport) {
 	Viewport = viewport;
 	for (const auto& texture : m_Handle.ColorAttachments) {
 		texture.Resize(viewport);

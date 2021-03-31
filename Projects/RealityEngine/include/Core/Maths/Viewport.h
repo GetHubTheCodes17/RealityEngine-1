@@ -4,7 +4,7 @@
 
 #include "Vector2.h"
 
-namespace reality {
+namespace Reality {
 	struct Viewport {
 		Vector2 Pos, Size{ Vector2::One };
 	};

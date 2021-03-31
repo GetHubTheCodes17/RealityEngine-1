@@ -7,8 +7,8 @@
 
 #include <chrono>
 
-reality::HotReload::HotReload(std::string_view dllPath, std::span<std::string> procs) :
-	m_Path{ dllPath }, m_TempName{ m_Path + ".re.dll" }
+Reality::HotReload::HotReload(std::string_view dllPath, std::span<std::string> procs) :
+	m_Path{ std::string{ dllPath } + "Game" }, m_TempName{ m_Path + ".re.dll" }
 {
 	for (const auto& proc : procs) {
 		m_Procs[proc];
@@ -16,7 +16,7 @@ reality::HotReload::HotReload(std::string_view dllPath, std::span<std::string> p
 	Poll();
 }
 
-void reality::HotReload::Poll() {
+void Reality::HotReload::Poll() {
 	auto file{ CreateFileA(m_Path.c_str(),
 		GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL) };
 
@@ -44,7 +44,7 @@ void reality::HotReload::Poll() {
 	CloseHandle(file);
 }
 
-void reality::HotReload::Reload() {
+void Reality::HotReload::Reload() {
 	auto file{ CreateFileA(m_Path.c_str(),
 		GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL) };
 
@@ -64,6 +64,6 @@ void reality::HotReload::Reload() {
 	CloseHandle(file);
 }
 
-void* reality::HotReload::GetProc(std::string_view name) {
+void* Reality::HotReload::GetProc(std::string_view name) {
 	return m_Procs.at(name.data());
 }

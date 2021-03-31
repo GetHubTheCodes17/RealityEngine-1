@@ -7,7 +7,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	class Randomizer {
 	public:
 		template <class T>
@@ -28,17 +28,17 @@ namespace reality {
 }
 
 template <class T>
-auto reality::Randomizer::GetInt(T min, T max) {
+auto Reality::Randomizer::GetInt(T min, T max) {
 	return std::uniform_int_distribution<T>{ min, max }(m_Engine);
 }
 
 template <class T>
-auto reality::Randomizer::GetReal(T min, T max) {
+auto Reality::Randomizer::GetReal(T min, T max) {
 	return std::uniform_real_distribution<T>{ min, max }(m_Engine);
 }
 
 template <class T, std::size_t Size>
-void reality::Randomizer::GetInts(T min, T max, std::array<T, Size>& out) {
+void Reality::Randomizer::GetInts(T min, T max, std::array<T, Size>& out) {
 	const std::uniform_int_distribution<T> randomSeed{ min, max };
 	for (auto& elem : out) {
 		elem = randomSeed(m_Engine);
@@ -46,7 +46,7 @@ void reality::Randomizer::GetInts(T min, T max, std::array<T, Size>& out) {
 }
 
 template <class T, std::size_t Size>
-void reality::Randomizer::GetReals(T min, T max, std::array<T, Size>& out) {
+void Reality::Randomizer::GetReals(T min, T max, std::array<T, Size>& out) {
 	const std::uniform_real_distribution<T> randomSeed{ min, max };
 	for (auto& elem : out) {
 		elem = randomSeed(m_Engine);

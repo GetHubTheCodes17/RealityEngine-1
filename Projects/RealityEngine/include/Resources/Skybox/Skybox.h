@@ -6,7 +6,7 @@
 
 #include "Resources/Texture/Texture.h"
 
-namespace reality {
+namespace Reality {
 	struct SkyboxSettings {
 		TextureSettings Left, Right, Up, Down, Front, Back;
 	};
@@ -19,7 +19,7 @@ namespace reality {
 	};
 }
 
-inline reality::Skybox::Skybox(SkyboxSettings settings) :
+inline Reality::Skybox::Skybox(SkyboxSettings settings) :
 	Textures{ Texture{ settings.Left }, Texture{ settings.Right }, Texture{ settings.Up },
 		Texture{ settings.Down }, Texture{ settings.Front }, Texture{ settings.Back } }
 {}

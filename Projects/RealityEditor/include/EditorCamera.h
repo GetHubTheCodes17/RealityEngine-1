@@ -2,14 +2,15 @@
 
 #pragma once
 
+#include "EditorWindow.h"
 #include "Windowing/IO.h"
 #include "Gameplay/GameObject.h"
 #include "Core/Maths/Quaternion.h"
 #include "Core/Maths/Matrix4.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
-	class EditorCamera {
+namespace Reality::Editor {
+	class EditorCamera : public EditorWindow {
 	public:
 		Matrix4 Model, Projection{ Matrix4::Perspective((float)RE_WINDOW_WIDTH / (float)RE_WINDOW_HEIGHT) };
 		Vector3 Position;
@@ -31,13 +32,13 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorCamera::Update() {
+inline void Reality::Editor::EditorCamera::Update() {
 	HandleKeys();
 
 	auto relativeMousePos{ g_Io->Input->GetRelativeMousePos() };
 	const auto magnitude{ relativeMousePos.GetSqrMagnitude() };
 
-	// The glfw library causes lags when GLFW_CURSOR_DISABLED is set
+	// The glfw library causes lags when GLFW_CURSOR_DISABLED is activated
 	if (magnitude > m_OldMovementMagnitude * 5.f) {
 		relativeMousePos.Set(0.f);
 	}
@@ -50,7 +51,7 @@ inline void reality::EditorCamera::Update() {
 	UpdateModelView();
 }
 
-inline void reality::EditorCamera::UpdateFocus() {
+inline void Reality::Editor::EditorCamera::UpdateFocus() {
 	if (m_Target) {
 		Position = Vector3::Lerp(Position, m_FocusDestination, g_Io->Time->GetDeltaTime() * FocusSpeed);
 
@@ -61,49 +62,52 @@ inline void reality::EditorCamera::UpdateFocus() {
 	}
 }
 
-inline void reality::EditorCamera::Focus(const GameObject* target) {
+inline void Reality::Editor::EditorCamera::Focus(const GameObject* target) {
 	m_Target = target;
 	if (m_Target) {
 		m_FocusDestination = target->Transform.GetTrs().GetRow3(3) - Model.GetRow3(2) * 3.f;
 	}
 }
 
-inline const reality::Matrix4& reality::EditorCamera::GetViewMatrix() const {
+inline const Reality::Matrix4& Reality::Editor::EditorCamera::GetViewMatrix() const {
 	return m_View;
 }
 
-inline void reality::EditorCamera::HandleKeys() {
-	const auto deltaTime{ g_Io->Time->GetDeltaTime() };
+inline void Reality::Editor::EditorCamera::HandleKeys() {
+	const auto moveForward{ ImGui::IsKeyDown(keycode::RE_KEY_W) }, moveBackward{ ImGui::IsKeyDown(keycode::RE_KEY_S) };
+	const auto moveRight{ ImGui::IsKeyDown(keycode::RE_KEY_D) }, moveLeft{ ImGui::IsKeyDown(keycode::RE_KEY_A) };
+	const auto moveUp{ ImGui::IsKeyDown(keycode::RE_KEY_E) }, moveDown{ ImGui::IsKeyDown(keycode::RE_KEY_Q) };
 
-	if (ImGui::IsKeyDown(keycode::RE_KEY_W)) {
-		Position += Model.GetRow3(2) * deltaTime * MovementSpeed;
-		m_Target = nullptr;
+	auto Move{ 
+		[this](const auto& translation) {
+			Position += translation * g_Io->Time->GetDeltaTime() * MovementSpeed;
+			m_Target = nullptr;
+		} 
+	};
+
+	if (moveForward) {
+		Move(Model.GetRow3(2));
 	}
-	if (ImGui::IsKeyDown(keycode::RE_KEY_S)) {
-		Position -= Model.GetRow3(2) * deltaTime * MovementSpeed;
-		m_Target = nullptr;
+	if (moveBackward) {
+		Move(-Model.GetRow3(2));
 	}
-	if (ImGui::IsKeyDown(keycode::RE_KEY_D)) {
-		Position -= Model.GetRow3(0) * deltaTime * MovementSpeed;
-		m_Target = nullptr;
+	if (moveRight) {
+		Move(-Model.GetRow3(0));
 	}
-	if (ImGui::IsKeyDown(keycode::RE_KEY_A)) {
-		Position += Model.GetRow3(0) * deltaTime * MovementSpeed;
-		m_Target = nullptr;
+	if (moveLeft) {
+		Move(Model.GetRow3(0));
 	}
-	if (ImGui::IsKeyDown(keycode::RE_KEY_E)) {
-		Position += Vector3::Up * deltaTime * MovementSpeed;
-		m_Target = nullptr;
+	if (moveUp) {
+		Move(Vector3::Up);
 	}
-	if (ImGui::IsKeyDown(keycode::RE_KEY_Q)) {
-		Position -= Vector3::Up * deltaTime * MovementSpeed;
-		m_Target = nullptr;
+	if (moveDown) {
+		Move(Vector3::Down);
 	}
 }
 
-inline void reality::EditorCamera::UpdateModelView() {
-	Model = (Quaternion{ Mathf::Deg2Rad * m_Euler.X, Vector3::Left } 
-	* Quaternion{ Mathf::Deg2Rad * m_Euler.Y, Vector3::Up }).GetMatrix() * Matrix4::Translate(Position);
+inline void Reality::Editor::EditorCamera::UpdateModelView() {
+	Model = (Quaternion{ Mathf::Deg2Rad * m_Euler.X, Vector3::Left }
+		*Quaternion{ Mathf::Deg2Rad * m_Euler.Y, Vector3::Up }).GetMatrix() * Matrix4::Translate(Position);
 
 	m_View = Matrix4::LookAt(Position, Position + Model.GetRow3(2), Model.GetRow3(1));
 }

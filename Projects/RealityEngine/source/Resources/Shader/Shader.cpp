@@ -6,7 +6,7 @@
 
 #include "Core/Tools/Logger.h"
 
-reality::Shader::Shader(ShaderSettings settings) {
+Reality::Shader::Shader(ShaderSettings settings) {
 	if (!settings.VertexPath.empty()) {
 		VertexSource = GetShaderFromFile(settings.VertexPath);
 	}
@@ -18,7 +18,7 @@ reality::Shader::Shader(ShaderSettings settings) {
 	}
 }
 
-std::string reality::Shader::GetShaderFromFile(std::string_view source) {
+std::string Reality::Shader::GetShaderFromFile(std::string_view source) {
 	if (std::ifstream file{ source.data() }) {
 		return { std::istreambuf_iterator<char>{ file }, std::istreambuf_iterator<char>{} };
 	}
@@ -26,7 +26,7 @@ std::string reality::Shader::GetShaderFromFile(std::string_view source) {
 	return {};
 }
 
-std::string reality::Shader::GetShaderFromEngineFile(std::string_view filename) {
+std::string Reality::Shader::GetShaderFromEngineFile(std::string_view filename) {
 	const std::string path{ "../../Projects/RealityEngine/include/Rendering/GLSLShaders/" };
 	return GetShaderFromFile(path + filename.data());
 }

@@ -5,7 +5,7 @@
 #include <numbers>
 #include <cmath>
 
-namespace reality {
+namespace Reality {
 	namespace Mathf {
 		constexpr auto Deg2Rad{ 0.01745329251f };
 		constexpr auto Epsilon{ 1.192092896e-07f };
@@ -17,11 +17,11 @@ namespace reality {
 	};
 }
 
-constexpr bool reality::Mathf::Approx(float x, float y, float epsilon) {
+constexpr bool Reality::Mathf::Approx(float x, float y, float epsilon) {
 	const auto t{ x - y };
 	return (t < 0 ? -t : t) < epsilon;
 }
 
-constexpr float reality::Mathf::Sign(float x) {
+constexpr float Reality::Mathf::Sign(float x) {
 	return x < 0.f ? -1.f : 1.f;
 }

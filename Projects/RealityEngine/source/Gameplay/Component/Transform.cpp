@@ -6,7 +6,7 @@
 
 #include "Gameplay/GameObject.h"
 
-void reality::CTransform::SetParent(CTransform* parent) {
+void Reality::CTransform::SetParent(CTransform* parent) {
 	if (parent == m_Parent || parent == this || std::ranges::any_of(m_Children, [parent](auto child) { return child == parent; })) {
 		return;
 	}

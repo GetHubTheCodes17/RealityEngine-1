@@ -13,7 +13,7 @@
 #include "Windowing/IO.h"
 #include "Scene.h"
 
-namespace reality {
+namespace Reality {
 	class ComponentSystem {
 	public:
 		void UpdateTransforms(Scene& scene) const;
@@ -26,7 +26,7 @@ namespace reality {
 	};
 }
 
-inline void reality::ComponentSystem::UpdateTransforms(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateTransforms(Scene& scene) const {
 	std::function<void(CTransform&)> UpdateHierarchy = [&UpdateHierarchy](auto& root) {
 		if (root.HasChanged()) {
 			root.SetTrs(Matrix4::Scale(root.GetScale()) * root.GetRotation().GetMatrix() *
@@ -48,7 +48,7 @@ inline void reality::ComponentSystem::UpdateTransforms(Scene& scene) const {
 	}
 }
 
-inline void reality::ComponentSystem::UpdateCameras(Scene& scene, Vector2 windowSize) const {
+inline void Reality::ComponentSystem::UpdateCameras(Scene& scene, Vector2 windowSize) const {
 	for (const auto camera : scene.m_Manager.GetComponents<CCamera>()) {
 		CCamera::s_Main = static_cast<const CCamera*>(camera);
 	}
@@ -61,7 +61,7 @@ inline void reality::ComponentSystem::UpdateCameras(Scene& scene, Vector2 window
 	}
 }
 
-inline void reality::ComponentSystem::UpdateLights(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateLights(Scene& scene) const {
 	if (auto lights{ scene.m_Manager.GetComponents<CLight>() }; !lights.empty()) {
 		std::vector<GLLight> glLights(lights.size());
 		for (std::size_t i{}; i < glLights.size(); ++i) {
@@ -80,7 +80,7 @@ inline void reality::ComponentSystem::UpdateLights(Scene& scene) const {
 	}
 }
 
-inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 	for (const auto mesh : scene.m_Manager.GetComponents<CMeshRenderer>()) {
 		if (mesh->GetGameObject().IsActive) {
 			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
@@ -93,7 +93,7 @@ inline void reality::ComponentSystem::UpdateMeshesShadow(Scene& scene) const {
 	}
 }
 
-inline void reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
 	for (const auto mesh : scene.m_Manager.GetComponents<CMeshRenderer>()) {
 		if (mesh->GetGameObject().IsActive) {
 			GLContext::SetModelMatrix(mesh->GetGameObject().Transform.GetTrs());
@@ -109,7 +109,7 @@ inline void reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
 	}
 }
 
-inline void reality::ComponentSystem::UpdateParticles(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateParticles(Scene& scene) const {
 	for (const auto& system : scene.m_Manager.GetComponents<CParticleSystem>()) {
 		if (const auto glSystem{ static_cast<const CParticleSystem*>(system)->System }) {
 			glSystem->Direction = Vector3::Normalize(system->GetGameObject().Transform.GetForward());
@@ -122,7 +122,7 @@ inline void reality::ComponentSystem::UpdateParticles(Scene& scene) const {
 	}
 }
 
-inline void reality::ComponentSystem::UpdateMonoBehaviours(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateMonoBehaviours(Scene& scene) const {
 	for (const auto& mono : scene.m_Manager.GetComponents<CMonoBehaviour>()) {
 		if (const auto script{ static_cast<CMonoBehaviour*>(mono) }) {
 			script->Update();

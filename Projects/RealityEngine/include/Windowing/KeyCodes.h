@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace reality::keycode {
+namespace Reality::keycode {
 	constexpr auto RE_KEY_SPACE{ 32 };
 	constexpr auto RE_KEY_APOSTROPHE{ 39 };
 	constexpr auto RE_KEY_COMMA{ 44 };

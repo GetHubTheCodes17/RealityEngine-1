@@ -5,7 +5,7 @@
 #define GLFW_INCLUDE_NONE
 #include <glfw/glfw3.h>
 
-reality::GameEngine::GameEngine() {
+Reality::GameEngine::GameEngine() {
 	g_SceneManager = new SceneManager;
 	g_Logger = new Logger;
 	g_AudioEngine = new AudioEngine;
@@ -33,7 +33,7 @@ reality::GameEngine::GameEngine() {
 	SceneSerializer::Load("Resources/Scenes.json", scene);
 }
 
-reality::GameEngine::~GameEngine() {
+Reality::GameEngine::~GameEngine() {
 	SceneSerializer::Save("Resources/Scenes.json", *g_SceneManager->ActiveScene);
 
 	delete g_ResourceManager;
@@ -48,52 +48,52 @@ reality::GameEngine::~GameEngine() {
 	delete g_Io;
 }
 
-void reality::GameEngine::Update() {
+void Reality::GameEngine::Update() {
 	g_ResourceManager->Update();
 }
 
-RE_CORE reality::PlayerPref* reality::g_PlayerPref{};
-RE_CORE reality::Randomizer* reality::g_Randomizer{};
-RE_CORE reality::Logger* reality::g_Logger{};
-RE_CORE reality::SceneManager* reality::g_SceneManager{};
-RE_CORE reality::AudioEngine* reality::g_AudioEngine{};
-RE_CORE reality::GLShaderHelper* reality::g_ShaderHelper{};
-RE_CORE reality::GLDebugDrawing* reality::g_DebugDrawing{};
-RE_CORE reality::GLMeshHelper* reality::g_MeshHelper{};
-RE_CORE reality::IO* reality::g_Io{};
-RE_CORE reality::ResourceManager* reality::g_ResourceManager{};
+RE_CORE Reality::PlayerPref* Reality::g_PlayerPref{};
+RE_CORE Reality::Randomizer* Reality::g_Randomizer{};
+RE_CORE Reality::Logger* Reality::g_Logger{};
+RE_CORE Reality::SceneManager* Reality::g_SceneManager{};
+RE_CORE Reality::AudioEngine* Reality::g_AudioEngine{};
+RE_CORE Reality::GLShaderHelper* Reality::g_ShaderHelper{};
+RE_CORE Reality::GLDebugDrawing* Reality::g_DebugDrawing{};
+RE_CORE Reality::GLMeshHelper* Reality::g_MeshHelper{};
+RE_CORE Reality::IO* Reality::g_Io{};
+RE_CORE Reality::ResourceManager* Reality::g_ResourceManager{};
 
-const reality::Quaternion reality::Quaternion::Identity{ 0.f, 0.f, 0.f, 1.f };
+const Reality::Quaternion Reality::Quaternion::Identity{ 0.f, 0.f, 0.f, 1.f };
 
-const reality::Matrix4 reality::Matrix4::Zero{};
-const reality::Matrix4 reality::Matrix4::Identity{
+const Reality::Matrix4 Reality::Matrix4::Zero{};
+const Reality::Matrix4 Reality::Matrix4::Identity{
 	 1.f, 0.f, 0.f, 0.f,
 	 0.f, 1.f, 0.f, 0.f,
 	 0.f, 0.f, 1.f, 0.f,
 	 0.f, 0.f, 0.f, 1.f  
 };
 
-const reality::Vector4 reality::Vector4::Back{ 0.f, 0.f, -1.f, 1.f };
-const reality::Vector4 reality::Vector4::Down{ 0.f, -1.f, 0.f, 1.f };
-const reality::Vector4 reality::Vector4::Forward{ 0.f, 0.f, 1.f, 1.f };
-const reality::Vector4 reality::Vector4::Left{ -1.f, 0.f, 0.f, 1.f };
-const reality::Vector4 reality::Vector4::One{ 1.f, 1.f, 1.f, 1.f };
-const reality::Vector4 reality::Vector4::Right{ 1.f, 0.f, 0.f, 1.f };
-const reality::Vector4 reality::Vector4::Up{ 0.f, 1.f, 0.f, 1.f };
-const reality::Vector4 reality::Vector4::Zero{ 0.f, 0.f, 0.f, 0.f };
+const Reality::Vector4 Reality::Vector4::Back{ 0.f, 0.f, -1.f, 1.f };
+const Reality::Vector4 Reality::Vector4::Down{ 0.f, -1.f, 0.f, 1.f };
+const Reality::Vector4 Reality::Vector4::Forward{ 0.f, 0.f, 1.f, 1.f };
+const Reality::Vector4 Reality::Vector4::Left{ -1.f, 0.f, 0.f, 1.f };
+const Reality::Vector4 Reality::Vector4::One{ 1.f, 1.f, 1.f, 1.f };
+const Reality::Vector4 Reality::Vector4::Right{ 1.f, 0.f, 0.f, 1.f };
+const Reality::Vector4 Reality::Vector4::Up{ 0.f, 1.f, 0.f, 1.f };
+const Reality::Vector4 Reality::Vector4::Zero{ 0.f, 0.f, 0.f, 0.f };
 
-const reality::Vector3 reality::Vector3::Back{ 0.f, 0.f, -1.f };
-const reality::Vector3 reality::Vector3::Down{ 0.f, -1.f, 0.f };
-const reality::Vector3 reality::Vector3::Forward{ 0.f, 0.f, 1.f };
-const reality::Vector3 reality::Vector3::Left{ -1.f, 0.f, 0.f };
-const reality::Vector3 reality::Vector3::One{ 1.f, 1.f, 1.f };
-const reality::Vector3 reality::Vector3::Right{ 1.f, 0.f, 0.f };
-const reality::Vector3 reality::Vector3::Up{ 0.f, 1.f, 0.f };
-const reality::Vector3 reality::Vector3::Zero{ 0.f, 0.f, 0.f };
+const Reality::Vector3 Reality::Vector3::Back{ 0.f, 0.f, -1.f };
+const Reality::Vector3 Reality::Vector3::Down{ 0.f, -1.f, 0.f };
+const Reality::Vector3 Reality::Vector3::Forward{ 0.f, 0.f, 1.f };
+const Reality::Vector3 Reality::Vector3::Left{ -1.f, 0.f, 0.f };
+const Reality::Vector3 Reality::Vector3::One{ 1.f, 1.f, 1.f };
+const Reality::Vector3 Reality::Vector3::Right{ 1.f, 0.f, 0.f };
+const Reality::Vector3 Reality::Vector3::Up{ 0.f, 1.f, 0.f };
+const Reality::Vector3 Reality::Vector3::Zero{ 0.f, 0.f, 0.f };
 
-const reality::Vector2 reality::Vector2::Down{ 0.f, -1.f };
-const reality::Vector2 reality::Vector2::Left{ -1.f, 0.f };
-const reality::Vector2 reality::Vector2::One{ 1.f, 1.f };
-const reality::Vector2 reality::Vector2::Right{ 1.f, 0.f };
-const reality::Vector2 reality::Vector2::Up{ 0.f, 1.f };
-const reality::Vector2 reality::Vector2::Zero{ 0.f, 0.f };
+const Reality::Vector2 Reality::Vector2::Down{ 0.f, -1.f };
+const Reality::Vector2 Reality::Vector2::Left{ -1.f, 0.f };
+const Reality::Vector2 Reality::Vector2::One{ 1.f, 1.f };
+const Reality::Vector2 Reality::Vector2::Right{ 1.f, 0.f };
+const Reality::Vector2 Reality::Vector2::Up{ 0.f, 1.f };
+const Reality::Vector2 Reality::Vector2::Zero{ 0.f, 0.f };

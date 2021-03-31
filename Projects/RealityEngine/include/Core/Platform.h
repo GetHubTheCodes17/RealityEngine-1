@@ -61,19 +61,6 @@
 #define RE_SIMD_ENABLE 1
 #define RE_ASSERTIONS_ENABLE 1
 
-namespace reality {
-	using int8 = signed char;
-	using int16 = short;
-	using int32 = int;
-	using int64 = long long;
-	using uint8 = unsigned char;
-	using uint16 = unsigned short;
-	using uint32 = unsigned;
-	using uint64 = unsigned long long;
-
-	inline constexpr const char* g_ResourcesExtension{ ".binary" };
-}
-
 #ifdef RE_EXPORT
 #define RE_CORE __declspec(dllexport)
 #else
@@ -91,6 +78,25 @@ namespace reality {
 #else
 #define RE_DEBUG 0
 #endif
+
+namespace Reality {
+	using int8 = signed char;
+	using int16 = short;
+	using int32 = int;
+	using int64 = long long;
+	using uint8 = unsigned char;
+	using uint16 = unsigned short;
+	using uint32 = unsigned;
+	using uint64 = unsigned long long;
+
+	inline constexpr const char* g_ResourcesExtension{ ".binary" };
+
+#if RE_DEBUG
+	inline constexpr const char* g_DllPath{ "../../Binaries/Debug/" };
+#else
+	inline constexpr const char* g_DllPath{ "../../Binaries/Release/" };
+#endif
+}
 
 #ifdef RE_ASSERTIONS_ENABLE
 #include <crtdbg.h>

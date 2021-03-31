@@ -5,7 +5,7 @@
 #include "Core/Maths/Vector2.h"
 #include "KeyCodes.h"
 
-namespace reality {
+namespace Reality {
 	class Input {
 	public:
 		virtual ~Input() = default;

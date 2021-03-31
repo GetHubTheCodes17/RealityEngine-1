@@ -9,7 +9,7 @@
 #include "Gameplay/Component/MonoBehaviour.h"
 #include "Gameplay/Component/Component.h"
 
-namespace reality {
+namespace Reality {
 	class ComponentManager {
 	public:
 		ComponentManager();
@@ -25,14 +25,14 @@ namespace reality {
 	};
 }
 
-inline reality::ComponentManager::ComponentManager() {
+inline Reality::ComponentManager::ComponentManager() {
 	for (const auto& type : rttr::type::get<Component>().get_derived_classes()) {
 		m_Components[type];
 	}
 	m_Components[rttr::type::get<CMonoBehaviour>()];
 }
 
-inline void reality::ComponentManager::AddComponent(Component* comp) {
+inline void Reality::ComponentManager::AddComponent(Component* comp) {
 	if (rttr::type::get(*comp).is_derived_from<CMonoBehaviour>()) {
 		m_Components.at(rttr::type::get<CMonoBehaviour>()).emplace_back(comp);
 	}
@@ -41,11 +41,11 @@ inline void reality::ComponentManager::AddComponent(Component* comp) {
 	}
 }
 
-inline void reality::ComponentManager::RemoveComponent(Component* comp) {
+inline void Reality::ComponentManager::RemoveComponent(Component* comp) {
 	std::erase(m_Components.at(rttr::type::get(*comp)), comp);
 }
 
 template <class T>
-std::span<reality::Component*> reality::ComponentManager::GetComponents() requires std::derived_from<T, Component> {
+std::span<Reality::Component*> Reality::ComponentManager::GetComponents() requires std::derived_from<T, Component> {
 	return m_Components.at(rttr::type::get<T>());
 }

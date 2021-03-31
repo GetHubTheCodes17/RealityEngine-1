@@ -5,7 +5,7 @@
 #include "Core/Platform.h"
 #include "GLRenderPass.h"
 
-namespace reality {
+namespace Reality {
 	class RE_CORE GLPipeline {
 	public:
 		explicit GLPipeline(const Viewport& viewport = {});
@@ -22,7 +22,7 @@ namespace reality {
 	};
 }
 
-inline void reality::GLPipeline::ResizePasses(const Viewport& viewport) {
+inline void Reality::GLPipeline::ResizePasses(const Viewport& viewport) {
 	m_ScenePass.Resize(viewport);
 	m_MidPass.Resize(viewport);
 	for (auto& blurPass : m_BlurPasses) {
@@ -34,10 +34,10 @@ inline void reality::GLPipeline::ResizePasses(const Viewport& viewport) {
 	m_DefaultPass.Resize(viewport);
 }
 
-inline const reality::GLRenderPass& reality::GLPipeline::GetDefaultPass() const {
+inline const Reality::GLRenderPass& Reality::GLPipeline::GetDefaultPass() const {
 	return m_DefaultPass;
 }
 
-inline const reality::GLRenderPass& reality::GLPipeline::GetFinalPass() const {
+inline const Reality::GLRenderPass& Reality::GLPipeline::GetFinalPass() const {
 	return m_FinalPass;
 }

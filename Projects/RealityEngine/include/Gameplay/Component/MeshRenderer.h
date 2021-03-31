@@ -8,7 +8,7 @@
 #include "Component.h"
 #include "Resources/ResourceManager.h"
 
-namespace reality {
+namespace Reality {
 	struct CMeshRenderer : Component {
 		RE_COMPONENT(CMeshRenderer, Component)
 
@@ -34,20 +34,20 @@ namespace reality {
 	};
 }
 
-inline std::string_view reality::CMeshRenderer::GetName() const {
+inline std::string_view Reality::CMeshRenderer::GetName() const {
 	return m_Name;
 }
 
-inline const reality::GLModel* reality::CMeshRenderer::GetModel() const {
+inline const Reality::GLModel* Reality::CMeshRenderer::GetModel() const {
 	return m_Model;
 }
 
-inline void reality::CMeshRenderer::SetModel(std::string_view name) {
+inline void Reality::CMeshRenderer::SetModel(std::string_view name) {
 	if (auto model{ g_ResourceManager->Models.Get(name) }) {
 		m_Model = model;
 		m_Name = name;
 	}
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(reality::CMeshRenderer, "MeshRenderer");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::Component, reality::CMeshRenderer)
+CEREAL_REGISTER_TYPE_WITH_NAME(Reality::CMeshRenderer, "MeshRenderer");
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Reality::Component, Reality::CMeshRenderer)

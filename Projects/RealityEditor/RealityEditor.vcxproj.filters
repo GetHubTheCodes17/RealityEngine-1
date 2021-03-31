@@ -74,5 +74,8 @@
     <ClInclude Include="include\EditorAssets.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\EditorWindow.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

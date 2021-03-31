@@ -13,13 +13,17 @@
 #include "Core/Maths/Viewport.h"
 #include "Core/Maths/Vector3.h"
 
-namespace reality {
-	class EditorScene {
+namespace Reality::Editor {
+	class EditorScene : public EditorWindow {
 	public:
-		void Draw(GLPipeline& pipeline, EditorCamera& camera, Viewport& viewport, std::span<GameObject*> objects);
+		EditorScene(GLPipeline& pipeline, EditorCamera& camera, Viewport& viewport);
+		void Draw(std::span<GameObject*> objects);
 		bool IsHovered() const;
 
 	private:
+		GLPipeline& m_Pipeline;
+		EditorCamera& m_Camera;
+		Viewport& m_Viewport;
 		ImGuizmo::OPERATION m_CurrentGuizmoOperation{ ImGuizmo::OPERATION::TRANSLATE };
 		ImGuizmo::MODE m_CurrentGuizmoMode{ ImGuizmo::MODE::WORLD };
 		Vector3 m_SnapTranslation{ Vector3::One }, m_SnapScale, m_CurrentSnap;
@@ -33,40 +37,42 @@ namespace reality {
 	};
 }
 
-inline void reality::EditorScene::Draw(GLPipeline& pipeline, EditorCamera& camera, Viewport& viewport,
-	std::span<GameObject*> object) 
-{
+inline Reality::Editor::EditorScene::EditorScene(GLPipeline& pipeline, EditorCamera& camera, Viewport& viewport) :
+	m_Pipeline{ pipeline }, m_Camera{ camera }, m_Viewport{ viewport }
+{}
+
+inline void Reality::Editor::EditorScene::Draw(std::span<GameObject*> object) {
 	ImGui::Begin("Scene"); 
 	{
 		m_IsHovered = ImGui::IsWindowHovered();
 		m_WindowPos = ImGui::GetWindowPos();
 		m_WindowSize = ImGui::GetWindowSize();
-		viewport.Pos = { m_WindowPos.x, viewport.Pos.Y };
+		m_Viewport.Pos = { m_WindowPos.x, m_Viewport.Pos.Y };
 		const Viewport newViewport{ .Size{ m_WindowSize.x, m_WindowSize.y } };
 
-		if ((std::memcmp(&pipeline.GetFinalPass().Viewport, &newViewport, 16) != 0)) {
-			camera.Projection = Matrix4::Perspective(newViewport.Size.X / newViewport.Size.Y);
-			GLContext::SetProjectionMatrix(camera.Projection);	
-			pipeline.ResizePasses(newViewport);
-			viewport.Size = { m_WindowSize.x, m_WindowSize.y };
+		if ((std::memcmp(&m_Pipeline.GetFinalPass().Viewport, &newViewport, 16) != 0)) {
+			m_Camera.Projection = Matrix4::Perspective(newViewport.Size.X / newViewport.Size.Y);
+			GLContext::SetProjectionMatrix(m_Camera.Projection);
+			m_Pipeline.ResizePasses(newViewport);
+			m_Viewport.Size = { m_WindowSize.x, m_WindowSize.y };
 		}
 
 		ImGui::GetWindowDrawList()->AddImage(
-			(ImTextureID)(uint64)pipeline.GetFinalPass().GetHandle().ColorAttachments[0].GetHandle().Id,
+			(ImTextureID)(uint64)m_Pipeline.GetFinalPass().GetHandle().ColorAttachments[0].GetHandle().Id,
 			m_WindowPos, { m_WindowSize.x + m_WindowPos.x, m_WindowSize.y + m_WindowPos.y }, { 0, 1 }, { 1, 0 });
 
 		if (!object.empty()) {
-			DrawGuizmo(camera, *object.back());
+			DrawGuizmo(m_Camera, *object.back());
 		}
 	}
 	ImGui::End();
 }
 
-inline bool reality::EditorScene::IsHovered() const {
+inline bool Reality::Editor::EditorScene::IsHovered() const {
 	return m_IsHovered;
 }
 
-inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& object) {
+inline void Reality::Editor::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& object) {
 	UpdateGizmoMode();
 	UpdateSnap();
 
@@ -96,7 +102,7 @@ inline void reality::EditorScene::DrawGuizmo(EditorCamera& camera, GameObject& o
 	}
 }
 
-inline void reality::EditorScene::UpdateGizmoMode() {
+inline void Reality::Editor::EditorScene::UpdateGizmoMode() {
 	if (m_CurrentGuizmoOperation != ImGuizmo::SCALE) {
 		if (ImGui::RadioButton("Local", m_CurrentGuizmoMode == ImGuizmo::LOCAL)) {
 			m_CurrentGuizmoMode = ImGuizmo::LOCAL;
@@ -128,7 +134,7 @@ inline void reality::EditorScene::UpdateGizmoMode() {
 	}
 }
 
-inline void reality::EditorScene::UpdateSnap() {
+inline void Reality::Editor::EditorScene::UpdateSnap() {
 	ImGui::Checkbox("Snap", &m_UseSnap);
 	ImGui::SameLine();
 

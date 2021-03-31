@@ -6,7 +6,7 @@
 #include <cereal/types/memory.hpp>
 #include <rttr/type>
 
-namespace reality {
+namespace Reality {
 	class GameObject;
 	class Scene;
 
@@ -28,7 +28,7 @@ namespace reality {
 	};
 }
 
-inline reality::GameObject& reality::Component::GetGameObject() const {
+inline Reality::GameObject& Reality::Component::GetGameObject() const {
 	return *m_GameObject;
 }
 

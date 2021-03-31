@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace reality {
+namespace Reality {
 	class Time {
 	public:
 		static constexpr auto s_FixedDeltaTime{ 0.02f };

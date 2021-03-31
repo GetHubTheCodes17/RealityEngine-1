@@ -9,7 +9,7 @@
 
 #include "Core/Tools/Logger.h"
 
-reality::Texture::Texture(TextureSettings settings) {
+Reality::Texture::Texture(TextureSettings settings) {
 	const auto binaryPath{ settings.Path.substr(0, settings.Path.find_last_of('.')) + g_ResourcesExtension };
 
 	stbi_set_flip_vertically_on_load_thread(Flipped);
@@ -37,6 +37,6 @@ reality::Texture::Texture(TextureSettings settings) {
 	}
 }
 
-bool reality::Texture::IsExtensionSupported(std::string_view filename) {
+bool Reality::Texture::IsExtensionSupported(std::string_view filename) {
 	return (bool)stbi_info(filename.data(), nullptr, nullptr, nullptr);
 }

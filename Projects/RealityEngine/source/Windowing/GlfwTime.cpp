@@ -5,10 +5,10 @@
 #define GLFW_INCLUDE_NONE
 #include <glfw/glfw3.h>
 
-float reality::GlfwTime::GetTime() const {
+float Reality::GlfwTime::GetTime() const {
 	return (float)glfwGetTime();
 }
 
-void reality::GlfwTime::SetTime(float time) const {
+void Reality::GlfwTime::SetTime(float time) const {
 	glfwSetTime((double)time);
 }

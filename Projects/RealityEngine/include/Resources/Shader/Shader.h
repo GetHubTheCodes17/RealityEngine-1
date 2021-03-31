@@ -6,7 +6,7 @@
 
 #include "Core/Platform.h"
 
-namespace reality {
+namespace Reality {
 	struct ShaderSettings {
 		std::string VertexPath, FragmentPath, GeometryPath;
 	};
