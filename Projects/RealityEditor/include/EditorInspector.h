@@ -102,8 +102,10 @@ inline void Reality::Editor::EditorInspector::DrawComponents(GameObject& object)
 
 inline void Reality::Editor::EditorInspector::DrawAddComponent(GameObject& object) {
 	for (auto& type : rttr::type::get<Component>().get_derived_classes()) {
-		if (ImGui::MenuItem(type.get_name().data())) {
-			object.AddComponent(*type.get_method("Instantiate").invoke({}).convert<Component*>());
+		if (type != rttr::type::get<CMonoBehaviour>() && type != rttr::type::get<CBehaviour>()) {
+			if (ImGui::MenuItem(type.get_name().data())) {
+				object.AddComponent(*type.get_method("Instantiate").invoke({}).convert<Component*>());
+			}
 		}
 	}
 }

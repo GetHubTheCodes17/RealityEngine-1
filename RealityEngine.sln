@@ -12,6 +12,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealityEngine", "Projects\RealityEngine\RealityEngine.vcxproj", "{51FA2B87-4587-48F2-98EE-59E25FD7FC92}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Projects\Game\Game.vcxproj", "{418B5013-5A55-4EC4-9257-59F6B3647C2E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{51FA2B87-4587-48F2-98EE-59E25FD7FC92} = {51FA2B87-4587-48F2-98EE-59E25FD7FC92}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

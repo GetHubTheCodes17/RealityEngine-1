@@ -62,7 +62,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;5105;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26451;26819;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;5105;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include;$(SolutionDir)Projects\RealityEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <AdditionalOptions>/EHsc /Zc:preprocessor %(AdditionalOptions)</AdditionalOptions>
@@ -77,7 +77,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3dll.lib;Game.lib;RealityEngine.lib;irrKlang.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3dll.lib;RealityEngine.lib;Game.lib;irrKlang.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -90,7 +90,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251;26451;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;5105;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26451;26819;26812;4275;26495;6385;6319;6386;6011;4189;4505;4189;4100;5105;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Dependencies\Include;$(SolutionDir)Projects\RealityEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <AdditionalOptions>/EHsc /Zc:preprocessor /translateInclude %(AdditionalOptions)</AdditionalOptions>
@@ -106,7 +106,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3dll.lib;Game.lib;RealityEngine.lib;irrKlang.lib;assimp-vc142-mt.lib;rttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3dll.lib;RealityEngine.lib;Game.lib;irrKlang.lib;assimp-vc142-mt.lib;rttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

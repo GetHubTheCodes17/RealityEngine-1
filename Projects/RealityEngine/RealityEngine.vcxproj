@@ -205,9 +205,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;Game.lib;irrKlang.lib;freetype.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;assimp-vc142-mtd.lib;rttr_core_d.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Libraries\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -235,9 +239,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;Game.lib;irrKlang.lib;freetype.lib;assimp-vc142-mt.lib;rttr_core.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;assimp-vc142-mt.lib;rttr_core.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Binaries\$(Configuration)\;$(SolutionDir)Dependencies\Libraries\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3dll.lib;irrKlang.lib;freetype.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Libraries\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,17 +2,17 @@
 
 #include "Player.h"
 
-#include "Gameplay/GameObject.h"
 #include "Core/Tools/Logger.h"
 
 void Player::Update()
 {
-	RE_LOG_INFO("Hello Guys\n");
+	int life = 13;
+	RE_LOG_INFO("Life : %d", life);
 }
 
 #include <rttr/registration>
 
-RTTR_PLUGIN_REGISTRATION
+RTTR_REGISTRATION
 {
     using namespace rttr;
 
@@ -20,5 +20,6 @@ RTTR_PLUGIN_REGISTRATION
         .method("Instantiate", &Player::Instantiate);
 }
 
-CEREAL_REGISTER_TYPE_WITH_NAME(Player, "Player");
-CEREAL_REGISTER_POLYMORPHIC_RELATION(reality::CMonoBehaviour, Player)
+CEREAL_REGISTER_DYNAMIC_INIT(Game)
+CEREAL_REGISTER_TYPE(Player);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(CMonoBehaviour, Player)
