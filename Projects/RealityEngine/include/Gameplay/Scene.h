@@ -17,6 +17,8 @@ namespace Reality {
 		friend class ComponentSystem;
 		friend class Editor::Editor;
 
+		using Event = std::function<void()>;
+
 	public:
 		std::string	Name;
 
@@ -26,9 +28,9 @@ namespace Reality {
 
 		GameObject& CreateGameObject(std::string_view name);
 		GameObject& CreateGameObject(const GameObject& copy);
-		GameObject* FindGameObject(std::string_view name);
+		GameObject* FindGameObject(std::string_view name) const;
 		void DestroyGameObject(GameObject& object, std::chrono::milliseconds time = {});
-		void AddCallback(std::function<void()> func);
+		void AddCallback(Event func);
 		std::span<GameObject*> GetRootsGameObjects();
 
 	private:
@@ -72,7 +74,7 @@ inline void Reality::Scene::DestroyGameObject(GameObject& object, std::chrono::m
 	}
 }
 
-inline void Reality::Scene::AddCallback(std::function<void()> func) {
+inline void Reality::Scene::AddCallback(Event func) {
 	m_ToBeInstantiate.emplace_back(func);
 }
 

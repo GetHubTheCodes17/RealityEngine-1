@@ -52,7 +52,7 @@ void Reality::HotReload::Reload() {
 		return;
 	}
 
-	auto lastWriteTime{ std::filesystem::last_write_time(m_Path) };
+	m_LastWriteTime = std::filesystem::last_write_time(m_Path);
 	if (m_Module) {
 		FreeLibrary((HMODULE)m_Module);
 		m_Module = nullptr;

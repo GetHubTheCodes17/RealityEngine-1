@@ -2,7 +2,7 @@
 
 #include "Gameplay/Scene.h"
 
-Reality::GameObject* Reality::Scene::FindGameObject(std::string_view name) {
+Reality::GameObject* Reality::Scene::FindGameObject(std::string_view name) const {
 	if (auto object{ std::ranges::find_if(m_GameObjects,
 		[&name](const auto& object) { return object->Name == name; }) }; object != m_GameObjects.cend())
 	{

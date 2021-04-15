@@ -12,10 +12,4 @@ class RE_GAME Player : public CMonoBehaviour
 	RE_COMPONENT(Player, CMonoBehaviour);
 
 	virtual void Update() override;
-
-private:
-	template <class Archive>
-	void serialize(Archive&) {}
 };
-
-CEREAL_FORCE_DYNAMIC_INIT(Game)

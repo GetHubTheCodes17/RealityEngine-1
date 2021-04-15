@@ -19,7 +19,3 @@ RTTR_REGISTRATION
     registration::class_<Player>("Player")
         .method("Instantiate", &Player::Instantiate);
 }
-
-CEREAL_REGISTER_DYNAMIC_INIT(Game)
-CEREAL_REGISTER_TYPE(Player);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(CMonoBehaviour, Player)

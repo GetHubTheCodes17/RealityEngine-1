@@ -13,5 +13,6 @@ extern "C" {
 #endif
 
 int WinMain() {
+	// Create the Game Engine Editor
 	Reality::Editor::Editor editor;
 }
