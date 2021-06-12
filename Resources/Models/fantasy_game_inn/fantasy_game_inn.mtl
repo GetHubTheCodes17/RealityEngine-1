@@ -1,0 +1,13 @@
+newmtl bakeInn
+	Ns 64.000000
+	Ni 1.000000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 1
+	Ka 1.000000 1.000000 1.000000
+	Kd 1.000000 1.000000 1.000000
+	Ks 0.576000 0.576000 0.576000
+	Ke 0.000000 0.000000 0.000000
+	map_Kd fantasy_game_inn_diffuse.png
+	map_Ke fantasy_game_inn_emissive.png
