@@ -41,16 +41,16 @@ void Reality::GlfwInput::WaitEvents() const {
 	glfwWaitEvents();
 }
 
-bool Reality::GlfwInput::GetKeyDown(int keycode) const {
-	return s_KeysDown[keycode];
+bool Reality::GlfwInput::GetKeyDown(Key Key) const {
+	return s_KeysDown[(int)Key];
 }
 
-bool Reality::GlfwInput::GetKeyUp(int keycode) const {
-	return s_KeysDown[keycode];
+bool Reality::GlfwInput::GetKeyUp(Key Key) const {
+	return s_KeysDown[(int)Key];
 }
 
-bool Reality::GlfwInput::GetMouseButton(int button) const {
-	return s_MouseButtonsDown[button];
+bool Reality::GlfwInput::GetMouseButton(Key button) const {
+	return s_MouseButtonsDown[(int)button];
 }
 
 Reality::Vector2 Reality::GlfwInput::GetCursorPos() const {

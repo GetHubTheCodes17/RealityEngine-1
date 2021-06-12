@@ -3,16 +3,18 @@
 #include "Editor.h"
 
 #ifdef RE_WINDOWS_PLATFORM
-extern "C" {
+extern "C"
+{
 	// Ensure the use of the NVIDIA graphic card if available
-	__declspec(dllexport) auto NvOptimusEnablement{ 1 }; 
+	__declspec(dllexport) auto NvOptimusEnablement{ 1 };
 
 	// Ensure the use of the AMD graphic card if available
 	__declspec(dllexport) auto AmdPowerXpressRequestHighPerformance{ 1 };
 }
 #endif
 
-int WinMain() {
+int WinMain()
+{
 	// Create the Game Engine Editor
 	Reality::Editor::Editor editor;
 }

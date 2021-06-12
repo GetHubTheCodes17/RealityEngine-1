@@ -3,16 +3,26 @@
 #pragma once
 
 #include <utility>
+#include <vector>
 
 #include "Core/Platform.h"
 #include "Core/Maths/Mathf.h"
 #include "Core/Maths/Vector3.h"
 
 namespace Reality {
+	struct GLParticle {
+		static constexpr uint8 s_ParticleTransparency{ 150 };
+
+		Vector3 Position;
+		float Size{};
+		uint8 Color[4]{ 0, 0, 0, s_ParticleTransparency };
+		Vector3 Speed;
+		float Life{}, DistanceToCamera{ -1.f };
+	};
+
 	class RE_CORE GLParticleSystem {
 	public:
-		static constexpr auto s_MaxParticlesSize{ 2500u };
-		static constexpr uint8 s_ParticleTransparency{ 150 };
+		static constexpr auto s_MaxParticlesSize{ 1000u };
 
 		const class GLTexture* Texture{};
 		float Speed{ 0.5f }, Spread{ 2.f }, Size{ 0.1f }, MaxLife{ 0.8f }, Gravity{ Mathf::G };
@@ -26,15 +36,8 @@ namespace Reality {
 		void Update(float deltaTime, Vector3 cameraPosition);
 
 	private:
-		struct Particle {
-			Vector3 Position;
-			float Size{};
-			uint8 Color[4]{ 0, 0, 0, s_ParticleTransparency };
-			Vector3 Speed;
-			float Life{}, DistanceToCamera{ -1.f };
-		};
-		Particle* m_Particles{ new Particle[s_MaxParticlesSize] };
-		int m_LastUnusedParticle{};
+		std::vector<GLParticle> m_Particles;
+		unsigned m_LastUnusedParticle{};
 
 		struct Handle {
 			unsigned Vao{}, Vbo{}, QuadVbo{};
@@ -50,7 +53,7 @@ inline Reality::GLParticleSystem::GLParticleSystem(GLParticleSystem&& other) noe
 	Texture{ other.Texture }, Speed{ other.Speed }, Spread{ other.Spread }, Size{ other.Size },
 	MaxLife{ other.MaxLife }, Gravity{ other.Gravity }, Direction{ std::move(other.Direction) },
 	StartColor{ std::move(other.StartColor) }, EndColor{ std::move(other.EndColor) },
-	m_Particles{ std::exchange(other.m_Particles, nullptr) }, m_LastUnusedParticle{ other.m_LastUnusedParticle },
+	m_Particles{ std::move(other.m_Particles) }, m_LastUnusedParticle{ other.m_LastUnusedParticle },
 	m_Handle{ std::exchange(other.m_Handle, {}) }
 {}
 
@@ -64,7 +67,7 @@ inline Reality::GLParticleSystem& Reality::GLParticleSystem::operator=(GLParticl
 	Direction = std::move(other.Direction);
 	StartColor = std::move(other.StartColor);
 	EndColor = std::move(other.EndColor);
-	m_Particles = std::exchange(other.m_Particles, nullptr);
+	m_Particles = std::move(other.m_Particles);
 	m_LastUnusedParticle = other.m_LastUnusedParticle;
 	m_Handle = std::exchange(other.m_Handle, {});
 	return *this;

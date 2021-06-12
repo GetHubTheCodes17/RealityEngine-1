@@ -16,9 +16,9 @@ namespace Reality {
 
 		void PollEvents() const override;
 		void WaitEvents() const override;
-		bool GetKeyDown(int keycode) const override;
-		bool GetKeyUp(int keycode) const override;
-		bool GetMouseButton(int button) const override;
+		bool GetKeyDown(Key Key) const override;
+		bool GetKeyUp(Key Key) const override;
+		bool GetMouseButton(Key button) const override;
 		Vector2 GetCursorPos() const override;
 		Vector2 GetRelativeMousePos() const override;
 		Vector2 GetMouseScroll() const override;

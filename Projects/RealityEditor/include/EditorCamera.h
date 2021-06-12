@@ -74,9 +74,9 @@ inline const Reality::Matrix4& Reality::Editor::EditorCamera::GetViewMatrix() co
 }
 
 inline void Reality::Editor::EditorCamera::HandleKeys() {
-	const auto moveForward{ ImGui::IsKeyDown(keycode::RE_KEY_W) }, moveBackward{ ImGui::IsKeyDown(keycode::RE_KEY_S) };
-	const auto moveRight{ ImGui::IsKeyDown(keycode::RE_KEY_D) }, moveLeft{ ImGui::IsKeyDown(keycode::RE_KEY_A) };
-	const auto moveUp{ ImGui::IsKeyDown(keycode::RE_KEY_E) }, moveDown{ ImGui::IsKeyDown(keycode::RE_KEY_Q) };
+	const auto moveForward{ ImGui::IsKeyDown((int)Key::W) }, moveBackward{ ImGui::IsKeyDown((int)Key::S) };
+	const auto moveRight{ ImGui::IsKeyDown((int)Key::D) }, moveLeft{ ImGui::IsKeyDown((int)Key::A) };
+	const auto moveUp{ ImGui::IsKeyDown((int)Key::E) }, moveDown{ ImGui::IsKeyDown((int)Key::Q) };
 
 	auto Move{ 
 		[this](const auto& translation) {

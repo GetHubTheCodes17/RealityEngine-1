@@ -1,15 +1,33 @@
 {
     "value0": [
         {
-            "key": "sponza_curtain_ddn.tga",
+            "key": "../../Resources\\Models\\nanosuit\\body_dif.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_curtain_ddn.tga"
+                    "Path": "../../Resources\\Models\\nanosuit\\body_dif.png"
                 },
                 "second": {
                     "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\leg_dif.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_dif.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -22,7 +40,7 @@
             "key": "vase_hanging_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_hanging_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_hanging_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -40,12 +58,30 @@
             "key": "sponza_thorn_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_thorn_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_thorn_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
                     "InternalFormat": 3,
                     "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_curtain_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_curtain_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -58,7 +94,7 @@
             "key": "vase_plant.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_plant.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_plant.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -73,28 +109,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_showroom_ddn.png",
+            "key": "../../Resources\\Models\\nanosuit\\leg_showroom_spec.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_showroom_ddn.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_diffuse.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_diffuse.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_showroom_spec.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -109,10 +127,46 @@
             }
         },
         {
-            "key": "sponza_fabric_diff.tga",
+            "key": "../../Resources\\Models\\nanosuit\\leg_showroom_refl.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_fabric_diff.tga"
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\arm_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_column_b_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_column_b_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -127,10 +181,100 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\glass_refl.png",
+            "key": "../../Resources\\Models\\nanosuit\\body_showroom_refl.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\glass_refl.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\body_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\body_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\body_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_arch_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_arch_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Particle",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Textures\\particle.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\hand_dif.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_dif.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\helmet_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_showroom_ddn.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -145,208 +289,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\glass_dif.png",
+            "key": "../../Resources\\Models\\nanosuit\\body_showroom_ddn.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\glass_dif.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_column_a_ddn.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_column_a_ddn.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_showroom_spec.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_showroom_spec.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_showroom_refl.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_showroom_refl.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_showroom_refl.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_showroom_refl.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "chain_texture.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/chain_texture.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_details_ddn.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_details_ddn.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_curtain_blue_diff.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_curtain_blue_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_showroom_spec.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_showroom_spec.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_fabric_green_diff.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_fabric_green_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Normal.jpg",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Normal.jpg"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\glass_ddn.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\glass_ddn.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\body_showroom_ddn.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -361,28 +307,10 @@
             }
         },
         {
-            "key": "sponza_thorn_ddn.tga",
+            "key": "../../Resources\\Models\\nanosuit\\glass_refl.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_thorn_ddn.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_showroom_ddn.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_showroom_ddn.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\glass_refl.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -397,87 +325,15 @@
             }
         },
         {
-            "key": "spnza_bricks_a_ddn.tga",
+            "key": "../../Resources\\Models\\nanosuit\\glass_dif.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/spnza_bricks_a_ddn.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_showroom_spec.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_showroom_spec.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\glass_dif.png"
                 },
                 "second": {
                     "HasMipmap": true,
                     "InternalFormat": 3,
                     "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_diff.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\helmet_diff.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_curtain_green_diff.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_curtain_green_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_floor_a_diff.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_floor_a_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -490,7 +346,7 @@
             "key": "sponza_column_c_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_column_c_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_column_c_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -508,7 +364,7 @@
             "key": "lion_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/lion_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/lion_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -523,10 +379,46 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_showroom_ddn.png",
+            "key": "sponza_fabric_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_showroom_ddn.png"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_fabric_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\SciFi_Fighter\\SF_Fighter-Albedo.jpg",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Albedo.jpg"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\leg_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_showroom_ddn.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -541,10 +433,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_dif.png",
+            "key": "../../Resources\\Models\\nanosuit\\hand_showroom_spec.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_dif.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_showroom_spec.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -559,15 +451,123 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Albedo.jpg",
+            "key": "sponza_details_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Albedo.jpg"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_details_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_diffuse.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_diffuse.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_curtain_blue_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_curtain_blue_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
                     "InternalFormat": 1,
                     "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Albedo.jpg",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Albedo.jpg"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\body_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\body_showroom_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\helmet_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\helmet_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -580,7 +580,7 @@
             "key": "sponza_arch_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_arch_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_arch_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -595,64 +595,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_dif.png",
+            "key": "sponza_column_a_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_dif.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_showroom_spec.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_showroom_spec.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_showroom_refl.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\leg_showroom_refl.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "chain_texture_ddn.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/chain_texture_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_column_a_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -667,82 +613,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_showroom_spec.png",
+            "key": "../../Resources\\Models\\nanosuit\\glass_ddn.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_showroom_spec.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_fabric_ddn.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_fabric_ddn.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_details_diff.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_details_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_showroom_refl.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_showroom_refl.png"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_showroom_ddn.png",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\hand_showroom_ddn.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\glass_ddn.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -760,7 +634,7 @@
             "key": "sponza_flagpole_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_flagpole_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_flagpole_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -775,10 +649,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_dif.png",
+            "key": "../../Resources\\Models\\nanosuit\\arm_showroom_refl.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\body_dif.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_showroom_refl.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -793,10 +667,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_dif.png",
+            "key": "../../Resources\\Models\\nanosuit\\arm_dif.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_dif.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_dif.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -811,10 +685,10 @@
             }
         },
         {
-            "key": "background_ddn.tga",
+            "key": "Resources\\Models\\SciFi_Fighter\\SF_Fighter-Normal.jpg",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/background_ddn.tga"
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Normal.jpg"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -829,10 +703,100 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_showroom_ddn.png",
+            "key": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Specular.jpg",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_showroom_ddn.png"
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Specular.jpg"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\hand_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "chain_texture.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/chain_texture.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "lion.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/lion.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_fabric_green_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_fabric_green_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\arm_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_showroom_ddn.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -847,10 +811,10 @@
             }
         },
         {
-            "key": "sponza_column_c_diff.tga",
+            "key": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Normal.jpg",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_column_c_diff.tga"
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Normal.jpg"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -865,15 +829,69 @@
             }
         },
         {
-            "key": "sponza_fabric_blue_diff.tga",
+            "key": "chain_texture_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_fabric_blue_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/chain_texture_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_thorn_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_thorn_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
                     "InternalFormat": 1,
                     "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "spnza_bricks_a_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/spnza_bricks_a_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "../../Resources\\Models\\nanosuit\\arm_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -886,7 +904,7 @@
             "key": "vase_hanging.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_hanging.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_hanging.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -904,7 +922,7 @@
             "key": "sponza_ceiling_a_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_ceiling_a_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_ceiling_a_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -919,10 +937,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_showroom_refl.png",
+            "key": "../../Resources\\Models\\nanosuit\\helmet_diff.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\arm_showroom_refl.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_diff.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -937,10 +955,10 @@
             }
         },
         {
-            "key": "vase_round.tga",
+            "key": "sponza_curtain_green_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_round.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_curtain_green_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -955,10 +973,10 @@
             }
         },
         {
-            "key": "sponza_column_b_diff.tga",
+            "key": "sponza_floor_a_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_column_b_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_floor_a_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -973,10 +991,46 @@
             }
         },
         {
-            "key": "sponza_arch_diff.tga",
+            "key": "../../Resources\\Models\\nanosuit\\hand_showroom_ddn.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_arch_diff.tga"
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_showroom_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_fabric_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_fabric_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_details_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_details_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -991,15 +1045,15 @@
             }
         },
         {
-            "key": "sponza_column_b_ddn.tga",
+            "key": "Resources\\Models\\nanosuit\\leg_dif.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_column_b_ddn.tga"
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_dif.png"
                 },
                 "second": {
                     "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
+                    "InternalFormat": 3,
+                    "Format": 3,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -1009,64 +1063,10 @@
             }
         },
         {
-            "key": "sponza_curtain_diff.tga",
+            "key": "background_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_curtain_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "sponza_flagpole_ddn.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_flagpole_ddn.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "spnza_bricks_a_diff.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/spnza_bricks_a_diff.tga"
-                },
-                "second": {
-                    "HasMipmap": true,
-                    "InternalFormat": 1,
-                    "Format": 1,
-                    "InternalType": 0,
-                    "Type": 1,
-                    "Wrap": 0,
-                    "Filter": 1,
-                    "Samples": 0
-                }
-            }
-        },
-        {
-            "key": "vase_round_ddn.tga",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_round_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/background_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1084,7 +1084,7 @@
             "key": "sponza_column_a_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_column_a_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_column_a_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1102,7 +1102,7 @@
             "key": "background.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/background.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/background.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1117,15 +1117,141 @@
             }
         },
         {
-            "key": "lion.tga",
+            "key": "sponza_column_c_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/lion.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_column_c_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
-                    "InternalFormat": 3,
-                    "Format": 3,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_fabric_blue_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_fabric_blue_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "vase_round.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_round.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_column_b_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_column_b_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_curtain_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_curtain_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "vase_round_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_round_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "spnza_bricks_a_diff.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/spnza_bricks_a_diff.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "sponza_flagpole_ddn.tga",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_flagpole_ddn.tga"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
                     "InternalType": 0,
                     "Type": 1,
                     "Wrap": 0,
@@ -1138,7 +1264,7 @@
             "key": "vase_dif.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_dif.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_dif.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1156,7 +1282,7 @@
             "key": "sponza_ceiling_a_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_ceiling_a_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_ceiling_a_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1174,7 +1300,7 @@
             "key": "vase_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/vase_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/vase_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1192,7 +1318,7 @@
             "key": "sponza_floor_a_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_floor_a_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_floor_a_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1210,7 +1336,7 @@
             "key": "sponza_roof_diff.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_roof_diff.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_roof_diff.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1228,7 +1354,7 @@
             "key": "sponza_roof_ddn.tga",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\textures/sponza_roof_ddn.tga"
+                    "Path": "../../Resources\\Models\\crytek\\textures/sponza_roof_ddn.tga"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1243,10 +1369,10 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Specular.jpg",
+            "key": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Glow.jpg",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Specular.jpg"
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Glow.jpg"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1261,10 +1387,64 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Glow.jpg",
+            "key": "../../Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_emissive.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SF_Fighter-Glow.jpg"
+                    "Path": "../../Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_emissive.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\glass_dif.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\glass_dif.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\glass_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\glass_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\glass_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\glass_refl.png"
                 },
                 "second": {
                     "HasMipmap": true,
@@ -1279,10 +1459,370 @@
             }
         },
         {
-            "key": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_emissive.png",
+            "key": "Resources\\Models\\nanosuit\\leg_showroom_spec.png",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_emissive.png"
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\leg_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_showroom_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\leg_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\leg_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\hand_dif.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_dif.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\hand_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\hand_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_showroom_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\hand_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\hand_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\body_dif.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\body_dif.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\body_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\body_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\body_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\body_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\arm_dif.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_dif.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\arm_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_showroom_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\arm_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\arm_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\helmet_diff.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_diff.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\helmet_showroom_spec.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_showroom_spec.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\helmet_showroom_ddn.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_showroom_ddn.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 2,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\nanosuit\\helmet_showroom_refl.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\nanosuit\\helmet_showroom_refl.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\SciFi_Fighter\\SF_Fighter-Specular.jpg",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Specular.jpg"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\SciFi_Fighter\\SF_Fighter-Glow.jpg",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SF_Fighter-Glow.jpg"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 1,
+                    "Format": 1,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_diffuse.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_diffuse.png"
+                },
+                "second": {
+                    "HasMipmap": true,
+                    "InternalFormat": 3,
+                    "Format": 3,
+                    "InternalType": 0,
+                    "Type": 1,
+                    "Wrap": 0,
+                    "Filter": 1,
+                    "Samples": 0
+                }
+            }
+        },
+        {
+            "key": "Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_emissive.png",
+            "value": {
+                "first": {
+                    "Path": "../../Resources\\Models\\fantasy_game_inn\\fantasy_game_inn_emissive.png"
                 },
                 "second": {
                     "HasMipmap": true,

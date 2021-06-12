@@ -41,7 +41,7 @@ inline void Reality::Editor::EditorLog::Clear() {
 
 inline void Reality::Editor::EditorLog::Draw() {
     ImGui::Begin("Console");
-    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / std::max(143.2f, ImGui::GetIO().Framerate), std::max(143.2f, ImGui::GetIO().Framerate));
 
     if (ImGui::Button("Clear")) {
         Clear();

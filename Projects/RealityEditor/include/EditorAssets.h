@@ -37,4 +37,5 @@ inline void Reality::Editor::EditorAssets::DropResource(std::string_view filenam
 	else if (Font::IsExtensionSupported(extension)) {
 		g_ResourceManager->Fonts.Load(path.stem().string().c_str(), { filename.data() });
 	}
+	RE_LOG_INFO("Loading %s", filename.data());
 }

@@ -9,7 +9,7 @@
 #include "EditorWindow.h"
 #include "Gameplay/Scene.h"
 #include "Gameplay/GameObject.h"
-#include "Windowing/KeyCodes.h"
+#include "Windowing/Key.h"
 
 namespace Reality::Editor {
 	class EditorHierarchy : public EditorWindow {
@@ -51,7 +51,7 @@ inline std::span<Reality::GameObject*> Reality::Editor::EditorHierarchy::GetSele
 }
 
 inline void Reality::Editor::EditorHierarchy::HandleShortcuts(Scene& scene) {
-	if (!m_Selected.empty() && ImGui::IsKeyPressed(keycode::RE_KEY_DELETE)) {
+	if (!m_Selected.empty() && ImGui::IsKeyPressed((int)Key::Delete)) {
 		for (auto go : m_Selected) {
 			scene.DestroyGameObject(*go);
 		}
@@ -65,13 +65,13 @@ inline void Reality::Editor::EditorHierarchy::HandleShortcuts(Scene& scene) {
 		}
 	}
 
-	if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL)) {
-		if (ImGui::IsKeyPressed(keycode::RE_KEY_D)) {
+	if (ImGui::IsKeyDown((int)Key::LeftControl)) {
+		if (ImGui::IsKeyPressed((int)Key::D)) {
 			for (auto go : m_Selected) {
 				scene.CreateGameObject(*go);
 			}
 		}
-		else if (ImGui::IsKeyPressed(keycode::RE_KEY_Q)) {
+		else if (ImGui::IsKeyPressed((int)Key::Q)) {
 			m_Selected.clear();
 			for (auto& go : scene.GetRootsGameObjects()) {
 				m_Selected.emplace_back(go);
@@ -110,7 +110,7 @@ inline void Reality::Editor::EditorHierarchy::DisplayTree(GameObject& root) {
 
 inline void Reality::Editor::EditorHierarchy::Select(GameObject& root, bool isCurrent) {
 	if (ImGui::IsItemClicked()) {
-		if (ImGui::IsKeyDown(keycode::RE_KEY_LEFT_CONTROL)) {
+		if (ImGui::IsKeyDown((int)Key::LeftControl)) {
 			if (!isCurrent) {
 				m_Selected.emplace_back(&root);
 			}

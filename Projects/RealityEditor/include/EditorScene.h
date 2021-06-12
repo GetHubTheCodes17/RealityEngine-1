@@ -59,7 +59,8 @@ inline void Reality::Editor::EditorScene::Draw(std::span<GameObject*> object) {
 
 		ImGui::GetWindowDrawList()->AddImage(
 			(ImTextureID)(uint64)m_Pipeline.GetFinalPass().GetHandle().ColorAttachments[0].GetHandle().Id,
-			m_WindowPos, { m_WindowSize.x + m_WindowPos.x, m_WindowSize.y + m_WindowPos.y }, { 0, 1 }, { 1, 0 });
+			m_WindowPos, { m_WindowSize.x + m_WindowPos.x, m_WindowSize.y + m_WindowPos.y }, { 0, 1 }, { 1, 0 }
+		);
 
 		if (!object.empty()) {
 			DrawGuizmo(m_Camera, *object.back());
@@ -112,13 +113,13 @@ inline void Reality::Editor::EditorScene::UpdateGizmoMode() {
 			m_CurrentGuizmoMode = ImGuizmo::WORLD;
 		}
 	}
-	if (ImGui::IsKeyPressed(keycode::RE_KEY_E)) {
+	if (ImGui::IsKeyPressed((int)Key::E)) {
 		m_CurrentGuizmoOperation = ImGuizmo::TRANSLATE;
 	}
-	if (ImGui::IsKeyPressed(keycode::RE_KEY_R)) {
+	if (ImGui::IsKeyPressed((int)Key::R)) {
 		m_CurrentGuizmoOperation = ImGuizmo::ROTATE;
 	}
-	if (ImGui::IsKeyPressed(keycode::RE_KEY_T)) {
+	if (ImGui::IsKeyPressed((int)Key::T)) {
 		m_CurrentGuizmoOperation = ImGuizmo::SCALE;
 	}
 	if (ImGui::RadioButton("Translate", m_CurrentGuizmoOperation == ImGuizmo::TRANSLATE)) {

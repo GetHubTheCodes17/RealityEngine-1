@@ -17,6 +17,7 @@ Reality::Leaker::Leaker(std::string_view filename) :
 Reality::Leaker::~Leaker() {
 	auto logFile{ CreateFileA(static_cast<LPCSTR>(m_FileName.c_str()), GENERIC_WRITE, FILE_SHARE_WRITE,
 		nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr) };
+
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, logFile);
 	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);

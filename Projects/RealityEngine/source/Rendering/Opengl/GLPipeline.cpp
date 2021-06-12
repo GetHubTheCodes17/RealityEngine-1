@@ -13,7 +13,7 @@ Reality::GLPipeline::GLPipeline(const Viewport& viewport) {
 		false, GLTextureFormat::Rgbf16, GLTextureFormat::Rgb, GLTextureInternalType::Float, GLTextureType::Texture2D,
 		GLTextureWrapping::ClampToEdge, GLTextureFiltering::Linear, 4 } }, { nullptr, (int)viewport.Size.X,
 		(int)viewport.Size.Y, false, GLTextureFormat::Depth, GLTextureFormat::Depth, GLTextureInternalType::Ubyte,
-		GLTextureType::Texture2D, GLTextureWrapping::Repeat, GLTextureFiltering::Linear, 4 } } };
+		GLTextureType::Texture2D, GLTextureWrapping::Repeat, GLTextureFiltering::Linear, 8 } } };
 	m_ScenePass.ClearBuffer |= GLRenderPassClearBuffer::DepthBuffer;
 	m_ScenePass.Capacity = GLRenderPassCapacity::Culling | GLRenderPassCapacity::Depth;
 
@@ -33,7 +33,7 @@ Reality::GLPipeline::GLPipeline(const Viewport& viewport) {
 	m_DownPass = GLRenderPass{ finalRenderPassSettings };
 	m_LensPass = GLRenderPass{ finalRenderPassSettings };
 
-	static constexpr auto s_ShadowMapSize{ 2048 };
+	static constexpr auto s_ShadowMapSize{ 2048 * 4 };
 	m_ShadowPass = GLRenderPass{ { GLRenderPassFramebufferTexture::DepthAttachment, {},
 		{ nullptr, s_ShadowMapSize, s_ShadowMapSize, false, GLTextureFormat::Depth, GLTextureFormat::Depth,
 		GLTextureInternalType::Float, GLTextureType::Texture2D, GLTextureWrapping::ClampToBorder } } };

@@ -173,6 +173,7 @@ constexpr Reality::Matrix4 Reality::Matrix4::operator-() const {
 }
 
 constexpr Reality::Matrix4 Reality::Matrix4::operator*(const Matrix4& rhs) const {
+	// Loop unrolling used to increase performances
 	return {
 		Array[0] * rhs.Array[0] + Array[1] * rhs.Array[4] + Array[2] * rhs.Array[8] + Array[3] * rhs.Array[12],
 		Array[0] * rhs.Array[1] + Array[1] * rhs.Array[5] + Array[2] * rhs.Array[9] + Array[3] * rhs.Array[13],
@@ -288,6 +289,7 @@ constexpr Reality::Matrix4& Reality::Matrix4::operator-=(const Matrix4& rhs) {
 }
 
 constexpr Reality::Matrix4& Reality::Matrix4::operator*=(const Matrix4& rhs) {
+	// Loop unrolling used to increase performances
 	Array[0] = Array[0] * rhs.Array[0] + Array[1] * rhs.Array[4] + Array[2] * rhs.Array[8] + Array[3] * rhs.Array[12];
 	Array[1] = Array[0] * rhs.Array[1] + Array[1] * rhs.Array[5] + Array[2] * rhs.Array[9] + Array[3] * rhs.Array[13];
 	Array[2] = Array[0] * rhs.Array[2] + Array[1] * rhs.Array[6] + Array[2] * rhs.Array[10] + Array[3] * rhs.Array[14];
@@ -440,6 +442,7 @@ inline Reality::Vector3 Reality::Matrix4::GetMouseRay(const Matrix4& view, const
 }
 
 constexpr Reality::Matrix4 Reality::Matrix4::Inverse(const Matrix4& m) {
+	// Loop unrolling used to increase performances
 	Matrix4 res{
 	m.Array[5] * m.Array[10] * m.Array[15] - m.Array[5] * m.Array[11] * m.Array[14] - m.Array[9] * m.Array[6] * m.Array[15] + 
 		m.Array[9] * m.Array[7] * m.Array[14] + m.Array[13] * m.Array[6] * m.Array[11] - m.Array[13] * m.Array[7] * m.Array[10],

@@ -12,7 +12,7 @@
 namespace Reality {
 	class RE_CORE GLDebugDrawing {
 	public:
-		static constexpr auto s_MaxLinesSize{ 1000u };
+		static constexpr auto s_MaxLinesSize{ 5000u };
 
 		void DrawShape(const GLMesh& shape, const Matrix4& transform, GLDebugDrawingSettings settings = {}) const;
 		void DrawLines(const Line* lines, unsigned size, GLDebugDrawingSettings settings = {}) const;

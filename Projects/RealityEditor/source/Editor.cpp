@@ -10,14 +10,16 @@
 Reality::Editor::Editor::Editor() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
+	ImGui_ImplGlfw_InitForOpenGL(reinterpret_cast<GLFWwindow*>(g_Io->Window->GetHandle()), true);
+	ImGui_ImplOpenGL3_Init("#version 330 core");
+
 	EditorTheme::RealityStyle();
 	auto& io{ ImGui::GetIO() };
 	io.Fonts->AddFontFromFileTTF("../../Projects/RealityEditor/Config/LucidaGrande.ttf", 12.f);
 	io.IniFilename = "Config/imgui.ini";
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_NavEnableKeyboard;
 	io.ConfigWindowsMoveFromTitleBarOnly = true;
-	ImGui_ImplGlfw_InitForOpenGL(reinterpret_cast<GLFWwindow*>(g_Io->Window->GetHandle()), true);
-	ImGui_ImplOpenGL3_Init("#version 330 core");
+
 	g_Logger->Callback = [this](auto msg) { m_Log.AddLog(msg); };
 	g_Io->Window->SetDropCallback([this](auto count, auto paths) {
 		for (auto i{ 0 }; i < count; ++i) {
@@ -34,10 +36,10 @@ Reality::Editor::Editor::~Editor() {
 }
 
 void Reality::Editor::Editor::Run() {
+	// Only one scene is allowed for now
 	auto& activeScene{ *g_SceneManager->ActiveScene };
-
 	while (g_Io->Window->IsRunning()) {
-		if (ImGui::IsKeyDown(keycode::RE_KEY_R)) {
+		if (g_Io->Input->GetKeyDown(Key::R)) {
 			m_HotReload.Reload();
 		}
 
@@ -67,7 +69,7 @@ void Reality::Editor::Editor::Render(const Matrix4& view) const {
 
 	m_Pipeline.BeginScenePass(g_ResourceManager->Skyboxes.Get("Saturne"));
 	m_ComponentSystem.UpdateMeshes(*g_SceneManager->ActiveScene);
-	m_ComponentSystem.UpdateParticles(*g_SceneManager->ActiveScene);
+	m_ComponentSystem.UpdateParticles(*g_SceneManager->ActiveScene, m_Camera.Position);
 
 	m_Pipeline.BeginPostProcess();
 	m_Pipeline.GetDefaultPass().Bind();
@@ -83,6 +85,10 @@ void Reality::Editor::Editor::Update() {
 
 void Reality::Editor::Editor::UpdateWindows() {
 	ImGui::SliderFloat("Camera Speed", &m_Camera.MovementSpeed, 0.1f, 50.f);
+	if (ImGui::Button("Hot Reload")) {
+		m_HotReload.Reload();
+	}
+
 	m_Dock.Begin();
 	m_Assets.Draw();
 	m_Log.Draw();
@@ -94,12 +100,12 @@ void Reality::Editor::Editor::UpdateWindows() {
 }
 
 void Reality::Editor::Editor::UpdateIo() {
-	if (ImGui::IsKeyDown(keycode::RE_KEY_F) && !m_Hierarchy.GetSelected().empty()) {
+	if (g_Io->Input->GetKeyDown(Key::F) && !m_Hierarchy.GetSelected().empty()) {
 		m_Camera.Focus(m_Hierarchy.GetSelected().back());
 	}
 	m_Camera.UpdateFocus();
 
-	if (ImGui::IsMouseDown(keycode::RE_MOUSE_BUTTON_RIGHT)) {
+	if (g_Io->Input->GetMouseButton(Key::MouseButton_Right)) {
 		if (!m_EnabledCamera && m_Scene.IsHovered()) {
 			ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_NoMouse;
 			g_Io->Window->HideAndLockCursor();

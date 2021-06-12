@@ -6,69 +6,6 @@
                 "ptr_wrapper": {
                     "valid": 1,
                     "data": {
-                        "Name": "Nanosuit",
-                        "m_Id": 13195823293891745935,
-                        "IsActive": true,
-                        "Transform": {
-                            "m_Trs": {
-                                "Array Row Major": {
-                                    "value0": -0.09968167543411255,
-                                    "value1": 0.0,
-                                    "value2": 0.007973063737154007,
-                                    "value3": 0.0,
-                                    "value4": 0.0,
-                                    "value5": 0.10000000149011612,
-                                    "value6": 0.0,
-                                    "value7": 0.0,
-                                    "value8": -0.007973063737154007,
-                                    "value9": 0.0,
-                                    "value10": -0.09968167543411255,
-                                    "value11": 0.0,
-                                    "value12": -2.423971068310493e-7,
-                                    "value13": -1.1160813570022584,
-                                    "value14": 1.517024278640747,
-                                    "value15": 1.0
-                                }
-                            },
-                            "m_Rotation": {
-                                "X": 0.0,
-                                "Y": 0.9992038607597351,
-                                "Z": 0.0,
-                                "W": 0.03989708051085472
-                            },
-                            "m_Position": {
-                                "X": -2.423971068310493e-7,
-                                "Y": -1.1160813570022584,
-                                "Z": 1.517024278640747
-                            },
-                            "m_Scale": {
-                                "X": 0.10000000149011612,
-                                "Y": 0.10000000149011612,
-                                "Z": 0.10000000149011612
-                            },
-                            "m_Level": 0,
-                            "m_HasChanged": false,
-                            "m_ParentId": 0
-                        },
-                        "m_Components": [
-                            {
-                                "polymorphic_id": 2147483649,
-                                "polymorphic_name": "MeshRenderer",
-                                "ptr_wrapper": {
-                                    "valid": 1,
-                                    "data": {
-                                        "m_Name": "nanosuit"
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
                         "Name": "Camera",
                         "m_Id": 17913755919818615105,
                         "IsActive": true,
@@ -115,7 +52,7 @@
                         },
                         "m_Components": [
                             {
-                                "polymorphic_id": 2147483650,
+                                "polymorphic_id": 2147483649,
                                 "polymorphic_name": "Camera",
                                 "ptr_wrapper": {
                                     "valid": 1,
@@ -184,21 +121,21 @@
                         "Transform": {
                             "m_Trs": {
                                 "Array Row Major": {
-                                    "value0": 1.0,
+                                    "value0": 3.8399994373321535,
                                     "value1": 0.0,
                                     "value2": 0.0,
                                     "value3": 0.0,
                                     "value4": 0.0,
-                                    "value5": 1.0,
+                                    "value5": 3.8399994373321535,
                                     "value6": 0.0,
                                     "value7": 0.0,
                                     "value8": 0.0,
                                     "value9": 0.0,
-                                    "value10": 1.0,
+                                    "value10": 3.8399994373321535,
                                     "value11": 0.0,
-                                    "value12": 0.0,
-                                    "value13": -0.28402650356292727,
-                                    "value14": 2.3213050365448,
+                                    "value12": 0.04297005757689476,
+                                    "value13": -2.5248522758483888,
+                                    "value14": 5.065621852874756,
                                     "value15": 1.0
                                 }
                             },
@@ -209,14 +146,14 @@
                                 "W": 1.0
                             },
                             "m_Position": {
-                                "X": 0.0,
-                                "Y": -0.28402650356292727,
-                                "Z": 2.3213050365448
+                                "X": 0.04297005757689476,
+                                "Y": -2.5248522758483888,
+                                "Z": 5.065621852874756
                             },
                             "m_Scale": {
-                                "X": 1.0,
-                                "Y": 1.0,
-                                "Z": 1.0
+                                "X": 3.8399994373321535,
+                                "Y": 3.8399994373321535,
+                                "Z": 3.8399994373321535
                             },
                             "m_Level": 0,
                             "m_HasChanged": false,
@@ -224,7 +161,7 @@
                         },
                         "m_Components": [
                             {
-                                "polymorphic_id": 2147483651,
+                                "polymorphic_id": 2147483650,
                                 "polymorphic_name": "MeshFilter",
                                 "ptr_wrapper": {
                                     "valid": 1,
@@ -232,7 +169,8 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 1,
+                                "polymorphic_id": 2147483651,
+                                "polymorphic_name": "MeshRenderer",
                                 "ptr_wrapper": {
                                     "valid": 1,
                                     "data": {
@@ -259,29 +197,29 @@
                                     "value2": 0.0,
                                     "value3": 0.0,
                                     "value4": 0.0,
-                                    "value5": 1.0,
-                                    "value6": 0.0,
+                                    "value5": 0.9785827994346619,
+                                    "value6": 0.20585374534130097,
                                     "value7": 0.0,
                                     "value8": 0.0,
-                                    "value9": 0.0,
-                                    "value10": 1.0,
+                                    "value9": -0.20585374534130097,
+                                    "value10": 0.9785827994346619,
                                     "value11": 0.0,
                                     "value12": 0.0,
-                                    "value13": 0.0,
-                                    "value14": 0.0,
+                                    "value13": -0.08504541218280792,
+                                    "value14": 2.3312378694129167e-9,
                                     "value15": 1.0
                                 }
                             },
                             "m_Rotation": {
-                                "X": 0.0,
+                                "X": -0.1034824326634407,
                                 "Y": 0.0,
                                 "Z": 0.0,
-                                "W": 1.0
+                                "W": 0.9946313500404358
                             },
                             "m_Position": {
                                 "X": 0.0,
-                                "Y": 0.0,
-                                "Z": 0.0
+                                "Y": -0.08504541218280792,
+                                "Z": 2.3312378694129167e-9
                             },
                             "m_Scale": {
                                 "X": 1.0,
@@ -299,17 +237,1596 @@
                                 "ptr_wrapper": {
                                     "valid": 1,
                                     "data": {
-                                        "Range": 20.0,
+                                        "Range": 21.049999237060548,
                                         "SpotAngle": 30.0,
-                                        "Intensity": 1.0,
+                                        "Intensity": 1.7999999523162842,
                                         "Color": {
-                                            "X": 1.0,
-                                            "Y": 1.0,
+                                            "X": 0.575129508972168,
+                                            "Y": 0.9801959991455078,
                                             "Z": 1.0,
                                             "W": 1.0
                                         },
                                         "Type": 0,
+                                        "Shadow": 1
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Particles",
+                        "m_Id": 10651803996835567371,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 0.0,
+                                    "value13": 7.981814861297607,
+                                    "value14": 4.5749993324279789,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 0.0,
+                                "Y": 7.981814861297607,
+                                "Z": 4.5749993324279789
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 2147483653,
+                                "polymorphic_name": "ParticleSystem",
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {}
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g0",
+                        "m_Id": 1916383743117564929,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.4375467598438263,
+                                    "value1": 0.0,
+                                    "value2": -0.01367026288062334,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.4377600848674774,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.01367026288062334,
+                                    "value9": 0.0,
+                                    "value10": -0.4375467598438263,
+                                    "value11": 0.0,
+                                    "value12": 0.000001916565452120267,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 6.818212985992432,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": 0.000001916565452120267,
+                                "Y": -0.7058777213096619,
+                                "Z": 6.818212985992432
+                            },
+                            "m_Scale": {
+                                "X": 0.43776020407676699,
+                                "Y": 0.4377600848674774,
+                                "Z": 0.43776020407676699
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g2",
+                        "m_Id": 14080288358701107645,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09995126724243164,
+                                    "value1": 0.0,
+                                    "value2": -0.0031227748841047289,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000002384185791,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0031227748841047289,
+                                    "value9": 0.0,
+                                    "value10": -0.09995126724243164,
+                                    "value11": 0.0,
+                                    "value12": 1.353292465209961,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.2759294509887697,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": 1.353292465209961,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.2759294509887697
+                            },
+                            "m_Scale": {
+                                "X": 0.10000002384185791,
+                                "Y": 0.10000002384185791,
+                                "Z": 0.10000002384185791
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g3",
+                        "m_Id": 17012495360755222275,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09995126724243164,
+                                    "value1": 0.0,
+                                    "value2": -0.0031227748841047289,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000002384185791,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0031227748841047289,
+                                    "value9": 0.0,
+                                    "value10": -0.09995126724243164,
+                                    "value11": 0.0,
+                                    "value12": 2.025869846343994,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.2759416103363039,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": 2.025869846343994,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.2759416103363039
+                            },
+                            "m_Scale": {
+                                "X": 0.10000002384185791,
+                                "Y": 0.10000002384185791,
+                                "Z": 0.10000002384185791
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g5",
+                        "m_Id": 13214047266078915385,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09995126724243164,
+                                    "value1": 0.0,
+                                    "value2": -0.0031227748841047289,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000002384185791,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0031227748841047289,
+                                    "value9": 0.0,
+                                    "value10": -0.09995126724243164,
+                                    "value11": 0.0,
+                                    "value12": -2.07317852973938,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.2759358882904054,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": -2.07317852973938,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.2759358882904054
+                            },
+                            "m_Scale": {
+                                "X": 0.10000002384185791,
+                                "Y": 0.10000002384185791,
+                                "Z": 0.10000002384185791
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "House",
+                        "m_Id": 2101219112391178422,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.000583627144806087,
+                                    "value1": 0.0,
+                                    "value2": 0.015288874506950379,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.015300008468329907,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": -0.015288874506950379,
+                                    "value9": 0.0,
+                                    "value10": -0.000583627144806087,
+                                    "value11": 0.0,
+                                    "value12": 0.0,
+                                    "value13": -0.6825304627418518,
+                                    "value14": 0.0,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.7204670310020447,
+                                "Z": 0.0,
+                                "W": 0.6934891939163208
+                            },
+                            "m_Position": {
+                                "X": 0.0,
+                                "Y": -0.6825304627418518,
+                                "Z": 0.0
+                            },
+                            "m_Scale": {
+                                "X": 0.015300009399652481,
+                                "Y": 0.015300008468329907,
+                                "Z": 0.015300009399652481
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "crytek"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g1",
+                        "m_Id": 5978636037104538850,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09995126724243164,
+                                    "value1": 0.0,
+                                    "value2": -0.0031227748841047289,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000002384185791,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0031227748841047289,
+                                    "value9": 0.0,
+                                    "value10": -0.09995126724243164,
+                                    "value11": 0.0,
+                                    "value12": 0.6679720282554627,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.275942087173462,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": 0.6679720282554627,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.275942087173462
+                            },
+                            "m_Scale": {
+                                "X": 0.10000002384185791,
+                                "Y": 0.10000002384185791,
+                                "Z": 0.10000002384185791
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "SpaceShip",
+                        "m_Id": 531591500721744621,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09026686102151871,
+                                    "value1": -0.000005030633019487141,
+                                    "value2": -0.13210570812225343,
+                                    "value3": 0.0,
+                                    "value4": 0.05970311537384987,
+                                    "value5": 0.14272665977478028,
+                                    "value6": -0.04080012068152428,
+                                    "value7": 0.0,
+                                    "value8": 0.11784505844116211,
+                                    "value9": -0.07231259346008301,
+                                    "value10": -0.0805199071764946,
+                                    "value11": 0.0,
+                                    "value12": -1.9040963649749756,
+                                    "value13": 2.6217668056488039,
+                                    "value14": 2.840074300765991,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.10844366997480393,
+                                "Y": 0.86015385389328,
+                                "Z": -0.20547322928905488,
+                                "W": -0.454044371843338
+                            },
+                            "m_Position": {
+                                "X": -1.9040963649749756,
+                                "Y": 2.6217668056488039,
+                                "Z": 2.840074300765991
+                            },
+                            "m_Scale": {
+                                "X": 0.1600000262260437,
+                                "Y": 0.1600000262260437,
+                                "Z": 0.1600000262260437
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "SciFi_Fighter"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "SpaceShip (1)",
+                        "m_Id": 7541086529625096924,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.08099035918712616,
+                                    "value1": -0.0000050330168051004879,
+                                    "value2": 0.13798753917217256,
+                                    "value3": 0.0,
+                                    "value4": -0.062366265803575519,
+                                    "value5": 0.14272662997245789,
+                                    "value6": -0.036600034683942798,
+                                    "value7": 0.0,
+                                    "value8": -0.12308944761753082,
+                                    "value9": -0.0723126158118248,
+                                    "value10": -0.07224871218204498,
+                                    "value11": 0.0,
+                                    "value12": 1.981613278388977,
+                                    "value13": 2.6217541694641115,
+                                    "value14": 2.8400590419769289,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": -0.11545923352241516,
+                                "Y": 0.8440653681755066,
+                                "Z": -0.20161469280719758,
+                                "W": 0.483295202255249
+                            },
+                            "m_Position": {
+                                "X": 1.981613278388977,
+                                "Y": 2.6217541694641115,
+                                "Z": 2.8400590419769289
+                            },
+                            "m_Scale": {
+                                "X": 0.1600000262260437,
+                                "Y": 0.1600000262260437,
+                                "Z": 0.1600000262260437
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "SciFi_Fighter"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Cube0",
+                        "m_Id": 7411108508113234952,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": -2.1458189487457277,
+                                    "value13": 0.0,
+                                    "value14": 3.993283748626709,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": -2.1458189487457277,
+                                "Y": 0.0,
+                                "Z": 3.993283748626709
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "cube"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Cube1",
+                        "m_Id": 12677457007707719757,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 2.587618350982666,
+                                    "value13": 0.0,
+                                    "value14": 3.993283748626709,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 2.587618350982666,
+                                "Y": 0.0,
+                                "Z": 3.993283748626709
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "cube"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g0 (1)",
+                        "m_Id": 17512629839599887303,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.12793764472007752,
+                                    "value1": 0.0,
+                                    "value2": -0.003997152671217918,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.12800002098083497,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.003997152671217918,
+                                    "value9": 0.0,
+                                    "value10": -0.12793764472007752,
+                                    "value11": 0.0,
+                                    "value12": 0.00000194765675587405,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.856274366378784,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": 0.00000194765675587405,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.856274366378784
+                            },
+                            "m_Scale": {
+                                "X": 0.12800005078315736,
+                                "Y": 0.12800002098083497,
+                                "Z": 0.12800005078315736
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g4",
+                        "m_Id": 9865949496658430060,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09995126724243164,
+                                    "value1": 0.0,
+                                    "value2": -0.0031227748841047289,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000002384185791,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0031227748841047289,
+                                    "value9": 0.0,
+                                    "value10": -0.09995126724243164,
+                                    "value11": 0.0,
+                                    "value12": -1.3848903179168702,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.275940179824829,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": -1.3848903179168702,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.275940179824829
+                            },
+                            "m_Scale": {
+                                "X": 0.10000002384185791,
+                                "Y": 0.10000002384185791,
+                                "Z": 0.10000002384185791
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "CubeParent",
+                        "m_Id": 3723096439373080641,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 0.33087536692619326,
+                                    "value1": 0.0,
+                                    "value2": -0.32615137100219729,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.46459996700286868,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.32615137100219729,
+                                    "value9": 0.0,
+                                    "value10": 0.33087536692619326,
+                                    "value11": 0.0,
+                                    "value12": -0.11407612264156342,
+                                    "value13": 8.1708345413208,
+                                    "value14": 10.641335487365723,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.3793596625328064,
+                                "Z": 0.0,
+                                "W": -0.9252493977546692
+                            },
+                            "m_Position": {
+                                "X": -0.11407612264156342,
+                                "Y": 8.1708345413208,
+                                "Z": 10.641335487365723
+                            },
+                            "m_Scale": {
+                                "X": 0.46460002660751345,
+                                "Y": 0.46459996700286868,
+                                "Z": 0.46460002660751345
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "cube"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "CubeChild1",
+                        "m_Id": 5718551368648465974,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 0.3247556686401367,
+                                    "value1": 0.08894281834363938,
+                                    "value2": -0.3201189935207367,
+                                    "value3": 0.0,
+                                    "value4": -0.21343490481376649,
+                                    "value5": 0.3989082872867584,
+                                    "value6": -0.10569241642951966,
+                                    "value7": 0.0,
+                                    "value8": 0.25462237000465395,
+                                    "value9": 0.2209400236606598,
+                                    "value10": 0.3196970224380493,
+                                    "value11": 0.0,
+                                    "value12": 0.9796838760375977,
+                                    "value13": 8.1708345413208,
+                                    "value14": 9.563191413879395,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.2490546554327011,
+                                "Y": 0.024062009528279306,
+                                "Z": -0.09310648590326309,
+                                "W": 0.9637033343315125
+                            },
+                            "m_Position": {
+                                "X": 3.3056557178497316,
+                                "Y": 0.0,
+                                "Z": 0.0
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 1,
+                            "m_HasChanged": false,
+                            "m_ParentId": 3723096439373080641
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "cube"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "CubeChild2",
+                        "m_Id": 9507890849803756791,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 0.2487812489271164,
+                                    "value1": 0.15916535258293153,
+                                    "value2": 0.09834014624357224,
+                                    "value3": 0.0,
+                                    "value4": -0.14300139248371125,
+                                    "value5": 0.267268568277359,
+                                    "value6": -0.07081392407417298,
+                                    "value7": 0.0,
+                                    "value8": -0.12064420431852341,
+                                    "value9": 0.011418569833040238,
+                                    "value10": 0.28672489523887637,
+                                    "value11": 0.0,
+                                    "value12": 0.11047840118408203,
+                                    "value13": 7.320186614990234,
+                                    "value14": 9.14534854888916,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.5296868681907654,
+                                "Z": 0.0,
+                                "W": 0.848193347454071
+                            },
+                            "m_Position": {
+                                "X": -1.0385710000991822,
+                                "Y": -0.5079792737960815,
+                                "Z": -2.5148777961730959
+                            },
+                            "m_Scale": {
+                                "X": 0.6699999570846558,
+                                "Y": 0.6700000166893005,
+                                "Z": 0.6700001955032349
+                            },
+                            "m_Level": 2,
+                            "m_HasChanged": false,
+                            "m_ParentId": 5718551368648465974
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "cube"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "GreenLight",
+                        "m_Id": 4646369980660999090,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 2.8728203773498537,
+                                    "value13": 0.0,
+                                    "value14": 2.6246566772460939,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 2.8728203773498537,
+                                "Y": 0.0,
+                                "Z": 2.6246566772460939
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "Range": 20.0,
+                                        "SpotAngle": 30.0,
+                                        "Intensity": 0.5,
+                                        "Color": {
+                                            "X": 0.020725369453430177,
+                                            "Y": 1.0,
+                                            "Z": 0.13235247135162354,
+                                            "W": 1.0
+                                        },
+                                        "Type": 1,
                                         "Shadow": 0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "PurpleLight",
+                        "m_Id": 1951111855803200331,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": -2.380195140838623,
+                                    "value13": 0.0,
+                                    "value14": 2.6246566772460939,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": -2.380195140838623,
+                                "Y": 0.0,
+                                "Z": 2.6246566772460939
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "Range": 20.0,
+                                        "SpotAngle": 30.0,
+                                        "Intensity": 0.5,
+                                        "Color": {
+                                            "X": 1.0,
+                                            "Y": 0.0,
+                                            "Z": 0.8704662322998047,
+                                            "W": 1.0
+                                        },
+                                        "Type": 1,
+                                        "Shadow": 0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "SpotLight",
+                        "m_Id": 15883465136838607884,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 0.9306009411811829,
+                                    "value1": 0.0,
+                                    "value2": -0.36603543162345889,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.36603543162345889,
+                                    "value9": 0.0,
+                                    "value10": 0.9306009411811829,
+                                    "value11": 0.0,
+                                    "value12": -1.9369287490844727,
+                                    "value13": -0.43215352296829226,
+                                    "value14": 0.0,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.18627811968326569,
+                                "Z": 0.0,
+                                "W": 0.9824970960617065
+                            },
+                            "m_Position": {
+                                "X": -1.9369287490844727,
+                                "Y": -0.43215352296829226,
+                                "Z": 0.0
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "Range": 22.149999618530275,
+                                        "SpotAngle": 39.5,
+                                        "Intensity": 0.20000000298023225,
+                                        "Color": {
+                                            "X": 1.0,
+                                            "Y": 0.8988091349601746,
+                                            "Z": 0.0,
+                                            "W": 1.0
+                                        },
+                                        "Type": 2,
+                                        "Shadow": 0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "SpotLight (1)",
+                        "m_Id": 14483947168440503106,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 0.1571013331413269,
+                                    "value13": -0.43215352296829226,
+                                    "value14": 0.0,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 0.1571013331413269,
+                                "Y": -0.43215352296829226,
+                                "Z": 0.0
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "Range": 22.149999618530275,
+                                        "SpotAngle": 39.5,
+                                        "Intensity": 0.4000000059604645,
+                                        "Color": {
+                                            "X": 1.0,
+                                            "Y": 0.8988091349601746,
+                                            "Z": 0.0,
+                                            "W": 1.0
+                                        },
+                                        "Type": 2,
+                                        "Shadow": 0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "SpotLight (2)",
+                        "m_Id": 12294716689064439628,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 0.9130934476852417,
+                                    "value1": 0.0,
+                                    "value2": 0.40775030851364138,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": -0.40775030851364138,
+                                    "value9": 0.0,
+                                    "value10": 0.9130934476852417,
+                                    "value11": 0.0,
+                                    "value12": 2.4383842945098879,
+                                    "value13": -0.4321441054344177,
+                                    "value14": 0.000004203022399451584,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.20845447480678559,
+                                "Z": 0.0,
+                                "W": 0.9780320525169373
+                            },
+                            "m_Position": {
+                                "X": 2.4383842945098879,
+                                "Y": -0.4321441054344177,
+                                "Z": 0.000004203022399451584
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "Range": 22.149999618530275,
+                                        "SpotAngle": 39.5,
+                                        "Intensity": 0.20000000298023225,
+                                        "Color": {
+                                            "X": 1.0,
+                                            "Y": 0.8988091349601746,
+                                            "Z": 0.0,
+                                            "W": 1.0
+                                        },
+                                        "Type": 2,
+                                        "Shadow": 0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "g0 (2)",
+                        "m_Id": 10445630691857892775,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": -0.09995126724243164,
+                                    "value1": 0.0,
+                                    "value2": -0.0031227748841047289,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 0.10000002384185791,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0031227748841047289,
+                                    "value9": 0.0,
+                                    "value10": -0.09995126724243164,
+                                    "value11": 0.0,
+                                    "value12": -0.05196748301386833,
+                                    "value13": -0.7058777213096619,
+                                    "value14": 3.275940179824829,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": -0.9998781085014343,
+                                "Z": 0.0,
+                                "W": 0.015615774318575859
+                            },
+                            "m_Position": {
+                                "X": -0.05196748301386833,
+                                "Y": -0.7058777213096619,
+                                "Z": 3.275940179824829
+                            },
+                            "m_Scale": {
+                                "X": 0.10000002384185791,
+                                "Y": 0.10000002384185791,
+                                "Z": 0.10000002384185791
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "nanosuit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Target0",
+                        "m_Id": 11763806358106572363,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 0.0,
+                                    "value13": 16.19901466369629,
+                                    "value14": 0.0,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 0.0,
+                                "Y": 16.19901466369629,
+                                "Z": 0.0
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": []
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "Fantasy",
+                        "m_Id": 5889512000402114512,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 0.49011486768722536,
+                                    "value13": -0.39957916736602785,
+                                    "value14": -0.45300987362861636,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 0.49011486768722536,
+                                "Y": -0.39957916736602785,
+                                "Z": -0.45300987362861636
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": []
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "Name": "GameObject",
+                        "m_Id": 5685495938616879968,
+                        "IsActive": true,
+                        "Transform": {
+                            "m_Trs": {
+                                "Array Row Major": {
+                                    "value0": 1.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0,
+                                    "value5": 1.0,
+                                    "value6": 0.0,
+                                    "value7": 0.0,
+                                    "value8": 0.0,
+                                    "value9": 0.0,
+                                    "value10": 1.0,
+                                    "value11": 0.0,
+                                    "value12": 3.0489020347595217,
+                                    "value13": 0.0,
+                                    "value14": 0.0,
+                                    "value15": 1.0
+                                }
+                            },
+                            "m_Rotation": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0,
+                                "W": 1.0
+                            },
+                            "m_Position": {
+                                "X": 3.0489020347595217,
+                                "Y": 0.0,
+                                "Z": 0.0
+                            },
+                            "m_Scale": {
+                                "X": 1.0,
+                                "Y": 1.0,
+                                "Z": 1.0
+                            },
+                            "m_Level": 0,
+                            "m_HasChanged": false,
+                            "m_ParentId": 0
+                        },
+                        "m_Components": [
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "valid": 1,
+                                    "data": {
+                                        "m_Name": "cube"
                                     }
                                 }
                             }

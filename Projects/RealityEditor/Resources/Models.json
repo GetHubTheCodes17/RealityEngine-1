@@ -4,7 +4,7 @@
             "key": "nanosuit",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\nanosuit\\nanosuit.obj"
+                    "Path": "../../Resources\\Models\\nanosuit\\nanosuit.obj"
                 },
                 "second": {
                     "Usage": 1,
@@ -17,7 +17,7 @@
             "key": "quad",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\quad\\quad.obj"
+                    "Path": "../../Resources\\Models\\quad\\quad.obj"
                 },
                 "second": {
                     "Usage": 1,
@@ -30,7 +30,7 @@
             "key": "crytek",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\crytek\\crytek.obj"
+                    "Path": "../../Resources\\Models\\crytek\\crytek.obj"
                 },
                 "second": {
                     "Usage": 1,
@@ -43,20 +43,7 @@
             "key": "SciFi_Fighter",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\SciFi_Fighter\\SciFi_Fighter.obj"
-                },
-                "second": {
-                    "Usage": 1,
-                    "DrawType": 4,
-                    "Attribute": 7
-                }
-            }
-        },
-        {
-            "key": "fantasy_game_inn",
-            "value": {
-                "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\fantasy_game_inn\\fantasy_game_inn.obj"
+                    "Path": "../../Resources\\Models\\SciFi_Fighter\\SciFi_Fighter.obj"
                 },
                 "second": {
                     "Usage": 1,
@@ -69,7 +56,7 @@
             "key": "cube",
             "value": {
                 "first": {
-                    "Path": "C:\\Users\\hmarg\\Desktop\\Reality\\Engine\\RealityGit\\Resources\\Models\\cube\\cube.obj"
+                    "Path": "../../Resources\\Models\\cube\\cube.obj"
                 },
                 "second": {
                     "Usage": 1,

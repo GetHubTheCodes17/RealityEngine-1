@@ -30,3 +30,11 @@ inline void Reality::CMonoBehaviour::SetEnable(bool enabled) {
 	}
 	Enabled = enabled;
 }
+
+#include <rttr/registration>
+
+#define REFLECT(type) \
+RTTR_REGISTRATION \
+{ \
+	rttr::registration::class_<type>(#type).method("Instantiate", &type::Instantiate); \
+} 

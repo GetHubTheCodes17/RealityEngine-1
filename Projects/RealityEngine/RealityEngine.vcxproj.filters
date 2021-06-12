@@ -214,7 +214,7 @@
     <ClInclude Include="include\Windowing\IO.h">
       <Filter>include\Windowing</Filter>
     </ClInclude>
-    <ClInclude Include="include\Windowing\KeyCodes.h">
+    <ClInclude Include="include\Windowing\Key.h">
       <Filter>include\Windowing</Filter>
     </ClInclude>
     <ClInclude Include="include\Windowing\Time.h">

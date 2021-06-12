@@ -3,5 +3,8 @@
 #pragma once
 
 namespace Reality::Editor {
-	class EditorWindow {};
+	class EditorWindow {
+	public:
+		virtual ~EditorWindow() = default;
+	};
 }

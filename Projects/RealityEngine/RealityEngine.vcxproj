@@ -118,7 +118,7 @@
     <ClInclude Include="include\Windowing\GlfwWindow.h" />
     <ClInclude Include="include\Windowing\Input.h" />
     <ClInclude Include="include\Windowing\IO.h" />
-    <ClInclude Include="include\Windowing\KeyCodes.h" />
+    <ClInclude Include="include\Windowing\Key.h" />
     <ClInclude Include="include\Windowing\Time.h" />
     <ClInclude Include="include\Windowing\Window.h" />
   </ItemGroup>

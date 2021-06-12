@@ -21,7 +21,7 @@ namespace Reality {
 		void UpdateLights(Scene& scene) const;
 		void UpdateMeshesShadow(Scene& scene) const;
 		void UpdateMeshes(Scene& scene) const;
-		void UpdateParticles(Scene& scene) const;
+		void UpdateParticles(Scene& scene, Vector3 cameraPosition) const;
 		void UpdateMonoBehaviours(Scene& scene) const;
 	};
 }
@@ -109,14 +109,13 @@ inline void Reality::ComponentSystem::UpdateMeshes(Scene& scene) const {
 	}
 }
 
-inline void Reality::ComponentSystem::UpdateParticles(Scene& scene) const {
+inline void Reality::ComponentSystem::UpdateParticles(Scene& scene, Vector3 cameraPosition) const {
 	for (const auto& system : scene.m_Manager.GetComponents<CParticleSystem>()) {
 		if (const auto glSystem{ static_cast<const CParticleSystem*>(system)->System }) {
 			glSystem->Direction = Vector3::Normalize(system->GetGameObject().Transform.GetForward());
 			glSystem->Position = system->GetGameObject().Transform.GetPosition();
 			if (auto camera{ CCamera::s_Main }) {
-				glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, 
-					camera->GetGameObject().Transform.GetPosition());
+				glSystem->Update(g_Io->Time->GetDeltaTime() * glSystem->Speed, cameraPosition);
 			}
 		}
 	}
